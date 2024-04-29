@@ -3,7 +3,7 @@ import { HoveredLink, Menu, MenuItem, ProductItem } from "../../components/ui/na
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
 import logoJv from "../../assets/logo/logojv.png";
-import { FaAngleDown } from "react-icons/fa6";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function NavbarDemo() {
   return (
@@ -16,13 +16,13 @@ export default function NavbarDemo() {
 function Navbar(className) {
   const [active, setActive] = useState(null);
   return (
-    <div className={cn("fixed top-0 left-0 w-full px-14 bg-white z-50 border-b border-brand-50", className)}>
+    <div className={cn("fixed -top-1 left-0 w-full px-4 md:px-14 bg-white z-50 border-b border-brand-50", className)}>
       <Menu setActive={setActive} className="w-full bg-[#11090E]">
-        <div className="flex gap-3 justify-between">
-          <div>
-            <img src={logoJv} className="w-44" />
+        <div className="flex mx-auto justify-between">
+          <div className="justify-end md:flex">
+            <img src={logoJv} alt="logoJv.png" className="h-10" />
           </div>
-          <div className="flex gap-4 items-center">
+          <div className="gap-4 items-center hidden md:flex">
             <Link to={"/home"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
               Dashboard
             </Link>
@@ -56,8 +56,16 @@ function Navbar(className) {
               </div>
             </MenuItem>
           </div>
-          <div>
-            <button className="btn py-1 px-3">Mulai</button>
+          <div className="flex gap-4">
+            <div className="flex md:hidden">
+              <button className="px-4">
+                <RxHamburgerMenu className="w-4 h-4" />
+                <p className="sr-only">Menu</p>
+              </button>
+            </div>
+            <div className="hidden md:block md:mt-1.5">
+              <button className="btn py-1 px-3">Mulai</button>
+            </div>
           </div>
         </div>
       </Menu>

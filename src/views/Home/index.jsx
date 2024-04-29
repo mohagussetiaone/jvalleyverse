@@ -414,9 +414,9 @@ export default function Home() {
     <>
       <div className="flex w-screen bg-gradient-to-br from-brandSecondary/10 via-brand2 to-brand-500">
         <div className="flex w-full md:w-7/12 flex-col items-center justify-center h-[40rem] ">
-          <h3 className="text-3xl text-gray-200">Komunitas belajar programming gratis</h3>
+          <h3 className="text-3xl md:mt-0 text-gray-200">Komunitas belajar programming gratis</h3>
           <TypewriterEffectSmooth words={words} />
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
+          <div className="flex flex-col justify-start md:justify-center md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
             <button className="w-40 h-10 rounded-xl bg-brand-500 hover:bg-brand-600 border dark:border-white border-transparent text-white text-sm shadow-xl">Selengkapnya</button>
             <button className="w-40 h-10 rounded-xl bg-white hover:bg-gray-200 text-black border border-black shadow-xl text-sm">Bergabung</button>
           </div>
