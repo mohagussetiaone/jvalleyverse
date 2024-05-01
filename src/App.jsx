@@ -2,6 +2,7 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "@views/Home";
+import { Welcome } from "./views/Home/components/Welcome";
 import Layout from "./layouts/public";
 
 const router = createBrowserRouter([
@@ -15,6 +16,13 @@ const router = createBrowserRouter([
         // loader: authLoader,
         Component() {
           return <Home />;
+        },
+      },
+      {
+        path: "/about",
+        // loader: authLoader,
+        Component() {
+          return <Welcome />;
         },
       },
     ],

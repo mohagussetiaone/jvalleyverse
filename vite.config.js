@@ -16,6 +16,7 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "./src/store"),
       "@routes": path.resolve(__dirname, "./src/routes"),
       "@config": path.resolve(__dirname, "./src/config"),
+      "@public": path.resolve(__dirname, "./public"),
     },
   },
   plugins: [react()],

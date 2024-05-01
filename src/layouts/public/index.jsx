@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "@layouts/Navbar";
-// import Footer from "@components/Footer";
+import Footer from "@layouts/Footer";
 
 export default function Layout() {
   return (
@@ -9,12 +9,13 @@ export default function Layout() {
         <main className={`h-full flex-none transition-all`}>
           <div className="h-full overflow-x-hidden">
             <Navbar />
-            <div className="pt-5s mx-auto mb-auto h-auto min-h-[70vh]">
+            <div className="pt-5s mx-auto mb-auto h-auto w-full">
               <Outlet />
             </div>
-            {/* <Footer /> */}
+            <div className="p-4">
+              <Footer />
+            </div>
           </div>
-          <h4>Footer</h4>
         </main>
       </div>
     </div>

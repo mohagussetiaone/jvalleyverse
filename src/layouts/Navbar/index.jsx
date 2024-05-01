@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { HoveredLink, Menu, MenuItem, ProductItem } from "../../components/ui/navbar-menu";
+import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
-import logoJv from "../../assets/logo/logojv.png";
+import logoJv from "@/assets/logo/logojv.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function NavbarDemo() {
@@ -23,13 +23,18 @@ function Navbar(className) {
             <img src={logoJv} alt="logoJv.png" className="h-10" />
           </div>
           <div className="gap-4 items-center hidden md:flex">
-            <Link to={"/home"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
+            <Link to={"/"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
               Dashboard
             </Link>
-            <MenuItem setActive={setActive} active={active} item="Kursus">
+            <MenuItem setActive={setActive} active={active} item="Studi Kasus">
               <div className="  text-sm grid grid-cols-2 gap-10 p-4">
-                <ProductItem title="Algochurn" href="https://algochurn.com" src="https://assets.aceternity.com/demos/algochurn.webp" description="Prepare for tech interviews like never before." />
-                <ProductItem title="Tailwind Master Kit" href="https://tailwindmasterkit.com" src="https://assets.aceternity.com/demos/tailwindmasterkit.webp" description="Production ready Tailwind css components for your next project" />
+                <ProductItem
+                  title="Ecommerce Jajanian"
+                  href="https://algochurn.com"
+                  src="https://assets.aceternity.com/demos/algochurn.webp"
+                  description="Jajanian adalah aplikasi yang memudahkan pembeli untuk membeli jajanan secara online"
+                />
+                <ProductItem title="Dashboard Jajanian" href="https://tailwindmasterkit.com" src="https://assets.aceternity.com/demos/tailwindmasterkit.webp" description="Aplikasi ini memudahkan untuk manajemen online store jajanian" />
                 <ProductItem
                   title="Moonbeam"
                   href="https://gomoonbeam.com"
@@ -39,14 +44,9 @@ function Navbar(className) {
                 <ProductItem title="Rogue" href="https://userogue.com" src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png" description="Respond to government RFPs, RFIs and RFQs 10x faster using AI" />
               </div>
             </MenuItem>
-            <MenuItem setActive={setActive} active={active} item="Tentang">
-              <div className="flex flex-col space-y-4 text-sm">
-                <HoveredLink href="/hobby">Hobby</HoveredLink>
-                <HoveredLink href="/individual">Individual</HoveredLink>
-                <HoveredLink href="/team">Team</HoveredLink>
-                <HoveredLink href="/enterprise">Enterprise</HoveredLink>
-              </div>
-            </MenuItem>
+            <Link to={"/about"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
+              Tentang
+            </Link>
             <MenuItem setActive={setActive} active={active} item="Testimoni">
               <div className="flex flex-col space-y-4 text-sm">
                 <HoveredLink href="/hobby">Hobby</HoveredLink>

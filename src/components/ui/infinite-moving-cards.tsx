@@ -1,5 +1,6 @@
 import { cn } from "@utils/cn";
 import React, { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 export const InfiniteMovingCards = ({
   items,
@@ -13,6 +14,7 @@ export const InfiniteMovingCards = ({
     name: string;
     title: string;
     image: string;
+    website: string;
   }[];
   direction?: "left" | "right";
   speed?: "slow";
@@ -77,9 +79,9 @@ export const InfiniteMovingCards = ({
                 key={item.name}
               >
                 <div aria-hidden="true" className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"></div>
-                <div>
+                <a href={item.website} target="_blank">
                   <img src={item.image} alt={item.name} className="w-auto h-16" />
-                </div>
+                </a>
               </li>
             ))}
           </ul>

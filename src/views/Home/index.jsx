@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 import { World } from "../../components/ui/globe";
+import { Welcome } from "./components/Welcome";
 import { TechStack } from "./components/TechStack";
-import MetodePembelajaran from "./components/MetodePembelajaran";
+import { MetodePembelajaran } from "./components/MetodePembelajaran";
+import { Gallery } from "./components/Gallery";
 
 export default function Home() {
   const words = [
@@ -445,6 +447,7 @@ export default function Home() {
       </div>
       <TechStack />
       <MetodePembelajaran />
+      <Gallery />
     </>
   );
 }

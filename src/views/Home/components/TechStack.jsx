@@ -1,9 +1,9 @@
-import { InfiniteMovingCards } from "../../../components/ui/infinite-moving-cards";
-import ReactJs from "../../../assets/tech/reactjs.png";
-import ViteJs from "../../../assets/tech/vitejs.png";
-import NextJs from "../../../assets/tech/nextjs.png";
-import TailwindCss from "../../../assets/tech/tailwindcss.png";
-import NodeJs from "../../../assets/tech/nodejs.png";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import ReactJs from "@/assets/tech/reactjs.png";
+import ViteJs from "@/assets/tech/vitejs.png";
+import NextJs from "@/assets/tech/nextjs.png";
+import TailwindCss from "@/assets/tech/tailwindcss.png";
+import NodeJs from "@/assets/tech/nodejs.png";
 
 export function TechStack() {
   return (
@@ -25,21 +25,26 @@ const testimonials = [
   {
     name: "React JS",
     image: ReactJs,
+    website: "https://react.dev",
   },
   {
     name: "Vite JS",
     image: ViteJs,
+    website: "https://vitejs.dev",
   },
   {
     name: "Node JS",
     image: NodeJs,
+    website: "https://nodejs.org",
   },
   {
     name: "Tailwind CSS",
     image: TailwindCss,
+    website: "https://tailwindcss.com",
   },
   {
     name: "Next JS",
     image: NextJs,
+    website: "https://nextjs.org",
   },
 ];
