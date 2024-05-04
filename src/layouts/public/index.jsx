@@ -12,7 +12,7 @@ export default function Layout() {
             <div className="pt-5s mx-auto mb-auto h-auto w-full">
               <Outlet />
             </div>
-            <div className="p-4">
+            <div>
               <Footer />
             </div>
           </div>

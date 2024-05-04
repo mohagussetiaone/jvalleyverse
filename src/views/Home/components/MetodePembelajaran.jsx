@@ -28,7 +28,7 @@ export function MetodePembelajaran() {
           <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">Anda dapat mengikuti kelas</h2>
           <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">Kami telah menyediakan platform pelatihan secara daring agar anda dapat belajar melalui website</p>
           <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
-            <button className="bg-brand-500">Register sekarang</button>
+            <button className="bg-brand-500">Daftar sekarang</button>
           </p>
         </WobbleCard>
       </div>
