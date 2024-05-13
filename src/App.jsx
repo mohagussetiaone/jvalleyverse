@@ -2,8 +2,10 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "@views/Home";
-import { Welcome } from "./views/Home/components/Welcome";
+import About from "./views/About/components/AboutCard";
 import Layout from "./layouts/public";
+import SignIn from "./views/Auth/Signin";
+import SignUp from "./views/Auth/Signup";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +24,27 @@ const router = createBrowserRouter([
         path: "/about",
         // loader: authLoader,
         Component() {
-          return <Welcome />;
+          return <About />;
+        },
+      },
+      {
+        path: "/testimoni",
+        // loader: authLoader,
+        Component() {
+          return <About />;
         },
       },
     ],
+  },
+  {
+    path: "/signin",
+    // loader: authLoader,
+    Component: SignIn,
+  },
+  {
+    path: "/signup",
+    // loader: authLoader,
+    Component: SignUp,
   },
 ]);
 

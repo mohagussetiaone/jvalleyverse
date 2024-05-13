@@ -43,7 +43,7 @@ export const MenuItem = ({ setActive, active, item, children }: { setActive: (it
 
 export const Menu = ({ setActive, children }: { setActive: (item: string | null) => void; children: React.ReactNode }) => {
   return (
-    <nav onMouseLeave={() => setActive(null)} className="relative w-full boder border-transparent dark:bg-black dark:border-white/[0.2] bg-transparent shadow-input space-x-4 py-4 px-3">
+    <nav onMouseLeave={() => setActive(null)} className="relative w-full boder border-transparent dark:bg-black dark:border-white/[0.2] bg-transparent shadow-input space-x-4 py-4">
       {children}
     </nav>
   );

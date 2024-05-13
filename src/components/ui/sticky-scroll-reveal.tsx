@@ -86,7 +86,7 @@ export const StickyScroll = ({
         animate={{
           background: linearGradients[activeCard % linearGradients.length],
         }}
-        className={cn("hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden", contentClassName)}
+        className={cn("hidden lg:block h-72 w-96 rounded-md bg-white sticky top-16 overflow-hidden", contentClassName)}
       >
         {content[activeCard].content ?? null}
       </motion.div>
