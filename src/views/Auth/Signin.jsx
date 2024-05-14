@@ -5,7 +5,7 @@ import supabase from "@/config/supabaseClient";
 // import { set } from "store/Local/Forage";
 import toast from "react-hot-toast";
 // import { useProfileStore } from "store/Profile/StoreProfile";
-import backgroundAuth from "@/assets/logo/logo.png";
+// import backgroundAuth from "@/assets/logo/logo.png";
 import { useQuery } from "@tanstack/react-query";
 
 const SignIn = () => {
@@ -81,8 +81,8 @@ const SignIn = () => {
           toast.error("User tidak ditemukan");
           return;
         } else if (data.session !== null) {
-          const token = data?.session?.access_token;
-          const dataProfile = data?.user;
+          // const token = data?.session?.access_token;
+          // const dataProfile = data?.user;
           // set(token);
           // setProfile(dataProfile);
           toast.success("Login Berhasil", {
@@ -125,9 +125,9 @@ const SignIn = () => {
   }, [rememberMe]);
 
   return (
-    <section className="flex flex-col md:flex-row h-screen items-center overflow-hidden">
-      <div className="bg-white w-full md:max-w-md lg:max-w-full md:mx-0 md:w-1/2 xl:w-1/2 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
-        <div className="w-full h-100 px-2 md:px-8 xl:px-14">
+    <section className="flex flex-col w-screen md:flex-row h-screen items-center overflow-hidden">
+      <div className="bg-gradient-to-br from-brand2 via-black to-brand-800 w-full h-screen flex items-center justify-center">
+        <div className="max-w-xl p-2 md:py-4 xl:py-6 md:px-8 xl:px-16 mx-auto bg-white rounded-lg shadow">
           <h1 className="text-xl flex justify-center text-black md:text-2xl font-bold leading-tight mt-4">Masuk ke akun anda</h1>
           <form className="mt-6 px-2" action="#" method="POST">
             <div>
@@ -167,8 +167,8 @@ const SignIn = () => {
             <div className="text-right flex justify-between mt-2">
               <div className="mb-4 flex items-center justify-between px-2">
                 <div className="flex items-center mb-2">
-                  <input className="h-4 w-4 mr-2 leading-tight" type="checkbox" id="rememberMeCheckbox" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
-                  <label className="text-sm" htmlFor="rememberMeCheckbox">
+                  <input className="h-4 w-4 mr-2 leading-tight cursor-pointer" type="checkbox" id="rememberMeCheckbox" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
+                  <label className="text-sm text-black" htmlFor="rememberMeCheckbox">
                     Ingat Saya
                   </label>
                 </div>
@@ -183,7 +183,7 @@ const SignIn = () => {
               Masuk akun
             </button>
           </form>
-          <div className="flex items-center justify-center my-6">
+          <div className="flex items-center justify-center my-2">
             <hr className="border-gray-300 w-full" />
             <span className="px-4 text-gray-500">Atau</span>
             <hr className="border-gray-300 w-full" />
@@ -214,9 +214,6 @@ const SignIn = () => {
             </Link>
           </p>
         </div>
-      </div>
-      <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-1/2 h-screen">
-        <img src={backgroundAuth} alt="banner-auth.jpg" className="w-full h-auto object-cover" />
       </div>
     </section>
   );

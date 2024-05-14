@@ -6,6 +6,8 @@ import About from "./views/About/components/AboutCard";
 import Layout from "./layouts/public";
 import SignIn from "./views/Auth/Signin";
 import SignUp from "./views/Auth/Signup";
+import Faq from "./views/Faq";
+import Timeline from "./views/Timeline";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,20 @@ const router = createBrowserRouter([
         // loader: authLoader,
         Component() {
           return <About />;
+        },
+      },
+      {
+        path: "/jalur-belajar",
+        // loader: authLoader,
+        Component() {
+          return <Timeline />;
+        },
+      },
+      {
+        path: "/faq",
+        // loader: authLoader,
+        Component() {
+          return <Faq />;
         },
       },
     ],

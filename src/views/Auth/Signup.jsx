@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import supabase from "@/config/supabaseClient";
 import toast from "react-hot-toast";
-import backgroundAuth from "@/assets/logo/logo.png";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -70,9 +69,9 @@ const SignUp = () => {
   };
 
   return (
-    <section className="flex flex-col md:flex-row h-screen items-center overflow-hidden">
-      <div className="flex bg-white w-full md:max-w-md lg:max-w-full md:mx-0 md:w-1/2 xl:w-1/2 h-screen px-6 lg:px-16 xl:px-12">
-        <div className="w-full mt-8 px-14 h-100">
+    <section className="flex flex-col w-screen md:flex-row h-screen items-center overflow-hidden">
+      <div className="bg-gradient-to-br from-brand-600 via-black to-brand2 w-full h-screen flex items-center justify-center">
+        <div className="w-full max-w-md mx-2 p-2 px-4 md:py-6 xl:py-8 md:px-8 xl:px-16 bg-white rounded-lg shadow">
           <h1 className="text-xl flex justify-center text-black md:text-2xl font-bold leading-tight">Daftar akun</h1>
           <form className="mt-6" onSubmit={SignUp}>
             <div className="mt-2">
@@ -139,9 +138,6 @@ const SignUp = () => {
             </Link>
           </p>
         </div>
-      </div>
-      <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-1/2 h-screen">
-        <img src={backgroundAuth} alt="banner-auth.jpg" className="w-full h-auto object-cover" />
       </div>
     </section>
   );

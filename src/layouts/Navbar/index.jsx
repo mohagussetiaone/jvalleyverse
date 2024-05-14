@@ -51,6 +51,9 @@ function Navbar(className) {
                   description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya."
                 />
               </div>
+              <Link to="/jalur-belajar" className="flex justify-center py-2">
+                <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
+              </Link>
             </MenuItem>
             <MenuItem setActive={setActive} active={active} item="Studi Kasus">
               <div className="text-sm grid grid-cols-2 gap-10 p-4">
@@ -61,20 +64,13 @@ function Navbar(className) {
                   description="Jajanian adalah aplikasi yang memudahkan pembeli untuk membeli jajanan secara online"
                 />
                 <ProductItem title="Dashboard Jajanian" href="https://tailwindmasterkit.com" src="https://assets.aceternity.com/demos/tailwindmasterkit.webp" description="Aplikasi ini memudahkan untuk manajemen online store jajanian" />
-                <ProductItem
-                  title="Moonbeam"
-                  href="https://gomoonbeam.com"
-                  src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-                  description="Never write from scratch again. Go from idea to blog in minutes."
-                />
-                <ProductItem title="Rogue" href="https://userogue.com" src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png" description="Respond to government RFPs, RFIs and RFQs 10x faster using AI" />
               </div>
             </MenuItem>
+            <Link to={"/explore"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
+              Explore
+            </Link>
             <Link to={"/about"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
               Tentang
-            </Link>
-            <Link to={"/testimoni"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
-              Testimoni
             </Link>
           </div>
           <div className="flex gap-4">
