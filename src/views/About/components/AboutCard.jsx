@@ -32,7 +32,7 @@ const content = [
 
 export default function About() {
   return (
-    <div className="pt-12">
+    <div>
       <StickyScroll content={content} />
     </div>
   );

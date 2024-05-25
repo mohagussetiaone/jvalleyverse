@@ -1,8 +1,8 @@
-import TimelineCard from "./components/TimelineCard";
+import TimelineTab from "./components/TimelineTab";
 const index = () => {
   return (
     <>
-      <TimelineCard />
+      <TimelineTab />
     </>
   );
 };

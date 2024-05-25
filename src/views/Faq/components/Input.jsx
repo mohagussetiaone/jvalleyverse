@@ -1,13 +1,7 @@
-// import Card from "components/card";
-import cs from "@/assets/img/CustomerService.png";
-// eslint-disable-next-line react/prop-types
 const Input = ({ handleSearch }) => {
   return (
     <>
-      <div className="flex justify-center items-center mb-8">
-        <img src={cs} className="max-w-[195px]" />
-      </div>
-      <h1 className="text-2xl font-bold text-center text-white">
+      <h1 className="text-2xl font-bold text-center text-white pt-8">
         Perlu bantuan?{" "}
         <a href="https://nethome.id/bantuan" target="_blank" className="text-white">
           Tanyakan kepada kami

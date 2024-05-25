@@ -5,6 +5,14 @@ import { Link } from "react-router-dom";
 import logoJv from "@/assets/logo/logojv.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { LuMoonStar, LuSunMoon } from "react-icons/lu";
+import uiuxImg from "@/assets/navbar/uiux.png";
+import frontEndImg from "@/assets/navbar/frontend.jpeg";
+import backEndImg from "@/assets/navbar/backend.png";
+import databaseImg from "@/assets/navbar/database.jpg";
+import certificateImg from "@/assets/navbar/certificate.jpg";
+import showCaseImg from "@/assets/navbar/showcase.jpg";
+import telegramImg from "@/assets/navbar/telegram.jpeg";
+import stuckImg from "@/assets/navbar/erorr.png";
 
 export default function NavbarDemo() {
   return (
@@ -26,50 +34,30 @@ function Navbar(className) {
           <div className="gap-4 items-center hidden md:flex">
             <MenuItem setActive={setActive} active={active} item="Jalur belajar">
               <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                <ProductItem
-                  title="UI/UX Design"
-                  href="https://algochurn.com"
-                  src="https://cdn-images-1.medium.com/max/1600/1*2PLgANgjyO4PBYuKoWsFTg.png"
-                  description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik."
-                />
-                <ProductItem
-                  title="Frontend Developer"
-                  href="https://tailwindmasterkit.com"
-                  src="https://yourserveradmin.com/wp-content/uploads/2020/04/react.jpg"
-                  description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien."
-                />
-                <ProductItem
-                  title="Backend Developer"
-                  href="https://gomoonbeam.com"
-                  src="https://dz2cdn1.dzone.com/storage/temp/14227892-1607949763897.png"
-                  description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem"
-                />
-                <ProductItem
-                  title="Database"
-                  href="https://userogue.com"
-                  src="https://www.exabytes.co.id/blog/wp-content/uploads/2021/10/ilustrasi-relational-database-1024x670.jpg"
-                  description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya."
-                />
+                <ProductItem title="UI/UX Design" href="https://algochurn.com" src={uiuxImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
+                <ProductItem title="Frontend Developer" href="https://tailwindmasterkit.com" src={frontEndImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
+                <ProductItem title="Backend Developer" href="https://gomoonbeam.com" src={backEndImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
+                <ProductItem title="Database" href="https://userogue.com" src={databaseImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
               </div>
               <Link to="/jalur-belajar" className="flex justify-center py-2">
                 <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
               </Link>
             </MenuItem>
-            <MenuItem setActive={setActive} active={active} item="Studi Kasus">
-              <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                <ProductItem
-                  title="Ecommerce Jajanian"
-                  href="https://algochurn.com"
-                  src="https://assets.aceternity.com/demos/algochurn.webp"
-                  description="Jajanian adalah aplikasi yang memudahkan pembeli untuk membeli jajanan secara online"
-                />
-                <ProductItem title="Dashboard Jajanian" href="https://tailwindmasterkit.com" src="https://assets.aceternity.com/demos/tailwindmasterkit.webp" description="Aplikasi ini memudahkan untuk manajemen online store jajanian" />
-              </div>
-            </MenuItem>
-            <Link to={"/explore"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
-              Explore
+            <Link to="/studi-kasus" className="text-black font-normal dark:text-neutral-200 hover:text-black">
+              Studi Kasus
             </Link>
-            <Link to={"/about"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
+            <MenuItem setActive={setActive} active={active} item="Explore">
+              <div className="text-sm grid grid-cols-2 gap-10 p-4">
+                <ProductItem title="Cek Sertifikat" href="https://algochurn.com" src={certificateImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
+                <ProductItem title="Show Case" href="https://tailwindmasterkit.com" src={showCaseImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
+                <ProductItem title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
+                <ProductItem title="Stuck Erorr" href="https://userogue.com" src={stuckImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
+              </div>
+              <Link to="/jalur-belajar" className="flex justify-center py-2">
+                <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
+              </Link>
+            </MenuItem>
+            <Link to={"/tentang"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
               Tentang
             </Link>
           </div>

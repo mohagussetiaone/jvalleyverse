@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { World } from "@/components/ui/globe";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const words = [
@@ -415,7 +416,9 @@ const Banner = () => {
           <h3 className="text-3xl md:mt-0 text-gray-200">Komunitas belajar programming gratis</h3>
           <TypewriterEffectSmooth words={words} />
           <div className="flex flex-col justify-start md:justify-center md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
-            <button className="w-40 h-10 rounded-xl bg-brand-500 hover:bg-brand-600 border dark:border-white border-transparent text-white text-sm shadow-xl">Selengkapnya</button>
+            <Link to="/tentang" className="w-40 pt-2 h-10 rounded-xl bg-brand-500 hover:bg-brand-600 border dark:border-white border-transparent text-white text-sm shadow-xl">
+              Selengkapnya
+            </Link>
             <button className="w-40 h-10 rounded-xl bg-white hover:bg-gray-200 text-black border border-black shadow-xl text-sm">Bergabung</button>
           </div>
         </div>
