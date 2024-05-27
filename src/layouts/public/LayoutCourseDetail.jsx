@@ -1,18 +1,18 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "@layouts/Navbar";
-import Sidebar from "@/layouts/Sidebar/SidebarCourse";
+import SidebarCourseDetail from "@/layouts/Sidebar/SidebarCourseDetail";
 
-export default function Layout() {
+export default function LayoutCourseDetail() {
   return (
-    <div className="flex max-w-screen overflow-hidden">
+    <div className="flex overflow-hidden">
       <div className="w-full">
         <main>
           <Navbar />
           <div className="pt-[67px]">
             <div className="fixed top-[67px] bottom-0 left-0">
-              <Sidebar />
+              <SidebarCourseDetail />
             </div>
-            <div className="xl:ml-[275px] min-h-full">
+            <div className="flex xl:ml-[300px] min-h-full bg-gray-200">
               <Outlet />
             </div>
           </div>

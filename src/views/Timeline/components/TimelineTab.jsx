@@ -4,7 +4,7 @@ import TimelineUiUx from "./UIUX/TimelineUiUx";
 import TimelineDatabase from "./Database/TimelineDatabase";
 import TimelineBackend from "./BackEnd/TimelineBackend";
 import TimelineFrontEnd from "./FrontEnd/TimelineFrontEnd";
-import TimelineTesting from "./Testing/TimelineTesting";
+// import TimelineTesting from "./Testing/TimelineTesting";
 import CommingSoon from "@/components/CommingSoon";
 
 const buttons = [
@@ -31,7 +31,7 @@ const TimelineTab = () => {
       <h3></h3>
       <div className="flex flex-col justify-center">
         <Tab.Group>
-          <Tab.List className="lg:space-x-6 md:space-x-3 space-x-0 rtl:space-x-reverse">
+          <Tab.List className="lg:space-x-6 md:space-x-4 space-x-3 rtl:space-x-reverse">
             {buttons.map((item, i) => (
               <Tab as={Fragment} key={i}>
                 {({ selected }) => (

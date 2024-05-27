@@ -3,13 +3,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "@views/Home";
 import About from "./views/About/components/AboutCard";
+// Layout
 import Layout from "./layouts/public";
 import LayoutCourse from "./layouts/public/LayoutCourse";
+import LayoutCourseDetail from "./layouts/public/LayoutCourseDetail";
+// Views
 import SignIn from "./views/Auth/Signin";
 import SignUp from "./views/Auth/Signup";
 import Faq from "./views/Faq";
 import Timeline from "./views/Timeline";
 import StudiKasus from "./views/StudiCase";
+import StudyCaseList from "./views/StudiCase/components/StudyCase/components/StudyCaseDetail";
 import NotFound from "./views/NotFound";
 
 const router = createBrowserRouter([
@@ -25,27 +29,6 @@ const router = createBrowserRouter([
           return <Home />;
         },
       },
-    ],
-  },
-  {
-    path: "/",
-    // loader: authLoader,
-    element: <LayoutCourse />,
-    children: [
-      {
-        path: "/tentang",
-        // loader: authLoader,
-        Component() {
-          return <About />;
-        },
-      },
-      {
-        path: "/testimoni",
-        // loader: authLoader,
-        Component() {
-          return <About />;
-        },
-      },
       {
         path: "/jalur-belajar",
         // loader: authLoader,
@@ -54,7 +37,29 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/studi-kasus",
+        path: "/tentang",
+        // loader: authLoader,
+        Component() {
+          return <About />;
+        },
+      },
+    ],
+  },
+  {
+    path: "/",
+    // loader: authLoader,
+    element: <LayoutCourse />,
+    children: [
+      {
+        path: "/testimoni",
+        // loader: authLoader,
+        Component() {
+          return <About />;
+        },
+      },
+
+      {
+        path: "/belajar",
         // loader: authLoader,
         Component() {
           return <StudiKasus />;
@@ -65,6 +70,20 @@ const router = createBrowserRouter([
         // loader: authLoader,
         Component() {
           return <Faq />;
+        },
+      },
+    ],
+  },
+  {
+    path: "/",
+    // loader: authLoader,
+    element: <LayoutCourseDetail />,
+    children: [
+      {
+        path: "/kursus/studi-kasus",
+        // loader: authLoader,
+        Component() {
+          return <StudyCaseList />;
         },
       },
     ],
