@@ -118,8 +118,8 @@ const StudyCase = () => {
 
   return (
     <>
-      <div className="w-full xl:w-[calc(100%-275px)] h-full">
-        <div className="bg-white px-2 md:px-6 xl:pr-8 py-4 md:py-6 xl:py-7">
+      <div className="w-full h-full">
+        <div className="bg-gray-200 px-2 md:px-8 py-4 md:py-6 xl:py-7">
           <div className="mb-4">
             <div className="flex justify-between">
               <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>

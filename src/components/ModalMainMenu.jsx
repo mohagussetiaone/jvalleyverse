@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 // import { useAuthCheck } from "@store/Auth/customHooks";
 
 const subMenu = [
+  { name: "Dashboard", to: "/" },
   { name: "Jalur Belajar", to: "/jalur-belajar" },
   { name: "Belajar", to: "/belajar" },
   { name: "Explore", to: "/explore" },

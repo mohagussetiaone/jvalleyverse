@@ -7,13 +7,17 @@ import About from "./views/About/components/AboutCard";
 import Layout from "./layouts/public";
 import LayoutCourse from "./layouts/public/LayoutCourse";
 import LayoutCourseDetail from "./layouts/public/LayoutCourseDetail";
+import LayoutDiscussion from "./layouts/public/LayoutDiscussion";
 // Views
 import SignIn from "./views/Auth/Signin";
 import SignUp from "./views/Auth/Signup";
 import Faq from "./views/Faq";
 import Timeline from "./views/Timeline";
-import StudiKasus from "./views/StudiCase";
+import Belajar from "./views/StudiCase";
+import StudiKasus from "./views/StudiCase/components/StudyCase";
+import Project from "./views/StudiCase/components/Project";
 import ProjectDetail from "./views/StudiCase/components/Project/components/ProjectDetail";
+import Discussion from "./views/StudiCase/components/ErrorDiscussion";
 import Chapter from "./views/StudiCase/components/Project/components/Chapter";
 import NotFound from "./views/NotFound";
 
@@ -58,9 +62,22 @@ const router = createBrowserRouter([
           return <About />;
         },
       },
-
       {
         path: "/belajar",
+        // loader: authLoader,
+        Component() {
+          return <Belajar />;
+        },
+      },
+      {
+        path: "/belajar/project",
+        // loader: authLoader,
+        Component() {
+          return <Project />;
+        },
+      },
+      {
+        path: "/belajar/studi-kasus",
         // loader: authLoader,
         Component() {
           return <StudiKasus />;
@@ -92,6 +109,20 @@ const router = createBrowserRouter([
         // loader: authLoader,
         Component() {
           return <Chapter />;
+        },
+      },
+    ],
+  },
+  {
+    path: "/",
+    // loader: authLoader,
+    element: <LayoutDiscussion />,
+    children: [
+      {
+        path: "/belajar/diskusi",
+        // loader: authLoader,
+        Component() {
+          return <Discussion />;
         },
       },
     ],

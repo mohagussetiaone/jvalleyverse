@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdMenu, MdClose } from "react-icons/md";
 import ListModuleCourse from "../../views/StudiCase/components/ListModuleCourse";
 
-const SidebarStudyCase = () => {
+const SidebarCourseDetail = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -11,7 +11,7 @@ const SidebarStudyCase = () => {
 
   return (
     <>
-      <aside className={`hidden xl:block fixed top-4 left-4 xl:static z-40 w-[300px] h-full bg-gray-50 dark:bg-gray-800 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-60"}`}>
+      <aside className={`hidden xl:block fixed top-4 left-4 xl:static z-40 w-[300px] h-full bg-gray-50 dark:bg-gray-800 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-[295px]"}`}>
         <div className="h-full flex flex-col px-3 py-4">
           <div className="relative z-50">
             <div className="flex px-2 pb-5 items-center justify-between">
@@ -20,7 +20,13 @@ const SidebarStudyCase = () => {
               </div>
               <div>
                 <button onClick={toggleSidebar} className="bg-white p-2 rounded-lg">
-                  {isSidebarOpen ? <MdClose size={24} className="text-red-500" /> : <MdMenu size={24} className="text-blue-500 bg-brand2" />}
+                  {isSidebarOpen ? (
+                    <MdClose size={24} className="text-red-500 hover:border-none" />
+                  ) : (
+                    <div className="absolute top-0 -right-16 px-4 py-2 bg-white rounded-r-full">
+                      <MdMenu size={24} className="text-black  " />
+                    </div>
+                  )}
                 </button>
               </div>
             </div>
@@ -38,4 +44,4 @@ const SidebarStudyCase = () => {
   );
 };
 
-export default SidebarStudyCase;
+export default SidebarCourseDetail;

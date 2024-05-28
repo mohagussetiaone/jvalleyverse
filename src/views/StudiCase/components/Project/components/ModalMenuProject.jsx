@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 // import { useAuthCheck } from "@store/Auth/customHooks";
 
 const subMenu = [
-  { name: "Studi Kasus", to: "/studi-kasus" },
-  { name: "Projek", to: "/project" },
-  { name: "Diskusi", to: "/diskusi" },
-  { name: "Library", to: "/library" },
-  { name: "Explorasi", to: "/explorasi" },
-  { name: "Mentoring", to: "/mentoring" },
-  { name: "Tutorial", to: "/tutorial" },
+  { name: "Projek", to: "/belajar/project" },
+  { name: "Studi Kasus", to: "/belajar/studi-kasus" },
+  { name: "Diskusi", to: "/belajar/diskusi" },
+  { name: "Library", to: "/belajar/library" },
+  { name: "Explorasi", to: "/belajar/explorasi" },
+  { name: "Mentoring", to: "/belajar/mentoring" },
+  { name: "Tutorial", to: "/belajar/tutorial" },
 ];
 
 const ModalMenuProject = ({ showModalMenu, setShowModalMenu }) => {

@@ -125,8 +125,8 @@ const ProjectCard = () => {
 
   return (
     <>
-      <div className="w-full xl:w-[calc(100%-275px)] h-full">
-        <div className="bg-white px-2 md:px-6 xl:pr-8 py-4 md:py-6 xl:py-7">
+      <div className="w-full h-full">
+        <div className="bg-gray-200 px-2 md:px-8 py-4 md:py-6 xl:py-7">
           <div className="mb-4">
             <div className="flex justify-between">
               <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
@@ -149,7 +149,7 @@ const ProjectCard = () => {
             <div className="text-center text-brand-500 text-xl h-[325px] mt-24">Data Not Found</div>
           ) : (
             <div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 xl:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 xl:gap-4">
                 {currentData.map((item) => (
                   <div key={item.id} className="max-w-[300px] h-auto rounded overflow-hidden shadow-lg" onClick={() => handleCardClick(item.id)}>
                     <div className="w-full h-44 overflow-hidden">
