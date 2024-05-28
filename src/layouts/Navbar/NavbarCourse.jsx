@@ -3,7 +3,7 @@ import { Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
 import logoJv from "@/assets/logo/logojv.png";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { MdGridView } from "react-icons/md";
 import { LuMoon, LuSun } from "react-icons/lu";
 import uiuxImg from "@/assets/navbar/uiux.png";
 import frontEndImg from "@/assets/navbar/frontend.jpeg";
@@ -13,20 +13,13 @@ import certificateImg from "@/assets/navbar/certificate.jpg";
 import showCaseImg from "@/assets/navbar/showcase.jpg";
 import telegramImg from "@/assets/navbar/telegram.jpeg";
 import stuckImg from "@/assets/navbar/erorr.png";
-import ModalMainMenu from "@/components/ModalMainMenu";
+import ModalMenuModule from "@/views/StudiCase/components/Project/components/ModalMenuModule";
 import useDarkMode from "@/hooks/useDarkMode";
+import { LuLogOut } from "react-icons/lu";
 
-export default function NavbarDemo() {
-  return (
-    <>
-      <Navbar />
-    </>
-  );
-}
-
-function Navbar(className) {
+const NavbarCourse = (className) => {
   const [active, setActive] = useState(null);
-  const [showModalMainMenu, setShowModalMainMenu] = useState(false);
+  const [showModalMenu, setShowModalMenu] = useState(false);
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
@@ -40,8 +33,8 @@ function Navbar(className) {
               </Link>
             </div>
             <div className="flex md:hidden">
-              <button className="px-3 bg-white border border-gray-300" onClick={() => setShowModalMainMenu(true)}>
-                <RxHamburgerMenu className="w-7 h-7 text-black" />
+              <button className="px-3 bg-white border border-gray-300" onClick={() => setShowModalMenu(true)}>
+                <MdGridView className="w-7 h-7 text-black" />
                 <p className="sr-only">Menu</p>
               </button>
             </div>
@@ -76,7 +69,12 @@ function Navbar(className) {
               </Link>
             </div>
             <div className="flex gap-3">
-              <span className="cursor-pointer">{darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800" onClick={toggleDarkMode} />}</span>
+              <Link to="/belajar" className="flex md:hidden gap-1.5 mr-1 items-center bg-white text-black">
+                <LuLogOut className="text-black" />
+                Back To Course
+              </Link>
+              <div className="cursor-pointer">{darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800" onClick={toggleDarkMode} />}</div>
+
               <div className="flex gap-2">
                 <Link to="/signin" className="hidden md:block md:mt-1">
                   <button className="btn border bg-white text-brand-500 border-brand-500 hover:border-brand-700 hover:bg-gray-100 py-1 px-3">Masuk</button>
@@ -89,7 +87,9 @@ function Navbar(className) {
           </div>
         </Menu>
       </nav>
-      {showModalMainMenu && <ModalMainMenu showModalMainMenu={showModalMainMenu} setShowModalMainMenu={() => setShowModalMainMenu(!showModalMainMenu)} />}
+      {showModalMenu && <ModalMenuModule showModalMenu={showModalMenu} setShowModalMenu={() => setShowModalMenu(!showModalMenu)} />}
     </>
   );
-}
+};
+
+export default NavbarCourse;

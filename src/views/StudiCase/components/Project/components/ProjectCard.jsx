@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoMdGitMerge } from "react-icons/io";
 import { MdGridView } from "react-icons/md";
 import ModalMenuProject from "./ModalMenuProject";
+import { useNavigate } from "react-router-dom";
 
 // Data Acak
 const data = [
@@ -93,6 +94,7 @@ const ProjectCard = () => {
   const [filterType, setFilterType] = useState("Semua");
   const [showModalMenu, setShowModalMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
   const itemsPerPage = 6;
 
   const filteredData = data.filter((item) => (filterType === "Semua" || item.category === filterType) && item.title.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -115,6 +117,10 @@ const ProjectCard = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
+  };
+
+  const handleCardClick = (id) => {
+    navigate(`/belajar/project/${id}`);
   };
 
   return (
@@ -145,7 +151,7 @@ const ProjectCard = () => {
             <div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 xl:gap-4">
                 {currentData.map((item) => (
-                  <div key={item.id} className="max-w-[300px] h-auto rounded overflow-hidden shadow-lg">
+                  <div key={item.id} className="max-w-[300px] h-auto rounded overflow-hidden shadow-lg" onClick={() => handleCardClick(item.id)}>
                     <div className="w-full h-44 overflow-hidden">
                       <img className="w-full h-full object-cover" src={item.image} alt={item.title} />
                     </div>

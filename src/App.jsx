@@ -13,7 +13,8 @@ import SignUp from "./views/Auth/Signup";
 import Faq from "./views/Faq";
 import Timeline from "./views/Timeline";
 import StudiKasus from "./views/StudiCase";
-import StudyCaseList from "./views/StudiCase/components/StudyCase/components/StudyCaseDetail";
+import ProjectDetail from "./views/StudiCase/components/Project/components/ProjectDetail";
+import Chapter from "./views/StudiCase/components/Project/components/Chapter";
 import NotFound from "./views/NotFound";
 
 const router = createBrowserRouter([
@@ -80,10 +81,17 @@ const router = createBrowserRouter([
     element: <LayoutCourseDetail />,
     children: [
       {
-        path: "/kursus/studi-kasus",
+        path: "/belajar/project/:id",
         // loader: authLoader,
         Component() {
-          return <StudyCaseList />;
+          return <ProjectDetail />;
+        },
+      },
+      {
+        path: "/belajar/project/:id/chapter/:chapterId",
+        // loader: authLoader,
+        Component() {
+          return <Chapter />;
         },
       },
     ],
