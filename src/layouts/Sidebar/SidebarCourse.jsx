@@ -1,9 +1,9 @@
 import { MdOutlineCollectionsBookmark, MdOutlineBugReport } from "react-icons/md";
 import { GoProjectSymlink } from "react-icons/go";
-import { IoLibraryOutline } from "react-icons/io5";
-import { FaRegCompass } from "react-icons/fa";
+// import { IoLibraryOutline } from "react-icons/io5";
+// import { FaRegCompass } from "react-icons/fa";
 import { FcAssistant } from "react-icons/fc";
-import { GrReactjs } from "react-icons/gr";
+// import { GrReactjs } from "react-icons/gr";
 import useActiveMenu from "@/hooks/useActiveMenu";
 import { Link } from "react-router-dom";
 
@@ -14,10 +14,10 @@ const SidebarCourse = () => {
     { id: 1, title: "Projects", icon: <GoProjectSymlink className="w-7 h-7" />, url: "/belajar/project" },
     { id: 2, title: "Studi Kasus", icon: <MdOutlineCollectionsBookmark className="w-7 h-7" />, url: "/belajar/studi-kasus" },
     { id: 3, title: "Error Discussion", icon: <MdOutlineBugReport className="w-7 h-7" />, url: "/belajar/diskusi" },
-    { id: 4, title: "Library", icon: <IoLibraryOutline className="w-7 h-7" />, url: "/belajar/library" },
-    { id: 5, title: "Explore", icon: <FaRegCompass className="w-7 h-7" />, url: "/belajar/explore" },
+    // { id: 4, title: "Library", icon: <IoLibraryOutline className="w-7 h-7" />, url: "/belajar/library" },
+    // { id: 5, title: "Explore", icon: <FaRegCompass className="w-7 h-7" />, url: "/belajar/explore" },
     { id: 6, title: "Mentoring", icon: <FcAssistant className="w-7 h-7" />, url: "/belajar/mentoring" },
-    { id: 7, title: "Tutorial", icon: <GrReactjs className="w-7 h-7" />, url: "/belajar/tutorial" },
+    // { id: 7, title: "Tutorial", icon: <GrReactjs className="w-7 h-7" />, url: "/belajar/tutorial" },
   ];
 
   const handleClick = (menuId) => {
@@ -26,7 +26,7 @@ const SidebarCourse = () => {
 
   return (
     <>
-      <aside className="hidden xl:block left-0 z-40 w-[275px] h-full bg-gray-50 dark:bg-gray-800 overflow-y-auto">
+      <aside className="hidden xl:block left-0 z-40 w-[275px] h-full bg-gray-50 dark:bg-gradient-to-br from-black/90 to-brand2 overflow-y-auto">
         <div className="h-full px-3 py-4">
           <ul className="space-y-2 font-medium">
             {sidebarData &&

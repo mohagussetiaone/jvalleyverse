@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
+import { Menu, MenuItem, ProductItem, NavbarItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
 import logoJv from "@/assets/logo/logojv.png";
+import logoDark from "@/assets/logo/logo-dark.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { LuMoon, LuSun } from "react-icons/lu";
 import uiuxImg from "@/assets/navbar/uiux.png";
@@ -15,6 +16,8 @@ import telegramImg from "@/assets/navbar/telegram.jpeg";
 import stuckImg from "@/assets/navbar/erorr.png";
 import ModalMainMenu from "@/components/ModalMainMenu";
 import useDarkMode from "@/hooks/useDarkMode";
+import useStudyActive from "@/hooks/useStudyActive";
+import { useNavigate } from "react-router-dom";
 
 export default function NavbarDemo() {
   return (
@@ -25,18 +28,20 @@ export default function NavbarDemo() {
 }
 
 function Navbar(className) {
+  const navigate = useNavigate();
   const [active, setActive] = useState(null);
   const [showModalMainMenu, setShowModalMainMenu] = useState(false);
   const { darkMode, toggleDarkMode } = useDarkMode();
+  const { setStudyActive } = useStudyActive();
 
   return (
     <>
-      <nav className={cn("fixed -top-1 left-0 w-full px-2 md:px-14 bg-white z-30 border-b border-brand-50", className)}>
-        <Menu setActive={setActive} className="w-full bg-[#11090E]">
+      <nav className={cn("fixed -top-1 left-0 w-full px-2 md:px-14 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30", className)}>
+        <Menu setActive={setActive} className="w-full ">
           <div className="flex mx-auto justify-between">
             <div className="justify-end hidden md:flex">
               <Link to="/">
-                <img src={logoJv} alt="logoJv.png" className="h-10" />
+                <img src={darkMode ? logoDark : logoJv} alt="logoJv.png" className="h-10" />
               </Link>
             </div>
             <div className="flex md:hidden">
@@ -48,13 +53,45 @@ function Navbar(className) {
             <div className="gap-4 items-center hidden md:flex">
               <MenuItem setActive={setActive} active={active} item="Jalur belajar">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                  <ProductItem title="UI/UX Design" href="https://algochurn.com" src={uiuxImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
-                  <ProductItem title="Frontend Developer" href="https://tailwindmasterkit.com" src={frontEndImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
-                  <ProductItem title="Backend Developer" href="https://gomoonbeam.com" src={backEndImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
-                  <ProductItem title="Database" href="https://userogue.com" src={databaseImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
+                  <NavbarItem
+                    title="UI/UX Design"
+                    onClick={(data) => {
+                      navigate("/jalur-belajar", { data });
+                      setStudyActive(0);
+                    }}
+                    src={uiuxImg}
+                    description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik."
+                  />
+                  <NavbarItem
+                    title="Database"
+                    onClick={(data) => {
+                      navigate("/jalur-belajar", { data });
+                      setStudyActive(1);
+                    }}
+                    src={databaseImg}
+                    description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya."
+                  />
+                  <NavbarItem
+                    title="Backend Developer"
+                    onClick={(data) => {
+                      navigate("/jalur-belajar", { data });
+                      setStudyActive(2);
+                    }}
+                    src={backEndImg}
+                    description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem"
+                  />
+                  <NavbarItem
+                    title="Frontend Developer"
+                    onClick={(data) => {
+                      navigate("/jalur-belajar", { data });
+                      setStudyActive(3);
+                    }}
+                    src={frontEndImg}
+                    description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien."
+                  />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
+                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>
                 </Link>
               </MenuItem>
               <Link to="/belajar" className="text-black font-normal dark:text-neutral-200 hover:text-black">
@@ -68,7 +105,7 @@ function Navbar(className) {
                   <ProductItem title="Stuck Erorr" href="https://userogue.com" src={stuckImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
+                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>
                 </Link>
               </MenuItem>
               <Link to={"/tentang"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
@@ -76,7 +113,9 @@ function Navbar(className) {
               </Link>
             </div>
             <div className="flex gap-3">
-              <span className="cursor-pointer">{darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800" onClick={toggleDarkMode} />}</span>
+              <span className="cursor-pointer">
+                {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}
+              </span>
               <div className="flex gap-2">
                 <Link to="/signin" className="hidden md:block md:mt-1">
                   <button className="btn border bg-white text-brand-500 border-brand-500 hover:border-brand-700 hover:bg-gray-100 py-1 px-3">Masuk</button>

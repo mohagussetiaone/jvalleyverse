@@ -126,7 +126,7 @@ const ProjectCard = () => {
   return (
     <>
       <div className="w-full h-full">
-        <div className="bg-gray-200 px-2 md:px-8 py-4 md:py-6 xl:py-7">
+        <div className="bg-gray-200 dark:bg-gradient-to-r from-black/90 to-brand2 px-2 md:px-8 py-4 md:py-6 xl:py-7">
           <div className="mb-4">
             <div className="flex justify-between">
               <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>

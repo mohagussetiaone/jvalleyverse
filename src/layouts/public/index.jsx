@@ -4,7 +4,7 @@ import Footer from "@layouts/Footer";
 
 export default function Layout() {
   return (
-    <div className="flex h-full max-w-screen">
+    <div className="flex h-full max-w-screen ">
       <div className="h-full w-full">
         <main className={`h-full flex-none transition-all`}>
           <div className="h-full overflow-x-hidden">
