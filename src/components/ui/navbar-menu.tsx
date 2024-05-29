@@ -43,7 +43,7 @@ export const MenuItem = ({ setActive, active, item, children }: { setActive: (it
 
 export const Menu = ({ setActive, children }: { setActive: (item: string | null) => void; children: React.ReactNode }) => {
   return (
-    <nav onMouseLeave={() => setActive(null)} className="relative w-full boder border-transparent dark:border-white/[0.2] bg-transparent shadow-input space-x-4 py-4">
+    <nav onMouseLeave={() => setActive(null)} className="relative w-full boder border-transparent dark:border-white/[0.2] bg-transparent shadow-input space-x-4 py-4 cursor-pointer">
       {children}
     </nav>
   );
@@ -82,7 +82,7 @@ export const NavbarItem = ({ title, description, onClick, src }: NavbarItemProps
 
 export const HoveredLink = ({ children, ...rest }: any) => {
   return (
-    <Link {...rest} className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
+    <Link {...rest} className="text-neutral-700 dark:text-neutral-200 hover:text-black cursor-pointer">
       {children}
     </Link>
   );

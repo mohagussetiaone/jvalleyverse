@@ -16,7 +16,7 @@ export const InfiniteMovingCards = ({
     website: string;
   }[];
   direction?: "left" | "right";
-  speed?: "slow";
+  speed?: "fast";
   pauseOnHover?: boolean;
   className?: string;
 }) => {
@@ -58,6 +58,8 @@ export const InfiniteMovingCards = ({
         containerRef.current.style.setProperty("--animation-duration", "20s");
       } else if (speed === "normal") {
         containerRef.current.style.setProperty("--animation-duration", "40s");
+      } else if (speed === "faster") {
+        containerRef.current.style.setProperty("--animation-duration", "10s");
       } else {
         containerRef.current.style.setProperty("--animation-duration", "80s");
       }
@@ -66,9 +68,9 @@ export const InfiniteMovingCards = ({
 
   return (
     <div className="flex">
-      <div ref={containerRef} className={cn("scroller relative z-20 w-10/12 overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]", className)}>
+      <div ref={containerRef} className={cn("scroller relative z-20 w-12/12 overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]", className)}>
         <div>
-          <ul ref={scrollerRef} className={cn(" flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap", start && "animate-scroll ", pauseOnHover && "hover:[animation-play-state:paused]")}>
+          <ul ref={scrollerRef} className={cn("flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap", start && "animate-scroll ", pauseOnHover && "hover:[animation-play-state:paused]")}>
             {items.map((item, idx) => (
               <li
                 className="w-auto relative"

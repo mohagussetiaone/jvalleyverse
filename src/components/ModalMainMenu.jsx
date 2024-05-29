@@ -37,9 +37,9 @@ const ModalMainMenu = ({ showModalMainMenu, setShowModalMainMenu }) => {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <Dialog.Panel className="relative w-full max-w-xs flex flex-col h-full overflow-y-auto bg-white dark:bg-black py-4 px-0 pb-12 shadow-xl">
+              <Dialog.Panel className="relative w-full max-w-xs flex flex-col h-full overflow-y-auto bg-white dark:bg-black/90 py-4 px-0 pb-12 shadow-xl">
                 <div className="flex items-center justify-start px-4">
-                  <span type="button" className="mr-2 flex h-10 w-10 items-center justify-center bg-white dark:bg-black p-2 text-gray-400" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
+                  <span type="button" className="mr-2 flex h-10 w-10 items-center justify-center bg-white dark:bg-black/90 p-2 text-gray-400" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
                     <IoMdClose className="h-6 w-6" />
                   </span>
                   <h2 className="text-xl mx-4 font-semibold text-gray-900 dark:text-neutral-200">Main menu</h2>
@@ -48,8 +48,8 @@ const ModalMainMenu = ({ showModalMainMenu, setShowModalMainMenu }) => {
                   <h3 className="sr-only text-black">Main Menu</h3>
                   <div className="flex-col justify-center text-center pt-2 pb-1 px-2 py-3 font-medium text-gray-900">
                     {subMenu.map((menu) => (
-                      <div key={menu.name} className="mb-2 rounded-md border hover:border-black dark:hover:border-gray-300">
-                        <Link to={menu.to} className="block px-2 py-3 hover:text-black dark:hover:text-neutral-200 text-gray-700" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
+                      <div key={menu.name} className="mb-2 rounded-md border border-gray-600 hover:border-black dark:hover:border-gray-300">
+                        <Link to={menu.to} className="block px-2 py-3 hover:text-black dark:hover:text-neutral-200 text-black dark:text-neutral-200" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
                           {menu.name}
                         </Link>
                       </div>

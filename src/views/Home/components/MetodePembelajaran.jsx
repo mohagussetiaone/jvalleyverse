@@ -11,7 +11,7 @@ export function MetodePembelajaran() {
           <h4 className="hidden md:block">Tak hanya mendapatkan pembelajaran, juga dapat bertukar kreativitas untuk membangun kredibilitas komunitas Jvalleyverse</h4>
         </div>
       </div>
-      <div className="py-4 md:py-8 grid grid-cols-1 lg:grid-cols-3 gap-4 w-auto px-4 md:px-14 ">
+      <div className="py-4 md:py-8 grid grid-cols-1 lg:grid-cols-3 gap-4 w-auto px-4 md:px-8 xl:px-10 ">
         <WobbleCard containerClassName="col-span-1 lg:col-span-2 h-full bg-gray-400 dark:bg-brand-500 min-h-[150px] lg:min-h-[250px]" className="cursor-pointer">
           <div className="flex gap-4 flex-col md:flex-row">
             <div className="max-w-xs text-black dark:text-white">

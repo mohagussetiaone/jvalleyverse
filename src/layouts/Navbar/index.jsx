@@ -36,22 +36,16 @@ function Navbar(className) {
 
   return (
     <>
-      <nav className={cn("fixed left-0 w-full px-2 md:px-14 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30 border-b border-brand-500 dark:border-brand2", className)}>
+      <nav className={cn("fixed left-0 w-full px-4 md:px-8 xl:px-10 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30 border-b border-brand-500 dark:border-brand2", className)}>
         <Menu setActive={setActive} className="w-full ">
           <div className="flex mx-auto justify-between">
-            <div className="justify-end hidden md:flex">
+            <div className="justify-end md:flex">
               <Link to="/">
                 <img src={darkMode ? logoDark : logoJv} alt="logoJv.png" className="h-10" />
               </Link>
             </div>
-            <div className="flex md:hidden">
-              <button className="px-3 bg-white dark:bg-black border border-gray-300 dark:border-none" onClick={() => setShowModalMainMenu(true)}>
-                <RxHamburgerMenu className="w-7 h-7 text-black dark:text-neutral-200" />
-                <p className="sr-only">Menu</p>
-              </button>
-            </div>
-            <div className="gap-4 items-center hidden md:flex">
-              <MenuItem setActive={setActive} active={active} item="Jalur belajar">
+            <div className="gap-4 items-center hidden xl:flex">
+              <MenuItem setActive={setActive} active={active} item="Jalur belajar" className="cursor-pointer">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
                   <NavbarItem
                     title="UI/UX Design"
@@ -112,13 +106,19 @@ function Navbar(className) {
                 Tentang
               </Link>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <span className="cursor-pointer">
                 {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}
               </span>
+              <div className="flex xl:hidden">
+                <button className="px-3 bg-white dark:bg-black border border-gray-300 active:border-none dark:border-none" onClick={() => setShowModalMainMenu(true)}>
+                  <RxHamburgerMenu className="w-7 h-7 text-black dark:text-neutral-200" />
+                  <p className="sr-only">Menu</p>
+                </button>
+              </div>
               <div className="flex gap-2">
                 <Link to="/signin" className="hidden md:block md:mt-1">
-                  <button className="btn border bg-white text-brand-500 border-brand-500 hover:border-brand-700 hover:bg-gray-100 py-1 px-3">Masuk</button>
+                  <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">Masuk</button>
                 </Link>
                 <Link to="/signup" className="hidden md:block md:mt-1">
                   <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">Daftar</button>
