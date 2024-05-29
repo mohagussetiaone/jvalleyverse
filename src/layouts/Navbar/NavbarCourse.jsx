@@ -24,7 +24,7 @@ const NavbarCourse = (className) => {
 
   return (
     <>
-      <nav className={cn("fixed -top-1 left-0 w-full px-2 md:px-14 bg-white z-30 border-b border-brand-50", className)}>
+      <nav className={cn("fixed left-0 w-full px-2 md:px-14 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30", className)}>
         <Menu setActive={setActive} className="w-full bg-[#11090E]">
           <div className="flex mx-auto justify-between">
             <div className="justify-end hidden md:flex">
@@ -73,8 +73,9 @@ const NavbarCourse = (className) => {
                 <LuLogOut className="text-black" />
                 Back To Course
               </Link>
-              <div className="cursor-pointer">{darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800" onClick={toggleDarkMode} />}</div>
-
+              <span className="cursor-pointer">
+                {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}
+              </span>
               <div className="flex gap-2">
                 <Link to="/signin" className="hidden md:block md:mt-1">
                   <button className="btn border bg-white text-brand-500 border-brand-500 hover:border-brand-700 hover:bg-gray-100 py-1 px-3">Masuk</button>

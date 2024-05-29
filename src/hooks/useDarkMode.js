@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const useDarkMode = create((set) => ({
-  darkMode: false,
+  darkMode: true,
   toggleDarkMode: () =>
     set((state) => {
       const isDarkMode = !state.darkMode;

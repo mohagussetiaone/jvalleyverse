@@ -30,7 +30,7 @@ const TimelineTab = () => {
   const { studyActive, setStudyActive } = useStudyActive();
 
   return (
-    <div className="w-screen pt-6 bg-gradient-to-br from-brand2 via-gray-900 to-gray-800">
+    <div className="w-screen pt-6 bg-whiteSmoke dark:bg-gradient-to-br from-brand2 via-gray-900 to-gray-800">
       <h3></h3>
       <div className="flex flex-col justify-center">
         <Tab.Group selectedIndex={studyActive} onChange={setStudyActive}>

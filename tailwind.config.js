@@ -173,6 +173,7 @@ module.exports = {
     },
     colors: () => ({
       white: "#ffffff",
+      whiteSmoke: "#f5f5f5",
       lightPrimary: "#F4F7FE",
       brandSecondary: "#1c2463",
       brand2: "#302158",

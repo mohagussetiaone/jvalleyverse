@@ -1,9 +1,9 @@
 const TimelineCard = () => {
   return (
-    <div className="bg-gradient-to-tr w-screen from-black via-brand2 to-gray-900 py-4">
-      <div className="flex flex-col gap-4 mb-12">
-        <h2 className="text-3xl text-white font-bold">Jalur belajar UI UX</h2>
-        <p className="justify-center text-white px-[5%] md:px-[10%] xl:px-[20%]">
+    <div className="bg-whiteSmoke dark:bg-gradient-to-tr w-screen from-black via-brand2 to-gray-900 py-4">
+      <div className="flex flex-col gap-4 mb-12 text-black dark:text-neutral-200">
+        <h2 className="text-3xl font-bold">Jalur belajar UI UX</h2>
+        <p className="justify-center px-[5%] md:px-[10%] xl:px-[20%]">
           Kursus ini dirancang untuk membawa Anda dari konsep dasar hingga keterampilan lanjutan dalam desain UI/UX, memberikan fondasi yang kuat bagi mereka yang ingin mengembangkan karier di bidang ini
         </p>
       </div>

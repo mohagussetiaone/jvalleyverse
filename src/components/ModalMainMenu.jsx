@@ -21,7 +21,7 @@ const ModalMainMenu = ({ showModalMainMenu, setShowModalMainMenu }) => {
   // console.log("authToken", authToken);
 
   return (
-    <nav className="bg-white sticky top-0 z-30 border-b border-gray-200">
+    <nav className="bg-white dark:bg-slate-800 sticky top-0 z-30 border-b border-gray-200">
       <Transition.Root show={showModalMainMenu} as={Fragment}>
         <Dialog as="div" className="relative z-40" onClose={setShowModalMainMenu}>
           <Transition.Child as={Fragment} enter="transition-opacity ease-linear duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="transition-opacity ease-linear duration-300" leaveFrom="opacity-100" leaveTo="opacity-0">
@@ -37,19 +37,19 @@ const ModalMainMenu = ({ showModalMainMenu, setShowModalMainMenu }) => {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <Dialog.Panel className="relative w-full max-w-xs flex flex-col h-full overflow-y-auto bg-white py-4 px-0 pb-12 shadow-xl">
+              <Dialog.Panel className="relative w-full max-w-xs flex flex-col h-full overflow-y-auto bg-white dark:bg-black py-4 px-0 pb-12 shadow-xl">
                 <div className="flex items-center justify-start px-4">
-                  <span type="button" className="mr-2 flex h-10 w-10 items-center justify-center bg-white p-2 text-gray-400" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
+                  <span type="button" className="mr-2 flex h-10 w-10 items-center justify-center bg-white dark:bg-black p-2 text-gray-400" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
                     <IoMdClose className="h-6 w-6" />
                   </span>
-                  <h2 className="text-xl mx-4 font-semibold text-gray-900">Main menu</h2>
+                  <h2 className="text-xl mx-4 font-semibold text-gray-900 dark:text-neutral-200">Main menu</h2>
                 </div>
                 <form className="mt-4 border-t border-gray-200">
-                  <h3 className="sr-only text-black">Categories</h3>
+                  <h3 className="sr-only text-black">Main Menu</h3>
                   <div className="flex-col justify-center text-center pt-2 pb-1 px-2 py-3 font-medium text-gray-900">
                     {subMenu.map((menu) => (
-                      <div key={menu.name} className="mb-2 rounded-md border hover:border-black border-gray-300">
-                        <Link to={menu.to} className="block px-2 py-3 hover:text-black text-gray-700">
+                      <div key={menu.name} className="mb-2 rounded-md border hover:border-black dark:hover:border-gray-300">
+                        <Link to={menu.to} className="block px-2 py-3 hover:text-black dark:hover:text-neutral-200 text-gray-700" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
                           {menu.name}
                         </Link>
                       </div>

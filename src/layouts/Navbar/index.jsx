@@ -36,7 +36,7 @@ function Navbar(className) {
 
   return (
     <>
-      <nav className={cn("fixed -top-1 left-0 w-full px-2 md:px-14 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30", className)}>
+      <nav className={cn("fixed left-0 w-full px-2 md:px-14 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30 border-b border-brand-500 dark:border-brand2", className)}>
         <Menu setActive={setActive} className="w-full ">
           <div className="flex mx-auto justify-between">
             <div className="justify-end hidden md:flex">
@@ -45,8 +45,8 @@ function Navbar(className) {
               </Link>
             </div>
             <div className="flex md:hidden">
-              <button className="px-3 bg-white border border-gray-300" onClick={() => setShowModalMainMenu(true)}>
-                <RxHamburgerMenu className="w-7 h-7 text-black" />
+              <button className="px-3 bg-white dark:bg-black border border-gray-300 dark:border-none" onClick={() => setShowModalMainMenu(true)}>
+                <RxHamburgerMenu className="w-7 h-7 text-black dark:text-neutral-200" />
                 <p className="sr-only">Menu</p>
               </button>
             </div>

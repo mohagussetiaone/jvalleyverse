@@ -1,6 +1,6 @@
 const TimelineCard = () => {
   return (
-    <div className="bg-gradient-to-tr w-screen from-black via-brand2 to-gray-900 py-4">
+    <div className="bg-whiteSmoke dark:bg-gradient-to-tr w-screen from-black via-brand2 to-gray-900 py-4">
       <h2 className="text-3xl text-white font-bold mb-12">Jalur belajar online</h2>
       <div className="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
         <div className="flex md:contents flex-row-reverse">

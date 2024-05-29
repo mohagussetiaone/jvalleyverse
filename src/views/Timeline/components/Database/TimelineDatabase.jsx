@@ -1,11 +1,9 @@
 const TimelineCard = () => {
   return (
-    <div className="bg-gradient-to-tr w-screen from-black via-brand2 to-gray-900 py-4">
-      <div className="flex flex-col gap-4 mb-12">
-        <h2 className="text-3xl text-white font-bold">Jalur belajar Database</h2>
-        <p className="justify-center text-white px-[5%] md:px-[10%] xl:px-[20%]">
-          Membangun fondasi yang kuat dalam manajemen data. Anda akan mempelajari cara merancang, mengimplementasikan, dan mengelola basis data yang efisien dan aman.
-        </p>
+    <div className="bg-whiteSmoke dark:bg-gradient-to-tr w-screen from-black via-brand2 to-gray-900 py-4">
+      <div className="flex flex-col gap-4 mb-12 text-black dark:text-neutral-200">
+        <h2 className="text-3xl font-bold">Jalur belajar Database</h2>
+        <p className="justify-center px-[5%] md:px-[10%] xl:px-[20%]">Membangun fondasi yang kuat dalam manajemen data. Anda akan mempelajari cara merancang, mengimplementasikan, dan mengelola basis data yang efisien dan aman.</p>
       </div>
       <div className="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
         <div className="flex md:contents flex-row-reverse">

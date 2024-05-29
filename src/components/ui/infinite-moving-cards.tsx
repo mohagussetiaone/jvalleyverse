@@ -1,6 +1,5 @@
 import { cn } from "@utils/cn";
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 
 export const InfiniteMovingCards = ({
   items,
@@ -72,10 +71,10 @@ export const InfiniteMovingCards = ({
           <ul ref={scrollerRef} className={cn(" flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap", start && "animate-scroll ", pauseOnHover && "hover:[animation-play-state:paused]")}>
             {items.map((item, idx) => (
               <li
-                className="w-auto relative p-4"
-                style={{
-                  background: "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
-                }}
+                className="w-auto relative"
+                // style={{
+                //   background: "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
+                // }}
                 key={item.name}
               >
                 <div aria-hidden="true" className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"></div>

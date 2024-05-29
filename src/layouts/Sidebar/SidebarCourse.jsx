@@ -26,7 +26,7 @@ const SidebarCourse = () => {
 
   return (
     <>
-      <aside className="hidden xl:block left-0 z-40 w-[275px] h-full bg-gray-50 dark:bg-gradient-to-br from-black/90 to-brand2 overflow-y-auto">
+      <aside className="hidden xl:block left-0 z-40 w-[275px] h-full bg-gray-50 dark:bg-black/90 overflow-y-auto">
         <div className="h-full px-3 py-4">
           <ul className="space-y-2 font-medium">
             {sidebarData &&
@@ -34,7 +34,9 @@ const SidebarCourse = () => {
                 <li key={item.id}>
                   <Link
                     to={item.url}
-                    className={`flex items-center p-2 rounded-lg ${activeMenu === item.id ? "bg-gray-200 text-black hover:bg-gray-300 hover:text-black" : "text-gray-700 bg-white hover:bg-gray-100 hover:text-gray-800"}`}
+                    className={`flex items-center p-2 rounded-lg ${
+                      activeMenu === item.id ? "bg-gray-200 text-black hover:bg-gray-300 hover:text-black dark:bg-black dark:text-white" : "text-gray-700 bg-white hover:bg-gray-100 hover:text-gray-800 dark:hover:text-gray-100 dark:bg-black"
+                    }`}
                     onClick={() => handleClick(item.id)}
                   >
                     {item.icon}
@@ -43,10 +45,10 @@ const SidebarCourse = () => {
                 </li>
               ))}
           </ul>
-          <div className="absolute bottom-4 justify-center mr-8 w-full">
-            <p className="mb-4 text-black text-sm font-normal">
+          <div className="absolute bottom-4 justify-center right-1 w-full">
+            <p className="mb-4 text-black dark:text-white text-sm font-normal">
               © {new Date().getFullYear()}{" "}
-              <a href="https://jvalleyverse.vercel.app/" target="_blank" className="text-gray-900 hover:text-black">
+              <a href="https://jvalleyverse.vercel.app/" target="_blank" className="text-gray-900 hover:text-black dark:text-white">
                 Jvalleyverse Community
               </a>
             </p>
