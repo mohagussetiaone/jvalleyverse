@@ -134,7 +134,7 @@ const ProgressCard = () => {
 
   return (
     <>
-      <div className="px-4 md:px-8 xl:px-20 bg-gray-200 dark:bg-brand2">
+      <div className="w-[100vw] px-4 md:px-8 xl:px-10 bg-gray-200 dark:bg-brand2">
         <div className="py-4 md:py-6 xl:py-7">
           <div className="mb-4">
             <div className="flex justify-between">
@@ -173,11 +173,11 @@ const ProgressCard = () => {
                       }`}
                     ></div>
                     <div className="relative max-w-[350px] h-auto rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
-                      <div className="h-44 overflow-hidden">
-                        <img className="h-full object-cover" src={item.image} alt={item.title} />
+                      <div className="h-28 md:h-32 xl:h-44 overflow-hidden">
+                        <img className="w-full h-full object-cover" src={item.image} alt={item.title} />
                       </div>
                       <div className="flex flex-col px-2 pt-2">
-                        <h3 className="font-bold text-start text-black dark:text-white text-base md:text-lg xl:text-xl mb-2">{item.title}</h3>
+                        <h3 className="font-bold text-start text-black dark:text-white text-base xl:text-xl mb-2">{item.title}</h3>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
                           <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${item.progress}%` }}></div>
                         </div>
