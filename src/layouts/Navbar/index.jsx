@@ -18,6 +18,7 @@ import ModalMainMenu from "@/components/ModalMainMenu";
 import useDarkMode from "@/hooks/useDarkMode";
 import useStudyActive from "@/hooks/useStudyActive";
 import { useNavigate } from "react-router-dom";
+import DropdownUser from "./DropdownUser";
 
 export default function NavbarDemo() {
   return (
@@ -106,24 +107,25 @@ function Navbar(className) {
                 Tentang
               </Link>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               <span className="cursor-pointer">
                 {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}
               </span>
               <div className="flex xl:hidden">
-                <button className="px-3 bg-white dark:bg-black border border-gray-300 active:border-none dark:border-none" onClick={() => setShowModalMainMenu(true)}>
+                <button className="px-3 bg-white dark:bg-brand2 border border-gray-300 active:border-none dark:border-none" onClick={() => setShowModalMainMenu(true)}>
                   <RxHamburgerMenu className="w-7 h-7 text-black dark:text-neutral-200" />
                   <p className="sr-only">Menu</p>
                 </button>
               </div>
-              <div className="flex gap-2">
-                <Link to="/signin" className="hidden md:block md:mt-1">
+              <div className="gap-2 hidden md:flex">
+                <Link to="/signin" className=" md:mt-1">
                   <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">Masuk</button>
                 </Link>
-                <Link to="/signup" className="hidden md:block md:mt-1">
+                <Link to="/signup" className="md:mt-1">
                   <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">Daftar</button>
                 </Link>
               </div>
+              <DropdownUser />
             </div>
           </div>
         </Menu>
