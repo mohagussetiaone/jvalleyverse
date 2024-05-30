@@ -9,17 +9,21 @@ import LayoutCourse from "./layouts/public/LayoutCourse";
 import LayoutCourseDetail from "./layouts/public/LayoutCourseDetail";
 import LayoutDiscussion from "./layouts/public/LayoutDiscussion";
 // Views
+// Auth
 import SignIn from "./views/Auth/Signin";
 import SignUp from "./views/Auth/Signup";
+// Pages
 import Faq from "./views/Faq";
 import Timeline from "./views/Timeline";
 import Belajar from "./views/StudiCase";
+
 import StudiKasus from "./views/StudiCase/components/StudyCase";
 import Project from "./views/StudiCase/components/Project";
 import ProjectDetail from "./views/StudiCase/components/Project/components/ProjectDetail";
 import Discussion from "./views/StudiCase/components/ErrorDiscussion";
 import Chapter from "./views/StudiCase/components/Project/components/Chapter";
 import NotFound from "./views/NotFound";
+import Profile from "./views/Profile";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +50,13 @@ const router = createBrowserRouter([
         // loader: authLoader,
         Component() {
           return <About />;
+        },
+      },
+      {
+        path: "/profile",
+        // loader: authLoader,
+        Component() {
+          return <Profile />;
         },
       },
     ],
