@@ -9,7 +9,7 @@ export default function Layout() {
         <main className={`h-full flex-none transition-all`}>
           <div className="h-full overflow-x-hidden">
             <Navbar />
-            <div className="pt-[70px] mx-auto mb-auto h-auto w-full">
+            <div className="pt-[70px] mx-auto mb-auto h-full w-full">
               <Outlet />
             </div>
             <div>

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const useSidebar = create((set) => ({
-  collapsed: null,
+  collapsed: true,
   setMenuCollapsed: (collapsed) => set(() => ({ collapsed })),
 }));
 

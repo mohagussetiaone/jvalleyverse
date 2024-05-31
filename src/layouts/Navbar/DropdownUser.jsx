@@ -1,9 +1,9 @@
 // import toast from "react-hot-toast";
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import supabase from "config/supabaseClient";
 // import { remove } from "store/Local/Forage";
-import { RiHome6Line, RiUser3Line, RiBook2Line, RiContactsBookLine, RiSettings4Line } from "react-icons/ri";
+import { RiHome6Line, RiUser3Line, RiBook2Line, RiSettings4Line } from "react-icons/ri";
 // import profileImages from "assets/img/avatars/avatar.png";
 import ModalConfirmation from "@/components/ModalConfirmation";
 
@@ -60,7 +60,7 @@ const DropdownUser = () => {
     <div className="relative my-1">
       <Link ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-4" to="#">
         <span>
-          <img src={imageSrc} alt="profile_picture.jpg" className="rounded-full w-10 h-10 -mt-1" />
+          <img src={imageSrc} alt="profile_picture.jpg" className="rounded-full w-11 h-11 -mt-1" />
         </span>
       </Link>
 

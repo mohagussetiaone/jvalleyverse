@@ -13,6 +13,16 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      minHeight: {
+        screen: "100vh",
+      },
+      colors: {
+        "body-bg": "#242424",
+        "body-text": "rgba(255, 255, 255, 0.87)",
+      },
+      fontFamily: {
+        sans: ["Inter", "system-ui", "Avenir", "Helvetica", "Arial", "sans-serif"],
+      },
       width: {
         "1p": "1%",
         "2p": "2%",

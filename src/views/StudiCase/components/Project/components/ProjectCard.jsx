@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoMdGitMerge } from "react-icons/io";
 import { MdGridView } from "react-icons/md";
-import ModalMenuProject from "./ModalMenuProject";
+import ModalMenu from "../../ModalMenu";
 import { useNavigate } from "react-router-dom";
 import useDarkMode from "@/hooks/useDarkMode";
 
@@ -127,19 +127,19 @@ const ProjectCard = () => {
 
   return (
     <>
-      <div className="w-full min-w-[80vw] h-full">
-        <div className="bg-gray-200 dark:bg-brand2 px-2 md:px-8 py-4 md:py-6 xl:py-7">
+      <div className="w-full min-w-[100vw] xl:min-w-[80vw]">
+        <div className="bg-gray-200 dark:bg-brand2 px-2 md:pl-4 md:pr-10 py-6 md:py-7 xl:py-8">
           <div className="mb-4">
             <div className="flex justify-between">
               <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
-                <MdGridView className="text-gray-800 hover:text-black w-8 h-8" />
+                <MdGridView className="text-gray-800 dark:text-neutral-200 hover:text-black w-8 h-8" />
               </div>
               <input
                 type="text"
                 placeholder="Cari project..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-4 py-2 hidden md:block rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-white"
+                className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-neutral-200"
               />
               <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded mx-4 dark:bg-brand2 dark:text-white">
                 <option value="Semua">Semua</option>
@@ -150,7 +150,13 @@ const ProjectCard = () => {
               </select>
             </div>
             <div className="flex justify-start">
-              <input type="text" placeholder="Cari project..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="px-4 md:hidden py-2 rounded bg-white text-black border border-gray-400" />
+              <input
+                type="text"
+                placeholder="Cari project..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-4 md:hidden py-2 rounded bg-white dark:bg-brand2 text-black dark:text-neutral-200 border border-gray-400"
+              />
             </div>
           </div>
           {filteredData && filteredData?.length === 0 ? (
@@ -165,20 +171,20 @@ const ProjectCard = () => {
                         darkMode ? "group-hover:opacity-100" : ""
                       }`}
                     ></div>
-                    <div className="relative max-w-[300px] h-auto rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
-                      <div className="w-full h-44 overflow-hidden">
+                    <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
+                      <div className="h-28 md:h-32 xl:h-44 overflow-hidden">
                         <img className="w-full h-full object-cover" src={item.image} alt={item.title} />
                       </div>
                       <div className="flex flex-col px-2 pt-2">
-                        <h3 className="font-bold text-start text-black dark:text-white text-xl mb-2">{item.title}</h3>
+                        <h3 className="font-bold text-start text-black dark:text-white text-base md:text-md xl:text-xl mb-2">{item.title}</h3>
                         <button className="inline-flex gap-2 bg-blue-100 text-brand2 rounded-full px-4 py-1 text-sm font-semibold mr-2 mb-2 self-start">
                           <IoMdGitMerge className="w-5 h-5 mt-0.5" />
                           {item.chapter} Chapter
                         </button>
                       </div>
-                      <div className="flex justify-start px-2 py-2">
+                      <div className="flex flex-wrap justify-start px-2 py-0 md:py-2">
                         {item.tags.map((tag, index) => (
-                          <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-900 dark:text-black mr-2 mb-2">
+                          <span key={index} className="inline-block bg-gray-200 rounded-full px-1 md:px-2 md:py-1 py-0 text-xs md:text-sm font-semibold text-gray-900 dark:text-black mr-2 mb-1 md:mb-2">
                             {tag}
                           </span>
                         ))}
@@ -220,7 +226,7 @@ const ProjectCard = () => {
           )}
         </div>
       </div>
-      {showModalMenu && <ModalMenuProject showModalMenu={showModalMenu} setShowModalMenu={() => setShowModalMenu(false)} />}
+      {showModalMenu && <ModalMenu showModalMenu={showModalMenu} setShowModalMenu={() => setShowModalMenu(false)} />}
     </>
   );
 };

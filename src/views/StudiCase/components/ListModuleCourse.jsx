@@ -16,6 +16,10 @@ const ListModuleCourse = () => {
     }
   };
 
+  const handleSubMenuClick = (subMenuId) => {
+    setActiveSubMenu(subMenuId === activeSubMenu ? null : subMenuId);
+  };
+
   const sidebarData = [
     {
       id: 1,
@@ -136,7 +140,11 @@ const ListModuleCourse = () => {
               <div>
                 <a
                   href={item.url}
-                  className={`flex items-center justify-between p-2 rounded-lg ${activeMenu === item.id ? "bg-gray-200 text-black hover:bg-gray-300 hover:text-black" : "text-gray-700 bg-white hover:bg-gray-100 hover:text-gray-800"}`}
+                  className={`flex items-center justify-between p-2 rounded-lg ${
+                    activeMenu === item.id
+                      ? "bg-gray-200 dark:bg-neutral-600 dark:hover:bg-gray-800/70 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
+                      : "text-gray-700 dark:text-neutral-200 bg-white dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white hover:bg-gray-100 hover:text-gray-800"
+                  }`}
                   onClick={() => handleClick(item.id)}
                 >
                   <div className="flex items-center">
@@ -145,17 +153,25 @@ const ListModuleCourse = () => {
                   </div>
                   {item.subMenu && (
                     <div className="flex items-center">
-                      <span className="text-xs">{item?.subMenu.length} module</span>
+                      <span className="text-xs">{item.subMenu.length} module</span>
                       <MdKeyboardArrowRight className={`transition-transform ${activeSubMenu === item.id ? "rotate-90" : ""}`} />
                     </div>
                   )}
                 </a>
-                {activeSubMenu === item.id && item.subMenu && (
-                  <ul className="pl-8 space-y-1 transition-all duration-300 ease-in-out">
+                {activeMenu === item.id && item.subMenu && (
+                  <ul className="pl-4 py-2 space-y-1 transition-all duration-300 ease-in-out">
                     {item.subMenu.map((subItem) => (
                       <li key={subItem.id}>
-                        <a href={subItem.url} className="flex items-center p-2 rounded-lg text-gray-600 hover:bg-gray-200">
-                          <div className="w-2.5 h-2.5 bg-gray-600 rounded-full mr-3"></div>
+                        <a
+                          href={subItem.url}
+                          className={`flex items-center p-2 rounded-lg ${
+                            activeSubMenu === subItem.id
+                              ? "bg-gray-200 dark:bg-neutral-600 dark:hover:bg-gray-800/70 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
+                              : "hover:text-black text-black dark:text-white dark:hover:text-white"
+                          }`}
+                          onClick={() => handleSubMenuClick(subItem.id)}
+                        >
+                          <div className="w-2.5 h-2.5 bg-gray-600  rounded-full mr-3"></div>
                           {subItem.title}
                         </a>
                       </li>

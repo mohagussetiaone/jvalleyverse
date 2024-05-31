@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Menu, MenuItem, ProductItem, NavbarItem } from "@/components/ui/navbar-menu";
+import { Menu, MenuItem, NavbarItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
 import logoJv from "@/assets/logo/logojv.png";
 import logoDark from "@/assets/logo/logo-dark.png";
+import logoSmallDark from "@/assets/logo/logosmalldark.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { LuMoon, LuSun } from "react-icons/lu";
 import uiuxImg from "@/assets/navbar/uiux.png";
@@ -41,11 +42,17 @@ function Navbar(className) {
         <Menu setActive={setActive} className="w-full ">
           <div className="flex mx-auto justify-between">
             <div className="justify-end md:flex">
-              <Link to="/">
+              <Link to="/" className="hidden md:block">
                 <img src={darkMode ? logoDark : logoJv} alt="logoJv.png" className="h-10" />
+              </Link>
+              <Link to="/" className="block md:hidden">
+                <img src={logoSmallDark} alt="logoJv.png" className="h-12 w-auto" />
               </Link>
             </div>
             <div className="gap-4 items-center hidden xl:flex">
+              <Link to="/belajar" className="text-black font-normal dark:text-neutral-200 hover:text-black">
+                Belajar
+              </Link>
               <MenuItem setActive={setActive} active={active} item="Jalur belajar" className="cursor-pointer">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
                   <NavbarItem
@@ -89,15 +96,13 @@ function Navbar(className) {
                   <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>
                 </Link>
               </MenuItem>
-              <Link to="/belajar" className="text-black font-normal dark:text-neutral-200 hover:text-black">
-                Belajar
-              </Link>
+
               <MenuItem setActive={setActive} active={active} item="Explore">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                  <ProductItem title="Cek Sertifikat" href="https://algochurn.com" src={certificateImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
-                  <ProductItem title="Show Case" href="https://tailwindmasterkit.com" src={showCaseImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
-                  <ProductItem title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
-                  <ProductItem title="Stuck Erorr" href="https://userogue.com" src={stuckImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
+                  <NavbarItem title="Cek Sertifikat" href="https://algochurn.com" src={certificateImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
+                  <NavbarItem title="Show Case" href="https://tailwindmasterkit.com" src={showCaseImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
+                  <NavbarItem title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
+                  <NavbarItem title="Stuck Erorr" href="https://userogue.com" src={stuckImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
                   <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>

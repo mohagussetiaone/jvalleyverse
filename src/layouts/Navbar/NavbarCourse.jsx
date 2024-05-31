@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
+import { Menu, MenuItem, NavbarItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
 import logoJv from "@/assets/logo/logojv.png";
+import logoJvDark from "@/assets/logo/logo-dark.png";
+import logoSmallDark from "@/assets/logo/logosmalldark.png";
 import { MdGridView } from "react-icons/md";
 import { LuMoon, LuSun } from "react-icons/lu";
 import uiuxImg from "@/assets/navbar/uiux.png";
@@ -27,38 +29,39 @@ const NavbarCourse = (className) => {
       <nav className={cn("fixed left-0 w-full px-2 md:px-14 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30", className)}>
         <Menu setActive={setActive} className="w-full bg-[#11090E]">
           <div className="flex mx-auto justify-between">
-            <div className="justify-end hidden md:flex">
-              <Link to="/">
-                <img src={logoJv} alt="logoJv.png" className="h-10" />
-              </Link>
-            </div>
+            <Link to="/" className="hidden xl:flex">
+              <img src={darkMode ? logoJvDark : logoJv} alt="logoJv.png" className="h-10" />
+            </Link>
+            <Link to="/" className="hidden md:flex xl:hidden">
+              <img src={logoSmallDark} alt="logoJv.png" className="h-10" />
+            </Link>
             <div className="flex md:hidden">
-              <button className="px-3 bg-white border border-gray-300" onClick={() => setShowModalMenu(true)}>
-                <MdGridView className="w-7 h-7 text-black" />
+              <button className="px-3 bg-white dark:bg-black/70" onClick={() => setShowModalMenu(true)}>
+                <MdGridView className="w-7 h-7 text-black dark:text-neutral-200" />
                 <p className="sr-only">Menu</p>
               </button>
             </div>
             <div className="gap-4 items-center hidden md:flex">
+              <Link to="/belajar" className="text-black font-normal dark:text-neutral-200 hover:text-black">
+                Belajar
+              </Link>
               <MenuItem setActive={setActive} active={active} item="Jalur belajar">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                  <ProductItem title="UI/UX Design" href="https://algochurn.com" src={uiuxImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
-                  <ProductItem title="Frontend Developer" href="https://tailwindmasterkit.com" src={frontEndImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
-                  <ProductItem title="Backend Developer" href="https://gomoonbeam.com" src={backEndImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
-                  <ProductItem title="Database" href="https://userogue.com" src={databaseImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
+                  <NavbarItem title="UI/UX Design" href="https://algochurn.com" src={uiuxImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
+                  <NavbarItem title="Frontend Developer" href="https://tailwindmasterkit.com" src={frontEndImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
+                  <NavbarItem title="Backend Developer" href="https://gomoonbeam.com" src={backEndImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
+                  <NavbarItem title="Database" href="https://userogue.com" src={databaseImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
                   <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
                 </Link>
               </MenuItem>
-              <Link to="/belajar" className="text-black font-normal dark:text-neutral-200 hover:text-black">
-                Belajar
-              </Link>
               <MenuItem setActive={setActive} active={active} item="Explore">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                  <ProductItem title="Cek Sertifikat" href="https://algochurn.com" src={certificateImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
-                  <ProductItem title="Show Case" href="https://tailwindmasterkit.com" src={showCaseImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
-                  <ProductItem title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
-                  <ProductItem title="Stuck Erorr" href="https://userogue.com" src={stuckImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
+                  <NavbarItem title="Cek Sertifikat" href="https://algochurn.com" src={certificateImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
+                  <NavbarItem title="Show Case" href="https://tailwindmasterkit.com" src={showCaseImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
+                  <NavbarItem title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
+                  <NavbarItem title="Stuck Erorr" href="https://userogue.com" src={stuckImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
                   <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
@@ -69,8 +72,8 @@ const NavbarCourse = (className) => {
               </Link>
             </div>
             <div className="flex gap-3">
-              <Link to="/belajar" className="flex md:hidden gap-1.5 mr-1 items-center bg-white text-black">
-                <LuLogOut className="text-black" />
+              <Link to="/belajar" className="flex md:hidden gap-1.5 mr-1 items-center bg-white dark:bg-black/30 rounded-lg px-2 py-1 text-black dark:text-neutral-200 border border-gray-900">
+                <LuLogOut className="text-black dark:text-neutral-200" />
                 Back To Course
               </Link>
               <span className="cursor-pointer">

@@ -17,10 +17,13 @@ import Faq from "./views/Faq";
 import Timeline from "./views/Timeline";
 import Belajar from "./views/StudiCase";
 
-import StudiKasus from "./views/StudiCase/components/StudyCase";
 import Project from "./views/StudiCase/components/Project";
+import StudiKasus from "./views/StudiCase/components/StudyCase";
+import DiscussionHome from "./views/StudiCase/components/ErrorDiscussion/components/Home";
+import Pertanyaan from "./views/StudiCase/components/ErrorDiscussion/components/Pertanyaan";
+import Mentoring from "./views/StudiCase/components/Mentoring";
+
 import ProjectDetail from "./views/StudiCase/components/Project/components/ProjectDetail";
-import Discussion from "./views/StudiCase/components/ErrorDiscussion";
 import Chapter from "./views/StudiCase/components/Project/components/Chapter";
 import NotFound from "./views/NotFound";
 import Profile from "./views/Profile";
@@ -95,6 +98,13 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "/belajar/mentoring",
+        // loader: authLoader,
+        Component() {
+          return <Mentoring />;
+        },
+      },
+      {
         path: "/faq",
         // loader: authLoader,
         Component() {
@@ -133,7 +143,14 @@ const router = createBrowserRouter([
         path: "/belajar/diskusi",
         // loader: authLoader,
         Component() {
-          return <Discussion />;
+          return <DiscussionHome />;
+        },
+      },
+      {
+        path: "/belajar/diskusi/pertanyaan",
+        // loader: authLoader,
+        Component() {
+          return <Pertanyaan />;
         },
       },
     ],

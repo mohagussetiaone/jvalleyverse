@@ -1,7 +1,8 @@
-import MentoringCard from "./components/MentoringCard";
+// import MentoringCard from "./components/MentoringCard";
+import CommingSoon from "@/components/CommingSoon";
 
 const index = () => {
-  return <MentoringCard />;
+  return <CommingSoon />;
 };
 
 export default index;
