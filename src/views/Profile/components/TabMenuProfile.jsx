@@ -1,5 +1,6 @@
 import { Tab } from "@headlessui/react";
 import ProgressCard from "./ProgressCard";
+import Sertifikat from "./Sertifikat";
 
 const TabMenuProfile = () => {
   return (
@@ -18,7 +19,9 @@ const TabMenuProfile = () => {
               <Tab.Panel>
                 <ProgressCard />
               </Tab.Panel>
-              <Tab.Panel>Content 2</Tab.Panel>
+              <Tab.Panel>
+                <Sertifikat />
+              </Tab.Panel>
               <Tab.Panel>Content 3</Tab.Panel>
             </Tab.Panels>
           </div>
