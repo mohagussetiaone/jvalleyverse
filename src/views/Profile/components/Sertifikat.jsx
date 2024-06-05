@@ -7,7 +7,6 @@ import jsPDF from "jspdf";
 
 const Certificate = () => {
   const certificateRef = useRef(null);
-
   const handleDownload = () => {
     const certificateElement = certificateRef.current;
     html2canvas(certificateElement, { scale: 2 })
@@ -25,38 +24,40 @@ const Certificate = () => {
 
   return (
     <div className="w-full min-w-[100vw] bg-white dark:bg-brand2">
-      <div ref={certificateRef} className="relative md:mx-auto w-full md:w-[55vw] bg-white border border-brand-300 px-6 p-4 md:p-8 xl:p-10">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <img src={logoJv} alt="Logo" className="h-8 xl:h-12" />
+      <div className="py-8 md:py-10 px-2">
+        <div ref={certificateRef} className="relative md:mx-auto h-auto w-full md:w-[55vw] bg-white border border-brand-300 px-6 p-4 md:p-8 xl:p-10">
+          <div className="flex justify-between items-center mb-3 md:mb-5 xl:mb-6">
+            <div>
+              <img src={logoJv} alt="Logo" className="h-8 xl:h-10" />
+            </div>
+            <div>
+              <h1 className="text-xs pr-3 md:pr-0 xl:text-2xl font-bold text-gray-700">CERTIFICATE</h1>
+            </div>
           </div>
-          <div>
-            <h1 className="text-sm xl:text-2xl font-bold text-gray-700">CERTIFICATE</h1>
+          <div className="flex flex-col text-center text-black mb-4 md:mb-5 xl:mb-6">
+            <p className="text-xs md:text-lg">Sertifikat Ini Dengan Bangga Diberikan Kepada</p>
+            <p className="text-base md:text-2xl font-bold text-black my-1 md:my-3">Moh Agus Setiawan</p>
+            <p className="text-xs md:text-lg">yang telah menyelesaikan kelas</p>
+            <p className="text-xs md:text-xl font-semibold">Fullstack Programming by Next JS Advance</p>
+            <p className="text-xs md:text-lg">dalam program Kelas Online Jvalleyverse</p>
           </div>
-        </div>
-        <div className="flex flex-col text-center text-black mb-2 md:mb-4 xl:mb-6">
-          <p className="text-sm md:text-lg">Sertifikat Ini Dengan Bangga Diberikan Kepada</p>
-          <p className="text-xl md:text-2xl font-bold text-black my-1 md:my-3">Moh Agus Setiawan</p>
-          <p className="text-sm md:text-lg">yang telah menyelesaikan kelas</p>
-          <p className="text-sm md:text-xl font-semibold">Fullstack Programming by Next JS Advance</p>
-          <p className="text-sm md:text-lg">dalam program Kelas Online Jvalleyverse</p>
-        </div>
-        <div className="text-left ml-0 md:ml-5 text-black mb-2">
-          <p className="text-sm md:text-md font-semibold">12 November 2022</p>
-        </div>
-        <div className="flex justify-between items-center">
-          <div className="items-center text-black">
-            <img src={ttdImage} alt="Signature" className="ml-3 md:ml-0 w-20 md:w-44 h-8 md:h-16" />
-            <p className="text-sm md:text-lg font-semibold">Moh Agus Setiawan</p>
-            <p className="text-sm md:text-lg">CEO & Co-Founder</p>
+          <div className="text-left ml-0 md:ml-5 text-black mb-2">
+            <p className="text-xs md:text-base xl:text-lg font-semibold">12 November 2022</p>
           </div>
-          <div className="items-end text-black mt-12">
-            <p className="text-xs md:text-lg">Berlaku sampai 25 Desember 2026</p>
+          <div className="flex justify-between items-center">
+            <div className="items-center text-black">
+              <img src={ttdImage} alt="Signature" className="ml-3 md:ml-0 w-20 md:w-44 h-8 md:h-16" />
+              <p className="text-xs md:text-lg font-semibold">Moh Agus Setiawan</p>
+              <p className="text-xs md:text-lg">CEO & Co-Founder</p>
+            </div>
+            <div className="items-end text-black mt-12">
+              <p className="text-xs md:text-lg">Berlaku sampai 25 Desember 2026</p>
+            </div>
           </div>
+          <button onClick={handleDownload} className="absolute gap-1 right-0 xl:right-2 top-0 md:top-2 bg-blue-500 text-white p-1 rounded-lg shadow-lg">
+            <MdOutlineFileDownload className="w-6 h-6" />
+          </button>
         </div>
-        <button onClick={handleDownload} className="absolute gap-1 right-0 xl:right-2 top-0 md:top-2 bg-blue-500 text-white p-1 rounded-lg shadow-lg">
-          <MdOutlineFileDownload className="w-6 h-6" />
-        </button>
       </div>
     </div>
   );

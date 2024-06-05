@@ -134,34 +134,45 @@ const ProgressCard = () => {
 
   return (
     <>
-      <div className="w-[100vw] px-4 md:px-8 xl:px-10 bg-gray-200 dark:bg-brand2">
-        <div className="py-4 md:py-6 xl:py-7">
+      <div className="w-[100vw] px-4 md:pl-10 xl:pr-14 bg-gray-200 dark:bg-brand2">
+        <div className="py-4">
           <div className="mb-4">
-            <div className="flex justify-between">
+            <div className="flex justify-start py-4">
+              <h3 className="text-2xl text-left text-black dark:text-neutral-200 font-bold">Progress belajar saya</h3>
+            </div>
+            <div className="flex justify-between mb-4 md:mb-0">
               <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
                 <MdGridView className="text-gray-800 hover:text-black w-8 h-8" />
               </div>
               <input
                 type="text"
+                placeholder="Cari progress berjalan..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-4 py-2 hidden md:block rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-neutral-200 mb-6"
+              />
+              <div>
+                <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded dark:bg-brand2 dark:text-white">
+                  <option value="Semua">Semua</option>
+                  <option value="Database">Database</option>
+                  <option value="UI/UX">UI/UX</option>
+                  <option value="Frontend">Frontend</option>
+                  <option value="Backend">Backend</option>
+                </select>
+              </div>
+            </div>
+            <div className="flex  justify-start">
+              <input
+                type="text"
                 placeholder="Cari project..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-4 py-2 hidden md:block rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-white"
+                className="w-full px-4 md:hidden py-2 rounded bg-white text-black dark:bg-brand2 dark:text-neutral-200 border border-gray-400"
               />
-              <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded mx-4 dark:bg-brand2 dark:text-white">
-                <option value="Semua">Semua</option>
-                <option value="Database">Database</option>
-                <option value="UI/UX">UI/UX</option>
-                <option value="Frontend">Frontend</option>
-                <option value="Backend">Backend</option>
-              </select>
-            </div>
-            <div className="flex justify-start">
-              <input type="text" placeholder="Cari project..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="px-4 md:hidden py-2 rounded bg-white text-black border border-gray-400" />
             </div>
           </div>
           {filteredData && filteredData?.length === 0 ? (
-            <div className="text-center text-brand-500 text-xl h-[325px] mt-24">Data Not Found</div>
+            <div className="text-center text-neutral-200 text-xl h-[325px] mt-24">Data Not Found</div>
           ) : (
             <>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 xl:gap-4">

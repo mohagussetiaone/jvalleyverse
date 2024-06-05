@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const useActiveMenu = create((set) => ({
-  activeMenu: 1,
+  activeMenu: 0,
   setActiveMenu: (activeMenu) => set(() => ({ activeMenu })),
 }));
 

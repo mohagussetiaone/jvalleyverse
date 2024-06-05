@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, MenuItem, NavbarItem } from "@/components/ui/navbar-menu";
+import { Menu, MenuItem, NavbarItem, NavbarExplore } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
 import logoJv from "@/assets/logo/logojv.png";
@@ -18,6 +18,7 @@ import stuckImg from "@/assets/navbar/erorr.png";
 import ModalMainMenu from "@/components/ModalMainMenu";
 import useDarkMode from "@/hooks/useDarkMode";
 import useStudyActive from "@/hooks/useStudyActive";
+import useActiveMenu from "@/hooks/useActiveMenu";
 import { useNavigate } from "react-router-dom";
 import DropdownUser from "./DropdownUser";
 
@@ -35,6 +36,7 @@ function Navbar(className) {
   const [showModalMainMenu, setShowModalMainMenu] = useState(false);
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { setStudyActive } = useStudyActive();
+  const { setActiveMenu } = useActiveMenu();
 
   return (
     <>
@@ -99,10 +101,33 @@ function Navbar(className) {
 
               <MenuItem setActive={setActive} active={active} item="Explore">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                  <NavbarItem title="Cek Sertifikat" href="https://algochurn.com" src={certificateImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
-                  <NavbarItem title="Show Case" href="https://tailwindmasterkit.com" src={showCaseImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
-                  <NavbarItem title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
-                  <NavbarItem title="Stuck Erorr" href="https://userogue.com" src={stuckImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
+                  <NavbarExplore
+                    title="Cek Sertifikat"
+                    onClick={(data) => {
+                      navigate("/profile", { data });
+                      setActiveMenu(1);
+                    }}
+                    src={certificateImg}
+                    description="Dapatkan sertifikat yang menunjukkan keahlianmu"
+                  />
+                  <NavbarExplore
+                    title="Show Case"
+                    onClick={(data) => {
+                      navigate("/profile", { data });
+                      setActiveMenu(2);
+                    }}
+                    src={showCaseImg}
+                    description="Pamerkan project portofoliomu ke publik"
+                  />
+                  <NavbarExplore title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Jadi bagian dari Jvalleyverse dan berkontribusi" />
+                  <NavbarExplore
+                    title="Stuck Erorr"
+                    onClick={() => {
+                      navigate("/belajar/diskusi");
+                    }}
+                    src={stuckImg}
+                    description="Tanyakan masalahmu di sini dalam forum diskusi"
+                  />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
                   <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>

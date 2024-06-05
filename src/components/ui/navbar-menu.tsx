@@ -80,6 +80,18 @@ export const NavbarItem = ({ title, description, onClick, src }: NavbarItemProps
   );
 };
 
+export const NavbarExplore = ({ title, description, onClick, src }: NavbarItemProps) => {
+  return (
+    <div onClick={onClick} className="flex space-x-2 cursor-pointer">
+      <img src={src} alt={title} className="w-[100px] h-[80px] flex-shrink-0 rounded-md shadow-2xl" />
+      <div className="text-start pl-2">
+        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">{title}</h4>
+        <p className="text-neutral-700 text-start max-w-[11rem] dark:text-neutral-300">{description}</p>
+      </div>
+    </div>
+  );
+};
+
 export const HoveredLink = ({ children, ...rest }: any) => {
   return (
     <Link {...rest} className="text-neutral-700 dark:text-neutral-200 hover:text-black cursor-pointer">

@@ -1,5 +1,3 @@
-// import { useState } from "react";
-import { IoImageOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import ProfileImage from "@/assets/img/CustomerService.png";
 
@@ -62,15 +60,9 @@ const BannerProfile = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row py-8 px-4 md:px-8 xl:px-10 justify-between h-full bg-gray-200 dark:bg-gradient-to-r from-black/90 to-brand2">
+      <div className="flex flex-col md:flex-row py-10 px-4 md:px-8 xl:px-10 justify-between h-full bg-white dark:bg-gradient-to-r from-black/90 to-brand2">
         <div className="flex relative items-center">
-          <img className="h-auto w-20 md:w-28 xl:w-44 rounded-full bg-white/70 border-gray-100 border-4" src={ProfileImage} alt="profile.jpg" />
-          <div className="absolute">
-            <input type="file" className="hidden" accept=".jpg,.jpeg,.png,.gif,.bmp,.svg" />
-            <button className="p-1 bg-white dark:bg-graydark dark:text-gray-100 border border-gray-100 shadow absolute top-4 -right-20 xl:-right-24 md:-right-28 rounded-full">
-              <IoImageOutline className="size-5 dark:text-boxDark" />
-            </button>
-          </div>
+          <img className="h-auto w-20 md:w-28 xl:w-44 rounded-full bg-white/70 border-gray-300 border-4" src={ProfileImage} alt="profile.jpg" />
           <div className="ml-4 md:ml-8 xl:ml-14 mt-0 md:mt-4 flex flex-col justify-between text-start">
             <div className="text-xl font-bold text-navy-700 dark:text-white">Moh Agus Setiawan</div>
             <div className="space-y-2">
