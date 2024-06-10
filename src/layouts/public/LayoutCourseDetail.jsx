@@ -15,7 +15,7 @@ export default function LayoutCourseDetail() {
             <div className="fixed top-[67px] bottom-0 left-0">
               <SidebarCourseDetail />
             </div>
-            <div className={`flex ${collapsed ? "xl:ml-[300px]" : "xl:ml-[0px]"} bg-gray-200 pt-5s mx-auto mb-auto h-auto min-h-[70vh]`}>
+            <div className={`flex ${collapsed ? "xl:ml-[300px]" : "xl:ml-[0px]"} pt-5s mx-auto mb-auto h-auto min-h-[70vh]`}>
               <Outlet />
             </div>
           </div>
