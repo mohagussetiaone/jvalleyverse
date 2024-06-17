@@ -27,7 +27,7 @@ const SidebarCourse = () => {
   return (
     <>
       <aside className="hidden xl:block left-0 z-40 w-[275px] h-full bg-gray-50 dark:bg-black/90 overflow-y-auto">
-        <div className="h-full px-3 py-4">
+        <div className="h-full px-3 py-5">
           <ul className="space-y-2 font-medium">
             {sidebarData &&
               sidebarData.map((item) => (
@@ -46,7 +46,7 @@ const SidebarCourse = () => {
               ))}
           </ul>
           <div className="absolute bottom-4 justify-center right-1 w-full">
-            <p className="mb-4 text-black dark:text-white text-sm font-normal">
+            <p className="mb-4 text-center text-black dark:text-white text-sm font-normal">
               © {new Date().getFullYear()}{" "}
               <a href="https://jvalleyverse.vercel.app/" target="_blank" className="text-gray-900 hover:text-black dark:text-white">
                 Jvalleyverse Community

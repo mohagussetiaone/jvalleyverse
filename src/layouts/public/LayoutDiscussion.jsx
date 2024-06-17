@@ -4,7 +4,7 @@ import Sidebar from "@/layouts/Sidebar/SidebarDiscussion";
 
 export default function LayoutDiscussion() {
   return (
-    <div className="flex max-w-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen w-full">
       <div className="w-full">
         <main>
           <Navbar />

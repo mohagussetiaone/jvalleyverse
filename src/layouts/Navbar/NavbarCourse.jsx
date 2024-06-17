@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, MenuItem, NavbarItem } from "@/components/ui/navbar-menu";
+import { Menu, MenuItem, NavbarItem, NavbarExplore } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
 import logoJv from "@/assets/logo/logojv.png";
@@ -18,15 +18,21 @@ import stuckImg from "@/assets/navbar/erorr.png";
 import ModalMenuModule from "@/views/StudiCase/components/Project/components/ModalMenuModule";
 import useDarkMode from "@/hooks/useDarkMode";
 import { LuLogOut } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
+import useStudyActive from "@/hooks/useStudyActive";
+import useActiveMenu from "@/hooks/useActiveMenu";
 
 const NavbarCourse = (className) => {
+  const navigate = useNavigate();
   const [active, setActive] = useState(null);
   const [showModalMenu, setShowModalMenu] = useState(false);
   const { darkMode, toggleDarkMode } = useDarkMode();
+  const { setStudyActive } = useStudyActive();
+  const { setActiveMenu } = useActiveMenu();
 
   return (
     <>
-      <nav className={cn("fixed left-0 w-full px-2 md:px-14 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30", className)}>
+      <nav className={cn("fixed left-0 w-full px-2 md:px-6 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30", className)}>
         <Menu setActive={setActive} className="w-full bg-[#11090E]">
           <div className="flex mx-auto justify-between">
             <Link to="/" className="hidden xl:flex">
@@ -41,30 +47,86 @@ const NavbarCourse = (className) => {
                 <p className="sr-only">Menu</p>
               </button>
             </div>
-            <div className="gap-4 items-center hidden md:flex">
+            <div className="gap-4 items-center hidden xl:flex">
               <Link to="/belajar" className="text-black font-normal dark:text-neutral-200 hover:text-black">
                 Belajar
               </Link>
-              <MenuItem setActive={setActive} active={active} item="Jalur belajar">
+              <MenuItem setActive={setActive} active={active} item="Jalur belajar" className="cursor-pointer">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                  <NavbarItem title="UI/UX Design" href="https://algochurn.com" src={uiuxImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
-                  <NavbarItem title="Frontend Developer" href="https://tailwindmasterkit.com" src={frontEndImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
-                  <NavbarItem title="Backend Developer" href="https://gomoonbeam.com" src={backEndImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
-                  <NavbarItem title="Database" href="https://userogue.com" src={databaseImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
+                  <NavbarItem
+                    title="UI/UX Design"
+                    onClick={(data) => {
+                      navigate("/jalur-belajar", { data });
+                      setStudyActive(0);
+                    }}
+                    src={uiuxImg}
+                    description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik."
+                  />
+                  <NavbarItem
+                    title="Database"
+                    onClick={(data) => {
+                      navigate("/jalur-belajar", { data });
+                      setStudyActive(1);
+                    }}
+                    src={databaseImg}
+                    description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya."
+                  />
+                  <NavbarItem
+                    title="Backend Developer"
+                    onClick={(data) => {
+                      navigate("/jalur-belajar", { data });
+                      setStudyActive(2);
+                    }}
+                    src={backEndImg}
+                    description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem"
+                  />
+                  <NavbarItem
+                    title="Frontend Developer"
+                    onClick={(data) => {
+                      navigate("/jalur-belajar", { data });
+                      setStudyActive(3);
+                    }}
+                    src={frontEndImg}
+                    description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien."
+                  />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
+                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>
                 </Link>
               </MenuItem>
+
               <MenuItem setActive={setActive} active={active} item="Explore">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                  <NavbarItem title="Cek Sertifikat" href="https://algochurn.com" src={certificateImg} description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik." />
-                  <NavbarItem title="Show Case" href="https://tailwindmasterkit.com" src={showCaseImg} description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien." />
-                  <NavbarItem title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem" />
-                  <NavbarItem title="Stuck Erorr" href="https://userogue.com" src={stuckImg} description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya." />
+                  <NavbarExplore
+                    title="Cek Sertifikat"
+                    onClick={(data) => {
+                      navigate("/profile", { data });
+                      setActiveMenu(1);
+                    }}
+                    src={certificateImg}
+                    description="Dapatkan sertifikat yang menunjukkan keahlianmu"
+                  />
+                  <NavbarExplore
+                    title="Show Case"
+                    onClick={(data) => {
+                      navigate("/profile", { data });
+                      setActiveMenu(2);
+                    }}
+                    src={showCaseImg}
+                    description="Pamerkan project portofoliomu ke publik"
+                  />
+                  <NavbarExplore title="Grup Telegram" onClick={() => window.open("https://t.me/jvalleyverse")} src={telegramImg} description="Jadi bagian dari Jvalleyverse dan berkontribusi" />
+                  <NavbarExplore
+                    title="Stuck Erorr"
+                    onClick={() => {
+                      navigate("/belajar/diskusi");
+                    }}
+                    src={stuckImg}
+                    description="Tanyakan masalahmu di sini dalam forum diskusi"
+                  />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 font-bold cursor-pointer">Lihat selengkapnya</span>
+                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>
                 </Link>
               </MenuItem>
               <Link to={"/tentang"} className="text-black font-normal dark:text-neutral-200 hover:text-black">

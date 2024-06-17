@@ -4,20 +4,16 @@ import Footer from "@layouts/Footer";
 
 export default function Layout() {
   return (
-    <div className="flex h-full max-w-screen ">
-      <div className="h-full w-full">
-        <main className={`h-full flex-none transition-all`}>
-          <div className="h-full overflow-x-hidden">
-            <Navbar />
-            <div className="pt-[70px] mx-auto mb-auto h-full w-full">
-              <Outlet />
-            </div>
-            <div>
-              <Footer />
-            </div>
+    <div className="flex flex-col min-h-screen h-full w-full">
+      <Navbar />
+      <div className="block">
+        <main className="h-full">
+          <div className="pt-[70px] h-full">
+            <Outlet />
           </div>
         </main>
       </div>
+      <Footer />
     </div>
   );
 }

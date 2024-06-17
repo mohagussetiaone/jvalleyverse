@@ -127,104 +127,106 @@ const ProjectCard = () => {
 
   return (
     <>
-      <div className="w-full min-w-[100vw] xl:min-w-[80vw]">
-        <div className="bg-gray-200 dark:bg-brand2 px-2 md:pl-4 md:pr-10 py-6 md:py-7 xl:py-8">
-          <div className="mb-4">
-            <div className="flex justify-between">
-              <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
-                <MdGridView className="text-gray-800 dark:text-neutral-200 hover:text-black w-8 h-8" />
-              </div>
-              <input
-                type="text"
-                placeholder="Cari project..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-neutral-200"
-              />
-              <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded mx-4 dark:bg-brand2 dark:text-white">
-                <option value="Semua">Semua</option>
-                <option value="Database">Database</option>
-                <option value="UI/UX">UI/UX</option>
-                <option value="Frontend">Frontend</option>
-                <option value="Backend">Backend</option>
-              </select>
+      <div className="bg-gray-200 dark:bg-brand2 p-3 md:p-6 pt-6">
+        <div className="mb-4">
+          <div className="flex justify-between">
+            <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
+              <MdGridView className="text-gray-800 dark:text-neutral-200 hover:text-black w-8 h-8" />
             </div>
-            <div className="flex justify-start">
-              <input
-                type="text"
-                placeholder="Cari project..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-4 md:hidden py-2 rounded bg-white dark:bg-brand2 text-black dark:text-neutral-200 border border-gray-400"
-              />
-            </div>
+            <input
+              type="text"
+              placeholder="Cari project..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-neutral-200"
+            />
+            <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded dark:bg-brand2 dark:text-white">
+              <option value="Semua">Semua</option>
+              <option value="Database">Database</option>
+              <option value="UI/UX">UI/UX</option>
+              <option value="Frontend">Frontend</option>
+              <option value="Backend">Backend</option>
+            </select>
           </div>
-          {filteredData && filteredData?.length === 0 ? (
-            <div className="text-center text-brand-500 text-xl h-[325px] mt-24">Data Not Found</div>
-          ) : (
-            <>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 xl:gap-4">
-                {currentData.map((item) => (
-                  <div className="relative group cursor-pointer" key={item.id}>
-                    <div
-                      className={`absolute transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
-                        darkMode ? "group-hover:opacity-100" : ""
-                      }`}
-                    ></div>
-                    <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
-                      <div className="h-28 md:h-32 xl:h-44 overflow-hidden">
-                        <img className="w-full h-full object-cover" src={item.image} alt={item.title} />
-                      </div>
-                      <div className="flex flex-col px-2 pt-2">
-                        <h3 className="font-bold text-start text-black dark:text-white text-base md:text-md xl:text-xl mb-2">{item.title}</h3>
-                        <button className="inline-flex gap-2 bg-blue-100 text-brand2 rounded-full px-4 py-1 text-sm font-semibold mr-2 mb-2 self-start">
-                          <IoMdGitMerge className="w-5 h-5 mt-0.5" />
-                          {item.chapter} Chapter
-                        </button>
-                      </div>
-                      <div className="flex flex-wrap justify-start px-2 py-0 md:py-2">
-                        {item.tags.map((tag, index) => (
-                          <span key={index} className="inline-block bg-gray-200 rounded-full px-1 md:px-2 md:py-1 py-0 text-xs md:text-sm font-semibold text-gray-900 dark:text-black mr-2 mb-1 md:mb-2">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+          <div className="flex justify-start">
+            <input
+              type="text"
+              placeholder="Cari project..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-4 md:hidden py-2 rounded bg-white dark:bg-brand2 text-black dark:text-neutral-200 border border-gray-400"
+            />
+          </div>
+        </div>
+        {filteredData && filteredData?.length === 0 ? (
+          <div className="text-center text-brand-500 text-xl h-[100vh] mt-24">Data Not Found</div>
+        ) : (
+          <>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 min-h-screen h-[100vh] mx-auto">
+              {currentData.map((item) => (
+                <div className="relative group cursor-pointer" key={item.id}>
+                  <div
+                    className={`absolute min-h-[245px] md:min-h-[320px] h-[245px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
+                      darkMode ? "group-hover:opacity-100" : ""
+                    }`}
+                  ></div>
+                  <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
+                    <div className="h-28 md:h-32 xl:h-44 overflow-hidden">
+                      <img className="w-full h-full object-cover" src={item.image} alt={item.title} />
+                    </div>
+                    <div className="flex flex-col px-2 pt-2">
+                      <h3 className="font-bold text-start text-black dark:text-white text-sm md:text-md xl:text-lg mb-2">{item.title}</h3>
+                      <button className="inline-flex gap-2 bg-blue-100 text-brand2 rounded-full px-4 py-1 text-sm font-semibold mr-2 mb-2 self-start">
+                        <IoMdGitMerge className="w-5 h-5 mt-0.5" />
+                        {item.chapter} Chapter
+                      </button>
+                    </div>
+                    <div className="flex flex-wrap justify-start px-2 py-0 md:py-2">
+                      {item.tags.map((tag, index) => (
+                        <span key={index} className="inline-block bg-gray-200 rounded-full px-1 md:px-2 md:py-1 py-0 text-xs md:text-sm font-semibold text-gray-900 dark:text-black mr-2 mb-1 md:mb-2">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2 md:pt-14 text-start text-sm text-black dark:text-gray-300">Total Cards: {filteredData.length}</div>
+            <div className="flex justify-center gap-3 items-center my-4 mx-4">
+              <div>
+                <button
+                  onClick={handlePrev}
+                  disabled={currentPage === 1}
+                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-brand2 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
+                >
+                  Prev
+                </button>
+              </div>
+              <div>
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <button
+                    key={index + 1}
+                    onClick={() => handlePageClick(index + 1)}
+                    className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-brand2 dark:text-white"}`}
+                  >
+                    {index + 1}
+                  </button>
                 ))}
               </div>
-
-              <div className="mt-4 text-start text-black dark:text-gray-300">Total Cards: {filteredData.length}</div>
-              <div className="flex justify-center gap-3 items-center mt-4 mx-4">
-                <div>
-                  <button onClick={handlePrev} disabled={currentPage === 1} className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-brand2" : "bg-brand-500 dark:bg-blue-700 text-white"}`}>
-                    Prev
-                  </button>
-                </div>
-                <div>
-                  {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                      key={index + 1}
-                      onClick={() => handlePageClick(index + 1)}
-                      className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-brand2"}`}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
-                <div>
-                  <button
-                    onClick={handleNext}
-                    disabled={currentPage === totalPages}
-                    className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-brand2" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
-                  >
-                    Next
-                  </button>
-                </div>
+              <div>
+                <button
+                  onClick={handleNext}
+                  disabled={currentPage === totalPages}
+                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-brand2 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
+                >
+                  Next
+                </button>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </div>
       {showModalMenu && <ModalMenu showModalMenu={showModalMenu} setShowModalMenu={() => setShowModalMenu(false)} />}
     </>

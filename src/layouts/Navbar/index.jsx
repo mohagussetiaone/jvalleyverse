@@ -119,7 +119,7 @@ function Navbar(className) {
                     src={showCaseImg}
                     description="Pamerkan project portofoliomu ke publik"
                   />
-                  <NavbarExplore title="Grup Telegram" href="https://gomoonbeam.com" src={telegramImg} description="Jadi bagian dari Jvalleyverse dan berkontribusi" />
+                  <NavbarExplore title="Grup Telegram" onClick={() => window.open("https://t.me/jvalleyverse")} src={telegramImg} description="Jadi bagian dari Jvalleyverse dan berkontribusi" />
                   <NavbarExplore
                     title="Stuck Erorr"
                     onClick={() => {

@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
+import useDarkMode from "@/hooks/useDarkMode";
 
 export const StickyScroll = ({
   content,
@@ -14,6 +15,7 @@ export const StickyScroll = ({
   }[];
   contentClassName?: string;
 }) => {
+  const { darkMode } = useDarkMode();
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef<any>(null);
   const { scrollYProgress } = useScroll({
@@ -36,12 +38,15 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  const backgroundColors = ["var(--slate-900)", "var(--black)", "var(--neutral-900)"];
+  const backgroundColorsDark = ["var(--slate-900)", "var(--black)", "var(--neutral-900)"];
+  const backgroundColorsLight = ["var(--white)", "var(--gray-100)", "var(--gray-200)"];
   const linearGradients = [
     "linear-gradient(to bottom right, var(--cyan-500), var(--emerald-500))",
     "linear-gradient(to bottom right, var(--pink-500), var(--indigo-500))",
     "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
   ];
+
+  const backgroundColors = darkMode ? backgroundColorsDark : backgroundColorsLight;
 
   return (
     <motion.div
@@ -62,7 +67,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-2xl font-bold text-slate-100"
+                className="text-2xl font-bold dark:text-slate-100"
               >
                 {item.title}
               </motion.h2>
@@ -73,7 +78,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-lg text-slate-300 max-w-sm mt-10"
+                className="text-lg dark:text-slate-300 max-w-sm mt-10"
               >
                 {item.description}
               </motion.p>

@@ -1,4 +1,4 @@
-import { IoMdHome, IoIosPricetags, IoIosChatboxes } from "react-icons/io";
+import { IoMdHome, IoIosChatboxes } from "react-icons/io";
 import useActiveMenu from "@/hooks/useActiveMenu";
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,7 @@ const SidebarDiscussion = () => {
 
   return (
     <>
-      <aside className="hidden xl:block left-0 z-40 w-[200px] h-full bg-gray-50 dark:bg-black/80 overflow-y-auto">
+      <aside className="hidden xl:block left-0 z-40 w-[200px] h-full bg-gray-50 dark:bg-black overflow-y-auto">
         <div className="h-full px-3 py-4">
           <ul className="space-y-2 font-medium">
             {sidebarData &&
@@ -39,7 +39,7 @@ const SidebarDiscussion = () => {
               ))}
           </ul>
           <div className="absolute bottom-4 right-0.5 justify-center w-full">
-            <p className="mb-4 text-sm font-normal">
+            <p className="mb-4 text-center text-sm font-normal">
               <a href="https://jvalleyverse.vercel.app/" target="_blank" className="text-gray-900 hover:text-black dark:text-neutral-200">
                 Jvalleyverse Community
               </a>

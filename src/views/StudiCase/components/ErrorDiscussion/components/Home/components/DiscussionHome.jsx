@@ -148,7 +148,7 @@ const DiscussionHome = () => {
             </div>
           </div>
           {filteredData.length === 0 ? (
-            <div className="text-center py-4 bg-white dark:bg-black/40 h-[calc(100vh-40vh)]">
+            <div className="text-center py-4 bg-white dark:bg-black/40 h-[calc(100vh-39vh)]">
               <h3 className="mt-24 text-lg md:text-xl">Data Not Found</h3>
             </div>
           ) : (

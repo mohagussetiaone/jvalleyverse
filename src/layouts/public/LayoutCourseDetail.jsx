@@ -7,7 +7,7 @@ export default function LayoutCourseDetail() {
   const { collapsed } = useSidebar();
 
   return (
-    <div className="flex overflow-hidden">
+    <div className="flex flex-col min-h-screen w-full">
       <div className="w-full">
         <main>
           <NavbarCourse />

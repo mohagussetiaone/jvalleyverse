@@ -416,7 +416,7 @@ const Banner = () => {
           <h3 className="text-3xl md:mt-0 text-black dark:text-gray-200">Belajar programming gratis</h3>
           <TypewriterEffectSmooth words={words} />
           <div className="flex flex-col justify-start md:justify-center md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10 md:mt-0">
-            <Link to="/tentang" className="w-40 pt-2 h-10 rounded-xl bg-brand-500 hover:bg-brand-600 text-neutral-200 hover:text-white text-sm shadow-xl">
+            <Link to="/tentang" className="w-40 pt-2 text-center h-10 rounded-xl bg-brand-500 hover:bg-brand-600 text-neutral-200 hover:text-white text-sm shadow-xl">
               Selengkapnya
             </Link>
             <button className="w-40 h-10 rounded-xl bg-white hover:bg-gray-200 text-black border border-gray-200 shadow-xl text-sm">Bergabung</button>
