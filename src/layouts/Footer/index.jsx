@@ -20,46 +20,47 @@ const index = () => {
               <ul className="text-start">
                 <p className="block mb-3 font-sans text-lg text-black dark:text-neutral-200 font-medium leading-normal">Komunitas</p>
                 <li>
-                  <a href="#" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                  <Link to="/tentang" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
                     Tentang kami
-                  </a>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link target="_blank" to="https://t.me/jvalleyverse" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                    Grup Telegram
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Tracking belajar
-                  </a>
+                  <Link to="/faq" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                    Pertanyaan
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Kesempatan kerja
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Informasi terkini
-                  </a>
+                  <Link to="/blog" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                    Blog
+                  </Link>
                 </li>
               </ul>
               <ul className="text-start">
                 <p className="block mb-3 font-sans text-lg antialiased font-medium leading-normal text-black dark:text-neutral-200">Kelas Online</p>
                 <li>
-                  <a href="#" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                  <Link to="/signin" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
                     Pendaftaran
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                  <Link to="/jalur-belajar" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                    Jalur belajar
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/belajar/diskusi" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
                     Konsultasi
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Events
-                  </a>
-                </li>
-                <li>
-                  <Link to="/faq" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Pertanyaan
+                  <Link to="/showcase" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                    Show Case
                   </Link>
                 </li>
               </ul>

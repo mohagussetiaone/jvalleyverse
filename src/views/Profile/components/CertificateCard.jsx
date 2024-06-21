@@ -1,23 +1,25 @@
 import { useState } from "react";
 import NodeJsImage from "@/assets/tech/nodejs.png";
 import { LuView, LuDownload } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 const CertificateCard = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
   const certificateData = [
-    { title: "Can coffee make you a better developer?", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." },
-    { title: "The benefits of working remotely", description: "Fugit, doloribus! Suscipit consequatur ex obcaecati quibusdam odio rerum impedit necessitatibus at." },
-    { title: "How to improve your coding skills", description: "Facilis soluta delectus sunt ut id temporibus, eaque architecto magni maxime fugiat eum cumque." },
-    { title: "Understanding the JavaScript event loop", description: "Numquam aspernatur dolore maiores quasi natus! Consequuntur animi libero explicabo autem." },
-    { title: "Why you should learn TypeScript", description: "Doloribus nemo eos, quas obcaecati maxime voluptatum! Similique, delectus! Dignissimos, nostrum?" },
-    { title: "The future of web development", description: "Rerum, atque provident! Fugiat optio, repellat ex tempore architecto consectetur!" },
-    { title: "Building scalable applications", description: "Aperiam cumque necessitatibus quibusdam? Quidem, quia? Deserunt perferendis maxime voluptates." },
-    { title: "Mastering React hooks", description: "Quasi voluptates, architecto delectus maiores veritatis ipsam dolor beatae explicabo rem." },
-    { title: "Effective debugging techniques", description: "Voluptatibus commodi adipisci molestias ea reprehenderit alias libero iusto praesentium?" },
-    { title: "Exploring the Node.js ecosystem", description: "Veniam atque cum odio quos, maiores ad dolore optio distinctio." },
+    { id: 1, title: "Can coffee make you a better developer?", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." },
+    { id: 2, title: "The benefits of working remotely", description: "Fugit, doloribus! Suscipit consequatur ex obcaecati quibusdam odio rerum impedit necessitatibus at." },
+    { id: 3, title: "How to improve your coding skills", description: "Facilis soluta delectus sunt ut id temporibus, eaque architecto magni maxime fugiat eum cumque." },
+    { id: 4, title: "Understanding the JavaScript event loop", description: "Numquam aspernatur dolore maiores quasi natus! Consequuntur animi libero explicabo autem." },
+    { id: 5, title: "Why you should learn TypeScript", description: "Doloribus nemo eos, quas obcaecati maxime voluptatum! Similique, delectus! Dignissimos, nostrum?" },
+    { id: 6, title: "The future of web development", description: "Rerum, atque provident! Fugiat optio, repellat ex tempore architecto consectetur!" },
+    { id: 7, title: "Building scalable applications", description: "Aperiam cumque necessitatibus quibusdam? Quidem, quia? Deserunt perferendis maxime voluptates." },
+    { id: 8, title: "Mastering React hooks", description: "Quasi voluptates, architecto delectus maiores veritatis ipsam dolor beatae explicabo rem." },
+    { id: 9, title: "Effective debugging techniques", description: "Voluptatibus commodi adipisci molestias ea reprehenderit alias libero iusto praesentium?" },
+    { id: 10, title: "Exploring the Node.js ecosystem", description: "Veniam atque cum odio quos, maiores ad dolore optio distinctio." },
   ];
 
   const handleSearchChange = (event) => {
@@ -29,6 +31,10 @@ const CertificateCard = () => {
 
   const totalPages = Math.ceil(filteredCertificates.length / itemsPerPage);
   const currentCertificates = filteredCertificates.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const handleClickViewSertificate = (id) => {
+    navigate(`/profile/sertifikat/${id}`);
+  };
 
   return (
     <div className="w-screen px-4 xl:pl-10 xl:pr-16">
@@ -47,11 +53,11 @@ const CertificateCard = () => {
                 <p className="text-gray-700 dark:text-neutral-200 text-base">{certificate.description}</p>
               </div>
               <div className="flex gap-2">
-                <button className="flex gap-2">
+                <button className="flex bg-white dark:bg-slate-800 text-brand-500 border border-brand-500  gap-2" onClick={() => handleClickViewSertificate(certificate.id)}>
                   <LuView size={25} />
                   View Certificate
                 </button>
-                <button className="flex gap-2">
+                <button className="flex bg-brand-500 dark:bg-brand-600 text-white gap-2">
                   <LuDownload size={25} />
                   Download
                 </button>
