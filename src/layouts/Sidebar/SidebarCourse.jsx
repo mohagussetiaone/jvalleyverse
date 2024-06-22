@@ -13,7 +13,7 @@ const SidebarCourse = () => {
   const sidebarData = [
     { id: 1, title: "Projects", icon: <GoProjectSymlink className="w-7 h-7" />, url: "/belajar/project" },
     { id: 2, title: "Studi Kasus", icon: <MdOutlineCollectionsBookmark className="w-7 h-7" />, url: "/belajar/studi-kasus" },
-    { id: 3, title: "Error Discussion", icon: <MdOutlineBugReport className="w-7 h-7" />, url: "/belajar/diskusi" },
+    { id: 3, title: "Discussion", icon: <MdOutlineBugReport className="w-7 h-7" />, url: "/belajar/diskusi" },
     // { id: 4, title: "Library", icon: <IoLibraryOutline className="w-7 h-7" />, url: "/belajar/library" },
     // { id: 5, title: "Explore", icon: <FaRegCompass className="w-7 h-7" />, url: "/belajar/explore" },
     { id: 6, title: "Mentoring", icon: <FcAssistant className="w-7 h-7" />, url: "/belajar/mentoring" },

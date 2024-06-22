@@ -3,7 +3,6 @@ import { MdGridView } from "react-icons/md";
 import ModalMenu from "../../ModalMenu";
 import useDarkMode from "@/hooks/useDarkMode";
 
-// Data Acak
 const data = [
   {
     id: 1,
@@ -126,7 +125,7 @@ const StudyCase = () => {
     <>
       <div className="bg-gray-200 dark:bg-brand2 p-3 md:p-6">
         <div className="mb-4">
-          <div className="flex justify-between">
+          <div className="flex justify-between pt-4">
             <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
               <MdGridView className="text-gray-800 dark:text-neutral-200 hover:text-black w-8 h-8" />
             </div>

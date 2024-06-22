@@ -59,7 +59,7 @@ const index = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/showcase" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                  <Link to="/show-case" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
                     Show Case
                   </Link>
                 </li>

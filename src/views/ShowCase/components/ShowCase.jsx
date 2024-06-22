@@ -83,7 +83,7 @@ const Card = ({ item }) => {
 
   return (
     <div
-      className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 cursor-pointer dark:border-gray-900 dark:bg-gray-800 dark:hover:bg-slate-600"
+      className="flex flex-col items-center bg-white  border border-gray-200 rounded-lg shadow md:flex-row md:max-w-2xl hover:bg-gray-100 cursor-pointer dark:border-gray-900 dark:bg-gray-800 dark:hover:bg-slate-600"
       onClick={() => handleShowCaseDetail(item.id)}
     >
       <div className="relative">
@@ -138,16 +138,16 @@ const Index = () => {
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
-    <div className="bg-white dark:bg-brand2 mx-auto min-h-screen p-4">
+    <div className="bg-white dark:bg-gradient-to-tr from-black via-brand2 to-gray-900 mx-auto min-h-screen p-6">
       <div className="flex flex-col md:flex-row justify-between py-4">
         <div className="block md:hidden py-2">
-          <h3>Show case Jvalleyverse</h3>
+          <h3 className="text-xl md:text-2xl dark:text-neutral-200">Show case Jvalleyverse</h3>
         </div>
         <div>
           <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." className="mb-4 p-2 border border-gray-300 rounded w-full" />
         </div>
         <div className="hidden md:block">
-          <h3>Show case Jvalleyverse</h3>
+          <h3 className="text-xl md:text-2xl dark:text-neutral-200">Show case Jvalleyverse</h3>
         </div>
         <div>
           <select value={selectedCategory} onChange={handleCategoryChange} className="mb-4 p-2 border border-gray-300 rounded w-full">
@@ -162,7 +162,7 @@ const Index = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {currentItems.length > 0 ? currentItems.map((item) => <Card key={item.id} item={item} />) : <div className="col-span-2 h-80 flex items-center justify-center text-center text-gray-500">Data Not Found</div>}
       </div>
       <div className="flex justify-center">

@@ -40,7 +40,7 @@ function Navbar(className) {
 
   return (
     <>
-      <nav className={cn("fixed left-0 w-full px-4 md:px-8 xl:px-10 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30 border-b border-brand-500 dark:border-brand2", className)}>
+      <nav className={cn(`fixed left-0 w-full px-4 ${window.location.pathname === "/" ? "md:px-8 xl:px-10" : "md:px-6 "} bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30 border-b border-brand-500 dark:border-brand2`, className)}>
         <Menu setActive={setActive} className="w-full ">
           <div className="flex mx-auto justify-between">
             <div className="justify-end md:flex">
@@ -113,7 +113,7 @@ function Navbar(className) {
                   <NavbarExplore
                     title="Show Case"
                     onClick={(data) => {
-                      navigate("/profile", { data });
+                      navigate("/show-case", { data });
                       setActiveMenu(2);
                     }}
                     src={showCaseImg}

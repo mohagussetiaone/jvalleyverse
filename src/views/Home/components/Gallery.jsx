@@ -2,7 +2,7 @@ import { LayoutGrid } from "@/components/ui/layout-grid";
 
 export function Gallery() {
   return (
-    <div className="bg-white dark:bg-gradient-to-tl from-black via-brand2 to-gray-800 overflow-y-hidden pt-24">
+    <div className="bg-white dark:bg-gradient-to-tl text-center from-black via-brand2 to-gray-800 overflow-y-hidden pt-24">
       <div className="p-2 md:py-4 md:px-14 text-black dark:text-neutral-200">
         <h3 className="text-2xl md:text-4xl">Moment sahabat Jvalleyverse</h3>
         <h3 className="text-sm md:text-xl py-4">Jvalleyverse membangun komunitas asik, kebersamaan dalam setiap perbedaan</h3>

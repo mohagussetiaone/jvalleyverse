@@ -1,9 +1,9 @@
-import CommingSoon from "@/components/CommingSoon";
+import DataNotFound from "../../../components/DataNotFound";
 
 const ShowCase = () => {
   return (
     <div className="w-screen">
-      <CommingSoon />
+      <DataNotFound />
     </div>
   );
 };

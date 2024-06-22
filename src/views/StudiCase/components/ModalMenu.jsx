@@ -11,9 +11,7 @@ const subMenu = [
   { name: "Studi Kasus", to: "/belajar/studi-kasus" },
   { name: "Diskusi", to: "/belajar/diskusi" },
   { name: "Library", to: "/belajar/library" },
-  { name: "Explorasi", to: "/belajar/explorasi" },
   { name: "Mentoring", to: "/belajar/mentoring" },
-  { name: "Tutorial", to: "/belajar/tutorial" },
 ];
 
 const ModalMenuProject = ({ showModalMenu, setShowModalMenu }) => {
