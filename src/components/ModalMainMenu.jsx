@@ -9,8 +9,9 @@ import { Link } from "react-router-dom";
 const subMenu = [
   { name: "Dashboard", to: "/" },
   { name: "Jalur Belajar", to: "/jalur-belajar" },
-  { name: "Belajar", to: "/belajar" },
-  { name: "Explore", to: "/explore" },
+  { name: "Belajar", to: "/belajar/project" },
+  { name: "Show Case", to: "/show-case" },
+  { name: "Diskusi", to: "/belajar/diskusi" },
   { name: "Tentang", to: "/tentang" },
 ];
 

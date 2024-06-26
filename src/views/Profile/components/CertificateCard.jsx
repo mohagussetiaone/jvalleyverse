@@ -39,11 +39,11 @@ const CertificateCard = () => {
   return (
     <div className="w-screen px-4 xl:pl-10 xl:pr-16">
       <div className="flex justify-start mb-8">
-        <input type="text" placeholder="Search by title..." value={searchTerm} onChange={handleSearchChange} className="w-full bg-white dark:bg-black dark:text-neutral-200 p-2 border border-gray-400 rounded" />
+        <input type="text" placeholder="Cari Sertifikat..." value={searchTerm} onChange={handleSearchChange} className="w-full bg-white dark:bg-black/20 dark:text-neutral-200 p-2 border border-gray-400 rounded" />
       </div>
       {currentCertificates.length > 0 ? (
         currentCertificates.map((certificate, index) => (
-          <div key={index} className="bg-white dark:bg-slate-800 grid gap-0 grid-cols-12 max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-2 md:p-4 mb-4">
+          <div key={index} className="bg-white dark:bg-black/20 grid gap-0 grid-cols-12 max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-2 md:p-4 mb-4">
             <div className="col-span-12 md:col-span-2 mx-auto">
               <img src={NodeJsImage} className="h-auto w-full lg:w-40 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l overflow-hidden" />
             </div>
@@ -53,7 +53,7 @@ const CertificateCard = () => {
                 <p className="text-gray-700 dark:text-neutral-200 text-base">{certificate.description}</p>
               </div>
               <div className="flex gap-2">
-                <button className="flex bg-white dark:bg-slate-800 text-brand-500 border border-brand-500  gap-2" onClick={() => handleClickViewSertificate(certificate.id)}>
+                <button className="flex bg-white dark:bg-black/20 text-brand-500 border border-brand-500  gap-2" onClick={() => handleClickViewSertificate(certificate.id)}>
                   <LuView size={25} />
                   View Certificate
                 </button>

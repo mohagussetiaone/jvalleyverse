@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import hljs from "highlight.js";
 import "highlight.js/styles/default.css";
+import toast from "react-hot-toast";
 
 hljs.configure({
   languages: ["javascript", "python", "ruby", "java", "cpp", "css", "html", "json", "markdown", "sql", "bash", "go", "kotlin", "php", "typescript", "c", "c#", "c++", "rust", "swift", "scala", "shell"],
@@ -51,7 +52,7 @@ const modules = {
 
 const formats = ["header", "font", "size", "align", "bold", "italic", "underline", "strike", "code-block"];
 
-const ReactQuillProvider = ({ value, onChange, ...props }) => {
+const ReactQuillProvider = ({ value, onChange, showCreateDiscussion, setShowCreateDiscussion, ...props }) => {
   const quillRef = useRef(null);
 
   useEffect(() => {
@@ -63,10 +64,24 @@ const ReactQuillProvider = ({ value, onChange, ...props }) => {
     }
   }, [value]);
 
+  const handleSave = () => {
+    setShowCreateDiscussion(false);
+    toast.success("Pertanyaan Berhasil disimpan");
+  };
+
   return (
     <>
-      <CustomToolbar />
-      <ReactQuill ref={quillRef} theme="snow" value={value} onChange={onChange} modules={modules} formats={formats} {...props} />
+      <div className="w-full h-full py-3">
+        <div>
+          <CustomToolbar />
+          <ReactQuill ref={quillRef} theme="snow" value={value} onChange={onChange} modules={modules} formats={formats} {...props} />
+        </div>
+        <div className="flex justify-end mt-4 mb-6">
+          <button className="bg-brand-500 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded" onClick={handleSave}>
+            Simpan
+          </button>
+        </div>
+      </div>
     </>
   );
 };

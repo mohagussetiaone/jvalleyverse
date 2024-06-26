@@ -25,11 +25,17 @@ import DiscussionHome from "./views/StudiCase/components/Discussion/Home";
 import DiscussionDetail from "./views/StudiCase/components/Discussion/components/DiscussionDetail";
 import Pertanyaan from "./views/StudiCase/components/Discussion/Pertanyaan";
 import Mentoring from "./views/StudiCase/components/Mentoring";
-
+// Project detail
 import ProjectDetail from "./views/StudiCase/components/Project/components/ProjectDetail";
+// Study Case detail
+import StudyCase from "./views/StudiCase/components/StudyCase/components/StudyCaseDetail";
+// Chapter
 import Chapter from "./views/StudiCase/components/Project/components/Chapter";
+// Not Found
 import NotFound from "./views/NotFound";
+// Profile
 import Profile from "./views/Profile";
+// Certificate
 import Certificate from "./views/Profile/components/Sertifikat";
 
 const router = createBrowserRouter([
@@ -145,6 +151,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/belajar/project/:id/chapter/:chapterId",
+        // loader: authLoader,
+        Component() {
+          return <Chapter />;
+        },
+      },
+      {
+        path: "/belajar/studi-kasus/:id",
+        // loader: authLoader,
+        Component() {
+          return <StudyCase />;
+        },
+      },
+      {
+        path: "/belajar/studi-kasus/:id/chapter/:chapterId",
         // loader: authLoader,
         Component() {
           return <Chapter />;

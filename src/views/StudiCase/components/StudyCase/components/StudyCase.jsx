@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MdGridView } from "react-icons/md";
 import ModalMenu from "../../ModalMenu";
 import useDarkMode from "@/hooks/useDarkMode";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   {
@@ -92,12 +93,13 @@ const truncateDescription = (description, maxLength) => {
 };
 
 const StudyCase = () => {
+  const itemsPerPage = 6;
+  const navigate = useNavigate();
+  const { darkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("Semua");
   const [showModalMenu, setShowModalMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
-  const { darkMode } = useDarkMode();
 
   const filteredData = data.filter((item) => (filterType === "Semua" || item.category === filterType) && item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -119,6 +121,10 @@ const StudyCase = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
+  };
+
+  const handleCardClick = (id) => {
+    navigate(`/belajar/studi-kasus/${id}`);
   };
 
   return (
@@ -160,7 +166,7 @@ const StudyCase = () => {
           <div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 min-h-screen h-[100vh] mx-auto">
               {currentData.map((item) => (
-                <div className="relative group cursor-pointer" key={item.id}>
+                <div className="relative group cursor-pointer" key={item.id} onClick={() => handleCardClick(item.id)}>
                   <div
                     className={`absolute min-h-[245px] md:min-h-[320px] h-[245px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
                       darkMode ? "group-hover:opacity-100" : ""

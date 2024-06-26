@@ -134,7 +134,7 @@ const NavbarCourse = (className) => {
               </Link>
             </div>
             <div className="flex gap-3">
-              <Link to="/belajar" className="flex md:hidden gap-1.5 mr-1 items-center bg-white dark:bg-black/30 rounded-lg px-2 py-1 text-black dark:text-neutral-200 border border-gray-900">
+              <Link to="/belajar/project" className="flex md:hidden gap-1.5 mr-1 items-center bg-white dark:bg-black/30 rounded-lg px-2 py-1 text-black dark:text-neutral-200 border border-gray-900">
                 <LuLogOut className="text-black dark:text-neutral-200" />
                 Back To Course
               </Link>

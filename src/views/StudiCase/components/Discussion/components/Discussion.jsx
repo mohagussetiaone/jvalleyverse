@@ -135,7 +135,7 @@ const Discussion = () => {
 
   return (
     <>
-      <div className="w-full bg-white dark:bg-brand2 text-black dark:text-neutral-200 border-y-2 border-gray-300 rounded-lg">
+      <div className="w-full bg-white dark:bg-brand2 text-black dark:text-neutral-200 rounded-lg">
         <div className="bg-white dark:bg-black/20 rounded-lg">
           <div className="flex flex-col gap-2 xl:gap-4 px-2 md:px-4 xl:px-6 py-4">
             <div className="flex justify-between mb-2">
@@ -143,12 +143,12 @@ const Discussion = () => {
                 <h3 className="font-semibold text-md md:text-xl">Semua Pertanyaan</h3>
               </div>
               <div>
-                <button className="bg-blue-500 dark:bg-black/50 text-white px-4 py-1 rounded" onClick={() => setShowCreateDiscussion(true)}>
+                <button className="border-brand-500 bg-white text-brand-500 dark:bg-brand2 dark:border-none dark:text-neutral-200 px-4 py-1 rounded" onClick={() => setShowCreateDiscussion(true)}>
                   Buat Pertanyaan
                 </button>
               </div>
             </div>
-            {showCreateDiscussion && <ReactQuillProvider />}
+            {showCreateDiscussion && <ReactQuillProvider showCreateDiscussion={showCreateDiscussion} setShowCreateDiscussion={setShowCreateDiscussion} />}
             <div className="flex gap-2 flex-col md:flex-row text-start justify-start md:justify-between">
               <div>
                 <h3 className="text-sm md:text-lg mt-1">Total {filteredData.length} Pertanyaan</h3>
