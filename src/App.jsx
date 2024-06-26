@@ -31,7 +31,6 @@ import Chapter from "./views/StudiCase/components/Project/components/Chapter";
 import NotFound from "./views/NotFound";
 import Profile from "./views/Profile";
 import Certificate from "./views/Profile/components/Sertifikat";
-import Tiptap from "./components/Tiptap";
 
 const router = createBrowserRouter([
   {
@@ -216,7 +215,6 @@ export default function App() {
         }}
       />
       <RouterProvider router={router} />
-      <Tiptap />
     </>
   );
 }
