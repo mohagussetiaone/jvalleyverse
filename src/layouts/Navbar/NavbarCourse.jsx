@@ -48,7 +48,7 @@ const NavbarCourse = (className) => {
               </button>
             </div>
             <div className="gap-4 items-center hidden xl:flex">
-              <Link to="/belajar" className="text-black font-normal dark:text-neutral-200 hover:text-black">
+              <Link to="/belajar/project" className="text-black font-normal dark:text-neutral-200 hover:text-black">
                 Belajar
               </Link>
               <MenuItem setActive={setActive} active={active} item="Jalur belajar" className="cursor-pointer">

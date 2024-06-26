@@ -14,15 +14,16 @@ import LayoutDiscussion from "./layouts/public/LayoutDiscussion";
 // Auth
 import SignIn from "./views/Auth/Signin";
 import SignUp from "./views/Auth/Signup";
-// Pages
+// FAQ
 import Faq from "./views/Faq";
+// Timeline
 import Timeline from "./views/Timeline";
-import Belajar from "./views/StudiCase";
-
+// Belajar
 import Project from "./views/StudiCase/components/Project";
 import StudiKasus from "./views/StudiCase/components/StudyCase";
-import DiscussionHome from "./views/StudiCase/components/ErrorDiscussion/components/Home";
-import Pertanyaan from "./views/StudiCase/components/ErrorDiscussion/components/Pertanyaan";
+import DiscussionHome from "./views/StudiCase/components/Discussion/Home";
+import DiscussionDetail from "./views/StudiCase/components/Discussion/components/DiscussionDetail";
+import Pertanyaan from "./views/StudiCase/components/Discussion/Pertanyaan";
 import Mentoring from "./views/StudiCase/components/Mentoring";
 
 import ProjectDetail from "./views/StudiCase/components/Project/components/ProjectDetail";
@@ -30,6 +31,7 @@ import Chapter from "./views/StudiCase/components/Project/components/Chapter";
 import NotFound from "./views/NotFound";
 import Profile from "./views/Profile";
 import Certificate from "./views/Profile/components/Sertifikat";
+import Tiptap from "./components/Tiptap";
 
 const router = createBrowserRouter([
   {
@@ -101,13 +103,6 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/belajar",
-        // loader: authLoader,
-        Component() {
-          return <Belajar />;
-        },
-      },
-      {
         path: "/belajar/project",
         // loader: authLoader,
         Component() {
@@ -171,6 +166,13 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "/belajar/diskusi/:discussionId",
+        // loader: authLoader,
+        Component() {
+          return <DiscussionDetail />;
+        },
+      },
+      {
         path: "/belajar/diskusi/pertanyaan",
         // loader: authLoader,
         Component() {
@@ -214,6 +216,7 @@ export default function App() {
         }}
       />
       <RouterProvider router={router} />
+      <Tiptap />
     </>
   );
 }

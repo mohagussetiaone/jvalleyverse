@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ReactQuillProvider from "@/components/ReactQuillProvider";
 
 const randomData = [
   {
@@ -105,9 +107,11 @@ const randomData = [
 
 const ITEMS_PER_PAGE = 5;
 
-const CardDiscussion = () => {
+const Discussion = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [showCreateDiscussion, setShowCreateDiscussion] = useState(false);
 
   const filteredData = randomData.filter(
     (item) => item.question.toLowerCase().includes(searchTerm.toLowerCase()) || item.description.toLowerCase().includes(searchTerm.toLowerCase()) || item.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -125,22 +129,29 @@ const CardDiscussion = () => {
     setCurrentPage(page);
   };
 
+  const handleDetailQuestion = (id) => {
+    navigate(`/belajar/diskusi/${id}`);
+  };
+
   return (
     <>
-      <div className="min-w-[100vw] xl:min-w-[85vw] w-full h-full min-h-screen px-2 md:px-8 xl:pl-14 xl:pr-20 py-8 bg-gray-200 dark:bg-brand2 text-black dark:text-neutral-200">
+      <div className="w-full bg-white dark:bg-brand2 text-black dark:text-neutral-200 border-y-2 border-gray-300 rounded-lg">
         <div className="bg-white dark:bg-black/20 rounded-lg">
           <div className="flex flex-col gap-2 xl:gap-4 px-2 md:px-4 xl:px-6 py-4">
             <div className="flex justify-between mb-2">
               <div>
-                <h3 className="font-semibold text-md md:text-xl">Pertanyaan Saya</h3>
+                <h3 className="font-semibold text-md md:text-xl">Semua Pertanyaan</h3>
               </div>
               <div>
-                <button className="bg-blue-500 dark:bg-black/50 text-white px-4 py-1 rounded">Buat Pertanyaan</button>
+                <button className="bg-blue-500 dark:bg-black/50 text-white px-4 py-1 rounded" onClick={() => setShowCreateDiscussion(true)}>
+                  Buat Pertanyaan
+                </button>
               </div>
             </div>
+            {showCreateDiscussion && <ReactQuillProvider />}
             <div className="flex gap-2 flex-col md:flex-row text-start justify-start md:justify-between">
               <div>
-                <h3 className="text-sm mt-1">Total {filteredData.length} Pertanyaan</h3>
+                <h3 className="text-sm md:text-lg mt-1">Total {filteredData.length} Pertanyaan</h3>
               </div>
               <div>
                 <input className="w-full bg-white dark:bg-brand2 border rounded-md px-3 py-1" type="text" placeholder="Cari Pertanyaan" value={searchTerm} onChange={handleSearchChange} />
@@ -148,12 +159,12 @@ const CardDiscussion = () => {
             </div>
           </div>
           {filteredData.length === 0 ? (
-            <div className="text-center py-4 bg-white dark:bg-black/40 h-[calc(100vh-40vh)]">
+            <div className="text-center py-4 bg-white dark:bg-black/40 h-[calc(100vh-39vh)]">
               <h3 className="mt-24 text-lg md:text-xl">Data Not Found</h3>
             </div>
           ) : (
             displayedData.map((item) => (
-              <div key={item.id} className="grid grid-cols-5 border-t-2 px-2 md:px-4">
+              <div key={item.id} className="grid grid-cols-5 border-t-2 px-2 md:px-4 cursor-pointer" onClick={() => handleDetailQuestion(item.id)}>
                 <div className="col-span-1 flex flex-col items-center justify-center h-full py-4 relative">
                   <h3>{item.answers} Jawaban</h3>
                   <h3>{item.votes} Vote</h3>
@@ -212,4 +223,4 @@ const CardDiscussion = () => {
   );
 };
 
-export default CardDiscussion;
+export default Discussion;

@@ -1,4 +1,4 @@
-import DiscussionHome from "./DiscussionHome";
+import DiscussionHome from "../../components/Discussion";
 import RelatedTopik from "./RelatedTopik";
 
 const ErrorDiscussion = () => {
