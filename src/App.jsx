@@ -1,7 +1,7 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Home from "@views/Home";
+import Home from "@/views/Home";
 import About from "./views/About/components/AboutCard";
 import ShowCase from "./views/ShowCase";
 import ShowCaseDetail from "./views/ShowCase/components/ShowCaseDetail";

@@ -117,7 +117,7 @@ const NavbarCourse = (className) => {
                   />
                   <NavbarExplore title="Grup Telegram" onClick={() => window.open("https://t.me/jvalleyverse")} src={telegramImg} description="Jadi bagian dari Jvalleyverse dan berkontribusi" />
                   <NavbarExplore
-                    title="Stuck Erorr"
+                    title="Stuck Erorrs"
                     onClick={() => {
                       navigate("/belajar/diskusi");
                     }}

@@ -1,5 +1,5 @@
 import { WobbleCard } from "@/components/ui/wobble-card.tsx";
-import OnlineClass from "@public/onlineclass.jpeg";
+import OnlineClass from "/onlineclass.jpeg";
 
 export function MetodePembelajaran() {
   return (
