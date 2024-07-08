@@ -3,12 +3,13 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import useActiveMenu from "@/hooks/useActiveMenu";
 import { Link, useParams } from "react-router-dom";
 import { handleGetProjectDetail, handleGetChapterByProjectId } from "@/api/Project/ProjectApi";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import ErrorServer from "@/components/ErrorServer";
 import Loading from "@/components/Loading";
 import useChapterProject from "@/hooks/useChapterProject";
 
 const ListModuleCourse = () => {
+  const queryClient = useQueryClient();
   const { activeMenu, setActiveMenu } = useActiveMenu();
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const { projectId } = useParams();
@@ -37,10 +38,14 @@ const ListModuleCourse = () => {
   });
 
   useEffect(() => {
-    if (dataChapterProjects) {
+    if (projectId) {
+      queryClient.invalidateQueries(["getProjectDetail"]);
+    } else if (dataProjectDetails) {
+      queryClient.invalidateQueries(["getChapterProjectById"]);
+    } else {
       setDataChapters(dataChapterProjects);
     }
-  }, [dataChapterProjects]);
+  }, [dataChapterProjects, setDataChapters, dataProjectDetails, projectId]);
 
   if (errorProjectDetail || errorChapterProjects) {
     return <ErrorServer />;

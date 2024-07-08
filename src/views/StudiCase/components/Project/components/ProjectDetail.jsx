@@ -1,4 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import YoutubeImage from "@/assets/tech/youtube.png";
 import GithubImage from "@/assets/tech/githubDark.png";
 import { Link, useParams } from "react-router-dom";
@@ -7,6 +8,7 @@ import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
 
 const ProjectDetail = () => {
+  const queryClient = useQueryClient();
   const { projectId } = useParams();
   const {
     error: errorProjectDetail,
@@ -19,6 +21,12 @@ const ProjectDetail = () => {
   });
 
   console.log("dataProjectDetails", dataProjectDetails);
+
+  useEffect(() => {
+    if (projectId) {
+      queryClient.invalidateQueries(["getProjectDetail"]);
+    }
+  }, [projectId]);
 
   if (errorProjectDetail) {
     <ErrorServer />;

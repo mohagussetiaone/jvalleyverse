@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoMdGitMerge } from "react-icons/io";
 import { MdGridView } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useDarkMode from "@/hooks/useDarkMode";
 import ModalMenu from "../../ModalMenu";
 import Loading from "@/components/Loading";
@@ -11,6 +11,7 @@ import ErrorServer from "@/components/ErrorServer";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { darkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("Semua");
@@ -27,6 +28,12 @@ const ProjectCard = () => {
     queryKey: ["getProject"],
     queryFn: handleGetProject,
   });
+
+  useEffect(() => {
+    if (dataProject) {
+      queryClient.invalidateQueries(["getProject"]);
+    }
+  }, [dataProject]);
 
   if (errorProject) {
     return <ErrorServer />;
