@@ -143,14 +143,14 @@ const router = createBrowserRouter([
     element: <LayoutCourseDetail />,
     children: [
       {
-        path: "/belajar/project/:id",
+        path: "/belajar/project/:projectId",
         // loader: authLoader,
         Component() {
           return <ProjectDetail />;
         },
       },
       {
-        path: "/belajar/project/:id/chapter/:chapterId",
+        path: "/belajar/project/:projectId/chapter/:chapterId",
         // loader: authLoader,
         Component() {
           return <Chapter />;

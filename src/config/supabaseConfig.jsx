@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
 let options = {
-  schema: ["auth", "cms", "product", "inventory", "sales"],
+  schema: ["auth", "belajar", "user"],
 };
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;

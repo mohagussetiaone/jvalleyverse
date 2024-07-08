@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-import supabase from "@/config/supabaseClient";
+import supabase from "@/config/supabaseConfig";
 // import { set } from "store/Local/Forage";
 import toast from "react-hot-toast";
 // import { useProfileStore } from "store/Profile/StoreProfile";

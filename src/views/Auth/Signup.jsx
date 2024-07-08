@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import supabase from "@/config/supabaseClient";
+import supabase from "@/config/supabaseConfig";
 import toast from "react-hot-toast";
 
 const SignUp = () => {
