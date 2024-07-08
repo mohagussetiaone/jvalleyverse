@@ -1,4 +1,5 @@
 import "./App.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "@/views/Home";
@@ -234,6 +235,7 @@ export default function App() {
           },
         }}
       />
+      <SpeedInsights />
       <RouterProvider router={router} />
     </>
   );
