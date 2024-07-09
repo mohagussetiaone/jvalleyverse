@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 import { RiHome6Line, RiUser3Line, RiBook2Line, RiSettings4Line } from "react-icons/ri";
 // import profileImages from "assets/img/avatars/avatar.png";
 import ModalConfirmation from "@/components/ModalConfirmation";
+import { useTranslation } from "react-i18next";
 
 const DropdownUser = () => {
   //   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalLogout, setModalLogout] = useState(false);
   const imageSrc = `https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?t=st=1717041704~exp=1717045304~hmac=0750efed9eed2f1aeba7b5c0126a6d1f5a91ec1f04b3f0eff376c533164f38bd&w=740`;
@@ -81,33 +83,27 @@ const DropdownUser = () => {
           <li>
             <Link to="/profile" className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700">
               <RiUser3Line className="w-5 h-5" />
-              Profil Saya
+              {t("Profil Saya")}
             </Link>
           </li>
           <li>
             <Link to="/profile" className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700">
               <RiBook2Line className="w-5 h-5" />
-              Kelas Saya
+              {t("Kelas Saya")}
             </Link>
           </li>
           <li>
             <Link to="/pengaturan" className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700">
               <RiSettings4Line className="w-5 h-5" />
-              Pengaturan
+              {t("Pengaturan")}
             </Link>
           </li>
-          {/* <li>
-            <Link to="#" className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700">
-              <RiContactsBookLine className="w-5 h-5" />
-              Data Kontak
-            </Link>
-          </li> */}
         </ul>
         <button
           className="flex justify-center border-t mt-4 items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out bg-white dark:bg-brand2 text-red-500 hover:text-red-600 hover:bg-red-100/50 border-none lg:text-base"
           onClick={() => setModalLogout(true)}
         >
-          Keluar
+          {t("Keluar")}
         </button>
         {modalLogout && <ModalConfirmation showModalConfirm={modalLogout} setShowModalConfirm={modalLogoutClose} funcConfirm />}
       </div>

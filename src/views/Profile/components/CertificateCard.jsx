@@ -2,9 +2,11 @@ import { useState } from "react";
 import NodeJsImage from "@/assets/tech/nodejs.png";
 import { LuView, LuDownload } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const CertificateCard = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
@@ -39,7 +41,7 @@ const CertificateCard = () => {
   return (
     <div className="w-screen px-4 xl:pl-10 xl:pr-16">
       <div className="flex justify-start mb-8">
-        <input type="text" placeholder="Cari Sertifikat..." value={searchTerm} onChange={handleSearchChange} className="w-full bg-white dark:bg-black/20 dark:text-neutral-200 p-2 border border-gray-400 rounded" />
+        <input type="text" placeholder={t("Cari Sertifikat...")} value={searchTerm} onChange={handleSearchChange} className="w-full bg-white dark:bg-black/20 dark:text-neutral-200 p-2 border border-gray-400 rounded" />
       </div>
       {currentCertificates.length > 0 ? (
         currentCertificates.map((certificate, index) => (
@@ -55,7 +57,7 @@ const CertificateCard = () => {
               <div className="flex gap-2">
                 <button className="flex bg-white dark:bg-black/20 text-brand-500 border border-brand-500  gap-2" onClick={() => handleClickViewSertificate(certificate.id)}>
                   <LuView size={25} />
-                  View Certificate
+                  {t("Lihat Certificate")}
                 </button>
                 <button className="flex bg-brand-500 dark:bg-brand-600 text-white gap-2">
                   <LuDownload size={25} />

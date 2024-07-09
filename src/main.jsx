@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App.jsx";
 import "./index.css";
+import "@/config/i18n.js";
 
 document.body.classList.add("dark");
 const queryClient = new QueryClient();

@@ -2,14 +2,17 @@ import { useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import YoutubeImage from "@/assets/tech/youtube.png";
 import GithubImage from "@/assets/tech/githubDark.png";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { handleGetProjectDetail } from "@/api/Project/ProjectApi";
 import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
+import { useTranslation } from "react-i18next";
 
 const ProjectDetail = () => {
-  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { projectId } = useParams();
+  const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const {
     error: errorProjectDetail,
     isPending: isPendingProjectDetail,
@@ -36,6 +39,10 @@ const ProjectDetail = () => {
     return <Loading />;
   }
 
+  const handleStarter = () => {
+    navigate(`/belajar/project/${projectId}/chapter/16`);
+  };
+
   return (
     <>
       <div className="w-full px-2 md:px-4 h-full py-6 dark:bg-gradient-to-br from-black via-brand2 to-gray-900 flex flex-col">
@@ -51,9 +58,11 @@ const ProjectDetail = () => {
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-0 md:gap-4 xl:gap-6">
               <div className="col-span-2 bg-gray-200 dark:bg-neutral-800 text-start flex-col rounded-lg p-4 mb-2">
                 <div className="flex flex-col text-center gap-2 dark:text-neutral-200">
-                  <h4 className="text-3xl font-bold">Siap untuk memulai professional?</h4>
-                  <p className="">Lacak progres Anda, tonton dengan cermat, memulai belajar dengan mudah</p>
-                  <button className="text-white mt-4">Mulai Sekarang</button>
+                  <h4 className="text-3xl font-bold">{t("Siap untuk memulai professional?")}</h4>
+                  <p className="">{t("Lacak progres Anda, tonton dengan cermat, memulai belajar dengan mudah")}</p>
+                  <button className="text-white mt-4" onClick={handleStarter}>
+                    {t("Mulai Sekarang")}
+                  </button>
                 </div>
               </div>
               <div className="col-span-1 my-4 md:my-0">

@@ -1,8 +1,11 @@
 import JvalleyLogo from "@/assets/logo/logosmalldark.png";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
-const index = () => {
+const Navbar = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-white dark:bg-gradient-to-br from-black via-brand2 to-gray-900 pt-4">
       <footer className="relative w-full">
@@ -18,21 +21,21 @@ const index = () => {
             </div>
             <div className="grid justify-between grid-cols-2 gap-0">
               <ul className="text-start">
-                <p className="block mb-3 font-sans text-lg text-black dark:text-neutral-200 font-medium leading-normal">Komunitas</p>
+                <p className="block mb-3 font-sans text-lg text-black dark:text-neutral-200 font-medium leading-normal">{t("Komunitas")}</p>
                 <li>
                   <Link to="/tentang" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Tentang kami
+                    {t("Tentang kami")}
                   </Link>
                 </li>
 
                 <li>
                   <Link target="_blank" to="https://t.me/jvalleyverse" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Grup Telegram
+                    {t("Grup Telegram")}
                   </Link>
                 </li>
                 <li>
                   <Link to="/faq" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Pertanyaan
+                    {t("Pertanyaan")}
                   </Link>
                 </li>
                 <li>
@@ -42,20 +45,20 @@ const index = () => {
                 </li>
               </ul>
               <ul className="text-start">
-                <p className="block mb-3 font-sans text-lg antialiased font-medium leading-normal text-black dark:text-neutral-200">Kelas Online</p>
+                <p className="block mb-3 font-sans text-lg antialiased font-medium leading-normal text-black dark:text-neutral-200">{t("Kelas Online")}</p>
                 <li>
                   <Link to="/signin" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Pendaftaran
+                    {t("Pendaftaran")}
                   </Link>
                 </li>
                 <li>
                   <Link to="/jalur-belajar" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Jalur belajar
+                    {t("Jalur belajar")}
                   </Link>
                 </li>
                 <li>
                   <Link to="/belajar/diskusi" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    Konsultasi
+                    {t("Konsultasi")}
                   </Link>
                 </li>
                 <li>
@@ -104,4 +107,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Navbar;

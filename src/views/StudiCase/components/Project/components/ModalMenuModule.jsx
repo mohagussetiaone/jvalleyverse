@@ -2,8 +2,10 @@ import { Fragment } from "react";
 import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
 import ListModuleCourse from "../../ListModuleCourse";
+import { useTranslation } from "react-i18next";
 
 const ModalMenuModule = ({ showModalMenu, setShowModalMenu }) => {
+  const { t } = useTranslation();
   return (
     <Transition show={showModalMenu} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={setShowModalMenu}>
@@ -23,7 +25,7 @@ const ModalMenuModule = ({ showModalMenu, setShowModalMenu }) => {
           >
             <DialogPanel className="relative w-full max-w-xs flex h-full flex-col bg-white dark:bg-black shadow-xl">
               <div className="sticky top-0 z-50 py-4 px-4 shadow-md flex items-center justify-between">
-                <h2 className="text-lg font-medium text-gray-900 dark:text-neutral-200">Module pembelajaran</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-neutral-200">{t("Module pembelajaran")}</h2>
                 <button type="button" className="flex h-10 w-10 items-center justify-center bg-white dark:bg-black p-2 text-gray-400" onClick={() => setShowModalMenu(!showModalMenu)}>
                   <IoMdClose className="h-6 w-6" />
                 </button>

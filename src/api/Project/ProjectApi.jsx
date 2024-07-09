@@ -24,6 +24,8 @@ export const handleGetProject = async () => {
         project_youtube_playlist,
         project_youtube_embed,
         tags,
+        project_published,
+        is_enrollment,
         created_at
         `
       );

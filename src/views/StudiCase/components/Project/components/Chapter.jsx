@@ -12,12 +12,15 @@ import ErrorServer from "@/components/ErrorServer";
 import Loading from "@/components/Loading";
 import { calculateChapterProgress } from "@/utils/calculateProgress";
 import useChapterProject from "@/hooks/useChapterProject";
+import { useTranslation } from "react-i18next";
 
 const Chapter = () => {
-  const queryClient = useQueryClient();
   const { chapterId } = useParams();
   const { darkMode } = useDarkMode();
   const { dataChapters } = useChapterProject();
+  const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  console.log("dataChapters", dataChapters);
 
   const {
     error: errorChapterDetailById,
@@ -42,6 +45,7 @@ const Chapter = () => {
   }
 
   const progress = calculateChapterProgress(dataChapters);
+  console.log("progress", progress);
 
   console.log("dataChapterDetailById", dataChapterDetailById);
 
@@ -65,7 +69,7 @@ const Chapter = () => {
           </div>
           <div className="flex items-center">
             <button className="flex gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-              Selesaikan dan lanjutkan
+              {t("Selesaikan dan lanjutkan")}
               <GrLinkNext className="mt-1.5" />
             </button>
           </div>

@@ -21,6 +21,8 @@ import useStudyActive from "@/hooks/useStudyActive";
 import useActiveMenu from "@/hooks/useActiveMenu";
 import { useNavigate } from "react-router-dom";
 import DropdownUser from "./DropdownUser";
+import { useTranslation } from "react-i18next";
+import Language from "@/components/Language";
 
 export default function NavbarDemo() {
   return (
@@ -32,6 +34,7 @@ export default function NavbarDemo() {
 
 function Navbar(className) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [active, setActive] = useState(null);
   const [showModalMainMenu, setShowModalMainMenu] = useState(false);
   const { darkMode, toggleDarkMode } = useDarkMode();
@@ -53,9 +56,9 @@ function Navbar(className) {
             </div>
             <div className="gap-4 items-center hidden xl:flex">
               <Link to="/belajar/project" className="text-black font-normal dark:text-neutral-200 hover:text-black">
-                Belajar
+                {t("Belajar")}
               </Link>
-              <MenuItem setActive={setActive} active={active} item="Jalur belajar" className="cursor-pointer">
+              <MenuItem setActive={setActive} active={active} item={t("Jalur belajar")} className="cursor-pointer">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
                   <NavbarItem
                     title="UI/UX Design"
@@ -64,7 +67,7 @@ function Navbar(className) {
                       setStudyActive(0);
                     }}
                     src={uiuxImg}
-                    description="Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik."
+                    description={t("Maksimalkan kepuasan pengguna dengan desain yang intuitif dan menarik.")}
                   />
                   <NavbarItem
                     title="Database"
@@ -73,7 +76,7 @@ function Navbar(className) {
                       setStudyActive(1);
                     }}
                     src={databaseImg}
-                    description="Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya."
+                    description={t("Mengelola dan pembaruan data dengan efisien, serta menjaga keamanan dan integritasnya.")}
                   />
                   <NavbarItem
                     title="Backend Developer"
@@ -82,7 +85,7 @@ function Navbar(className) {
                       setStudyActive(2);
                     }}
                     src={backEndImg}
-                    description="Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem"
+                    description={t("Membangun infrastruktur server, database, dan logika bisnis kinerja dan keamanan sistem")}
                   />
                   <NavbarItem
                     title="Frontend Developer"
@@ -91,24 +94,24 @@ function Navbar(className) {
                       setStudyActive(3);
                     }}
                     src={frontEndImg}
-                    description="Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien."
+                    description={t("Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien.")}
                   />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>
+                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer"> {t("Lihat selengkapnya")}</span>
                 </Link>
               </MenuItem>
 
               <MenuItem setActive={setActive} active={active} item="Explore">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
                   <NavbarExplore
-                    title="Cek Sertifikat"
+                    title={t("Cek Sertifikat")}
                     onClick={(data) => {
                       navigate("/profile", { data });
                       setActiveMenu(1);
                     }}
                     src={certificateImg}
-                    description="Dapatkan sertifikat yang menunjukkan keahlianmu"
+                    description={t("Dapatkan sertifikat yang menunjukkan keahlianmu")}
                   />
                   <NavbarExplore
                     title="Show Case"
@@ -117,27 +120,28 @@ function Navbar(className) {
                       setActiveMenu(2);
                     }}
                     src={showCaseImg}
-                    description="Pamerkan project portofoliomu ke publik"
+                    description={t("Pamerkan project portofoliomu ke publik")}
                   />
-                  <NavbarExplore title="Grup Telegram" onClick={() => window.open("https://t.me/jvalleyverse")} src={telegramImg} description="Jadi bagian dari Jvalleyverse dan berkontribusi" />
+                  <NavbarExplore title={t("Grup Telegram")} onClick={() => window.open("https://t.me/jvalleyverse")} src={telegramImg} description={t("Jadi bagian dari Jvalleyverse dan berkontribusi")} />
                   <NavbarExplore
                     title="Stuck Erorr"
                     onClick={() => {
                       navigate("/belajar/diskusi");
                     }}
                     src={stuckImg}
-                    description="Tanyakan masalahmu di sini dalam forum diskusi"
+                    description={t("Tanyakan masalahmu di sini dalam forum diskusi")}
                   />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">Lihat selengkapnya</span>
+                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer"> {t("Lihat selengkapnya")} </span>
                 </Link>
               </MenuItem>
               <Link to={"/tentang"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
-                Tentang
+                {t("Tentang")}
               </Link>
             </div>
             <div className="flex gap-3">
+              <Language />
               <span className="cursor-pointer">
                 {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}
               </span>
@@ -149,10 +153,10 @@ function Navbar(className) {
               </div>
               <div className="gap-2 hidden md:flex">
                 <Link to="/signin" className=" md:mt-1">
-                  <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">Masuk</button>
+                  <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">{t("Masuk")}</button>
                 </Link>
                 <Link to="/signup" className="md:mt-1">
-                  <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">Daftar</button>
+                  <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">{t("Daftar")}</button>
                 </Link>
               </div>
               <DropdownUser />

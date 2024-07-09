@@ -1,12 +1,15 @@
+import { useTranslation } from "react-i18next";
+
 const Testimonial = () => {
+  const { t } = useTranslation();
   return (
     <>
       <section id="testimonies" className="py-20 bg-whiteSmoke dark:bg-gradient-to-bl from-black via-brand2 to-black">
         <div className="max-w-6xl mx-auto">
           <div className="transition duration-500 ease-in-out transform scale-100 translate-x-0 translate-y-0 opacity-100 text-center px-2">
             <div className="mb-12 space-y-5 md:mb-16 md:text-center text-black dark:text-neutral-200">
-              <h1 className="mb-5 text-3xl font-semibold md:text-center md:text-4xl">Testimoni sahabat Jvalleyverse</h1>
-              <p className="text-md md:text-center md:text-2xl">Bagaimana mengulas dan memberi rating kepada kami</p>
+              <h1 className="mb-5 text-3xl font-semibold md:text-center md:text-4xl">{t("Testimoni sahabat Jvalleyverse")}</h1>
+              <p className="text-md md:text-center md:text-2xl">{t("Bagaimana mengulas dan memberi rating kepada kami")}</p>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 px-2 md:px-0">

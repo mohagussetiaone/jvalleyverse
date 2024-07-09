@@ -7,9 +7,11 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import ErrorServer from "@/components/ErrorServer";
 import Loading from "@/components/Loading";
 import useChapterProject from "@/hooks/useChapterProject";
+import { useTranslation } from "react-i18next";
 
 const ListModuleCourse = () => {
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const { activeMenu, setActiveMenu } = useActiveMenu();
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const { projectId } = useParams();
@@ -42,7 +44,8 @@ const ListModuleCourse = () => {
       queryClient.invalidateQueries(["getProjectDetail"]);
     } else if (dataProjectDetails) {
       queryClient.invalidateQueries(["getChapterProjectById"]);
-    } else {
+    }
+    if (dataChapterProjects) {
       setDataChapters(dataChapterProjects);
     }
   }, [dataChapterProjects, setDataChapters, dataProjectDetails, projectId]);
@@ -50,8 +53,6 @@ const ListModuleCourse = () => {
   if (errorProjectDetail || errorChapterProjects) {
     return <ErrorServer />;
   }
-
-  console.log("dataChapterProjects", dataChapterProjects);
 
   if (isPendingProjectDetail || isPendingChapterProjects) {
     return <Loading />;
@@ -120,6 +121,7 @@ const ListModuleCourse = () => {
                 </div>
               </li>
             ))}
+          {dataChapterProjects && dataChapterProjects.length === 0 && <div className="text-gray-700 dark:text-neutral-200">{t("Belum ada modul")}</div>}
         </ul>
       </div>
     </>

@@ -1,13 +1,15 @@
 import { IoMdHome, IoIosChatboxes } from "react-icons/io";
 import useActiveMenu from "@/hooks/useActiveMenu";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SidebarDiscussion = () => {
   const { activeMenu, setActiveMenu } = useActiveMenu();
+  const { t } = useTranslation();
 
   const sidebarData = [
-    { id: 1, title: "Home", icon: <IoMdHome className="w-5 h-5" />, url: "/belajar/diskusi" },
-    { id: 2, title: "Pertanyaan", icon: <IoIosChatboxes className="w-5 h-5" />, url: "/belajar/diskusi/pertanyaan" },
+    { id: 1, title: `${t("Home")}`, icon: <IoMdHome className="w-5 h-5" />, url: "/belajar/diskusi" },
+    { id: 2, title: `${t("Pertanyaan")}`, icon: <IoIosChatboxes className="w-5 h-5" />, url: "/belajar/diskusi/pertanyaan" },
     // { id: 3, title: "Tags", icon: <IoIosPricetags className="w-5 h-5" />, url: "/belajar/diskusi/tags" },
   ];
 

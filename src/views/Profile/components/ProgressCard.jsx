@@ -3,6 +3,7 @@ import { MdGridView } from "react-icons/md";
 import ModalMenuProgress from "./ModalMenuProgress";
 import { useNavigate } from "react-router-dom";
 import useDarkMode from "@/hooks/useDarkMode";
+import { useTranslation } from "react-i18next";
 
 // Data Acak
 const data = [
@@ -99,6 +100,7 @@ const data = [
 ];
 
 const ProgressCard = () => {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("Semua");
   const [showModalMenu, setShowModalMenu] = useState(false);
@@ -138,7 +140,7 @@ const ProgressCard = () => {
         <div className="py-4">
           <div className="mb-4">
             <div className="flex justify-start py-4">
-              <h3 className="text-2xl text-left text-black dark:text-neutral-200 font-bold">Progress belajar saya</h3>
+              <h3 className="text-2xl text-left text-black dark:text-neutral-200 font-bold">{t("Progress belajar saya")}</h3>
             </div>
             <div className="flex justify-between mb-4 md:mb-0">
               <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
@@ -146,14 +148,14 @@ const ProgressCard = () => {
               </div>
               <input
                 type="text"
-                placeholder="Cari progress berjalan..."
+                placeholder={t("Cari progress berjalan...")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="px-4 py-2 hidden md:block rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-neutral-200 mb-6"
               />
               <div>
                 <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded dark:bg-brand2 dark:text-white">
-                  <option value="Semua">Semua</option>
+                  <option value="Semua">{t("Semua")}</option>
                   <option value="Database">Database</option>
                   <option value="UI/UX">UI/UX</option>
                   <option value="Frontend">Frontend</option>
@@ -164,7 +166,7 @@ const ProgressCard = () => {
             <div className="flex  justify-start">
               <input
                 type="text"
-                placeholder="Cari project..."
+                placeholder={t("Cari project...")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full px-4 md:hidden py-2 rounded bg-white text-black dark:bg-brand2 dark:text-neutral-200 border border-gray-400"
@@ -172,7 +174,7 @@ const ProgressCard = () => {
             </div>
           </div>
           {filteredData && filteredData?.length === 0 ? (
-            <div className="text-center text-neutral-200 text-xl h-[325px] mt-24">Data Not Found</div>
+            <div className="text-center text-neutral-200 text-xl h-[325px] mt-24">{t("Data tidak ditemukan")}</div>
           ) : (
             <>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 xl:gap-4">
@@ -193,13 +195,15 @@ const ProgressCard = () => {
                           <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${item.progress}%` }}></div>
                         </div>
                         <div className="text-start">
-                          <span className="text-start text-black dark:text-gray-300 text-sm">Progress: {item.progress}% Selesai</span>
+                          <span className="text-start text-black dark:text-gray-300 text-sm">
+                            Progress: {item.progress}% {t("Selesai")}
+                          </span>
                         </div>
                         <div className="py-4 text-start">
                           {item.isComplete === true ? (
-                            <span className="bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-600">Selesai</span>
+                            <span className="bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-600">{t("Selesai")}</span>
                           ) : (
-                            <span className="bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-600">Lanjutkan</span>
+                            <span className="bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-600">{t("Lanjutkan")}</span>
                           )}
                         </div>
                       </div>

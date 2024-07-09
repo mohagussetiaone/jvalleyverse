@@ -1,9 +1,11 @@
 import { MdMenu, MdClose } from "react-icons/md";
 import ListModuleCourse from "@/views/StudiCase/components/ListModuleCourse";
 import useSidebar from "@/hooks/useSidebar";
+import { useTranslation } from "react-i18next";
 
 const SidebarCourseDetail = () => {
   const { collapsed, setMenuCollapsed } = useSidebar();
+  const { t } = useTranslation();
 
   const toggleSidebar = () => {
     setMenuCollapsed(!collapsed);
@@ -16,7 +18,7 @@ const SidebarCourseDetail = () => {
           <div className="relative z-50">
             <div className="flex px-2 pb-5 items-center justify-between">
               <div>
-                <h3 className="text-black dark:text-neutral-200 text-xl font-bold">Daftar Module</h3>
+                <h3 className="text-black dark:text-neutral-200 text-xl font-bold">{t("Daftar Module")}</h3>
               </div>
               <div>
                 <button onClick={toggleSidebar} className="bg-white dark:bg-black p-2 rounded-lg">

@@ -8,10 +8,12 @@ import ModalMenu from "../../ModalMenu";
 import Loading from "@/components/Loading";
 import { handleGetProject } from "@/api/Project/ProjectApi";
 import ErrorServer from "@/components/ErrorServer";
+import { useTranslation } from "react-i18next";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const { darkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("Semua");
@@ -46,13 +48,19 @@ const ProjectCard = () => {
   console.log("dataProject", dataProject);
 
   // FILTER DATA
-  const filteredData = dataProject?.filter((item) => (filterType === "Semua" || item.category_project?.category_name === filterType) && item?.project_name?.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredData = dataProject?.filter(
+    (item) => (filterType === "Semua" || item.category_project?.category_name === filterType) && item.project_published === true && item?.project_name?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   // Total pages
   const totalPages = Math.ceil(filteredData?.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
+
   // Data setelah di filter
   const currentData = filteredData?.slice(startIndex, startIndex + itemsPerPage);
   3;
+
+  // Handle pagination
   const handlePageClick = (page) => {
     setCurrentPage(page);
   };
@@ -83,13 +91,13 @@ const ProjectCard = () => {
             </div>
             <input
               type="text"
-              placeholder="Cari project..."
+              placeholder={t("Cari project...")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-neutral-200"
             />
             <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded dark:bg-brand2 dark:text-white">
-              <option value="Semua">Semua</option>
+              <option value="Semua">{t("Semua")}</option>
               <option value="database">Database</option>
               <option value="ui/ux">UI/UX</option>
               <option value="frontend">Frontend</option>
@@ -100,7 +108,7 @@ const ProjectCard = () => {
           <div className="flex justify-start">
             <input
               type="text"
-              placeholder="Cari project..."
+              placeholder={t("Cari project...")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="px-4 md:hidden py-2 rounded bg-white dark:bg-brand2 text-black dark:text-neutral-200 border border-gray-400"
