@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Menu, MenuItem, NavbarItem, NavbarExplore } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
 import logoJv from "@/assets/logo/logojv.png";
 import logoJvDark from "@/assets/logo/logo-dark.png";
 import logoSmallDark from "@/assets/logo/logosmalldark.png";
 import { MdGridView } from "react-icons/md";
-import { LuMoon, LuSun } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
+import { LuMoon, LuSun, LuLogOut } from "react-icons/lu";
+// Img
 import uiuxImg from "@/assets/navbar/uiux.png";
 import frontEndImg from "@/assets/navbar/frontend.jpeg";
 import backEndImg from "@/assets/navbar/backend.png";
@@ -15,14 +18,17 @@ import certificateImg from "@/assets/navbar/certificate.jpg";
 import showCaseImg from "@/assets/navbar/showcase.jpg";
 import telegramImg from "@/assets/navbar/telegram.jpeg";
 import stuckImg from "@/assets/navbar/erorr.png";
+// Modal
 import ModalMenuModule from "@/views/StudiCase/components/Project/components/ModalMenuModule";
+import { Menu, MenuItem, NavbarItem, NavbarExplore } from "@/components/ui/navbar-menu";
+// Hooks
 import useDarkMode from "@/hooks/useDarkMode";
-import { LuLogOut } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
 import useStudyActive from "@/hooks/useStudyActive";
 import useActiveMenu from "@/hooks/useActiveMenu";
+import { useCheckSession } from "@/api/Auth/CheckSession";
+// Component
 import Language from "@/components/Language";
-import { useTranslation } from "react-i18next";
+import DropdownUser from "./DropdownUser";
 
 const NavbarCourse = (className) => {
   const navigate = useNavigate();
@@ -32,6 +38,11 @@ const NavbarCourse = (className) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { setStudyActive } = useStudyActive();
   const { setActiveMenu } = useActiveMenu();
+
+  const { data: sessionData } = useQuery({
+    queryKey: ["checkSession"],
+    queryFn: useCheckSession,
+  });
 
   return (
     <>
@@ -147,14 +158,17 @@ const NavbarCourse = (className) => {
               <span className="cursor-pointer">
                 {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}
               </span>
-              <div className="flex gap-2">
-                <Link to="/signin" className="hidden md:block md:mt-1">
-                  <button className="btn border bg-white text-brand-500 border-brand-500 hover:border-brand-700 hover:bg-gray-100 py-1 px-3">{t("Masuk")}</button>
-                </Link>
-                <Link to="/signup" className="hidden md:block md:mt-1">
-                  <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">{t("Daftar")}</button>
-                </Link>
-              </div>
+              {sessionData && sessionData.session === null && (
+                <div className="gap-2 hidden md:flex">
+                  <Link to="/signin" className=" md:mt-1">
+                    <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">{t("Masuk")}</button>
+                  </Link>
+                  <Link to="/signup" className="md:mt-1">
+                    <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">{t("Daftar")}</button>
+                  </Link>
+                </div>
+              )}
+              {sessionData && sessionData.session !== null && <DropdownUser />}
             </div>
           </div>
         </Menu>

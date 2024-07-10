@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import supabase from "@/config/supabaseConfig";
 import toast from "react-hot-toast";
+import supabase from "@/config/supabaseConfig";
+import { useTranslation } from "react-i18next";
+import { IoMdArrowBack } from "react-icons/io";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirPassword, setShowConfirPassword] = useState(false);
 
@@ -32,48 +35,118 @@ const SignUp = () => {
     }));
   };
 
-  const SignUp = async (e) => {
+  // const SignUp = async (e) => {
+  //   e.preventDefault();
+  //   if (formData.confirmPassword !== formData.password) {
+  //     toast.error("konfirmasi password harus sama.");
+  //     return;
+  //   }
+  //   const loadingToast = toast.loading("Memproses pendaftaran...");
+  //   try {
+  //     const { data, error } = await supabase.auth.signUp({
+  //       email: formData.email,
+  //       password: formData.password,
+  //     });
+  //     setTimeout(async () => {
+  //       toast.dismiss(loadingToast);
+  //       if (data?.session !== null) {
+  //         toast.success("Pendaftaran akun Berhasil", {
+  //           duration: 1900,
+  //         });
+  //         setFormData({
+  //           email: "",
+  //           password: "",
+  //         });
+  //         navigate("/signin");
+  //         return data;
+  //       } else if (data?.session === null) {
+  //         toast.error("User sudah terdaftar");
+  //       } else {
+  //         toast.error(error.message);
+  //       }
+  //       if (error) toast.error(error.message);
+  //     }, 2000);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const signUpAdmin = async (e) => {
     e.preventDefault();
     if (formData.confirmPassword !== formData.password) {
       toast.error("konfirmasi password harus sama.");
       return;
     }
-    const loadingToast = toast.loading("Memproses pendaftaran...");
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-      });
-      setTimeout(async () => {
-        toast.dismiss(loadingToast);
-        if (data?.session !== null) {
-          toast.success("Pendaftaran akun Berhasil", {
-            duration: 1900,
+    const promise = new Promise((resolve, reject) => {
+      (async () => {
+        try {
+          // Membuat pengguna baru admin dengan Supabase
+          const { data: userAdmin, error } = await supabase.auth.signUp({
+            email: formData.email,
+            password: formData.password,
           });
-          setFormData({
-            email: "",
-            password: "",
-          });
-          navigate("/signin");
-          return data;
-        } else if (data?.session === null) {
-          toast.error("User sudah terdaftar");
-        } else {
-          toast.error(error.message);
+          console.log("userAdmin", userAdmin);
+          if (error) {
+            reject(error);
+            return;
+          }
+          if (userAdmin) {
+            const { data: dataUser, error: errorUser } = await supabase.schema("user").from("users").insert({
+              id: userAdmin.user.id,
+              role_id: 3,
+              email: formData.email,
+              verify: true,
+            });
+            console.log("dataUser", dataUser);
+            console.log("errorUser", errorUser);
+            if (errorUser) {
+              reject(errorUser);
+              return;
+            }
+            if (dataUser) {
+              navigate("/");
+              resolve("Sign Up Berhasil");
+            }
+          }
+        } catch (error) {
+          console.log("error", error);
+          if (error.message === "Network Error") {
+            reject("Internal Server Error");
+          } else {
+            reject(error.message || "Email atau Password tidak valid");
+          }
         }
-        if (error) toast.error(error.message);
-      }, 2000);
-    } catch (error) {
-      console.error(error);
-    }
+      })();
+    });
+
+    toast.promise(
+      promise,
+      {
+        loading: "Processing ...",
+        success: (message) => message,
+        error: (message) => message,
+      },
+      {
+        success: {
+          duration: 1900,
+        },
+        error: {
+          duration: 4000,
+        },
+      }
+    );
   };
 
   return (
     <section className="flex flex-col w-screen md:flex-row h-screen items-center overflow-hidden">
       <div className="bg-gradient-to-br from-brand-600 via-black to-brand2 w-full h-screen flex items-center justify-center">
         <div className="w-full max-w-md mx-2 p-2 px-4 md:py-6 xl:py-8 md:px-8 xl:px-16 bg-white rounded-lg shadow">
-          <h1 className="text-xl flex justify-center text-black md:text-2xl font-bold leading-tight">Daftar akun</h1>
-          <form className="mt-6" onSubmit={SignUp}>
+          <Link to="/" className="flex justify-start my-2">
+            <IoMdArrowBack className="text-blue-600 text-xl mt-1 mr-2" />
+            {t("Kembali ke dashboard")}
+          </Link>
+          <h1 className="text-xl flex justify-center text-black md:text-2xl font-bold leading-tight">{t("Daftar akun")}</h1>
+          <form className="mt-6" onSubmit={signUpAdmin}>
             <div className="mt-2">
               <label className="flex justify-start text-gray-700">Email</label>
               <input
@@ -82,7 +155,7 @@ const SignUp = () => {
                 id="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder="Masukkan email"
+                placeholder={t("Masukkan email")}
                 className="w-full text-black px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                 autoFocus
                 autoComplete="on"
@@ -90,13 +163,13 @@ const SignUp = () => {
               />
             </div>
             <div className="mt-2">
-              <label className="flex justify-start text-gray-700">Kata sandi</label>
+              <label className="flex justify-start text-gray-700">{t("Kata sandi")}</label>
               <div className="relative">
                 <input
                   type={showConfirPassword ? "text" : "password"}
                   name="password"
                   id="password"
-                  placeholder="Masukkan kata sandi"
+                  placeholder={t("Masukkan kata sandi")}
                   minLength="6"
                   value={formData.password}
                   onChange={handleInputChange}
@@ -109,13 +182,13 @@ const SignUp = () => {
               </div>
             </div>
             <div className="mt-2">
-              <label className="flex justify-start text-gray-700">Konfirmasi kata sandi</label>
+              <label className="flex justify-start text-gray-700">{t("Konfirmasi kata sandi")}</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   name="confirmPassword"
                   id="confirmPassword"
-                  placeholder="Masukkan ulang kata sandi"
+                  placeholder={t("Masukkan ulang kata sandi")}
                   minLength="6"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
@@ -128,13 +201,14 @@ const SignUp = () => {
               </div>
             </div>
             <button type="submit" className="w-full mt-8 block bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 text-white font-semibold rounded-lg px-4 py-3">
-              Daftar
+              {t("Daftar")}
             </button>
           </form>
           <p className="mt-2 text-black">
-            Sudah punya akun?{" "}
+            {t("Sudah punya akun?")}{" "}
             <Link to="/signin" className="text-blue-500 cursor-pointer hover:text-blue-700 font-semibold">
-              {"  "}Masuk
+              {"  "}
+              {t("Masuk")}
             </Link>
           </p>
         </div>

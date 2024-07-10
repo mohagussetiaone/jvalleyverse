@@ -1,15 +1,14 @@
-// import toast from "react-hot-toast";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-// import supabase from "config/supabaseClient";
-// import { remove } from "store/Local/Forage";
-import { RiHome6Line, RiUser3Line, RiBook2Line, RiSettings4Line } from "react-icons/ri";
-// import profileImages from "assets/img/avatars/avatar.png";
-import ModalConfirmation from "@/components/ModalConfirmation";
+import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
+import supabase from "@/config/supabaseConfig";
+import { RiHome6Line, RiUser3Line, RiBook2Line, RiSettings4Line } from "react-icons/ri";
+import ModalConfirmation from "@/components/ModalConfirmation";
+import { remove } from "@/store/local/Forage";
 
 const DropdownUser = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalLogout, setModalLogout] = useState(false);
@@ -44,19 +43,19 @@ const DropdownUser = () => {
     setModalLogout(false);
   };
 
-  //   const logout = async (e) => {
-  //     e.preventDefault();
-  //     try {
-  //       const { error } = await supabase.auth.signOut();
-  //       remove("userTokens");
-  //       navigate("/signin");
-  //       if (error) {
-  //         toast.error("Logout gagal. silahkan coba kembali.");
-  //       }
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      const { error } = await supabase.auth.signOut();
+      remove("userSession");
+      navigate(0);
+      if (error) {
+        toast.error("Logout gagal. silahkan coba kembali.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="relative my-1">
@@ -105,7 +104,7 @@ const DropdownUser = () => {
         >
           {t("Keluar")}
         </button>
-        {modalLogout && <ModalConfirmation showModalConfirm={modalLogout} setShowModalConfirm={modalLogoutClose} funcConfirm />}
+        {modalLogout && <ModalConfirmation showModalConfirm={modalLogout} setShowModalConfirm={modalLogoutClose} funcConfirm={handleLogout} />}
       </div>
     </div>
   );

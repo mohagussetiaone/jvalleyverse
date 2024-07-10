@@ -1,4 +1,5 @@
 import "./App.css";
+import { authLoader } from "./lib/authValidation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "@/views/Home";
@@ -41,54 +42,54 @@ import Certificate from "./views/Profile/components/Sertifikat";
 const router = createBrowserRouter([
   {
     path: "/",
-    // loader: authLoader,
+    loader: authLoader,
     element: <Layout />,
     children: [
       {
         path: "/",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Home />;
         },
       },
       {
         path: "/jalur-belajar",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Timeline />;
         },
       },
       {
         path: "/tentang",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <About />;
         },
       },
       {
         path: "/show-case",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <ShowCase />;
         },
       },
       {
         path: "/show-case/:showCaseId",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <ShowCaseDetail />;
         },
       },
       {
         path: "/profile",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Profile />;
         },
       },
       {
         path: "/profile/sertifikat/:sertId",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Certificate />;
         },
@@ -97,7 +98,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    // loader: authLoader,
+    loader: authLoader,
     element: <LayoutCourse />,
     children: [
       {
@@ -109,28 +110,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/belajar/project",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Project />;
         },
       },
       {
         path: "/belajar/studi-kasus",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <StudiKasus />;
         },
       },
       {
         path: "/belajar/mentoring",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Mentoring />;
         },
       },
       {
         path: "/faq",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Faq />;
         },
@@ -139,33 +140,33 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    // loader: authLoader,
+    loader: authLoader,
     element: <LayoutCourseDetail />,
     children: [
       {
         path: "/belajar/project/:projectId",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <ProjectDetail />;
         },
       },
       {
         path: "/belajar/project/:projectId/chapter/:chapterId",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Chapter />;
         },
       },
       {
         path: "/belajar/studi-kasus/:id",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <StudyCase />;
         },
       },
       {
         path: "/belajar/studi-kasus/:id/chapter/:chapterId",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Chapter />;
         },
@@ -174,26 +175,26 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    // loader: authLoader,
+    loader: authLoader,
     element: <LayoutDiscussion />,
     children: [
       {
         path: "/belajar/diskusi",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <DiscussionHome />;
         },
       },
       {
         path: "/belajar/diskusi/:discussionId",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <DiscussionDetail />;
         },
       },
       {
         path: "/belajar/diskusi/pertanyaan",
-        // loader: authLoader,
+        loader: authLoader,
         Component() {
           return <Pertanyaan />;
         },
@@ -202,17 +203,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/signin",
-    // loader: authLoader,
+    loader: authLoader,
     Component: SignIn,
   },
   {
     path: "/signup",
-    // loader: authLoader,
+    loader: authLoader,
     Component: SignUp,
   },
   {
     path: "*",
-    // loader: authLoader,
+    loader: authLoader,
     Component: NotFound,
   },
 ]);
@@ -221,13 +222,12 @@ export default function App() {
   return (
     <>
       <Toaster
-        position="top-right"
+        position="top-center"
         reverseOrder={false}
         gutter={8}
         containerStyle={{}}
         toastOptions={{
           className: "",
-          duration: 1450,
           style: {
             background: "#ffff",
             color: "#1577d6",

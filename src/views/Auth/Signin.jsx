@@ -1,47 +1,33 @@
 import { useState, useEffect } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import supabase from "@/config/supabaseConfig";
-// import { set } from "store/Local/Forage";
 import toast from "react-hot-toast";
-// import { useProfileStore } from "store/Profile/StoreProfile";
-// import backgroundAuth from "@/assets/logo/logo.png";
-import { useQuery } from "@tanstack/react-query";
+import { set } from "@/store/local/Forage";
+import { useTranslation } from "react-i18next";
+import { IoMdArrowBack } from "react-icons/io";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  // const { setProfile } = useProfileStore();
+  const { t } = useTranslation();
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const savedEmail = localStorage.getItem("email") || "";
   const savedPassword = localStorage.getItem("password") || "";
 
-  const [formData, setFormData] = useState({
-    email: savedEmail,
-    password: savedPassword,
-  });
-
-  const { data: sessionData, error: sessionError } = useQuery({
-    queryKey: ["sessionData"],
-    queryFn: async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error) {
-        console.error("Error fetching session:", error.message);
-        throw new Error("Error fetching session");
-      }
-      return data;
+  const { register, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      email: savedEmail,
+      password: savedPassword,
     },
   });
-  console.log("sessionData", sessionData);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  useEffect(() => {
+    setValue("email", savedEmail);
+    setValue("password", savedPassword);
+  }, [savedEmail, savedPassword, setValue]);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -52,19 +38,14 @@ const SignIn = () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
-    // if (data) {
-    //   window.location.href = '/dashboard';
-    // }
     if (error) {
       alert("failed to login");
     }
     console.log("data", data);
-    // toast.success('Login Berhasil. Silahkan tungukan akun anda. Terima kasih');
   };
 
-  const handleSignInWithEmailPassword = async (e) => {
-    e.preventDefault();
-    const { email, password } = formData;
+  const handleSignInWithEmailPassword = async (data) => {
+    const { email, password } = data;
     if (!email || !password) {
       toast.error("Email dan Password harus diisi");
       return;
@@ -75,16 +56,14 @@ const SignIn = () => {
         email,
         password,
       });
+      console.log("data response login", data);
+      set(data.session.access_token);
       setTimeout(async () => {
         toast.dismiss(loadingToast);
         if (data.session === null) {
           toast.error("User tidak ditemukan");
           return;
         } else if (data.session !== null) {
-          // const token = data?.session?.access_token;
-          // const dataProfile = data?.user;
-          // set(token);
-          // setProfile(dataProfile);
           toast.success("Login Berhasil", {
             duration: 1900,
           });
@@ -95,7 +74,7 @@ const SignIn = () => {
             localStorage.removeItem("email");
             localStorage.removeItem("password");
           }
-          navigate("/dashboard");
+          navigate("/");
         }
         if (error) {
           throw new Error(error.message);
@@ -128,17 +107,20 @@ const SignIn = () => {
     <section className="flex flex-col w-screen md:flex-row h-screen items-center overflow-hidden">
       <div className="bg-gradient-to-br from-brand2 via-black to-brand-800 w-full h-screen flex items-center justify-center">
         <div className="max-w-xl p-2 md:py-4 xl:py-6 md:px-8 xl:px-16 mx-auto bg-white rounded-lg shadow">
-          <h1 className="text-xl flex justify-center text-black md:text-2xl font-bold leading-tight mt-4">Masuk ke akun anda</h1>
-          <form className="mt-6 px-2" action="#" method="POST">
+          <Link to="/" className="flex justify-start my-2">
+            <IoMdArrowBack className="text-blue-600 text-xl mt-1 mr-2" />
+            {t("Kembali ke dashboard")}
+          </Link>
+          <h1 className="text-xl flex justify-center text-black md:text-2xl font-bold leading-tight mt-4">{t("Masuk ke akun anda")}</h1>
+          <form className="mt-6 px-2" onSubmit={handleSubmit(handleSignInWithEmailPassword)}>
             <div>
               <label className="flex justify-start text-gray-700">Email</label>
               <input
                 type="email"
                 name="email"
                 id="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Masukkan email"
+                {...register("email", { required: true })}
+                placeholder={t("Masukkan email")}
                 className="w-full text-black px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                 autoFocus
                 autoComplete="on"
@@ -146,16 +128,14 @@ const SignIn = () => {
               />
             </div>
             <div className="mt-4">
-              <label className="flex justify-start text-gray-700">Kata sandi</label>
+              <label className="flex justify-start text-gray-700">{t("Kata sandi")}</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
-                  placeholder="Masukkan kata sandi"
-                  minLength="6"
-                  value={formData.password}
-                  onChange={handleInputChange}
+                  {...register("password", { required: true, minLength: 6 })}
+                  placeholder={t("Masukkan kata sandi")}
                   className="w-full text-black px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                   required
                 />
@@ -169,23 +149,23 @@ const SignIn = () => {
                 <div className="flex items-center mb-2">
                   <input className="h-4 w-4 mr-2 leading-tight cursor-pointer" type="checkbox" id="rememberMeCheckbox" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
                   <label className="text-sm text-black" htmlFor="rememberMeCheckbox">
-                    Ingat Saya
+                    {t("Ingat Saya")}
                   </label>
                 </div>
               </div>
               <div>
                 <Link to="/reset-password" className="text-sm font-semibold text-blue-500 hover:text-blue-700 focus:text-blue-700">
-                  Lupa Password?
+                  {t("Lupa Password?")}
                 </Link>
               </div>
             </div>
-            <button type="submit" className="w-full block bg-blue-600 hover:bg-blue-700 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-2" onClick={handleSignInWithEmailPassword}>
-              Masuk akun
+            <button type="submit" className="w-full block bg-blue-600 hover:bg-blue-700 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-2">
+              {t("Masuk akun")}
             </button>
           </form>
           <div className="flex items-center justify-center my-2">
             <hr className="border-gray-300 w-full" />
-            <span className="px-4 text-gray-500">Atau</span>
+            <span className="px-4 text-gray-500">{t("Atau")}</span>
             <hr className="border-gray-300 w-full" />
           </div>
           <div className="flex justify-center mx-2">
@@ -203,14 +183,15 @@ const SignIn = () => {
                     d="M43.611,20.083L43.595,20L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
                   ></path>
                 </svg>
-                <span className="md:ml-4 ml-2">Masuk dengan Google</span>
+                <span className="md:ml-4 ml-2">{t("Masuk dengan Google")}</span>
               </div>
             </button>
           </div>
           <p className="mt-2 mx-2 flex justify-start text-black">
-            Belum mempunyai akun?{" "}
+            {t("Belum mempunyai akun?")}{" "}
             <Link to="/signup" className="text-blue-500 hover:text-blue-700 font-semibold">
-              {"  "}Buat akun
+              {"  "}
+              {t("Buat akun")}
             </Link>
           </p>
         </div>

@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Menu, MenuItem, NavbarItem, NavbarExplore } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { LuMoon, LuSun } from "react-icons/lu";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+// IMG
 import logoJv from "@/assets/logo/logojv.png";
 import logoDark from "@/assets/logo/logo-dark.png";
 import logoSmallDark from "@/assets/logo/logosmalldark.png";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { LuMoon, LuSun } from "react-icons/lu";
 import uiuxImg from "@/assets/navbar/uiux.png";
 import frontEndImg from "@/assets/navbar/frontend.jpeg";
 import backEndImg from "@/assets/navbar/backend.png";
@@ -15,13 +17,16 @@ import certificateImg from "@/assets/navbar/certificate.jpg";
 import showCaseImg from "@/assets/navbar/showcase.jpg";
 import telegramImg from "@/assets/navbar/telegram.jpeg";
 import stuckImg from "@/assets/navbar/erorr.png";
+// Modal
 import ModalMainMenu from "@/components/ModalMainMenu";
+import { Menu, MenuItem, NavbarItem, NavbarExplore } from "@/components/ui/navbar-menu";
+// Hooks
 import useDarkMode from "@/hooks/useDarkMode";
 import useStudyActive from "@/hooks/useStudyActive";
 import useActiveMenu from "@/hooks/useActiveMenu";
-import { useNavigate } from "react-router-dom";
+import { useCheckSession } from "@/api/Auth/CheckSession";
+// Component
 import DropdownUser from "./DropdownUser";
-import { useTranslation } from "react-i18next";
 import Language from "@/components/Language";
 
 export default function NavbarDemo() {
@@ -40,6 +45,11 @@ function Navbar(className) {
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { setStudyActive } = useStudyActive();
   const { setActiveMenu } = useActiveMenu();
+
+  const { data: sessionData } = useQuery({
+    queryKey: ["checkSession"],
+    queryFn: useCheckSession,
+  });
 
   return (
     <>
@@ -151,15 +161,17 @@ function Navbar(className) {
                   <p className="sr-only">Menu</p>
                 </button>
               </div>
-              <div className="gap-2 hidden md:flex">
-                <Link to="/signin" className=" md:mt-1">
-                  <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">{t("Masuk")}</button>
-                </Link>
-                <Link to="/signup" className="md:mt-1">
-                  <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">{t("Daftar")}</button>
-                </Link>
-              </div>
-              <DropdownUser />
+              {sessionData && sessionData.session === null && (
+                <div className="gap-2 hidden md:flex">
+                  <Link to="/signin" className=" md:mt-1">
+                    <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">{t("Masuk")}</button>
+                  </Link>
+                  <Link to="/signup" className="md:mt-1">
+                    <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">{t("Daftar")}</button>
+                  </Link>
+                </div>
+              )}
+              {sessionData && sessionData.session !== null && <DropdownUser />}
             </div>
           </div>
         </Menu>
