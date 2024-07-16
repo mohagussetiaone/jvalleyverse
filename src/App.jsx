@@ -36,6 +36,7 @@ import Chapter from "./views/StudiCase/components/Project/components/Chapter";
 import NotFound from "./views/NotFound";
 // Profile
 import Profile from "./views/Profile";
+import Settings from "./views/Settings";
 // Certificate
 import Certificate from "./views/Profile/components/Sertifikat";
 
@@ -88,10 +89,24 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "/settings",
+        loader: authLoader,
+        Component() {
+          return <Settings />;
+        },
+      },
+      {
         path: "/profile/sertifikat/:sertId",
         loader: authLoader,
         Component() {
           return <Certificate />;
+        },
+      },
+      {
+        path: "/belajar/studi-kasus/:studyCaseId",
+        loader: authLoader,
+        Component() {
+          return <StudyCase />;
         },
       },
     ],
@@ -157,13 +172,7 @@ const router = createBrowserRouter([
           return <Chapter />;
         },
       },
-      {
-        path: "/belajar/studi-kasus/:id",
-        loader: authLoader,
-        Component() {
-          return <StudyCase />;
-        },
-      },
+
       {
         path: "/belajar/studi-kasus/:id/chapter/:chapterId",
         loader: authLoader,

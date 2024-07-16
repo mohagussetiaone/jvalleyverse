@@ -1,43 +1,56 @@
-import { IoMdGitMerge } from "react-icons/io";
-
+import { Link } from "react-router-dom";
+import useDarkMode from "@/hooks/useDarkMode";
+import TelegramImage from "@/assets/tech/telegramDark.png";
+import DiscordImage from "@/assets/tech/discord.png";
+import DiscussionImage from "@/assets/tech/discussion.png";
+import DiscussionDarkImage from "@/assets/tech/discussionDark.png";
+import { handleGetStudyCaseDetail } from "@/api/StudyCase/StudyCaseApi";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "@/components/Loading";
+import ErrorServer from "@/components/ErrorServer";
+import { useParams } from "react-router-dom";
 const StudyCaseDetail = () => {
+  const { studyCaseId } = useParams();
+  const { darkMode } = useDarkMode();
+  const {
+    error: errorStudyCase,
+    isPending: isPendingStudyCase,
+    data: dataStudyCase,
+  } = useQuery({
+    queryKey: ["getStudyCase"],
+    queryFn: () => handleGetStudyCaseDetail(studyCaseId),
+  });
+
+  if (isPendingStudyCase) {
+    return <Loading />;
+  }
+
+  if (errorStudyCase) {
+    return <ErrorServer />;
+  }
+
+  console.log("dataStudyCase", dataStudyCase);
+
   return (
     <>
-      <div className="w-[100vw] px-4 h-full">
-        <div className="flex gap-4 flex-col md:flex-row ">
-          <div className="w-1/2">
-            <iframe height="315" width="450" src="https://www.youtube.com/embed/SIDgKNa363k?si=Hh-wKdji-Q36UgPC" frameBorder="0" allowfullscreen></iframe>
+      <div className="w-[100vw] bg-white pt-8 dark:bg-brand2 px-4 h-full">
+        <div className="flex gap-4 flex-col">
+          <div className="flex justify-center md:min-w-[300px] h-full md:h-[100vh] xl:min-w-[400px] md:w-full mb-4 md:my-8">
+            <iframe width="90%" height="100%" src={dataStudyCase.youtube_url} frameBorder="0" allowfullscreen></iframe>
           </div>
-          <div className="w-1/2 bg-white rounded-lg p-2">
-            <div className="flex text-start flex-col text-black">
-              <button className="inline-flex gap-2 bg-blue-100 text-brand2 rounded-full px-4 py-1 text-sm font-semibold mr-2 mb-2 self-start">
-                <IoMdGitMerge className="w-5 h-5 mt-0.5" />2 Chapter
-              </button>
-              <h4 className="text-3xl font-bold ">Build A SaaS: AI Companion</h4>
-              <p>
-                In this comprehensive tutorial, we ll explore the intricate details of building an advanced SaaS AI Companion using Next.js 13. Our AI Companion taps into the power of embeddings and the Pinecone vector database to ensure
-                long-term memory retention, supplemented by the fast caching abilities of the Upstash Redis database. We will also use MySQL and Prisma for storing companions.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex gap-4">
-          <div className="w-1/2 rounded-lg p-2">
-            <div className="flex bg-gradient-to-tr from-black via-brand2 to-gray-900 text-start flex-col rounded-lg p-4">
-              <div className="flex flex-col gap-6">
-                <h4 className="text-3xl font-bold ">Ready to start building?</h4>
-                <p>Track your progress, watch with subtitles, change quality & speed, and more.</p>
-                <button>Get Started</button>
-              </div>
-            </div>
-          </div>
-          <div className="w-1/2">
-            <div className="grid grid-cols-3">
-              <div className="flex w-[100px] flex-col gap-2 justify-center bg-white">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeddXnTI381NYUe0tXjZQK-8CVy5s4qysapwLUq2gHDw&s" className="w-14 justify-center" />
-                <p>Source Code</p>
-              </div>
-            </div>
+          <div className="grid bg-gray-200 dark:bg-brand2 p-4 grid-cols-3 gap-4 md:mx-10 mb-10">
+            <Link to="/belajar/diskusi" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+              <img src={darkMode ? DiscussionDarkImage : DiscussionImage} className="w-14" />
+              <p className="text-black dark:text-neutral-200">Diskusi</p>
+            </Link>
+            <Link to="https://discord.gg/TxmFR8cK" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+              <img src={DiscordImage} className="w-14" />
+              <p className="text-black dark:text-neutral-200">Discord</p>
+            </Link>
+            <Link to="https://t.me/jvalleyverse" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+              <img src={TelegramImage} className="w-14" />
+              <p className="text-black dark:text-neutral-200">Telegram</p>
+            </Link>
           </div>
         </div>
       </div>

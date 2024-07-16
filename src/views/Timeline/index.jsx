@@ -1,10 +1,6 @@
 import TimelineTab from "./components/TimelineTab";
 const index = () => {
-  return (
-    <>
-      <TimelineTab />
-    </>
-  );
+  return <TimelineTab />;
 };
 
 export default index;

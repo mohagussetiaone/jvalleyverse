@@ -71,7 +71,7 @@ const BannerProfile = () => {
           </div>
         </div>
         <div className="flex md:mt-4 ml-24 xl:mr-14 items-center justify-start xl:justify-end">
-          <Link to="/setting" className="text-sm text-black dark:text-gray-200 border-[1px] border-gray-600 rounded-lg py-1 md:py-2 px-2 md:px-4">
+          <Link to="/settings" className="text-sm text-black dark:text-gray-200 border-[1px] border-gray-600 rounded-lg py-1 md:py-2 px-2 md:px-4">
             Edit Profile
           </Link>
         </div>

@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Tab } from "@headlessui/react";
+import { Tab, TabGroup, TabList, TabPanels, TabPanel } from "@headlessui/react";
 import TimelineUiUx from "./UIUX/TimelineUiUx";
 import TimelineDatabase from "./Database/TimelineDatabase";
 import TimelineBackend from "./BackEnd/TimelineBackend";
@@ -31,41 +31,43 @@ const TimelineTab = () => {
 
   return (
     <div className="w-full pt-6 bg-whiteSmoke dark:bg-gradient-to-br from-brand2 via-gray-900 to-gray-800">
-      <div className="flex flex-col justify-center">
-        <Tab.Group selectedIndex={studyActive} onChange={setStudyActive}>
-          <Tab.List className="mx-auto justify-center items-center lg:space-x-6 md:space-x-4 space-x-3 px-4">
-            {buttons.map((item, i) => (
-              <Tab as={Fragment} key={i}>
-                {({ selected }) => (
-                  <button
-                    className={`text-sm font-medium mb-7 last:mb-0 capitalize ring-0 foucs:ring-0 focus:outline-none px-6 rounded-md py-2 transition duration-150 ${
-                      selected ? "text-white bg-brand-500 " : "text-slate-500 bg-white dark:bg-slate-700 dark:text-slate-300"
-                    }`}
-                  >
-                    {item.title}
-                  </button>
-                )}
-              </Tab>
-            ))}
-          </Tab.List>
-          <Tab.Panels>
-            <Tab.Panel>
+      <div>
+        <TabGroup selectedIndex={studyActive} onChange={setStudyActive}>
+          <TabList className="flex mx-auto justify-center items-center lg:space-x-6 md:space-x-4 space-x-3 px-4 ">
+            <div className="flex overflow-x-scroll md:overflow-x-hidden gap-4">
+              {buttons.map((item, i) => (
+                <Tab as={Fragment} key={i}>
+                  {({ selected }) => (
+                    <button
+                      className={`text-sm font-medium mb-7 capitalize ring-0 foucs:ring-0 focus:outline-none px-6 rounded-md py-2 transition duration-150 whitespace-nowrap ${
+                        selected ? "text-white bg-brand-500 " : "text-slate-500 bg-white dark:bg-slate-700 dark:text-slate-300"
+                      }`}
+                    >
+                      {item.title}
+                    </button>
+                  )}
+                </Tab>
+              ))}
+            </div>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
               <TimelineUiUx />
-            </Tab.Panel>
-            <Tab.Panel>
+            </TabPanel>
+            <TabPanel>
               <TimelineDatabase />
-            </Tab.Panel>
-            <Tab.Panel>
+            </TabPanel>
+            <TabPanel>
               <TimelineBackend />
-            </Tab.Panel>
-            <Tab.Panel>
+            </TabPanel>
+            <TabPanel>
               <TimelineFrontEnd />
-            </Tab.Panel>
-            <Tab.Panel>
+            </TabPanel>
+            <TabPanel>
               <CommingSoon />
-            </Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
+            </TabPanel>
+          </TabPanels>
+        </TabGroup>
       </div>
     </div>
   );
