@@ -19,6 +19,9 @@ module.exports = {
       colors: {
         "body-bg": "#242424",
         "body-text": "rgba(255, 255, 255, 0.87)",
+        boxDark: "#222831",
+        boxDarkSecondary: "#31363F",
+        transparent: "transparent",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "Avenir", "Helvetica", "Arial", "sans-serif"],

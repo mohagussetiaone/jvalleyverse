@@ -8,11 +8,11 @@ export default function LayoutDiscussion() {
       <div className="w-full">
         <main>
           <Navbar />
-          <div className="pt-[67px]">
-            <div className="fixed top-[67px] bottom-0 left-0">
+          <div className="pt-[60px]">
+            <div className="fixed top-[60px] bottom-0 left-0">
               <Sidebar />
             </div>
-            <div className="xl:ml-[200px] bg-gray-200 pt-5s mx-auto mb-auto h-full min-h-[90vh]">
+            <div className="xl:ml-[200px] bg-gray-200 mx-auto mb-auto h-full min-h-[90vh]">
               <Outlet />
             </div>
           </div>

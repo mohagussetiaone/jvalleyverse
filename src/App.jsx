@@ -23,6 +23,7 @@ import Timeline from "./views/Timeline";
 import Project from "./views/StudiCase/components/Project";
 import StudiKasus from "./views/StudiCase/components/StudyCase";
 import DiscussionHome from "./views/StudiCase/components/Discussion/Home";
+import BuatPertanyaan from "./views/StudiCase/components/Discussion/components/question";
 import DiscussionDetail from "./views/StudiCase/components/Discussion/components/DiscussionDetail";
 import Pertanyaan from "./views/StudiCase/components/Discussion/Pertanyaan";
 import Mentoring from "./views/StudiCase/components/Mentoring";
@@ -192,6 +193,13 @@ const router = createBrowserRouter([
         loader: authLoader,
         Component() {
           return <DiscussionHome />;
+        },
+      },
+      {
+        path: "/belajar/diskusi/buat-pertanyaan",
+        loader: authLoader,
+        Component() {
+          return <BuatPertanyaan />;
         },
       },
       {

@@ -61,7 +61,7 @@ const DropdownUser = () => {
     <div className="relative my-1">
       <Link ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-4" to="#">
         <span>
-          <img src={imageSrc} alt="profile_picture.jpg" className="rounded-full w-11 h-11 -mt-1" />
+          <img src={imageSrc} alt="profile_picture.jpg" className="rounded-full w-10 h-10 -mt-1" />
         </span>
       </Link>
 

@@ -1,4 +1,5 @@
-import React from "react";
+import "./style.scss";
+
 const TextInput = ({
   label,
   placeholder,
@@ -34,7 +35,7 @@ const TextInput = ({
           <textarea
             {...register(name)}
             {...rest}
-            className={`${error ? " has-error" : " "} form-control py-2 ${className}  `}
+            className={`${error ? "has-error" : " "} form-control py-2 ${className}  `}
             placeholder={placeholder}
             readOnly={readonly}
             disabled={disabled}
@@ -44,7 +45,7 @@ const TextInput = ({
             onChange={onChange}
           ></textarea>
         )}
-        {!name && <textarea className={`${error ? " has-error" : " "} form-control py-2 ${className}  `} placeholder={placeholder} readOnly={readonly} disabled={disabled} id={id} cols={cols} rows={row} onChange={onChange}></textarea>}
+        {!name && <textarea className={`${error ? "has-error" : " "} form-control py-2 ${className}  `} placeholder={placeholder} readOnly={readonly} disabled={disabled} id={id} cols={cols} rows={row} onChange={onChange}></textarea>}
       </div>
       {/* error and success message*/}
       {error && <div className={` mt-2 ${msgTooltip ? " inline-block bg-danger-500 text-white text-[10px] px-2 py-1 rounded" : " text-danger-500 block text-sm"}`}>{error.message}</div>}

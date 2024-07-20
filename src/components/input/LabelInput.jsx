@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import "./style.scss";
 
 const LabelInput = ({
   type,
@@ -52,7 +53,7 @@ const LabelInput = ({
             type={type === "password" && open === true ? "text" : type}
             {...register(name)}
             {...rest}
-            className={`${error ? "has-error" : ""} form-control py-2 px-2 w-full border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 outline-gray-500 ${className}`}
+            className={`${error ? "has-error" : ""} form-control py-2 px-2 w-full border border-gray-200 rounded-[4px] focus:outline-none focus:border-gray-400 outline-gray-500 ${className}`}
             placeholder={placeholder}
             readOnly={readonly}
             defaultValue={defaultValue}

@@ -1,4 +1,5 @@
 import Select from "react-select";
+import "./style.scss";
 
 const SelectHook = ({ name, options, value, onChange, label, register, defaultValue, error, placeholder, required, optional, className = "my-react-select-container", classNamePrefix = "my-react-select", isDisabled, isClearable }) => {
   return (

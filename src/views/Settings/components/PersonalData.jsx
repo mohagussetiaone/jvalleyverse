@@ -128,8 +128,8 @@ const PersonalData = ({ userProfile }) => {
             <TextInput className="w-full" label="About Me" type="about" id="about" name="about" placeholder="Frontend Developer" error={errors.about} register={register} />
           </div>
         </div>
-        <div className="flex justify-end">
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <div className="flex justify-end mt-6">
+          <button type="submit" className="bg-brand-500 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded">
             Update Profile
           </button>
         </div>

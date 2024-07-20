@@ -85,7 +85,7 @@ const PasswordChange = ({ userProfile }) => {
           </div>
         </div>
         <div className="flex justify-end mt-6">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="bg-brand-500 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded">
             Ganti password
           </button>
         </div>

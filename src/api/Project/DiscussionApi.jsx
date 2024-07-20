@@ -96,7 +96,7 @@ export const handleGetDiscussionById = async (id) => {
     if (discussionError) throw new Error(discussionError.message);
 
     // Fetch user data for the discussion author
-    const { data: userData, error: userError } = await supabase.schema("user").from("users").select("id, name").eq("id", discussionData.user_id).single();
+    const { data: userData, error: userError } = await supabase.schema("user").from("users").select("id, name, profile_image_url").eq("id", discussionData.user_id).single();
     if (userError) throw new Error(userError.message);
 
     // Fetch reply_discussion data
@@ -113,6 +113,7 @@ export const handleGetDiscussionById = async (id) => {
         `
       )
       .eq("discussion_id", id);
+
     if (repliesError) throw new Error(repliesError.message);
 
     // Ensure replyUserIds does not contain undefined values
@@ -123,7 +124,7 @@ export const handleGetDiscussionById = async (id) => {
     }
 
     // Fetch user data for all users who replied
-    const { data: replyUsersData, error: replyUsersError } = await supabase.schema("user").from("users").select("id, name").in("id", replyUserIds);
+    const { data: replyUsersData, error: replyUsersError } = await supabase.schema("user").from("users").select("id, name, profile_image_url").in("id", replyUserIds);
     if (replyUsersError) throw new Error(replyUsersError.message);
 
     // Merge user data with replies
@@ -131,14 +132,14 @@ export const handleGetDiscussionById = async (id) => {
       const replyUser = replyUsersData.find((user) => user.id === reply.user_id);
       return {
         ...reply,
-        user: replyUser ? { id: replyUser.id, name: replyUser.name } : null,
+        user: replyUser ? { id: replyUser.id, name: replyUser.name, profile_image_url: replyUser.profile_image_url } : null,
       };
     });
 
     // Combine the discussion data with user and replies
     const discussionWithUserAndReplies = {
       ...discussionData,
-      user: userData ? { id: userData.id, name: userData.name } : null,
+      user: userData ? { id: userData.id, name: userData.name, profile_image_url: userData.profile_image_url } : null,
       replies: repliesWithUser,
     };
 
