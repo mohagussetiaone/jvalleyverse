@@ -1,82 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const generateRandomData = () => {
-  return [
-    {
-      id: 1,
-      title: "Community Garden",
-      description: "A project to create a community garden for local residents.",
-      img: "https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Environment",
-    },
-    {
-      id: 2,
-      title: "Street Art Festival",
-      description: "A festival celebrating street art and local artists.",
-      img: "https://images.unsplash.com/photo-1573165231859-48b6a66b8b1d?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Art",
-    },
-    {
-      id: 3,
-      title: "Tech Workshop",
-      description: "Workshops teaching basic coding and tech skills to community members.",
-      img: "https://images.unsplash.com/uploads/141103282695035fa1380/95cdfeef?q=80&w=2030&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Technology",
-    },
-    {
-      id: 4,
-      title: "Community Clean-Up",
-      description: "A project to clean up local parks and streets.",
-      img: "https://images.unsplash.com/photo-1603566234499-85676f87022f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Environment",
-    },
-    {
-      id: 5,
-      title: "Book Exchange Program",
-      description: "A program to exchange books among community members.",
-      img: "https://images.unsplash.com/photo-1565035812153-a190783dbc09?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Education",
-    },
-    {
-      id: 6,
-      title: "Youth Sports League",
-      description: "Organizing sports leagues for local youth.",
-      img: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Sports",
-    },
-    {
-      id: 7,
-      title: "Community Theatre",
-      description: "A community theatre project showcasing local talent.",
-      img: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Art",
-    },
-    {
-      id: 8,
-      title: "Food Drive",
-      description: "A food drive to help those in need in the community.",
-      img: "https://plus.unsplash.com/premium_photo-1661544139432-c007a6b9b00b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Charity",
-    },
-    {
-      id: 9,
-      title: "Art Classes",
-      description: "Free art classes for community members of all ages.",
-      img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Art",
-    },
-    {
-      id: 10,
-      title: "Music Festival",
-      description: "A festival featuring local musicians and bands.",
-      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Music",
-    },
-  ];
-};
+import { handleGetShowCase } from "@/api/ShowCase/ShowCaseApi";
+import ErrorServer from "@/components/ErrorServer";
+import Loading from "@/components/Loading";
+import { useQuery } from "@tanstack/react-query";
+import dayjs from "dayjs";
 
 const Card = ({ item }) => {
+  console.log("item");
   const navigate = useNavigate();
   const handleShowCaseDetail = (id) => {
     navigate(`/show-case/${id}`);
@@ -87,19 +18,20 @@ const Card = ({ item }) => {
       className="flex flex-col items-center bg-white  border border-gray-200 rounded-lg shadow md:flex-row md:max-w-2xl hover:bg-gray-100 cursor-pointer dark:border-gray-900 dark:bg-gray-800 dark:hover:bg-slate-600"
       onClick={() => handleShowCaseDetail(item.id)}
     >
-      <div className="relative md:w-44 xl:w-52 md:h-32 xl:h-44">
-        <img className="w-full h-full rounded-t-lg md:rounded-none md:rounded-s-lg" src={item.img} alt={item.title} />
+      <div className="w-full min-w-[11rem] md:w-44 xl:w-52 md:h-32 xl:h-44">
+        <img className="w-full h-full object-contain rounded-t-lg md:rounded-none md:rounded-s-lg" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.show_case_img_url}`} alt={item.name} />
       </div>
+
       <div className="flex flex-col p-4">
         <div className="flex flex-col justify-betweenleading-normal">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title}</h5>
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.name}</h5>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.description}</p>
         </div>
         <div className="flex items-center">
-          <img className="w-10 h-10 rounded-full mr-4" src={item.img} alt="Avatar of Jonathan Reinink" />
+          <img className="w-10 h-10 rounded-full mr-4" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.users.profile_image_url}`} alt="Avatar of Jonathan Reinink" />
           <div className="text-sm">
-            <p className="text-gray-600 leading-none">Jonathan Reinink</p>
-            <p className="text-gray-600">Aug 18</p>
+            <p className="text-gray-600 leading-none">{item.users.name}</p>
+            <p className="text-gray-600">{dayjs(item.created_at).format("DD MMM YY")}</p>
           </div>
         </div>
       </div>
@@ -108,15 +40,30 @@ const Card = ({ item }) => {
 };
 
 const Index = () => {
-  const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4); // 4 items per page
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  useEffect(() => {
-    setData(generateRandomData());
-  }, []);
+  // GET ALL SHOWCASE
+  const {
+    error: errorShowCase,
+    isPending: isPendingShowCase,
+    data: dataShowCase,
+  } = useQuery({
+    queryKey: ["getShowCase"],
+    queryFn: handleGetShowCase,
+  });
+
+  if (errorShowCase) {
+    return <ErrorServer />;
+  }
+
+  if (isPendingShowCase) {
+    return <Loading />;
+  }
+
+  console.log("dataShowCase", dataShowCase);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -128,8 +75,8 @@ const Index = () => {
     setCurrentPage(1);
   };
 
-  const filteredData = data.filter((item) => {
-    return (item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.description.toLowerCase().includes(searchTerm.toLowerCase())) && (selectedCategory === "" || item.category === selectedCategory);
+  const filteredData = dataShowCase.filter((item) => {
+    return (item?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase()) || item?.description.toLowerCase()?.includes(searchTerm?.toLowerCase())) && (selectedCategory === "" || item.category === selectedCategory);
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
