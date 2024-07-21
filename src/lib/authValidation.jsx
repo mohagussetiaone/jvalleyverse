@@ -1,12 +1,11 @@
 // import { useEffect } from "react";
-import localforage from "localforage";
 // import toast from "react-hot-toast";
-import { redirect, useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 // import { clearAllStorage } from "@/store/local/Forage-Helper";
-// import supabase from "@/config/supabaseConfig";
+import supabase from "@/config/supabaseConfig";
 
 export const authLoader = async ({ request }) => {
-  const authToken = await localforage.getItem("userSession");
+  const { data: authToken, error: authError } = await supabase.auth.getSession();
   const url = new URL(request.url);
 
   // url protected harus login
@@ -18,9 +17,10 @@ export const authLoader = async ({ request }) => {
     /^\/belajar\/project\/[^/]+\/chapter\/[^/]+$/, // /belajar/project/:projectId/chapter/:chapterId
     /^\/belajar\/studi-kasus\/[^/]+$/, // /belajar/studi-kasus/:id
     /^\/belajar\/studi-kasus\/[^/]+\/chapter\/[^/]+$/, // /belajar/studi-kasus/:id/chapter/:chapterId
+    /^\/belajar\/diskusi\/[^/]+$/, // /belajar/studi-kasus/:id/chapter/:chapterId
   ];
 
-  if (authToken && url.pathname === "/signin") {
+  if (authToken.session !== null && url.pathname === "/signin") {
     return redirect("/");
   }
 
@@ -28,7 +28,11 @@ export const authLoader = async ({ request }) => {
   const isProtectedPath = protectedPaths.includes(url.pathname) || protectedPatterns.some((pattern) => pattern.test(url.pathname));
 
   // Redirect to '/login' if there's no token and the user is not trying to access '/login'
-  if ((!authToken || (authToken && authToken.session === null)) && isProtectedPath) {
+  if (authToken && authToken.session === null && isProtectedPath) {
+    return redirect("/signin");
+  }
+
+  if (authError) {
     return redirect("/signin");
   }
 

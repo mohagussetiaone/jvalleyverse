@@ -8,7 +8,7 @@ export default function Layout() {
       <Navbar />
       <div className="block">
         <main className="h-full">
-          <div className="pt-[60px] h-full">
+          <div className="pt-[55px] h-full">
             <Outlet />
           </div>
         </main>

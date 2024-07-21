@@ -51,6 +51,8 @@ function Navbar(className) {
     queryFn: useCheckSession,
   });
 
+  console.log("sessionData", sessionData);
+
   return (
     <>
       <nav className={cn(`fixed left-0 w-full px-4 ${window.location.pathname === "/" ? "md:px-8 xl:px-10" : "md:px-6 "} bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30 border-b border-brand-500 dark:border-brand2`, className)}>

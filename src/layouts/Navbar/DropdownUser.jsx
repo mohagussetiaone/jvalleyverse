@@ -6,6 +6,8 @@ import supabase from "@/config/supabaseConfig";
 import { RiHome6Line, RiUser3Line, RiBook2Line, RiSettings4Line } from "react-icons/ri";
 import ModalConfirmation from "@/components/ModalConfirmation";
 import { remove } from "@/store/local/Forage";
+import { useQuery } from "@tanstack/react-query";
+import { handleGetProfile } from "@/api/Profile/ProfileApi";
 
 const DropdownUser = () => {
   const navigate = useNavigate();
@@ -38,6 +40,18 @@ const DropdownUser = () => {
     return () => document.removeEventListener("keydown", keyHandler);
   });
 
+  const {
+    error: errorUserProfile,
+    isLoading: isPendingUserProfile,
+    data: userProfile,
+  } = useQuery({
+    queryKey: ["getProfile"],
+    queryFn: handleGetProfile,
+  });
+
+  if (errorUserProfile) return toast.error("Error while fetching profile");
+  if (isPendingUserProfile) return console.log("Loading...");
+
   const modalLogoutClose = () => {
     setDropdownOpen(false);
     setModalLogout(false);
@@ -61,7 +75,7 @@ const DropdownUser = () => {
     <div className="relative my-1">
       <Link ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-4" to="#">
         <span>
-          <img src={imageSrc} alt="profile_picture.jpg" className="rounded-full w-10 h-10 -mt-1" />
+          <img src={userProfile?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}` : imageSrc} alt="profile_picture.jpg" className="rounded-full w-10 h-10 -mt-1" />
         </span>
       </Link>
 

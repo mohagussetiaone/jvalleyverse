@@ -57,13 +57,13 @@ const SignIn = () => {
         password,
       });
       console.log("data response login", data);
-      set(data.session.access_token);
+      set(data && data?.session?.access_token);
       setTimeout(async () => {
         toast.dismiss(loadingToast);
-        if (data.session === null) {
+        if (data?.session === null) {
           toast.error("User tidak ditemukan");
           return;
-        } else if (data.session !== null) {
+        } else if (data?.session !== null) {
           toast.success("Login Berhasil", {
             duration: 1900,
           });

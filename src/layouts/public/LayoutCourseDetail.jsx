@@ -11,8 +11,8 @@ export default function LayoutCourseDetail() {
       <div className="w-full">
         <main>
           <NavbarCourse />
-          <div className="pt-[60px]">
-            <div className="fixed top-[60px] bottom-0 left-0">
+          <div className="pt-[55px]">
+            <div className="fixed top-[55px] bottom-0 left-0">
               <SidebarCourseDetail />
             </div>
             <div className={`flex ${collapsed ? "xl:ml-[300px]" : "xl:ml-[0px]"} mx-auto mb-auto h-auto min-h-[70vh]`}>

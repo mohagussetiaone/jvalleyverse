@@ -70,7 +70,7 @@ const DiscussionDetail = () => {
           {dataDiscussionDetail &&
             dataDiscussionDetail?.replies?.map((answer, index) => (
               <div key={index} className="flex gap-4 mb-6">
-                <img src={answer?.user?.profile_image_url !== null ? profileImage : defaultProfile} alt="profile.jpg" className="w-10 h-10 rounded-full" />
+                <img src={answer?.user?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${answer?.user?.profile_image_url}` : defaultProfile} alt="profile.jpg" className="w-10 h-10 rounded-full" />
                 <div>
                   <h3>{answer?.user?.name}</h3>
                   <h6 className="text-xs text-gray-700 mb-1">{dayjs(answer?.created_at).fromNow()}</h6>

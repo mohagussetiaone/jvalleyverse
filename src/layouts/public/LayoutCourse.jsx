@@ -8,8 +8,8 @@ export default function LayoutCourse() {
       <div className="h-full w-full">
         <main>
           <Navbar />
-          <div className="pt-[60px]">
-            <div className="fixed top-[60px] bottom-0 left-0">
+          <div className="pt-[55px]">
+            <div className="fixed top-[55px] bottom-0 left-0">
               <Sidebar />
             </div>
             <div className="xl:ml-[275px] min-h-full h-full">
