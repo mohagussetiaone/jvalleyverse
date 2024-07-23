@@ -2,24 +2,15 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
-// import ProfileDropdown from "./ProfileDropdown";
-// import { useIsLoggedInStore } from "@store/Auth/IsLoggedIn";
-// import { useAuthCheck } from "@store/Auth/customHooks";
 
 const subMenu = [
   { name: "Projek", to: "/belajar/project" },
   { name: "Studi Kasus", to: "/belajar/studi-kasus" },
   { name: "Diskusi", to: "/belajar/diskusi" },
-  { name: "Library", to: "/belajar/library" },
   { name: "Mentoring", to: "/belajar/mentoring" },
 ];
 
 const ModalMenuProject = ({ showModalMenu, setShowModalMenu }) => {
-  // const { isLoggedIn } = useIsLoggedInStore();
-  // console.log("isLoggedIn", isLoggedIn);
-  //   const authToken = useAuthCheck();
-  // console.log("authToken", authToken);
-
   return (
     <nav className="bg-white dark:bg-black/90 sticky top-0 z-30 border-b border-gray-200">
       <Transition.Root show={showModalMenu} as={Fragment}>

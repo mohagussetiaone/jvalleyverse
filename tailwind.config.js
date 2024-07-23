@@ -190,6 +190,7 @@ module.exports = {
       lightPrimary: "#F4F7FE",
       brandSecondary: "#1c2463",
       brand2: "#302158",
+      brand3: "#1a112f",
       brandLinear: "#16447d",
       gray: {
         50: "#f8f9fa",

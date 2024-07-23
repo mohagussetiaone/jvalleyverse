@@ -8,13 +8,13 @@ import ModalConfirmation from "@/components/ModalConfirmation";
 import { remove } from "@/store/local/Forage";
 import { useQuery } from "@tanstack/react-query";
 import { handleGetProfile } from "@/api/Profile/ProfileApi";
+import ImageDefault from "@/assets/profile/profileDefault.jpg";
 
 const DropdownUser = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalLogout, setModalLogout] = useState(false);
-  const imageSrc = `https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?t=st=1717041704~exp=1717045304~hmac=0750efed9eed2f1aeba7b5c0126a6d1f5a91ec1f04b3f0eff376c533164f38bd&w=740`;
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
@@ -75,7 +75,7 @@ const DropdownUser = () => {
     <div className="relative my-1">
       <Link ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-4" to="#">
         <span>
-          <img src={userProfile?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}` : imageSrc} alt="profile_picture.jpg" className="rounded-full w-10 h-10 -mt-1" />
+          <img src={userProfile?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}` : ImageDefault} alt="profile_picture.jpg" className="rounded-full w-10 h-10 -mt-1" />
         </span>
       </Link>
 
@@ -84,7 +84,7 @@ const DropdownUser = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute rounded-sm right-0 mt-5 pt-4 flex w-52 flex-col bg-white  dark:bg-brand2 ${dropdownOpen === true ? "block" : "hidden"}`}
+        className={`absolute rounded-sm right-0 mt-5 pt-4 flex w-52 flex-col bg-white  dark:bg-black/60 ${dropdownOpen === true ? "block" : "hidden"}`}
       >
         <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-6 dark:border-black">
           <li>
@@ -112,10 +112,7 @@ const DropdownUser = () => {
             </Link>
           </li>
         </ul>
-        <button
-          className="flex justify-center border-t mt-4 items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out bg-white dark:bg-brand2 text-red-500 hover:text-red-600 hover:bg-red-100/50 border-none lg:text-base"
-          onClick={() => setModalLogout(true)}
-        >
+        <button className="flex justify-center mt-4 items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out text-red-500 hover:text-red-600 border-none lg:text-base" onClick={() => setModalLogout(true)}>
           {t("Keluar")}
         </button>
         {modalLogout && <ModalConfirmation showModalConfirm={modalLogout} setShowModalConfirm={modalLogoutClose} funcConfirm={handleLogout} />}

@@ -70,8 +70,6 @@ const Question = () => {
     queryFn: useCheckSession,
   });
 
-  console.log("dataSession", dataSession);
-
   const onSubmit = async (formData) => {
     const submissionData = {
       ...formData,
@@ -138,13 +136,16 @@ const Question = () => {
 
   return (
     <div className="w-full px-4 min-h-screen dark:bg-brand2">
-      <div className="max-w-4xl mx-auto py-8">
+      <div className="max-w-4xl bg-gray-200 dark:bg-black/20 mx-auto p-8">
+        <div className="flex justify-center my-2">
+          <h3 className="text-2xl dark:text-neutral-200 font-bold">Buat pertanyaan anda</h3>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col dark:text-neutral-200 mb-3">
-            <LabelInput label="Pertanyaan" type="text" id="question" name="question" placeholder="How to create a new project" error={errors.question} register={register} required />
+            <LabelInput label="Pertanyaan" type="text" id="question" name="question" placeholder="How to create a new project?" error={errors.question} register={register} required />
           </div>
           <div className="mb-3">
-            <SelectHook label="Project" name="project_id" options={projectOption} value={register("project_id").value} placeholder="Select Project" onChange={handleChangeSelect} register={register} error={errors.project_id} />
+            <SelectHook label="Project" name="project_id" options={projectOption} value={register("project_id").value} placeholder="Pilih Project" onChange={handleChangeSelect} register={register} error={errors.project_id} />
           </div>
           <div className="mb-3">
             <div className="dark:text-neutral-200 font-medium text-sm my-1">
@@ -158,6 +159,9 @@ const Question = () => {
                   {...field}
                   closeMenuOnSelect={false}
                   components={animatedComponents}
+                  className="text-sm my-react-select-container"
+                  classNamePrefix="my-react-select"
+                  placeholder="Pilih Tag"
                   isMulti
                   options={optionTags}
                   onChange={(selectedOptions) => {
@@ -177,9 +181,11 @@ const Question = () => {
             <Controller name="content" control={control} render={({ field }) => <ReactQuillProvider {...field} value={field.value || ""} onChange={(value) => field.onChange(value)} />} />
             {errors.content && <p>{errors.content.message}</p>}
           </div>
-          <button type="submit" className="flex justify-end bg-brand1 text-white font-semibold py-2 rounded-md">
-            Buat Pertanyaan
-          </button>
+          <div className="flex justify-end">
+            <button type="submit" className="flex justify-end bg-brand1 text-white font-semibold py-2 rounded-md">
+              Buat Pertanyaan
+            </button>
+          </div>
         </form>
       </div>
     </div>

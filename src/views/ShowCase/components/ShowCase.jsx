@@ -5,9 +5,10 @@ import ErrorServer from "@/components/ErrorServer";
 import Loading from "@/components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import { MdAdd } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Card = ({ item }) => {
-  console.log("item");
   const navigate = useNavigate();
   const handleShowCaseDetail = (id) => {
     navigate(`/show-case/${id}`);
@@ -63,8 +64,6 @@ const Index = () => {
     return <Loading />;
   }
 
-  console.log("dataShowCase", dataShowCase);
-
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1);
@@ -76,7 +75,9 @@ const Index = () => {
   };
 
   const filteredData = dataShowCase.filter((item) => {
-    return (item?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase()) || item?.description.toLowerCase()?.includes(searchTerm?.toLowerCase())) && (selectedCategory === "" || item.category === selectedCategory);
+    return (
+      (item?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase()) || item?.description.toLowerCase()?.includes(searchTerm?.toLowerCase())) && (selectedCategory === "" || item?.category_show_case?.category_name === selectedCategory)
+    );
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -87,26 +88,29 @@ const Index = () => {
 
   return (
     <div className="bg-white dark:bg-gradient-to-tr from-black via-brand2 to-gray-900 mx-auto min-h-screen p-6">
-      <div className="flex flex-col md:flex-row justify-between py-4">
-        <div className="block md:hidden py-2">
+      <div className="flex justify-between">
+        <div>
           <h3 className="text-xl md:text-2xl dark:text-neutral-200">Show case Jvalleyverse</h3>
         </div>
         <div>
-          <input id="search" name="search" type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." className="mb-4 p-2 dark:bg-brand2 border border-gray-300 rounded w-full" />
+          <Link to="/show-case/buat-show-case" className="bg-brand-800 hover:bg-brand-700 text-white font-bold py-2 px-4 rounded">
+            <MdAdd className="w-5 h-5 -mt-1 inline-block mr-2" />
+            Create
+          </Link>
         </div>
-        <div className="hidden md:block">
-          <h3 className="text-xl md:text-2xl dark:text-neutral-200">Show case Jvalleyverse</h3>
+      </div>
+      <div className="flex flex-col md:flex-row justify-between py-4">
+        <div>
+          <input id="search" name="search" type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." className="mb-4 p-2 dark:bg-brand2 border border-gray-300 rounded w-full" />
         </div>
         <div>
           <select value={selectedCategory} onChange={handleCategoryChange} className="mb-4 p-2 border border-gray-300 rounded w-full">
             <option value="">All Categories</option>
-            <option value="Environment">Environment</option>
-            <option value="Art">Art</option>
-            <option value="Technology">Technology</option>
-            <option value="Education">Education</option>
-            <option value="Sports">Sports</option>
-            <option value="Charity">Charity</option>
-            <option value="Music">Music</option>
+            <option value="Fullstack">Fullstack</option>
+            <option value="Backend">Backend</option>
+            <option value="Front End">Front End</option>
+            <option value="UI/UX">UI/UX</option>
+            <option value="Testing">Testing</option>
           </select>
         </div>
       </div>

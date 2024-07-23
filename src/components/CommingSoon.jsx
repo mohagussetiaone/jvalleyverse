@@ -1,4 +1,12 @@
+import { MdOutlineArrowBack } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+
 const CommingSoon = () => {
+  const navigate = useNavigate();
+  function backToHome() {
+    navigate(-1);
+  }
+
   return (
     <>
       <div className="w-full min-w-[100vw] md:min-w-[80vw] h-screen bg-whiteSmoke dark:bg-gradient-to-tr from-black via-brand2 to-gray-900">
@@ -9,6 +17,12 @@ const CommingSoon = () => {
             <div className="flex flex-col items-center space-y-4 mt-14">
               <p className="uppercase text-sm">Kami akan memberi tahu jika metode ini tersedia !</p>
             </div>
+          </div>
+          <div className="flex justify-center mt-4">
+            <button className="flex gap-2 bg-brand-500 hover:bg-brand-800 hover:border-brand-800 text-white" onClick={backToHome}>
+              <MdOutlineArrowBack className="w-5 h-5 mt-1" />
+              Kembali
+            </button>
           </div>
         </div>
       </div>

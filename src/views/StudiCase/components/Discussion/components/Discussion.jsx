@@ -8,8 +8,8 @@ import ErrorServer from "@/components/ErrorServer";
 import Loading from "@/components/Loading";
 import { Link } from "react-router-dom";
 import HtmlParser from "@/lib/HtmlParser";
-
-const defaultProfile = "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1716887986~exp=1716891586~hmac=729888601cee5f142cdae9e83d1f720240b371d5c32f368bba67fc6278e7197b&w=740";
+import { GoProject } from "react-icons/go";
+import profileDefault from "@/assets/profile/profileDefault.jpg";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -37,8 +37,6 @@ const Discussion = () => {
     return <Loading />;
   }
 
-  console.log("dataDiscussion", dataDiscussion);
-
   const filteredData = dataDiscussion.filter(
     (item) => item?.question?.toLowerCase().includes(searchTerm.toLowerCase()) || item.content.toLowerCase().includes(searchTerm.toLowerCase()) || item?.tags?.some((tag) => tag?.toLowerCase().includes(searchTerm.toLowerCase()))
   );
@@ -61,7 +59,7 @@ const Discussion = () => {
 
   return (
     <>
-      <div className="w-full bg-white dark:bg-brand2 text-black dark:text-neutral-200 rounded-lg">
+      <div className="w-full bg-white dark:bg-black/10 text-black dark:text-neutral-200 rounded-lg">
         <div className="bg-white dark:bg-black/20 rounded-lg">
           <div className="flex flex-col gap-2 xl:gap-4 px-2 md:px-4 xl:px-6 py-4">
             <div className="flex justify-between mb-2">
@@ -69,7 +67,7 @@ const Discussion = () => {
                 <h3 className="font-semibold text-md md:text-xl">Semua Pertanyaan</h3>
               </div>
               <div>
-                <Link to="/belajar/diskusi/buat-pertanyaan" className="border-brand-500 bg-white text-brand-500 dark:bg-brand2 dark:border-none dark:text-neutral-200 px-4 py-1 rounded" onClick={() => setShowCreateDiscussion(true)}>
+                <Link to="/belajar/diskusi/buat-pertanyaan" className="border border-brand-500 bg-white text-brand-500 dark:bg-brand2 dark:border-none dark:text-neutral-200 px-4 py-1 rounded" onClick={() => setShowCreateDiscussion(true)}>
                   Buat Pertanyaan
                 </Link>
               </div>
@@ -77,10 +75,10 @@ const Discussion = () => {
             {showCreateDiscussion && <ReactQuillProvider showCreateDiscussion={showCreateDiscussion} setShowCreateDiscussion={setShowCreateDiscussion} />}
             <div className="flex gap-2 flex-col md:flex-row text-start justify-start md:justify-between">
               <div>
-                <h3 className="text-sm md:text-lg mt-1">Total {filteredData.length} Pertanyaan</h3>
+                <h3 className="text-sm md:text-base mt-1">Total {filteredData.length} Pertanyaan</h3>
               </div>
               <div>
-                <input className="w-full bg-white dark:bg-brand2 border rounded-md px-3 py-1" type="text" placeholder="Cari Pertanyaan" value={searchTerm} onChange={handleSearchChange} />
+                <input className="w-full bg-white dark:bg-transparent border rounded-md px-3 py-1" type="text" placeholder="Cari Pertanyaan" value={searchTerm} onChange={handleSearchChange} />
               </div>
             </div>
           </div>
@@ -96,8 +94,11 @@ const Discussion = () => {
                   <div className={`flex ${item.project?.project_name ? "justify-between items-start" : "justify-end"} py-2`}>
                     {item?.project?.project_name && (
                       <div className="flex gap-4 justify-start items-center">
-                        <h3 className="whitespace-nowrap">Related Project </h3>
-                        <h3 className="bg-gray-500 dark:bg-black py-1 px-2 rounded-lg whitespace-nowrap">{item?.project?.project_name}</h3>
+                        <h3 className="text-sm whitespace-nowrap">Related Project </h3>
+                        <h3 className="flex gap-1 bg-brand-500 text-white dark:bg-black py-1 px-2 rounded-lg whitespace-nowrap">
+                          <GoProject className="w-4 h-4 mt-1" />
+                          {item?.project?.project_name}
+                        </h3>
                       </div>
                     )}
                     <h3>{item?.replies?.length} Jawaban</h3>
@@ -117,8 +118,11 @@ const Discussion = () => {
                       </div>
                     </div>
                     <div className="flex gap-1 items-center justify-end">
-                      <div>
-                        <img className="w-10 h-10 rounded-full" src={item?.avatar || defaultProfile} alt="Rounded avatar" />
+                      <div className="group flex relative">
+                        <img className="w-10 h-10 rounded-full" src={item?.avatar || profileDefault} alt="Rounded avatar" />
+                        <span className="group-hover:opacity-100 inline-block whitespace-nowrap transition-opacity bg-gray-800 dark:bg-black px-1 text-sm text-gray-100 rounded-md absolute top-0 left-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">
+                          {item.user.name}
+                        </span>
                       </div>
                       <div className="item-center">
                         <h2 className="text-xs">{dayjs(item?.created_at).format("DD MMM YYYY HH:mm")}</h2>

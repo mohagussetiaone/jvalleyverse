@@ -46,7 +46,7 @@ const NavbarCourse = (className) => {
 
   return (
     <>
-      <nav className={cn("fixed left-0 w-full px-2 md:px-6 bg-white dark:bg-gradient-to-r from-black/90 to-brand2 z-30", className)}>
+      <nav className={cn("fixed left-0 w-full px-2 md:px-6 bg-white dark:bg-black z-30", className)}>
         <Menu setActive={setActive} className="w-full bg-[#11090E]">
           <div className="flex mx-auto justify-between">
             <Link to="/" className="hidden xl:flex">
@@ -150,7 +150,7 @@ const NavbarCourse = (className) => {
             <div className="flex gap-3">
               <Link to="/belajar/project" className="flex md:hidden gap-1.5 mr-1 items-center bg-white dark:bg-black/30 rounded-lg px-2 py-1 text-black dark:text-neutral-200 border border-gray-900">
                 <LuLogOut className="text-black dark:text-neutral-200" />
-                {t("Kembali ke course")}
+                {t("Keluar")}
               </Link>
               <div className="mt-2">
                 <Language />

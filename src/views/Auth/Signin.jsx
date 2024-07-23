@@ -103,14 +103,18 @@ const SignIn = () => {
     };
   }, [rememberMe]);
 
+  function backToDashboard() {
+    navigate(-1);
+  }
+
   return (
     <section className="flex flex-col w-screen md:flex-row h-screen items-center overflow-hidden">
       <div className="bg-gradient-to-br from-brand2 via-black to-brand-800 w-full h-screen flex items-center justify-center">
         <div className="max-w-xl p-2 md:py-4 xl:py-6 md:px-8 xl:px-16 mx-auto bg-white rounded-lg shadow">
-          <Link to="/" className="flex justify-start my-2">
+          <button className="flex bg-white text-blue-600 hover:border-none active:border-none justify-start my-2" onClick={backToDashboard}>
             <IoMdArrowBack className="text-blue-600 text-xl mt-1 mr-2" />
             {t("Kembali ke dashboard")}
-          </Link>
+          </button>
           <h1 className="text-xl flex justify-center text-black md:text-2xl font-bold leading-tight mt-4">{t("Masuk ke akun anda")}</h1>
           <form className="mt-6 px-2" onSubmit={handleSubmit(handleSignInWithEmailPassword)}>
             <div>

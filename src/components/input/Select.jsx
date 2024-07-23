@@ -1,7 +1,23 @@
 import Select from "react-select";
 import "./style.scss";
 
-const SelectHook = ({ name, options, value, onChange, label, register, defaultValue, error, placeholder, required, optional, className = "my-react-select-container", classNamePrefix = "my-react-select", isDisabled, isClearable }) => {
+const SelectHook = ({
+  name,
+  options,
+  value,
+  onChange,
+  label,
+  register,
+  defaultValue,
+  error,
+  placeholder,
+  required,
+  optional,
+  className = "text-sm my-react-select-container",
+  classNamePrefix = "my-react-select",
+  isDisabled,
+  isClearable,
+}) => {
   return (
     <div className="select-container">
       <label htmlFor={name} className="block mt-2 mb-2 text-gray-800 dark:text-gray-300 text-sm capitalize cursor-pointer font-medium rtl:text-right rtl:block">

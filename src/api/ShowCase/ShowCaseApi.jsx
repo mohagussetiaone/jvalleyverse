@@ -20,6 +20,10 @@ export const handleGetShowCase = async () => {
           name,
           profile_image_url
         ),
+        category_show_case (
+          id,
+          category_name
+        ),
         created_at
         `
       );
@@ -48,6 +52,10 @@ export const handleGetShowCaseById = async (id) => {
           id,
           name,
           profile_image_url
+        ),
+        category_show_case (
+          id,
+          category_name
         ),
         created_at
         `

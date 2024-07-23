@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import Home from "@/views/Home";
 import About from "./views/About/components/AboutCard";
 import ShowCase from "./views/ShowCase";
+import AddShowCase from "./views/ShowCase/components/AddShowCase";
 import ShowCaseDetail from "./views/ShowCase/components/ShowCaseDetail";
 // Layout
 import Layout from "./layouts/public";
@@ -73,6 +74,13 @@ const router = createBrowserRouter([
         loader: authLoader,
         Component() {
           return <ShowCase />;
+        },
+      },
+      {
+        path: "/show-case/buat-show-case",
+        loader: authLoader,
+        Component() {
+          return <AddShowCase />;
         },
       },
       {

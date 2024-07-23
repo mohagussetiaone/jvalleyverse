@@ -17,6 +17,7 @@ const TextInput = ({
   horizontal,
   validate,
   msgTooltip,
+  required,
   description,
   cols,
   row = 3,
@@ -27,7 +28,7 @@ const TextInput = ({
     <div className={`fromGroup  ${error ? "has-error" : ""}  ${horizontal ? "flex" : ""}  ${validate ? "is-valid" : ""} `}>
       {label && (
         <label htmlFor={id} className={`block capitalize ${classLabel}  ${horizontal ? "flex-0 mr-6 md:w-[100px] w-[60px] break-words" : ""}`}>
-          {label}
+          {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
       <div className={`relative ${horizontal ? "flex-1" : ""}`}>
