@@ -19,7 +19,7 @@ const SidebarDiscussion = () => {
 
   return (
     <>
-      <aside className="hidden xl:block left-0 z-40 w-[200px] h-full bg-gray-50 dark:bg-black overflow-y-auto">
+      <aside className="hidden xl:block left-0 z-40 w-[200px] h-full bg-gray-50 dark:bg-black/95 overflow-y-auto">
         <div className="h-full px-3 py-4">
           <ul className="space-y-2 font-medium">
             {sidebarData &&
@@ -30,7 +30,7 @@ const SidebarDiscussion = () => {
                     className={`flex items-center p-2 rounded-lg ${
                       activeMenu === item.id
                         ? "bg-gray-200 dark:bg-neutral-900 text-black dark:text-neutral-200 hover:bg-gray-300 hover:text-black"
-                        : "text-gray-700 bg-white dark:bg-black/50 hover:bg-gray-100 hover:text-gray-800 dark:hover:text-neutral-200"
+                        : "text-gray-900 dark:text-neutral-400 bg-white dark:bg-black/50 hover:bg-gray-100 hover:text-gray-800 dark:hover:text-neutral-200"
                     }`}
                     onClick={() => handleClick(item.id)}
                   >

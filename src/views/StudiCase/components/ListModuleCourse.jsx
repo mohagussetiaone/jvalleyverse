@@ -27,8 +27,6 @@ const ListModuleCourse = () => {
     enabled: !!projectId,
   });
 
-  console.log("dataProjectDetails", dataProjectDetails);
-
   const {
     error: errorChapterProjects,
     isPending: isPendingChapterProjects,
@@ -83,8 +81,8 @@ const ListModuleCourse = () => {
                   <a
                     className={`flex items-center justify-between p-2 rounded-lg ${
                       activeMenu === item.id
-                        ? "bg-gray-200 dark:bg-neutral-600 dark:hover:bg-gray-800/70 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
-                        : "text-gray-700 dark:text-neutral-200 bg-white dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white hover:bg-gray-100 hover:text-gray-800"
+                        ? "bg-gray-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
+                        : "text-black dark:text-neutral-200 bg-white dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white hover:bg-gray-100 hover:text-gray-900"
                     }`}
                     onClick={() => handleClick(item.id)}
                   >
@@ -106,7 +104,7 @@ const ListModuleCourse = () => {
                             to={`belajar/project/${item.project_id}/chapter/${chapter_detail.id}`}
                             className={`flex items-center p-2 rounded-lg ${
                               activeSubMenu === chapter_detail.id
-                                ? "bg-gray-200 dark:bg-neutral-600 dark:hover:bg-gray-800/70 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
+                                ? "bg-gray-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
                                 : "hover:text-black text-black dark:text-white dark:hover:text-white"
                             }`}
                             onClick={() => handleSubMenuClick(chapter_detail.id)}

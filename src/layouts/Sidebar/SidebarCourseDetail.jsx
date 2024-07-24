@@ -13,7 +13,7 @@ const SidebarCourseDetail = () => {
 
   return (
     <>
-      <aside className={`hidden xl:block fixed top-4 left-4 xl:static z-40 w-[300px] h-full bg-gray-50 dark:bg-black/90 transition-transform transform ${collapsed ? "translate-x-0" : "-translate-x-[295px]"}`}>
+      <aside className={`hidden xl:block fixed top-4 left-4 xl:static z-40 w-[300px] h-full bg-gray-50 dark:bg-black/95 transition-transform transform ${collapsed ? "translate-x-0" : "-translate-x-[295px]"}`}>
         <div className="h-full flex flex-col px-3 py-4">
           <div className="relative z-50">
             <div className="flex px-2 pb-5 items-center justify-between">

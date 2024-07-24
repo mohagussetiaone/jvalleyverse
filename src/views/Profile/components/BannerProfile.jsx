@@ -21,7 +21,7 @@ const BannerProfile = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row py-10 px-4 md:px-8 xl:px-10 justify-between h-full bg-white dark:bg-gradient-to-r from-black/90 to-brand2">
+      <div className="flex flex-col md:flex-row py-10 px-4 md:px-8 xl:px-10 justify-between h-full bg-white dark:bg-gradient-to-r from-black to-brand2">
         <div className="flex relative items-center">
           <img
             className="h-auto w-20 md:w-28 xl:w-44 rounded-full bg-white/70 border-gray-300 border-4"

@@ -60,7 +60,7 @@ const Discussion = () => {
   return (
     <>
       <div className="w-full bg-white dark:bg-black/10 text-black dark:text-neutral-200 rounded-lg">
-        <div className="bg-white dark:bg-black/20 rounded-lg">
+        <div className="bg-white dark:bg-black/10 rounded-lg">
           <div className="flex flex-col gap-2 xl:gap-4 px-2 md:px-4 xl:px-6 py-4">
             <div className="flex justify-between mb-2">
               <div>

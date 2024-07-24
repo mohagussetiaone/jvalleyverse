@@ -10,7 +10,7 @@ const TabMenuProfile = () => {
   const { activeMenu, setActiveMenu } = useActiveMenu();
 
   return (
-    <div className="bg-gray-200 dark:bg-gradient-to-r from-black/90 to-brand2">
+    <div className="bg-gray-200 dark:bg-gradient-to-r from-background-900 to-background-700">
       <div className="flex flex-col justify-start">
         <TabGroup selectedIndex={activeMenu} onChange={setActiveMenu}>
           <div className="flex my-4 px-4 md:px-8 xl:px-10">

@@ -50,7 +50,7 @@ const DiscussionDetail = () => {
   const profileImage = `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${dataDiscussionDetail?.user?.profile_image_url}`;
 
   return (
-    <div className="px-2 dark:bg-brand2 md:px-6 xl:px-10 pt-6">
+    <div className="px-2 dark:bg-background-900 md:px-6 xl:px-10 py-6">
       <div className="py-6 px-4 md:px-6 xl:px-8 bg-white dark:bg-black/20 dark:text-neutral-300 rounded-lg">
         <div className="flex flex-col gap-2">
           <div>

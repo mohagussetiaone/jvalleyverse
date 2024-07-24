@@ -136,7 +136,7 @@ const ProgressCard = () => {
 
   return (
     <>
-      <div className="w-[100vw] px-4 md:pl-10 xl:pr-14 bg-gray-200 dark:bg-brand2">
+      <div className="w-[100vw] px-4 md:pl-10 xl:pr-14 bg-gray-200 dark:bg-background-900">
         <div className="py-4">
           <div className="mb-4">
             <div className="flex justify-start py-4">

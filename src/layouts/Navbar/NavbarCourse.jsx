@@ -46,7 +46,7 @@ const NavbarCourse = (className) => {
 
   return (
     <>
-      <nav className={cn("fixed left-0 w-full px-2 md:px-6 bg-white dark:bg-black z-30", className)}>
+      <nav className={cn("fixed left-0 w-full px-4 bg-white dark:bg-gradient-to-r from-black to-background-500 md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-brand2", className)}>
         <Menu setActive={setActive} className="w-full bg-[#11090E]">
           <div className="flex mx-auto justify-between">
             <Link to="/" className="hidden xl:flex">

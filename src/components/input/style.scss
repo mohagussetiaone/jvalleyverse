@@ -3,7 +3,7 @@
 }
 
 .form-control {
-  @apply bg-white dark:bg-brand2 transition duration-300 ease-in-out border border-gray-300/70
+  @apply bg-white dark:bg-transparent transition duration-300 ease-in-out border border-gray-300/70
    dark:border-gray-300 dark:text-gray-300 focus:ring-1 focus:ring-gray-600
    dark:focus:ring-neutral-200 focus:outline-none focus:ring-opacity-90 rounded
     placeholder:text-gray-400 text-black text-sm px-3 placeholder:font-normal dark:placeholder:text-gray-400 block w-full;

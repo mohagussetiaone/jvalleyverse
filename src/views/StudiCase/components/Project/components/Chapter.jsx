@@ -50,7 +50,7 @@ const Chapter = () => {
   console.log("dataChapterDetailById", dataChapterDetailById);
 
   return (
-    <div className="w-[100vw] bg-gray-200 dark:bg-gradient-to-br from-black/90 via-gray-900 to-brand2 px-4 h-full py-6">
+    <div className="w-[100vw] bg-gray-200 dark:bg-background-900 px-4 h-full py-6">
       <div className="flex justify-center md:min-w-[300px] md:h-[100vh] xl:min-w-[400px] md:w-full mb-4 md:mb-4">
         <iframe src={dataChapterDetailById.youtube_url} frameBorder="0" allowFullScreen className="w-full h-full"></iframe>
       </div>

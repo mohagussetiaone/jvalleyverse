@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
 import { useParams } from "react-router-dom";
+
 const StudyCaseDetail = () => {
   const { studyCaseId } = useParams();
   const { darkMode } = useDarkMode();
@@ -33,21 +34,21 @@ const StudyCaseDetail = () => {
 
   return (
     <>
-      <div className="w-[100vw] bg-white pt-8 dark:bg-brand2 px-4 h-full">
+      <div className="w-[100vw] bg-white pt-8 dark:bg-gradient-to-r from-black via-brand3 to-background-500 px-4 h-full">
         <div className="flex gap-4 flex-col">
           <div className="flex justify-center md:min-w-[300px] h-full md:h-[100vh] xl:min-w-[400px] md:w-full mb-4 md:my-8">
             <iframe width="90%" height="100%" src={dataStudyCase.youtube_url} frameBorder="0" allowfullscreen></iframe>
           </div>
-          <div className="grid bg-gray-200 dark:bg-brand2 p-4 grid-cols-3 gap-4 md:mx-10 mb-10">
-            <Link to="/belajar/diskusi" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+          <div className="grid bg-gray-200 dark:bg-background-900 p-4 grid-cols-3 gap-4 md:mx-10 mb-10">
+            <Link to="/belajar/diskusi" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black/20">
               <img src={darkMode ? DiscussionDarkImage : DiscussionImage} className="w-14" />
               <p className="text-black dark:text-neutral-200">Diskusi</p>
             </Link>
-            <Link to="https://discord.gg/TxmFR8cK" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+            <Link to="https://discord.gg/TxmFR8cK" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black/20">
               <img src={DiscordImage} className="w-14" />
               <p className="text-black dark:text-neutral-200">Discord</p>
             </Link>
-            <Link to="https://t.me/jvalleyverse" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+            <Link to="https://t.me/jvalleyverse" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black/20">
               <img src={TelegramImage} className="w-14" />
               <p className="text-black dark:text-neutral-200">Telegram</p>
             </Link>

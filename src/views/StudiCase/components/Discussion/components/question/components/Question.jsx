@@ -135,8 +135,8 @@ const Question = () => {
   };
 
   return (
-    <div className="w-full px-4 min-h-screen dark:bg-brand2">
-      <div className="max-w-4xl bg-gray-200 dark:bg-black/20 mx-auto p-8">
+    <div className="w-full py-8 px-4 min-h-screen dark:bg-background-900">
+      <div className="max-w-4xl bg-gray-200 dark:bg-black/20 mx-auto p-8 rounded-xl">
         <div className="flex justify-center my-2">
           <h3 className="text-2xl dark:text-neutral-200 font-bold">Buat pertanyaan anda</h3>
         </div>
@@ -171,7 +171,7 @@ const Question = () => {
                 />
               )}
             />
-            {errors.tags && <p>{errors.tags.message}</p>}
+            {errors.tags && <p className="text-red-700 text-sm">{errors.tags.message}</p>}
           </div>
           <div className="flex flex-col dark:text-neutral-200 py-4">
             <label htmlFor="content">
@@ -179,10 +179,10 @@ const Question = () => {
             </label>
             <span className="text-sm">Perkenalkan masalahnya dan perluas apa yang Anda masukkan ke dalam judul. Minimal 20 karakter</span>
             <Controller name="content" control={control} render={({ field }) => <ReactQuillProvider {...field} value={field.value || ""} onChange={(value) => field.onChange(value)} />} />
-            {errors.content && <p>{errors.content.message}</p>}
+            {errors.content && <p className="text-red-700 text-sm">{errors.content.message}</p>}
           </div>
           <div className="flex justify-end">
-            <button type="submit" className="flex justify-end bg-brand1 text-white font-semibold py-2 rounded-md">
+            <button type="submit" className="flex justify-end bg-brand-800 text-white font-semibold py-2 rounded-md">
               Buat Pertanyaan
             </button>
           </div>

@@ -67,7 +67,7 @@ const StudyCase = () => {
 
   return (
     <>
-      <div className="bg-gray-200 dark:bg-brand2 p-3 md:p-6">
+      <div className="bg-gray-200 dark:bg-background-900 p-3 md:p-6">
         <div className="mb-4">
           <div className="flex justify-between pt-4">
             <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
@@ -78,9 +78,9 @@ const StudyCase = () => {
               placeholder="Cari studi kasus..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-neutral-200"
+              className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-transparent dark:text-neutral-200"
             />
-            <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded dark:bg-brand2 dark:text-white">
+            <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer p-2 rounded dark:bg-transparent dark:text-white">
               <option value="Semua">Semua</option>
               <option value="database">Database</option>
               <option value="ui/ux">UI/UX</option>
@@ -95,7 +95,7 @@ const StudyCase = () => {
               placeholder="Cari project..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 md:hidden py-2 rounded bg-white dark:bg-brand2 text-black dark:text-neutral-200 border border-gray-400"
+              className="px-4 md:hidden py-2 rounded bg-white dark:bg-transparent text-black dark:text-neutral-200 border border-gray-400"
             />
           </div>
         </div>
