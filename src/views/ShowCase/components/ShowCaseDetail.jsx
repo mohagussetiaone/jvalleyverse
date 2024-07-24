@@ -51,7 +51,7 @@ const ShowCaseDetail = () => {
                   className="w-6 h-6 rounded-full"
                 />
                 <h3>{dataShowCaseById?.users?.name}</h3>
-                <h6 className="text-gray-700">| Ditanya pada: {dayjs(dataShowCaseById?.created_at).fromNow()}</h6>
+                <h6 className="text-gray-900 dark:text-neutral-200">| Ditanya pada: {dayjs(dataShowCaseById?.created_at).fromNow()}</h6>
               </div>
             </div>
             <p className="text-base font-normal text-justify">{dataShowCaseById?.description}</p>
@@ -60,7 +60,7 @@ const ShowCaseDetail = () => {
                 <h2 className="text-gray-900 dark:text-neutral-200 title-font font-medium">Teknologi yang dipakai :</h2>
               </div>
               {dataShowCaseById.tech.map((tech, index) => (
-                <span key={index} className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-3 py-2 rounded">
+                <span key={index} className="bg-gray-300 dark:bg-black text-blue-800 dark:text-neutral-200 text-xs font-semibold mr-2 px-3 py-2 rounded">
                   {tech}
                 </span>
               ))}
@@ -69,7 +69,7 @@ const ShowCaseDetail = () => {
               <Link
                 to={dataShowCaseById.url_preview}
                 target="_blank"
-                className="flex gap-2 mt-6 text-gray-900 dark:text-neutral-200 bg-white dark:bg-brand2 hover:bg-gray-100 hover:text-black dark:hover:bg-brand2/70 border border-black py-2 px-8 focus:outline-none  rounded text-lg"
+                className="flex gap-2 mt-6 text-gray-900 dark:text-neutral-200 bg-white dark:bg-transparent hover:bg-gray-100 hover:text-black border border-black dark:border-neutral-200 py-2 px-8 focus:outline-none  rounded text-lg"
               >
                 <FaEye className="w-5 h-5 mt-1" />
                 Preview

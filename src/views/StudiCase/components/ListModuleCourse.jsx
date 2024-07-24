@@ -8,6 +8,7 @@ import ErrorServer from "@/components/ErrorServer";
 import Loading from "@/components/Loading";
 import useChapterProject from "@/hooks/useChapterProject";
 import { useTranslation } from "react-i18next";
+import SidebarSkeleton from "@/components/loading/SidebarSkeleton";
 
 const ListModuleCourse = () => {
   const queryClient = useQueryClient();
@@ -53,7 +54,7 @@ const ListModuleCourse = () => {
   }
 
   if (isPendingProjectDetail || isPendingChapterProjects) {
-    return <Loading />;
+    return <SidebarSkeleton />;
   }
 
   const handleClick = (menuId) => {

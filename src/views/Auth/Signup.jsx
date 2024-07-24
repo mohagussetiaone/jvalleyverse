@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLoaderData, redirect } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import toast from "react-hot-toast";
 import supabase from "@/config/supabaseConfig";
@@ -7,10 +7,19 @@ import { useTranslation } from "react-i18next";
 import { IoMdArrowBack } from "react-icons/io";
 
 const SignUp = () => {
+  const { isAlreadyLoggedIn } = useLoaderData();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirPassword, setShowConfirPassword] = useState(false);
+
+  useEffect(() => {
+    if (isAlreadyLoggedIn) {
+      toast.error("You're already logged in!");
+      // Redirect setelah menampilkan toast
+      redirect("/");
+    }
+  }, [isAlreadyLoggedIn]);
 
   const [formData, setFormData] = useState({
     namalengkap: "",

@@ -37,7 +37,9 @@ const SidebarCourse = () => {
                   <Link
                     to={item.url}
                     className={`flex items-center p-2 rounded-lg ${
-                      activeMenu === item.id ? "bg-gray-200 text-black hover:bg-gray-300 hover:text-black dark:bg-black dark:text-white" : "text-gray-700 bg-white hover:bg-gray-100 hover:text-gray-800 dark:hover:text-gray-100 dark:bg-black"
+                      activeMenu === item.id
+                        ? "bg-gray-200 text-black hover:bg-gray-300 hover:text-black dark:bg-black dark:text-white"
+                        : "text-gray-900 dark:text-neutral-500 bg-white hover:bg-gray-100 hover:text-gray-800 dark:hover:text-gray-100 dark:bg-black"
                     }`}
                     onClick={() => handleClick(item.id)}
                   >

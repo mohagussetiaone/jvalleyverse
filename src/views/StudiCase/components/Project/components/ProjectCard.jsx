@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useDarkMode from "@/hooks/useDarkMode";
 import ModalMenu from "../../ModalMenu";
-import Loading from "@/components/Loading";
 import { handleGetProject } from "@/api/Project/ProjectApi";
 import ErrorServer from "@/components/ErrorServer";
 import { useTranslation } from "react-i18next";
+import SkeletonGrid from "@/components/loading/CardProductSkeleton";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const ProjectCard = () => {
   }
 
   if (isPendingProject) {
-    return <Loading />;
+    return <SkeletonGrid />;
   }
 
   console.log("dataProject", dataProject);

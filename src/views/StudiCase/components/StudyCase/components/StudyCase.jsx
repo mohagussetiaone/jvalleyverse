@@ -5,9 +5,9 @@ import ModalMenu from "../../ModalMenu";
 import useDarkMode from "@/hooks/useDarkMode";
 import { useNavigate } from "react-router-dom";
 import { handleGetStudyCase } from "@/api/StudyCase/StudyCaseApi";
-import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
 import profileDefault from "@/assets/profile/profileDefault.jpg";
+import SkeletonGrid from "@/components/loading/CardProductSkeleton";
 
 const StudyCase = () => {
   const itemsPerPage = 6;
@@ -28,7 +28,7 @@ const StudyCase = () => {
   });
 
   if (isPendingStudyCase) {
-    return <Loading />;
+    return <SkeletonGrid />;
   }
 
   if (errorStudyCase) {

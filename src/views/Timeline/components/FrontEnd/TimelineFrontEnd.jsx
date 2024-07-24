@@ -1,6 +1,6 @@
 const TimelineCard = () => {
   return (
-    <div className="bg-whiteSmoke dark:bg-gradient-to-tr w-screen from-black via-brand2 to-gray-900 py-4">
+    <div className="bg-whiteSmoke w-screen dark:bg-gradient-to-r from-black via-background-900 to-background-600 py-4">
       <div className="flex flex-col text-center gap-4 xl:px-44 mb-12 text-black dark:text-neutral-200">
         <h2 className="text-3xl font-bold">Jalur belajar Front End</h2>
         <p className="justify-center">Merancang antarmuka pengguna yang menarik dan responsif, belajar bagaimana mengubah desain menjadi halaman web yang menarik</p>

@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { MdAdd } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { TruncateText } from "@/lib/TruncateText";
 
 const Card = ({ item }) => {
   const navigate = useNavigate();
@@ -22,11 +23,10 @@ const Card = ({ item }) => {
       <div className="w-full min-w-[11rem] md:w-44 xl:w-52 md:h-32 xl:h-44">
         <img className="w-full h-full object-contain rounded-t-lg md:rounded-none md:rounded-s-lg" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.show_case_img_url}`} alt={item.name} />
       </div>
-
       <div className="flex flex-col p-4">
         <div className="flex flex-col justify-betweenleading-normal">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.name}</h5>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{item.description}</p>
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{TruncateText(item.description, 145)}</p>
         </div>
         <div className="flex items-center">
           <img className="w-10 h-10 rounded-full mr-4" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.users.profile_image_url}`} alt="Avatar of Jonathan Reinink" />
