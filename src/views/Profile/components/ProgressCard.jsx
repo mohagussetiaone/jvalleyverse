@@ -136,7 +136,7 @@ const ProgressCard = () => {
 
   return (
     <>
-      <div className="w-[100vw] px-4 md:pl-10 xl:pr-14 bg-gray-200 dark:bg-background-900">
+      <div className="w-[100vw] px-4 md:pl-10 xl:pr-14 bg-gray-200 dark:bg-gradient-to-r from-black via-background-900 to-background-700">
         <div className="py-4">
           <div className="mb-4">
             <div className="flex justify-start py-4">
@@ -151,10 +151,10 @@ const ProgressCard = () => {
                 placeholder={t("Cari progress berjalan...")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-4 py-2 hidden md:block rounded bg-white text-black border border-gray-400 dark:bg-brand2 dark:text-neutral-200 mb-6"
+                className="px-4 py-2 hidden md:block rounded bg-white text-black border border-gray-400 dark:bg-transparent dark:text-neutral-200 mb-6"
               />
               <div>
-                <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer py-2 rounded dark:bg-brand2 dark:text-white">
+                <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer p-2 rounded dark:bg-transparent dark:text-white">
                   <option value="Semua">{t("Semua")}</option>
                   <option value="Database">Database</option>
                   <option value="UI/UX">UI/UX</option>

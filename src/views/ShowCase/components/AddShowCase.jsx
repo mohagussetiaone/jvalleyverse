@@ -202,8 +202,8 @@ const AddShowCase = () => {
   };
 
   return (
-    <div className="w-full px-4 min-h-screen dark:bg-brand2">
-      <div className="max-w-4xl bg-white dark:bg-black/10 p-8 mx-auto">
+    <div className="w-full p-6 min-h-screen dark:bg-gradient-to-r from-black via-background-900 to-background-600">
+      <div className="max-w-4xl bg-white dark:bg-background-900 p-8 mx-auto rounded-xl">
         <div className="flex justify-center my-2">
           <h3 className="text-2xl dark:text-neutral-200 font-bold">Buat Show Case anda</h3>
         </div>

@@ -87,7 +87,7 @@ const Index = () => {
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
-    <div className="bg-white dark:bg-gradient-to-tr from-black via-brand2 to-gray-900 mx-auto min-h-screen p-6">
+    <div className="bg-white dark:bg-gradient-to-r from-black via-background-900 to-background-600 mx-auto min-h-screen p-6">
       <div className="flex justify-between">
         <div>
           <h3 className="text-xl md:text-2xl dark:text-neutral-200">Show case Jvalleyverse</h3>
@@ -101,10 +101,10 @@ const Index = () => {
       </div>
       <div className="flex flex-col md:flex-row justify-between py-4">
         <div>
-          <input id="search" name="search" type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." className="mb-4 p-2 dark:bg-brand2 border border-gray-300 rounded w-full" />
+          <input id="search" name="search" type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." className="mb-4 p-2 dark:bg-transparent border border-gray-300 rounded w-full" />
         </div>
         <div>
-          <select value={selectedCategory} onChange={handleCategoryChange} className="mb-4 p-2 border border-gray-300 rounded w-full">
+          <select value={selectedCategory} onChange={handleCategoryChange} className="mb-4 p-2 border border-gray-300 dark:bg-transparent cursor-pointer dark:text-neutral-200 rounded w-full">
             <option value="">All Categories</option>
             <option value="Fullstack">Fullstack</option>
             <option value="Backend">Backend</option>

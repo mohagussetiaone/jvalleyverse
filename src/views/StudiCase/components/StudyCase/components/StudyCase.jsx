@@ -108,7 +108,7 @@ const StudyCase = () => {
                 currentData.map((item) => (
                   <div className="relative group cursor-pointer" key={item.id} onClick={() => handleCardClick(item.id)}>
                     <div
-                      className={`absolute min-h-[245px] md:min-h-[320px] h-[245px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
+                      className={`absolute min-h-[240px] h-[240px] md:min-h-[305px] sm:h-[300px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
                         darkMode ? "group-hover:opacity-100" : ""
                       }`}
                     ></div>
@@ -122,7 +122,7 @@ const StudyCase = () => {
                       </div>
                       <div className="flex flex-wrap justify-start px-2 py-0 md:py-2">
                         {item.tags.map((tag, index) => (
-                          <span key={index} className="inline-block bg-gray-200 rounded-full px-1 md:px-2 md:py-1 py-0 text-xs md:text-sm font-semibold text-gray-900 dark:text-black mr-2 mb-1 md:mb-2">
+                          <span key={index} className="inline-block bg-gray-200 dark:bg-black/40 rounded-full px-1 md:px-2 md:py-1 py-0 text-xs md:text-sm font-semibold text-gray-900 dark:text-neutral-200 mr-2 mb-1 md:mb-2">
                             #{tag}
                           </span>
                         ))}

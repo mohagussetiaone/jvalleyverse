@@ -84,7 +84,7 @@ const DropdownUser = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute rounded-sm right-0 mt-5 pt-4 flex w-52 flex-col bg-white  dark:bg-black/60 ${dropdownOpen === true ? "block" : "hidden"}`}
+        className={`absolute rounded-md right-0 mt-5 pt-4 flex w-52 flex-col bg-white dark:bg-background-900 ${dropdownOpen === true ? "block" : "hidden"}`}
       >
         <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-6 dark:border-black">
           <li>
@@ -94,25 +94,43 @@ const DropdownUser = () => {
             </Link>
           </li>
           <li>
-            <Link to="/profile" className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700">
+            <Link
+              to="/profile"
+              className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700"
+              onClick={() => setDropdownOpen(false)}
+            >
               <RiUser3Line className="w-5 h-5" />
               {t("Profil Saya")}
             </Link>
           </li>
           <li>
-            <Link to="/profile" className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700">
+            <Link
+              to="/profile"
+              className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700"
+              onClick={() => setDropdownOpen(false)}
+            >
               <RiBook2Line className="w-5 h-5" />
               {t("Kelas Saya")}
             </Link>
           </li>
           <li>
-            <Link to="/pengaturan" className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700">
+            <Link
+              to="/settings"
+              className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700"
+              onClick={() => setDropdownOpen(false)}
+            >
               <RiSettings4Line className="w-5 h-5" />
               {t("Pengaturan")}
             </Link>
           </li>
         </ul>
-        <button className="flex justify-center mt-4 items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out text-red-500 hover:text-red-600 border-none lg:text-base" onClick={() => setModalLogout(true)}>
+        <button
+          className="flex bg-transparent justify-center mt-4 items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out text-red-500 hover:text-red-600 border-none lg:text-base"
+          onClick={() => {
+            setModalLogout(true);
+            setDropdownOpen(false);
+          }}
+        >
           {t("Keluar")}
         </button>
         {modalLogout && <ModalConfirmation showModalConfirm={modalLogout} setShowModalConfirm={modalLogoutClose} funcConfirm={handleLogout} />}

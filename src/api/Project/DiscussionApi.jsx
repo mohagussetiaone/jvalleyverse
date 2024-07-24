@@ -24,7 +24,7 @@ export const handleGetDiscussion = async () => {
 
     // Fetch user data separately
     const userIds = discussionData.map((discussion) => discussion.user_id);
-    const { data: usersData, error: usersError } = await supabase.schema("user").from("users").select("id, name").in("id", userIds);
+    const { data: usersData, error: usersError } = await supabase.schema("user").from("users").select("id, name, profile_image_url").in("id", userIds);
 
     if (usersError) throw new Error(usersError);
 
@@ -55,13 +55,13 @@ export const handleGetDiscussion = async () => {
           const replyUser = usersData.find((user) => user.id === reply.user_id);
           return {
             ...reply,
-            user: replyUser ? { id: replyUser.id, name: replyUser.name } : null,
+            user: replyUser ? { id: replyUser.id, name: replyUser.name, profile_image_url: replyUser.profile_image_url } : null,
           };
         });
 
       return {
         ...discussion,
-        user: user ? { id: user.id, name: user.name } : null,
+        user: user ? { id: user.id, name: user.name, profile_image_url: user.profile_image_url } : null,
         replies,
       };
     });

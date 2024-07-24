@@ -1,26 +1,39 @@
 import parse from "html-react-parser";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-dark.css"; // Pilih gaya mode gelap untuk highlight.js
+import useDarkMode from "@/hooks/useDarkMode";
+
+const extractText = (children) => {
+  return children
+    .map((child) => {
+      if (child.type === "text") {
+        return child.data;
+      } else if (child.children && child.children.length > 0) {
+        return extractText(child.children);
+      }
+      return "";
+    })
+    .join("");
+};
 
 const CodeBlock = ({ code }) => {
-  // Sorot kode menggunakan hljs
-  const highlightedCode = hljs.highlightAuto(code).value;
+  const { darkMode } = useDarkMode();
+  const detectedLanguage = hljs.highlightAuto(code).language || "text";
+  const themeStyle = darkMode ? dracula : prism;
 
   return (
-    <div className="bg-gray-900 text-gray-100 border border-gray-700 rounded-lg p-4 mb-4 overflow-x-auto">
-      <pre className="bg-gray-900 text-gray-100 p-4">
-        <code dangerouslySetInnerHTML={{ __html: highlightedCode }} className="font-mono" />
-      </pre>
-    </div>
+    <SyntaxHighlighter language={detectedLanguage} style={themeStyle} showLineNumbers>
+      {code}
+    </SyntaxHighlighter>
   );
 };
 
 const HtmlParser = ({ htmlString }) => {
   const options = {
     replace: (domNode) => {
-      if (domNode.name === "pre" && domNode.children[0].name === "code") {
-        // Ambil teks kode dari domNode
-        const codeContent = domNode.children[0].children.map((child) => child.data).join("");
+      if (domNode.name === "pre" && domNode.attribs.class === "ql-syntax") {
+        const codeContent = extractText(domNode.children);
         return <CodeBlock code={codeContent} />;
       }
     },

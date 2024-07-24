@@ -29,6 +29,8 @@ const Discussion = () => {
     queryFn: handleGetDiscussion,
   });
 
+  console.log("dataDiscussion", dataDiscussion);
+
   if (errorDiscussion) {
     return <ErrorServer />;
   }
@@ -67,7 +69,11 @@ const Discussion = () => {
                 <h3 className="font-semibold text-md md:text-xl">Semua Pertanyaan</h3>
               </div>
               <div>
-                <Link to="/belajar/diskusi/buat-pertanyaan" className="border border-brand-500 bg-white text-brand-500 dark:bg-brand2 dark:border-none dark:text-neutral-200 px-4 py-1 rounded" onClick={() => setShowCreateDiscussion(true)}>
+                <Link
+                  to="/belajar/diskusi/buat-pertanyaan"
+                  className="border border-brand-500 bg-white text-brand-500 dark:bg-brand-500 dark:border-none dark:text-neutral-200 px-4 py-1 rounded"
+                  onClick={() => setShowCreateDiscussion(true)}
+                >
                   Buat Pertanyaan
                 </Link>
               </div>
@@ -101,7 +107,7 @@ const Discussion = () => {
                         </h3>
                       </div>
                     )}
-                    <h3>{item?.replies?.length} Jawaban</h3>
+                    <h3>{item?.replies?.length ? `${item?.replies?.length} Diskusi` : "Belum ada diskusi"} </h3>
                   </div>
                   <div className="flex flex-col gap-1 md:gap-2 text-start">
                     <p className="text-lg md:text-2xl">{item?.question}</p>
@@ -111,15 +117,15 @@ const Discussion = () => {
                     <div className="flex gap-2">
                       <div className="flex h-8 gap-2 px-1 md:px-2">
                         {item.tags.map((tag, index) => (
-                          <p key={index} className="bg-gray-200 text-gray-800 p-0.5 md:p-1 rounded">
+                          <p key={index} className="bg-gray-200 dark:bg-black text-gray-800 dark:text-neutral-200 p-0.5 md:p-1 rounded">
                             #{tag}
                           </p>
                         ))}
                       </div>
                     </div>
-                    <div className="flex gap-1 items-center justify-end">
+                    <div className="flex gap-2 items-center justify-end">
                       <div className="group flex relative">
-                        <img className="w-10 h-10 rounded-full" src={item?.avatar || profileDefault} alt="Rounded avatar" />
+                        <img className="w-10 h-10 rounded-full" src={item?.user?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item?.user?.profile_image_url}` : profileDefault} alt="Rounded avatar" />
                         <span className="group-hover:opacity-100 inline-block whitespace-nowrap transition-opacity bg-gray-800 dark:bg-black px-1 text-sm text-gray-100 rounded-md absolute top-0 left-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">
                           {item.user.name}
                         </span>

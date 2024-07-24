@@ -1,6 +1,6 @@
 const FooterCourse = () => {
   return (
-    <div className="bg-gradient-to-br from-black via-brand2 to-gray-900 pt-8">
+    <div className="dark:bg-gradient-to-r from-black via-background-900 to-background-500 pt-8">
       <footer className="relative w-full">
         <div className="w-full px-8 md:px-14 mx-auto max-w-7xl">
           <div className="flex flex-col items-center justify-center w-full py-4 border-t border-blue-gray-50 md:flex-row md:justify-between">

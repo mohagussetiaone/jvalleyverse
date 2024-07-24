@@ -10,12 +10,11 @@ import LocaleData from "dayjs/plugin/localeData";
 import LocalId from "dayjs/locale/id";
 import HtmlParser from "@/lib/HtmlParser";
 import ReplyDiscussion from "./ReplyDiscussion";
+import profileDefault from "@/assets/profile/profileDefault.jpg";
 
 dayjs.extend(RelativeTime);
 dayjs.extend(LocaleData);
 dayjs.locale(LocalId);
-
-const defaultProfile = "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1716887986~exp=1716891586~hmac=729888601cee5f142cdae9e83d1f720240b371d5c32f368bba67fc6278e7197b&w=740";
 
 const DiscussionDetail = () => {
   const { discussionId } = useParams();
@@ -57,7 +56,7 @@ const DiscussionDetail = () => {
             <h3 className="text-3xl">{dataDiscussionDetail?.question}</h3>
           </div>
           <div className="flex text-sm gap-2">
-            <img src={dataDiscussionDetail?.user?.profile_image_url !== null ? profileImage : defaultProfile} alt="profile.jpg" className="w-6 h-6 rounded-full" />
+            <img src={dataDiscussionDetail?.user?.profile_image_url !== null ? profileImage : profileDefault} alt="profile.jpg" className="w-6 h-6 rounded-full" />
             <h3>{dataDiscussionDetail?.user?.name}</h3>
             <h6 className="text-gray-700">| Ditanya pada: {dayjs(dataDiscussionDetail?.created_at).fromNow()}</h6>
           </div>
@@ -70,7 +69,7 @@ const DiscussionDetail = () => {
           {dataDiscussionDetail &&
             dataDiscussionDetail?.replies?.map((answer, index) => (
               <div key={index} className="flex gap-4 mb-6">
-                <img src={answer?.user?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${answer?.user?.profile_image_url}` : defaultProfile} alt="profile.jpg" className="w-10 h-10 rounded-full" />
+                <img src={answer?.user?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${answer?.user?.profile_image_url}` : profileDefault} alt="profile.jpg" className="w-10 h-10 rounded-full" />
                 <div>
                   <h3>{answer?.user?.name}</h3>
                   <h6 className="text-xs text-gray-700 mb-1">{dayjs(answer?.created_at).fromNow()}</h6>

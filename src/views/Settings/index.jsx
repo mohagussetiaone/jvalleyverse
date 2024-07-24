@@ -38,7 +38,7 @@ const Settings = () => {
   console.log("userProfile", userProfile);
 
   return (
-    <div className="w-full bg-gray-100 dark:bg-brand2 p-10 md:py-20 mx-auto md:px-24">
+    <div className="w-full bg-gray-100 dark:bg-gradient-to-r from-black via-background-900 to-background-500 p-10 md:py-20 mx-auto md:px-24">
       <TabGroup className="w-full">
         <div className="grid grid-cols-12 md:gap-10">
           <div className="lg:col-span-2 md:col-span-3 col-span-12">
@@ -48,7 +48,7 @@ const Settings = () => {
                   {({ selected }) => (
                     <div
                       className={`text-sm font-medium md:block inline-block mb-4 last:mb-0 capitalize ring-0 foucs:ring-0 focus:outline-none px-6 rounded-md py-2 transition duration-150 cursor-pointer ${
-                        selected ? "text-white bg-gray-800 dark:bg-black" : "text-slate-500 bg-gray-200 dark:bg-black/20 dark:text-slate-300"
+                        selected ? "text-white bg-gray-800 dark:bg-background-900" : "text-slate-500 bg-gray-200 dark:bg-black/20 dark:text-slate-300"
                       }`}
                     >
                       {item.title}
