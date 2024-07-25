@@ -4,7 +4,7 @@ const Testimonial = () => {
   const { t } = useTranslation();
   return (
     <>
-      <section id="testimonies" className="py-20 bg-whiteSmoke dark:bg-gradient-to-bl from-black via-brand2 to-black">
+      <section id="testimonies" className="py-20 bg-whiteSmoke dark:bg-gradient-to-bl from-black via-background-500 to-black">
         <div className="max-w-6xl mx-auto">
           <div className="transition duration-500 ease-in-out transform scale-100 translate-x-0 translate-y-0 opacity-100 text-center px-2">
             <div className="mb-12 space-y-5 md:mb-16 md:text-center text-black dark:text-neutral-200">

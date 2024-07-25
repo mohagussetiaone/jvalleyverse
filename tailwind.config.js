@@ -189,7 +189,6 @@ module.exports = {
       whiteSmoke: "#f5f5f5",
       lightPrimary: "#F4F7FE",
       brandSecondary: "#1c2463",
-      brand2: "#302158",
       brand3: "#1a112f",
       brandLinear: "#16447d",
       background: {

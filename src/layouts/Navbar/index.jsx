@@ -55,7 +55,7 @@ function Navbar(className) {
 
   return (
     <>
-      <nav className={cn(`fixed left-0 w-full px-4 bg-white dark:bg-gradient-to-r from-black to-background-500 md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-brand2`, className)}>
+      <nav className={cn(`fixed left-0 w-full px-4 bg-white dark:bg-gradient-to-r from-black to-background-500 md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-background-500`, className)}>
         <Menu setActive={setActive} className="w-full ">
           <div className="flex mx-auto justify-between">
             <div className="justify-end md:flex">
@@ -110,7 +110,7 @@ function Navbar(className) {
                   />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer"> {t("Lihat selengkapnya")}</span>
+                  <span className="text-background-500 dark:text-gray-100 font-bold cursor-pointer"> {t("Lihat selengkapnya")}</span>
                 </Link>
               </MenuItem>
 
@@ -145,7 +145,7 @@ function Navbar(className) {
                   />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer"> {t("Lihat selengkapnya")} </span>
+                  <span className="text-background-500 dark:text-gray-100 font-bold cursor-pointer"> {t("Lihat selengkapnya")} </span>
                 </Link>
               </MenuItem>
               <Link to={"/tentang"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
@@ -158,7 +158,7 @@ function Navbar(className) {
                 {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}
               </span>
               <div className="flex xl:hidden">
-                <button className="px-3 bg-white dark:bg-brand2 border border-gray-300 active:border-none dark:border-none" onClick={() => setShowModalMainMenu(true)}>
+                <button className="px-3 bg-white dark:bg-background-500 border border-gray-300 active:border-none dark:border-none" onClick={() => setShowModalMainMenu(true)}>
                   <RxHamburgerMenu className="w-7 h-7 text-black dark:text-neutral-200" />
                   <p className="sr-only">Menu</p>
                 </button>

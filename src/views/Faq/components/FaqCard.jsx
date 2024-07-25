@@ -46,7 +46,7 @@ const FaqCard = () => {
   };
 
   return (
-    <div className="bg-gradient-to-tr from-black via-brand2 to-gray-800 px-4 md:px-48">
+    <div className="bg-gradient-to-tr from-black via-background-500 to-gray-800 px-4 md:px-48">
       <Input handleSearch={handleSearch} />
       <Accordion isiFAQ={searchResults} />
     </div>

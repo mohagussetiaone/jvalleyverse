@@ -1,11 +1,7 @@
 import { useState } from "react";
 import dayjs from "dayjs";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import ReactQuillProvider from "@/components/ReactQuillProvider";
-import { handleGetDiscussion } from "@/api/Project/DiscussionApi";
-import ErrorServer from "@/components/ErrorServer";
-import Loading from "@/components/Loading";
 import { Link } from "react-router-dom";
 import HtmlParser from "@/lib/HtmlParser";
 import { GoProject } from "react-icons/go";
@@ -13,38 +9,18 @@ import profileDefault from "@/assets/profile/profileDefault.jpg";
 
 const ITEMS_PER_PAGE = 5;
 
-const Discussion = () => {
+const Discussion = ({ dataDiscussion }) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [showCreateDiscussion, setShowCreateDiscussion] = useState(false);
 
-  // GET ALL DISCUSION
-  const {
-    error: errorDiscussion,
-    isPending: isPendingDiscussion,
-    data: dataDiscussion,
-  } = useQuery({
-    queryKey: ["getDiscussion"],
-    queryFn: handleGetDiscussion,
-  });
-
-  console.log("dataDiscussion", dataDiscussion);
-
-  if (errorDiscussion) {
-    return <ErrorServer />;
-  }
-
-  if (isPendingDiscussion) {
-    return <Loading />;
-  }
-
-  const filteredData = dataDiscussion.filter(
-    (item) => item?.question?.toLowerCase().includes(searchTerm.toLowerCase()) || item.content.toLowerCase().includes(searchTerm.toLowerCase()) || item?.tags?.some((tag) => tag?.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredData = dataDiscussion?.filter(
+    (item) => item?.question?.toLowerCase().includes(searchTerm?.toLowerCase()) || item?.content?.toLowerCase()?.includes(searchTerm.toLowerCase()) || item?.tags?.some((tag) => tag?.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
-  const displayedData = filteredData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredData?.length / ITEMS_PER_PAGE);
+  const displayedData = filteredData?.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -81,14 +57,14 @@ const Discussion = () => {
             {showCreateDiscussion && <ReactQuillProvider showCreateDiscussion={showCreateDiscussion} setShowCreateDiscussion={setShowCreateDiscussion} />}
             <div className="flex gap-2 flex-col md:flex-row text-start justify-start md:justify-between">
               <div>
-                <h3 className="text-sm md:text-base mt-1">Total {filteredData.length} Pertanyaan</h3>
+                <h3 className="text-sm md:text-base mt-1">Total {filteredData?.length} Pertanyaan</h3>
               </div>
               <div>
                 <input className="w-full bg-white dark:bg-transparent border rounded-md px-3 py-1" type="text" placeholder="Cari Pertanyaan" value={searchTerm} onChange={handleSearchChange} />
               </div>
             </div>
           </div>
-          {filteredData.length === 0 ? (
+          {filteredData?.length === 0 ? (
             <div className="text-center py-4 bg-white dark:bg-black/40 h-[calc(100vh-39vh)]">
               <h3 className="mt-24 text-lg md:text-xl">Data Not Found</h3>
             </div>

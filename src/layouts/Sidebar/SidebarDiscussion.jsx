@@ -9,7 +9,7 @@ const SidebarDiscussion = () => {
 
   const sidebarData = [
     { id: 1, title: `${t("Home")}`, icon: <IoMdHome className="w-5 h-5" />, url: "/belajar/diskusi" },
-    { id: 2, title: `${t("Pertanyaan")}`, icon: <IoIosChatboxes className="w-5 h-5" />, url: "/belajar/diskusi/pertanyaan" },
+    { id: 2, title: `${t("Pertanyaan Saya")}`, icon: <IoIosChatboxes className="w-5 h-5" />, url: "/belajar/diskusi/pertanyaan" },
     // { id: 3, title: "Tags", icon: <IoIosPricetags className="w-5 h-5" />, url: "/belajar/diskusi/tags" },
   ];
 

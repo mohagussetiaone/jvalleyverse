@@ -109,7 +109,7 @@ const SignIn = () => {
 
   return (
     <section className="flex flex-col w-screen md:flex-row h-screen items-center overflow-hidden">
-      <div className="bg-gradient-to-br from-brand2 via-black to-brand-800 w-full h-screen flex items-center justify-center">
+      <div className="bg-gradient-to-br from-background-500 via-black to-brand-800 w-full h-screen flex items-center justify-center">
         <div className="max-w-xl p-2 md:py-4 xl:py-6 md:px-8 xl:px-16 mx-auto bg-white rounded-lg shadow">
           <button className="flex bg-white text-blue-600 hover:border-none active:border-none justify-start my-2" onClick={backToDashboard}>
             <IoMdArrowBack className="text-blue-600 text-xl mt-1 mr-2" />

@@ -46,7 +46,7 @@ const NavbarCourse = (className) => {
 
   return (
     <>
-      <nav className={cn("fixed left-0 w-full px-4 bg-white dark:bg-gradient-to-r from-black to-background-500 md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-brand2", className)}>
+      <nav className={cn("fixed left-0 w-full px-4 bg-white dark:bg-gradient-to-r from-black to-background-500 md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-background-500", className)}>
         <Menu setActive={setActive} className="w-full bg-[#11090E]">
           <div className="flex mx-auto justify-between">
             <Link to="/" className="hidden xl:flex">
@@ -105,7 +105,7 @@ const NavbarCourse = (className) => {
                   />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">{t("Lihat selengkapnya")}</span>
+                  <span className="text-background-500 dark:text-gray-100 font-bold cursor-pointer">{t("Lihat selengkapnya")}</span>
                 </Link>
               </MenuItem>
 
@@ -140,7 +140,7 @@ const NavbarCourse = (className) => {
                   />
                 </div>
                 <Link to="/jalur-belajar" className="flex justify-center py-2">
-                  <span className="text-brand2 dark:text-gray-100 font-bold cursor-pointer">{t("Lihat selengkapnya")}</span>
+                  <span className="text-background-500 dark:text-gray-100 font-bold cursor-pointer">{t("Lihat selengkapnya")}</span>
                 </Link>
               </MenuItem>
               <Link to={"/tentang"} className="text-black font-normal dark:text-neutral-200 hover:text-black">

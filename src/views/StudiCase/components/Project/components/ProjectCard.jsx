@@ -134,7 +134,7 @@ const ProjectCard = () => {
                       </div>
                       <div className="flex flex-col px-2 pt-2">
                         <h3 className="font-bold text-start text-black dark:text-white text-sm md:text-md xl:text-lg mb-2">{item.project_name}</h3>
-                        <button className="inline-flex gap-2 bg-blue-100 text-brand2 rounded-full px-4 py-1 text-sm font-semibold mr-2 mb-2 self-start">
+                        <button className="inline-flex gap-2 bg-blue-100 text-background-500 rounded-full px-4 py-1 text-sm font-semibold mr-2 mb-2 self-start">
                           <IoMdGitMerge className="w-5 h-5 mt-0.5" />
                           {item?.chapter_detail?.length} Chapter
                         </button>
@@ -159,7 +159,7 @@ const ProjectCard = () => {
                 <button
                   onClick={handlePrev}
                   disabled={currentPage === 1}
-                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-brand2 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
+                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-background-500 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
                 >
                   Prev
                 </button>
@@ -169,7 +169,7 @@ const ProjectCard = () => {
                   <button
                     key={index + 1}
                     onClick={() => handlePageClick(index + 1)}
-                    className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-brand2 dark:text-white"}`}
+                    className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-background-500 dark:text-white"}`}
                   >
                     {index + 1}
                   </button>
@@ -179,7 +179,7 @@ const ProjectCard = () => {
                 <button
                   onClick={handleNext}
                   disabled={currentPage === totalPages}
-                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-brand2 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
+                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-background-500 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
                 >
                   Next
                 </button>

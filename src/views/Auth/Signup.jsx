@@ -148,7 +148,7 @@ const SignUp = () => {
 
   return (
     <section className="flex flex-col w-screen md:flex-row h-screen items-center overflow-hidden">
-      <div className="bg-gradient-to-br from-brand-600 via-black to-brand2 w-full h-screen flex items-center justify-center">
+      <div className="bg-gradient-to-br from-brand-600 via-black to-background-500 w-full h-screen flex items-center justify-center">
         <div className="w-full max-w-md mx-2 p-2 px-4 md:py-6 xl:py-8 md:px-8 xl:px-16 bg-white rounded-lg shadow">
           <Link to="/" className="flex justify-start my-2">
             <IoMdArrowBack className="text-blue-600 text-xl mt-1 mr-2" />

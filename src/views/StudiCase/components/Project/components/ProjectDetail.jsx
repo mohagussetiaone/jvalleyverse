@@ -7,6 +7,7 @@ import { handleGetProjectDetail } from "@/api/Project/ProjectApi";
 import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
 import { useTranslation } from "react-i18next";
+import DetailCardProductSkeleton from "@/components/loading/DetailCardProductSkeleton";
 
 const ProjectDetail = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const ProjectDetail = () => {
   }
 
   if (isPendingProjectDetail) {
-    return <Loading />;
+    return <DetailCardProductSkeleton />;
   }
 
   const handleStarter = () => {

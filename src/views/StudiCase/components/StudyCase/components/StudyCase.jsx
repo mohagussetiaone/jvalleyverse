@@ -137,7 +137,7 @@ const StudyCase = () => {
                 <button
                   onClick={handlePrev}
                   disabled={currentPage === 1}
-                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-brand2 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
+                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-background-500 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
                 >
                   Prev
                 </button>
@@ -147,7 +147,7 @@ const StudyCase = () => {
                   <button
                     key={index + 1}
                     onClick={() => handlePageClick(index + 1)}
-                    className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-brand2 dark:text-white"}`}
+                    className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-background-500 dark:text-white"}`}
                   >
                     {index + 1}
                   </button>
@@ -157,7 +157,7 @@ const StudyCase = () => {
                 <button
                   onClick={handleNext}
                   disabled={currentPage === totalPages}
-                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-brand2 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
+                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-background-500 dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
                 >
                   Next
                 </button>

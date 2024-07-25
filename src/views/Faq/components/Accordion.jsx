@@ -18,7 +18,7 @@ const Accordion = ({ isiFAQ }) => {
         <div className="space-y-4">
           {isiFAQ.map((faq, index) => (
             <div key={index}>
-              <button className="w-full bg-brand2 text-left px-2 py-2 md:py-4 text-gray-200 font-medium flex justify-between items-center" onClick={() => handleToggle(index)}>
+              <button className="w-full bg-background-500 text-left px-2 py-2 md:py-4 text-gray-200 font-medium flex justify-between items-center" onClick={() => handleToggle(index)}>
                 {faq.pertanyaan}
                 <FaAngleRight className={`w-5 h-5 transform transition-transform duration-700 ${openIndex === index ? "rotate-90" : ""}`} />
               </button>

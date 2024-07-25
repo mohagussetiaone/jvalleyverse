@@ -1,11 +1,9 @@
 import { Fragment } from "react";
 import { Dialog, Transition, TransitionChild, DialogPanel, DialogTitle } from "@headlessui/react";
-import { Toaster } from "react-hot-toast";
 
 const ModalConfirmation = ({ showModalConfirm, setShowModalConfirm, funcConfirm }) => {
   return (
     <>
-      <Toaster />
       <Transition appear show={showModalConfirm} as={Fragment}>
         <Dialog as="div" className="relative z-50" onClose={setShowModalConfirm}>
           <TransitionChild as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">

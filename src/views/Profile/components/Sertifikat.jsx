@@ -3,10 +3,17 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import logoJv from "@/assets/logo/logojv.png";
 import ttdImage from "@/assets/img/ttd.png";
 import html2canvas from "html2canvas";
+import dayjs from "dayjs";
 import jsPDF from "jspdf";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import DiscussionSkeleton from "@/components/loading/DiscussionSkeleton";
+import ErrorServer from "@/components/ErrorServer";
+import { handleGetCertificateById } from "@/api/Certificate/CertificateApi";
 
 const Certificate = () => {
   const certificateRef = useRef(null);
+  const { sertId } = useParams();
   const handleDownload = () => {
     const certificateElement = certificateRef.current;
     html2canvas(certificateElement, { scale: 2 })
@@ -22,8 +29,27 @@ const Certificate = () => {
       });
   };
 
+  // GET ALL CERTIFICATE
+  const {
+    error: errorCertificateById,
+    isPending: isPendingCertificateById,
+    data: dataCertificateById,
+  } = useQuery({
+    queryKey: ["getCertificateById"],
+    queryFn: () => handleGetCertificateById(sertId),
+    enabled: !!sertId,
+  });
+
+  if (errorCertificateById) {
+    return <ErrorServer />;
+  }
+
+  if (isPendingCertificateById) {
+    return <DiscussionSkeleton />;
+  }
+
   return (
-    <div className="w-full min-w-[100vw] bg-white dark:bg-brand2">
+    <div className="w-full min-w-[100vw] bg-white dark:bg-gradient-to-r from-black via-brand3 to-background-500">
       <div className="py-8 md:py-10 px-2">
         <div ref={certificateRef} className="relative md:mx-auto h-auto w-full md:w-[55vw] bg-white border border-brand-300 px-6 p-4 md:p-8 xl:p-10">
           <div className="flex justify-between items-center mb-3 md:mb-5 xl:mb-6">
@@ -36,13 +62,13 @@ const Certificate = () => {
           </div>
           <div className="flex flex-col text-center text-black mb-4 md:mb-5 xl:mb-6">
             <p className="text-xs md:text-lg">Sertifikat Ini Dengan Bangga Diberikan Kepada</p>
-            <p className="text-base md:text-2xl font-bold text-black my-1 md:my-3">Moh Agus Setiawan</p>
+            <p className="text-base md:text-2xl font-bold text-black my-1 md:my-3">{dataCertificateById?.user?.name}</p>
             <p className="text-xs md:text-lg">yang telah menyelesaikan kelas</p>
-            <p className="text-xs md:text-xl font-semibold">Fullstack Programming by Next JS Advance</p>
-            <p className="text-xs md:text-lg">dalam program Kelas Online Jvalleyverse</p>
+            <p className="text-xs md:text-xl font-semibold">{dataCertificateById?.certificate_name}</p>
+            <p className="text-xs md:text-lg">dalam program kelas {dataCertificateById?.project.project_name}</p>
           </div>
           <div className="text-left ml-0 md:ml-5 text-black mb-2">
-            <p className="text-xs md:text-base xl:text-lg font-semibold">12 November 2022</p>
+            <p className="text-xs md:text-base xl:text-lg font-semibold">{dayjs(dataCertificateById?.created_at).format("DD MMMM YYYY")}</p>
           </div>
           <div className="flex justify-between items-center">
             <div className="items-center text-black">
@@ -51,7 +77,7 @@ const Certificate = () => {
               <p className="text-xs md:text-lg">CEO & Co-Founder</p>
             </div>
             <div className="items-end text-black mt-12">
-              <p className="text-xs md:text-lg">Berlaku sampai 25 Desember 2026</p>
+              <p className="text-xs md:text-lg">Berlaku sampai {dayjs(dataCertificateById?.certificate_valid).format("DD MMMM YYYY")}</p>
             </div>
           </div>
           <button onClick={handleDownload} className="absolute gap-1 right-0 xl:right-2 top-0 md:top-2 bg-blue-500 text-white p-1 rounded-lg shadow-lg">

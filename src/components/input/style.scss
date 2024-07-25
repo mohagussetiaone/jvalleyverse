@@ -37,7 +37,7 @@
 
 // file input
 .file-control {
-  @apply bg-transparent dark:bg-brand2 dark:text-white transition duration-300 ease-in-out border border-gray-200 dark:border-gray-200 focus:ring-1 focus:ring-gray-200 dark:focus:ring-neutral-200 focus:outline-none focus:ring-opacity-90 rounded   text-sm ltr:pl-3 rtl:pr-3   placeholder:font-normal;
+  @apply bg-transparent dark:bg-transparent dark:text-white transition duration-300 ease-in-out border border-gray-200 dark:border-gray-200 focus:ring-1 focus:ring-gray-200 dark:focus:ring-neutral-200 focus:outline-none focus:ring-opacity-90 rounded   text-sm ltr:pl-3 rtl:pr-3   placeholder:font-normal;
 }
 
 .badge-title {

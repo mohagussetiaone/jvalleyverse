@@ -6,9 +6,9 @@ import DiscussionImage from "@/assets/tech/discussion.png";
 import DiscussionDarkImage from "@/assets/tech/discussionDark.png";
 import { handleGetStudyCaseDetail } from "@/api/StudyCase/StudyCaseApi";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
 import { useParams } from "react-router-dom";
+import DetailStudyCaseSkeleton from "@/components/loading/DetailStudyCaseSkeleton";
 
 const StudyCaseDetail = () => {
   const { studyCaseId } = useParams();
@@ -23,7 +23,7 @@ const StudyCaseDetail = () => {
   });
 
   if (isPendingStudyCase) {
-    return <Loading />;
+    return <DetailStudyCaseSkeleton />;
   }
 
   if (errorStudyCase) {

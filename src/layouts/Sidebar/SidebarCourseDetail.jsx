@@ -39,7 +39,7 @@ const SidebarCourseDetail = () => {
       </aside>
       {!collapsed && (
         <button onClick={toggleSidebar} className="fixed top-4 right-4 bg-white p-2 rounded-lg z-50">
-          {collapsed ? <MdClose size={24} className="text-red-500" /> : <MdMenu size={24} className="text-blue-500 bg-brand2" />}
+          {collapsed ? <MdClose size={24} className="text-red-500" /> : <MdMenu size={24} className="text-blue-500 bg-background-500" />}
         </button>
       )}
     </>

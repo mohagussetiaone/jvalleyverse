@@ -33,7 +33,7 @@ const ShowCaseDetail = () => {
   console.log("dataShowCaseById", dataShowCaseById);
 
   return (
-    <section className="body-font overflow-hidden bg-white dark:bg-gradient-to-tr from-black via-brand2 to-gray-900">
+    <section className="body-font overflow-hidden bg-white dark:bg-gradient-to-tr from-black via-background-500 to-gray-900">
       <div className="container py-10 mx-auto">
         <div className="mx-auto flex flex-wrap">
           <div className="lg:w-1/2 w-full md:pr-4">

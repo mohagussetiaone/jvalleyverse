@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 export function MetodePembelajaran() {
   const { t } = useTranslation();
   return (
-    <div className="bg-whiteSmoke dark:bg-gradient-to-bl from-black via-brand2 to-gray-800 pt-24 pb-4 md:pb-0">
+    <div className="bg-whiteSmoke dark:bg-gradient-to-bl from-black via-background-500 to-gray-800 pt-24 pb-4 md:pb-0">
       <div className="w-full text-black dark:text-neutral-200 flex flex-col items-center justify-center overflow-hidden rounded-md">
         <h1 className="md:text-3xl text-xl lg:text-4xl font-bold text-center relative z-20">{t("Mengapa bergabung bersama kami")}</h1>
         <div className="flex flex-col items-center justify-center text-base md:text-lg md:py-6 p-4">
@@ -26,7 +26,7 @@ export function MetodePembelajaran() {
             </div>
           </div>
         </WobbleCard>
-        <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-gray-800 dark:bg-brand2" className="cursor-pointer">
+        <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-gray-800 dark:bg-background-500" className="cursor-pointer">
           <div className="text-neutral-200">
             <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em]">{t("Anda dapat mengikuti kelas")}</h2>
             <p className="mt-4 max-w-[26rem] text-left text-base/6">{t("Kami telah menyediakan platform pelatihan secara daring agar anda dapat belajar melalui website")}</p>

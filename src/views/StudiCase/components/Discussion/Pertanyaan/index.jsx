@@ -1,7 +1,7 @@
-import Pertanyaan from "./components/Pertanyaan";
+import PertanyaanSaya from "./components/PertanyaanSaya";
 
 const index = () => {
-  return <Pertanyaan />;
+  return <PertanyaanSaya />;
 };
 
 export default index;
