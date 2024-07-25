@@ -20,6 +20,7 @@ const Chapter = () => {
   const { dataChapters } = useChapterProject();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+
   console.log("dataChapters", dataChapters);
 
   const {

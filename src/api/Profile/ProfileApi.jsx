@@ -1,9 +1,7 @@
 import supabase from "@/config/supabaseConfig";
-// import { getSessionData } from "@/store/local/Forage";
 
 export const handleGetProfile = async () => {
   try {
-    // const user = await getSessionData();
     const {
       data: { user },
     } = await supabase.auth.getUser();

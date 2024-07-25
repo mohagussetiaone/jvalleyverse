@@ -3,7 +3,10 @@ import { MdGridView } from "react-icons/md";
 import ModalMenuProgress from "./ModalMenuProgress";
 import { useNavigate } from "react-router-dom";
 import useDarkMode from "@/hooks/useDarkMode";
+import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useCheckSession } from "@/api/Auth/CheckSession";
+import { handleGetEnrollments } from "@/api/Enrollments/EnrollmentProject";
 
 // Data Acak
 const data = [
@@ -108,6 +111,30 @@ const ProgressCard = () => {
   const navigate = useNavigate();
   const { darkMode } = useDarkMode();
   const itemsPerPage = 6;
+
+  // GET SESSION
+  const {
+    isLoading: isLoadingSession,
+    error: errorSession,
+    data: dataSession,
+  } = useQuery({
+    queryKey: ["getSession"],
+    queryFn: useCheckSession,
+  });
+
+  console.log("dataSession", dataSession);
+
+  const {
+    isLoading: isLoadingEnrollment,
+    error: errorEnrollment,
+    data: dataEnrollment,
+  } = useQuery({
+    queryKey: ["getEnrollment"],
+    queryFn: () => handleGetEnrollments(dataSession?.session?.user?.id),
+    enabled: !!dataSession?.session?.user?.id,
+  });
+
+  console.log("dataEnrollment", dataEnrollment);
 
   const filteredData = data.filter((item) => (filterType === "Semua" || item.category === filterType) && item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 

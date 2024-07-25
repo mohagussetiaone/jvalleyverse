@@ -1,10 +1,9 @@
 import { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog, Transition, TransitionChild, DialogPanel } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
-// import ProfileDropdown from "./ProfileDropdown";
-// import { useIsLoggedInStore } from "@store/Auth/IsLoggedIn";
-// import { useAuthCheck } from "@store/Auth/customHooks";
+import { useQuery } from "@tanstack/react-query";
+import { useCheckSession } from "@/api/Auth/CheckSession";
 
 const subMenu = [
   { name: "Dashboard", to: "/" },
@@ -12,24 +11,36 @@ const subMenu = [
   { name: "Belajar", to: "/belajar/project" },
   { name: "Show Case", to: "/show-case" },
   { name: "Diskusi", to: "/belajar/diskusi" },
-  { name: "Tentang", to: "/tentang" },
+  { name: "Tentang kami", to: "/tentang" },
 ];
 
 const ModalMainMenu = ({ showModalMainMenu, setShowModalMainMenu }) => {
-  // const { isLoggedIn } = useIsLoggedInStore();
-  // console.log("isLoggedIn", isLoggedIn);
-  //   const authToken = useAuthCheck();
-  // console.log("authToken", authToken);
+  const {
+    isLoading: isLoadingSession,
+    error: errorSession,
+    data: dataSession,
+  } = useQuery({
+    queryKey: ["getSession"],
+    queryFn: useCheckSession,
+  });
+
+  if (isLoadingSession) {
+    console.log("isLoadingSession");
+  }
+
+  if (errorSession) {
+    console.error("errorSession");
+  }
 
   return (
     <nav className="bg-white dark:bg-slate-800 sticky top-0 z-30 border-b border-gray-200">
-      <Transition.Root show={showModalMainMenu} as={Fragment}>
+      <Transition show={showModalMainMenu} as={Fragment}>
         <Dialog as="div" className="relative z-40" onClose={setShowModalMainMenu}>
-          <Transition.Child as={Fragment} enter="transition-opacity ease-linear duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="transition-opacity ease-linear duration-300" leaveFrom="opacity-100" leaveTo="opacity-0">
+          <TransitionChild as={Fragment} enter="transition-opacity ease-linear duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="transition-opacity ease-linear duration-300" leaveFrom="opacity-100" leaveTo="opacity-0">
             <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
+          </TransitionChild>
           <div className="fixed inset-0 z-40 flex justify-end">
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
               enterFrom="translate-x-full"
@@ -38,7 +49,7 @@ const ModalMainMenu = ({ showModalMainMenu, setShowModalMainMenu }) => {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <Dialog.Panel className="relative w-full max-w-xs flex flex-col h-full overflow-y-auto bg-white dark:bg-black/90 py-4 px-0 pb-12 shadow-xl">
+              <DialogPanel className="relative w-full max-w-xs flex flex-col h-full overflow-y-auto bg-white dark:bg-black/90 py-4 px-0 pb-12 shadow-xl">
                 <div className="flex items-center justify-start px-4">
                   <span type="button" className="mr-2 flex h-10 w-10 items-center justify-center bg-white dark:bg-black/90 p-2 text-gray-400" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
                     <IoMdClose className="h-6 w-6" />
@@ -56,26 +67,26 @@ const ModalMainMenu = ({ showModalMainMenu, setShowModalMainMenu }) => {
                       </div>
                     ))}
                   </div>
-                  {/* {authToken?.session === null && (
+                  {dataSession?.session === null && (
                     <div className="flex justify-center gap-10 flex-row mt-4">
                       <div>
-                        <Link to="/signin" className="border bg-blue-700 text-white border-gray-600 rounded-md px-5 py-2">
+                        <Link to="/signin" className="border bg-brand-700 hover:bg-brand-800 text-white hover:text-neutral-200 border-gray-600 rounded-md px-5 py-2">
                           SignIn
                         </Link>
                       </div>
                       <div>
-                        <Link to="/signup" className="border border-blue-700 px-5 py-2 rounded-md">
+                        <Link to="/signup" className="border border-brand-700 text-brand-400 hover:text-brand-600 px-5 py-2 rounded-md">
                           SignUp
                         </Link>
                       </div>
                     </div>
-                  )} */}
+                  )}
                 </form>
-              </Dialog.Panel>
-            </Transition.Child>
+              </DialogPanel>
+            </TransitionChild>
           </div>
         </Dialog>
-      </Transition.Root>
+      </Transition>
     </nav>
   );
 };
