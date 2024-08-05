@@ -45,6 +45,8 @@ const Chapter = () => {
     return <Loading />;
   }
 
+  console.log("dataChapters", dataChapters);
+
   const progress = calculateChapterProgress(dataChapters);
   console.log("progress", progress);
 

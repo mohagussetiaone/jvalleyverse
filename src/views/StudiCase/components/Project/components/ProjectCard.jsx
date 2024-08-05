@@ -9,8 +9,6 @@ import { handleGetProject } from "@/api/Project/ProjectApi";
 import ErrorServer from "@/components/ErrorServer";
 import { useTranslation } from "react-i18next";
 import SkeletonGrid from "@/components/loading/CardProductSkeleton";
-import { handleAddEnrollments } from "@/api/Enrollments/EnrollmentProject";
-import { useCheckSession } from "@/api/Auth/CheckSession";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
@@ -22,16 +20,6 @@ const ProjectCard = () => {
   const [showModalMenu, setShowModalMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-
-  // GET SESSION
-  const {
-    isLoading: isLoadingSession,
-    error: errorSession,
-    data: dataSession,
-  } = useQuery({
-    queryKey: ["getSession"],
-    queryFn: useCheckSession,
-  });
 
   // GET ALL PROJECT
   const {
@@ -49,11 +37,11 @@ const ProjectCard = () => {
     }
   }, [dataProject]);
 
-  if (errorProject || errorSession) {
+  if (errorProject) {
     return <ErrorServer />;
   }
 
-  if (isPendingProject || isLoadingSession) {
+  if (isPendingProject) {
     return <SkeletonGrid />;
   }
 
@@ -90,19 +78,7 @@ const ProjectCard = () => {
   };
 
   const handleCardClick = async (id) => {
-    try {
-      navigate(`/belajar/project/${id}`);
-      if (dataSession?.session === null) {
-        return;
-      }
-      const response = await handleAddEnrollments({
-        project_id: id,
-        user_id: dataSession?.session?.user?.id,
-      });
-      return response;
-    } catch (error) {
-      throw new Error(error);
-    }
+    navigate(`/belajar/project/${id}`);
   };
 
   return (

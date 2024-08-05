@@ -24,12 +24,102 @@ export const handleAddEnrollments = async (payload) => {
   }
 };
 
+// export const handleGetEnrollments = async (user_id) => {
+//   try {
+//     const { data, error } = await supabase.schema("belajar").from("enrollments").select(`*`).eq("user_id", user_id);
+//     if (error) throw new Error(error);
+//     return data;
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// };
+
 export const handleGetEnrollments = async (user_id) => {
   try {
-    const { data, error } = await supabase.schema("belajar").from("enrollments").select(`*, projects(*)`).eq("user_id", user_id).single();
-    if (error) throw new Error(error);
-    return data;
+    // Fetch enrollments
+    const { data: enrollments, error: enrollmentsError } = await supabase.schema("belajar").from("enrollments").select("*").eq("user_id", user_id);
+
+    if (enrollmentsError) throw new Error(enrollmentsError.message);
+
+    const enrollmentDetails = await Promise.all(
+      enrollments.map(async (enrollment) => {
+        // Fetch project details
+        const { data: project, error: projectError } = await supabase
+          .schema("belajar")
+          .from("project")
+          .select(
+            `
+            id,
+            category_project (
+              id,
+              category_name
+            ),
+            project_img_url,
+            project_name,
+            project_description,
+            project_github,
+            project_youtube_playlist,
+            project_youtube_embed,
+            created_at
+            `
+          )
+          .eq("id", enrollment.project_id)
+          .single();
+
+        if (projectError) throw new Error(projectError.message);
+
+        // Fetch chapters details
+        const { data: chapters, error: chaptersError } = await supabase
+          .schema("belajar")
+          .from("chapter_project")
+          .select(
+            `
+            id,
+            chapter_name,
+            created_at
+            `
+          )
+          .eq("project_id", project.id);
+
+        if (chaptersError) throw new Error(chaptersError.message);
+
+        // Fetch chapter details for each chapter
+        const chaptersWithDetails = await Promise.all(
+          chapters.map(async (chapter) => {
+            const { data: chapterDetails, error: chapterDetailsError } = await supabase
+              .schema("belajar")
+              .from("chapter_detail")
+              .select(
+                `
+                id,
+                chapter_id,
+                chapter_detail_name,
+                youtube_url,
+                progress
+                `
+              )
+              .eq("chapter_id", chapter.id);
+
+            if (chapterDetailsError) throw new Error(chapterDetailsError.message);
+
+            return {
+              ...chapter,
+              chapter_details: chapterDetails,
+            };
+          })
+        );
+
+        return {
+          ...enrollment,
+          project: {
+            ...project,
+            chapters: chaptersWithDetails,
+          },
+        };
+      })
+    );
+    return enrollmentDetails;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 };

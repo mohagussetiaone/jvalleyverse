@@ -5,102 +5,11 @@ import { useNavigate } from "react-router-dom";
 import useDarkMode from "@/hooks/useDarkMode";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import Loading from "@/components/Loading";
+import ErrorServer from "@/components/ErrorServer";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 import { handleGetEnrollments } from "@/api/Enrollments/EnrollmentProject";
-
-// Data Acak
-const data = [
-  {
-    id: 1,
-    title: "Dashboard Jajanian",
-    image: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#photography", "#travel", "#winter"],
-    progress: 25,
-    isComplete: false,
-    type: "Chapter",
-    content: "Content of Chapter 1",
-  },
-  {
-    id: 2,
-    title: "Mountain Expedition",
-    image: "https://plus.unsplash.com/premium_photo-1664201890375-f8fa405cdb7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#adventure", "#mountains", "#nature"],
-    progress: 20,
-    isComplete: true,
-    category: "Frontend",
-    content: "Content of Article 2",
-  },
-  {
-    id: 3,
-    title: "City Lights",
-    image: "https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#city", "#night", "#urban"],
-    progress: 18,
-    isComplete: false,
-    category: "Backend",
-    content: "Content of Blog 3",
-  },
-  {
-    id: 4,
-    title: "Forest Trails",
-    image: "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#forest", "#nature", "#hiking"],
-    progress: 60,
-    isComplete: false,
-    category: "Database",
-    content: "Content of Chapter 4",
-  },
-  {
-    id: 5,
-    title: "Desert Adventure",
-    image: "https://images.unsplash.com/photo-1616077167599-cad3639f9cbd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#desert", "#adventure", "#exploration"],
-    progress: 34,
-    isComplete: true,
-    category: "UI/UX",
-    content: "Content of Article 5",
-  },
-  {
-    id: 6,
-    title: "Coastal Views",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#coast", "#beach", "#sunset"],
-    progress: 45,
-    isComplete: false,
-    category: "Backend",
-    content: "Content of Blog 6",
-  },
-  {
-    id: 7,
-    title: "Urban Exploration",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#urban", "#exploration", "#nightlife"],
-    progress: 47,
-    isComplete: false,
-    category: "Frontend",
-    content: "Content of Chapter 7",
-  },
-  {
-    id: 8,
-    title: "Mountain Peaks",
-    image: "https://images.unsplash.com/photo-1522198734915-76c764a8454d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#mountains", "#peaks", "#adventure"],
-    progress: 24,
-    isComplete: false,
-    category: "Desain",
-    content: "Content of Article 8",
-  },
-  {
-    id: 9,
-    title: "Jungle Trek",
-    image: "https://plus.unsplash.com/premium_photo-1661458140307-c9ea805a5f84?q=80&w=2060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["#jungle", "#trek", "#adventure"],
-    progress: 62,
-    isComplete: true,
-    category: "UI/UX",
-    content: "Content of Blog 9",
-  },
-];
+import { calculateEnrollmentProgress } from "@/utils/calculateProgress";
 
 const ProgressCard = () => {
   const { t } = useTranslation();
@@ -134,13 +43,18 @@ const ProgressCard = () => {
     enabled: !!dataSession?.session?.user?.id,
   });
 
+  if (isLoadingSession || isLoadingEnrollment) return <Loading />;
+  if (errorSession || errorEnrollment) return <ErrorServer />;
+
   console.log("dataEnrollment", dataEnrollment);
 
-  const filteredData = data.filter((item) => (filterType === "Semua" || item.category === filterType) && item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredData = dataEnrollment?.filter((item) => (filterType === "Semua" || item?.project?.category_project?.category_name === filterType) && item?.project?.project_name?.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  console.log("filteredData", filteredData);
+
+  const totalPages = Math.ceil(filteredData?.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentData = filteredData.slice(startIndex, startIndex + itemsPerPage);
+  const currentData = filteredData?.slice(startIndex, startIndex + itemsPerPage);
   const handlePageClick = (page) => {
     setCurrentPage(page);
   };
@@ -160,6 +74,9 @@ const ProgressCard = () => {
   const handleCardClick = (id) => {
     navigate(`/belajar/project/${id}`);
   };
+
+  const progress = calculateEnrollmentProgress(dataEnrollment && dataEnrollment?.project?.chapters);
+  console.log("progress card", progress);
 
   return (
     <>
@@ -183,10 +100,11 @@ const ProgressCard = () => {
               <div>
                 <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer p-2 rounded dark:bg-transparent dark:text-white">
                   <option value="Semua">{t("Semua")}</option>
-                  <option value="Database">Database</option>
-                  <option value="UI/UX">UI/UX</option>
-                  <option value="Frontend">Frontend</option>
-                  <option value="Backend">Backend</option>
+                  <option value="figma">Figma</option>
+                  <option value="ui/ux">UI/UX</option>
+                  <option value="frontend">Frontend</option>
+                  <option value="backend">Backend</option>
+                  <option value="fullstack">Fullstack</option>
                 </select>
               </div>
             </div>
@@ -196,7 +114,7 @@ const ProgressCard = () => {
                 placeholder={t("Cari project...")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 md:hidden py-2 rounded bg-white text-black dark:bg-background-500 dark:text-neutral-200 border border-gray-400"
+                className="w-full px-4 md:hidden py-2 rounded bg-white text-black dark:bg-transparent dark:text-neutral-200 border border-gray-400"
               />
             </div>
           </div>
@@ -212,22 +130,20 @@ const ProgressCard = () => {
                         darkMode ? "group-hover:opacity-100" : ""
                       }`}
                     ></div>
-                    <div className="relative max-w-[350px] h-auto rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
+                    <div className="relative max-w-[350px] h-auto rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.project_id)}>
                       <div className="h-28 md:h-32 xl:h-44 overflow-hidden">
-                        <img className="w-full h-full object-cover" src={item.image} alt={item.title} />
+                        <img className="w-full h-full object-cover" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.project.project_img_url}`} alt={item.project.project_name} />
                       </div>
                       <div className="flex flex-col px-2 pt-2">
-                        <h3 className="font-bold text-start text-black dark:text-white text-base xl:text-xl mb-2">{item.title}</h3>
+                        <h3 className="font-bold text-start text-black dark:text-white text-base xl:text-xl mb-2">{item.project.project_name}</h3>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                          <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${item.progress}%` }}></div>
+                          <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${calculateEnrollmentProgress(item.project.chapters)}%` }}></div>
                         </div>
                         <div className="text-start">
-                          <span className="text-start text-black dark:text-gray-300 text-sm">
-                            Progress: {item.progress}% {t("Selesai")}
-                          </span>
+                          <span className="text-start text-black dark:text-gray-300 text-sm">Progress: {calculateEnrollmentProgress(item.project.chapters)}%</span>
                         </div>
                         <div className="py-4 text-start">
-                          {item.isComplete === true ? (
+                          {calculateEnrollmentProgress(item.project.chapters) === 100 ? (
                             <span className="bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-600">{t("Selesai")}</span>
                           ) : (
                             <span className="bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-600">{t("Lanjutkan")}</span>

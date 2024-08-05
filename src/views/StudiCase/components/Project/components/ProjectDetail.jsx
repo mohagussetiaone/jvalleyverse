@@ -4,9 +4,10 @@ import YoutubeImage from "@/assets/tech/youtube.png";
 import GithubImage from "@/assets/tech/githubDark.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { handleGetProjectDetail } from "@/api/Project/ProjectApi";
-import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
 import { useTranslation } from "react-i18next";
+import { useCheckSession } from "@/api/Auth/CheckSession";
+import { handleAddEnrollments } from "@/api/Enrollments/EnrollmentProject";
 import DetailCardProductSkeleton from "@/components/loading/DetailCardProductSkeleton";
 
 const ProjectDetail = () => {
@@ -14,6 +15,18 @@ const ProjectDetail = () => {
   const { projectId } = useParams();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+
+  // GET SESSION
+  const {
+    isLoading: isLoadingSession,
+    error: errorSession,
+    data: dataSession,
+  } = useQuery({
+    queryKey: ["getSession"],
+    queryFn: useCheckSession,
+  });
+
+  // GET PROJECT DETAILS
   const {
     error: errorProjectDetail,
     isPending: isPendingProjectDetail,
@@ -32,7 +45,7 @@ const ProjectDetail = () => {
     }
   }, [projectId]);
 
-  if (errorProjectDetail) {
+  if (errorProjectDetail || errorSession) {
     <ErrorServer />;
   }
 
@@ -40,8 +53,20 @@ const ProjectDetail = () => {
     return <DetailCardProductSkeleton />;
   }
 
-  const handleStarter = () => {
-    navigate(`/belajar/project/${projectId}/chapter/16`);
+  const handleStarter = async (id) => {
+    try {
+      navigate(`/belajar/project/${projectId}/chapter/16`);
+      if (dataSession?.session === null) {
+        return;
+      }
+      const response = await handleAddEnrollments({
+        project_id: id,
+        user_id: dataSession?.session?.user?.id,
+      });
+      return response;
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   return (
@@ -61,7 +86,7 @@ const ProjectDetail = () => {
                 <div className="flex flex-col text-center gap-2 dark:text-neutral-200">
                   <h4 className="text-3xl font-bold">{t("Siap untuk memulai professional?")}</h4>
                   <p className="">{t("Lacak progres Anda, tonton dengan cermat, memulai belajar dengan mudah")}</p>
-                  <button className="text-white mt-4" onClick={handleStarter}>
+                  <button className="text-white mt-4" onClick={() => handleStarter(dataProjectDetails?.id)}>
                     {t("Mulai Sekarang")}
                   </button>
                 </div>

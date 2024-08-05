@@ -88,7 +88,11 @@ const DropdownUser = () => {
       >
         <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-6 dark:border-black">
           <li>
-            <Link to="/" className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700">
+            <Link
+              to="/"
+              className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700"
+              onClick={() => setDropdownOpen(false)}
+            >
               <RiHome6Line className="w-5 h-5" />
               Dashboard
             </Link>

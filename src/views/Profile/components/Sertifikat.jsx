@@ -48,6 +48,8 @@ const Certificate = () => {
     return <DiscussionSkeleton />;
   }
 
+  console.log("dataCertificateById", dataCertificateById);
+
   return (
     <div className="w-full min-w-[100vw] bg-white dark:bg-gradient-to-r from-black via-brand3 to-background-500">
       <div className="py-8 md:py-10 px-2">
@@ -62,7 +64,7 @@ const Certificate = () => {
           </div>
           <div className="flex flex-col text-center text-black mb-4 md:mb-5 xl:mb-6">
             <p className="text-xs md:text-lg">Sertifikat Ini Dengan Bangga Diberikan Kepada</p>
-            <p className="text-base md:text-2xl font-bold text-black my-1 md:my-3">{dataCertificateById?.user?.name}</p>
+            <p className="text-base md:text-2xl font-bold text-black my-1 md:my-3">{dataCertificateById?.users?.name}</p>
             <p className="text-xs md:text-lg">yang telah menyelesaikan kelas</p>
             <p className="text-xs md:text-xl font-semibold">{dataCertificateById?.certificate_name}</p>
             <p className="text-xs md:text-lg">dalam program kelas {dataCertificateById?.project.project_name}</p>
