@@ -11,7 +11,6 @@ export const handleGetCertificate = async (user_id) => {
         `
         id,
         certificate_name,
-        certificate_description,
         certificate_valid,
         project_id,
         created_at,
@@ -63,7 +62,6 @@ export const handleGetCertificateById = async (certificateId) => {
         `
         id,
         certificate_name,
-        certificate_description,
         certificate_valid,
         project_id,
         created_at,
@@ -100,6 +98,19 @@ export const handleGetCertificateById = async (certificateId) => {
     };
 
     return combinedData;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const handleCreateCertificate = async (payload) => {
+  try {
+    // Fetch certificates from 'user' schema based on user_id
+    const { data: certificates, error: certificateError } = await supabase.schema("user").from("certificate").insert(payload);
+
+    if (certificateError) throw new Error(certificateError.message);
+
+    return certificates;
   } catch (error) {
     throw new Error(error.message);
   }

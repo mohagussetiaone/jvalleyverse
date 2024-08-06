@@ -51,9 +51,9 @@ const Certificate = () => {
   console.log("dataCertificateById", dataCertificateById);
 
   return (
-    <div className="w-full min-w-[100vw] bg-white dark:bg-gradient-to-r from-black via-brand3 to-background-500">
-      <div className="py-8 md:py-10 px-2">
-        <div ref={certificateRef} className="relative md:mx-auto h-auto w-full md:w-[55vw] bg-white border border-brand-300 px-6 p-4 md:p-8 xl:p-10">
+    <div className="w-full bg-white dark:bg-gradient-to-r from-black via-brand3 to-background-500">
+      <div className="w-[450px] md:w-[600px] xl:w-[700px] justify-center items-center mx-auto py-8 md:py-10">
+        <div ref={certificateRef} className="relative md:mx-auto h-auto w-full bg-white border border-brand-300 px-6 p-4 md:p-8 xl:p-10">
           <div className="flex justify-between items-center mb-3 md:mb-5 xl:mb-6">
             <div>
               <img src={logoJv} alt="Logo" className="h-8 xl:h-10" />

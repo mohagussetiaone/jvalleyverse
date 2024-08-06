@@ -1,6 +1,7 @@
 import { WobbleCard } from "@/components/ui/wobble-card.tsx";
 import OnlineClass from "/onlineclass.jpeg";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export function MetodePembelajaran() {
   const { t } = useTranslation();
@@ -26,13 +27,15 @@ export function MetodePembelajaran() {
             </div>
           </div>
         </WobbleCard>
-        <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-gray-800 dark:bg-background-500" className="cursor-pointer">
+        <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-gray-800 dark:bg-background-500">
           <div className="text-neutral-200">
             <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em]">{t("Anda dapat mengikuti kelas")}</h2>
             <p className="mt-4 max-w-[26rem] text-left text-base/6">{t("Kami telah menyediakan platform pelatihan secara daring agar anda dapat belajar melalui website")}</p>
-            <p className="mt-4 max-w-[26rem] text-left text-base/6">
-              <button className="bg-brand-500 text-white">{t("Daftar sekarang")}</button>
-            </p>
+            <div className="mt-4 max-w-[26rem] text-left text-base/6">
+              <Link to="/belajar/project" className="bg-brand-500 p-2 rounded-xl text-white">
+                {t("Join Kelas!")}
+              </Link>
+            </div>
           </div>
         </WobbleCard>
       </div>

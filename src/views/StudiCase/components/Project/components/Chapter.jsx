@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useEffect } from "react";
 import { GrLinkNext } from "react-icons/gr";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -6,22 +7,38 @@ import DiscordImage from "@/assets/tech/discord.png";
 import DiscussionImage from "@/assets/tech/discussion.png";
 import DiscussionDarkImage from "@/assets/tech/discussionDark.png";
 import useDarkMode from "@/hooks/useDarkMode";
-import { handleGetChapterById } from "@/api/Project/ProjectApi";
+import { handleGetProjectDetail, handleGetChapterById } from "@/api/Project/ProjectApi";
+import { updateChapterProgress } from "@/api/Project/ChapterApi";
+import { handleCreateCertificate } from "@/api/Certificate/CertificateApi";
+import { useCheckSession } from "@/api/Auth/CheckSession";
 import { useParams, Link } from "react-router-dom";
 import ErrorServer from "@/components/ErrorServer";
 import Loading from "@/components/Loading";
 import { calculateChapterProgress } from "@/utils/calculateProgress";
 import useChapterProject from "@/hooks/useChapterProject";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Chapter = () => {
-  const { chapterId } = useParams();
+  const { projectId, chapterId } = useParams();
+  const navigate = useNavigate();
   const { darkMode } = useDarkMode();
   const { dataChapters } = useChapterProject();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   console.log("dataChapters", dataChapters);
+
+  // GET SESSION
+  const {
+    isLoading: isLoadingSession,
+    error: errorSession,
+    data: dataSession,
+  } = useQuery({
+    queryKey: ["getSession"],
+    queryFn: useCheckSession,
+  });
 
   const {
     error: errorChapterDetailById,
@@ -33,24 +50,80 @@ const Chapter = () => {
     enabled: !!chapterId,
   });
 
+  // GET PROJECT DETAILS
+  const {
+    error: errorProjectDetail,
+    isPending: isPendingProjectDetail,
+    data: dataProjectDetails,
+  } = useQuery({
+    queryKey: ["getProjectDetail"],
+    queryFn: () => handleGetProjectDetail(projectId),
+    enabled: !!projectId,
+  });
+
+  console.log("data Project Detail", dataProjectDetails);
+
   useEffect(() => {
     queryClient.invalidateQueries(["getProjectDetailById"]);
   }, [chapterId]);
 
-  if (errorChapterDetailById) {
+  if (errorSession || errorChapterDetailById || errorProjectDetail) {
     return <ErrorServer />;
   }
 
-  if (isPendingChapterDetailById) {
+  if (isLoadingSession || isPendingChapterDetailById || isPendingProjectDetail) {
     return <Loading />;
   }
 
   console.log("dataChapters", dataChapters);
 
   const progress = calculateChapterProgress(dataChapters);
-  console.log("progress", progress);
 
   console.log("dataChapterDetailById", dataChapterDetailById);
+
+  const findNextChapterId = () => {
+    if (!dataChapters || dataChapters.length === 0) return null;
+    // Flatten all chapter details into a single array
+    const allChapterDetails = dataChapters.flatMap((chapterProject) => chapterProject.chapter_detail);
+    // Sort the chapter details by their IDs to maintain order
+    allChapterDetails.sort((a, b) => a.id - b.id);
+    // Find the current chapter's index
+    const currentIndex = allChapterDetails.findIndex((detail) => detail.id === parseInt(chapterId, 10));
+    // Determine the next chapter
+    const nextChapter = allChapterDetails[currentIndex + 1];
+    // Return the next chapter ID or null if it doesn't exist
+    return nextChapter ? nextChapter.id : null;
+  };
+
+  const nextChapterId = findNextChapterId();
+
+  const handleNextChapter = async () => {
+    try {
+      console.log("next Chapter path", `/belajar/project/${projectId}/chapter/${nextChapterId}`);
+      if (nextChapterId) {
+        // Update progress in Supabase
+        await updateChapterProgress(projectId, chapterId);
+        navigate(`/belajar/project/${projectId}/chapter/${nextChapterId}`);
+      } else {
+        // Calculate certificate validity end date (3 years from now)
+        const expirationDate = dayjs().add(3, "year").format("YYYY-MM-DD"); // 3 years from now
+        const payload = {
+          project_id: projectId,
+          certificate_name: dataProjectDetails?.project_name,
+          user_id: dataSession?.session?.user?.id,
+          certificate_valid: expirationDate,
+        };
+        await handleCreateCertificate(payload);
+        navigate("/profile");
+        toast.success("Certificate created successfully");
+        // Generate certificate function here
+        console.log("Generate certificate");
+        // Add your certificate generation logic here
+      }
+    } catch (error) {
+      console.error("Error updating progress:", error);
+    }
+  };
 
   return (
     <div className="w-[100vw] bg-gray-200 dark:bg-background-900 px-4 h-full py-6">
@@ -71,9 +144,15 @@ const Chapter = () => {
             </p>
           </div>
           <div className="flex items-center">
-            <button className="flex gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-              {t("Selesaikan dan lanjutkan")}
-              <GrLinkNext className="mt-1.5" />
+            <button className="flex gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={handleNextChapter}>
+              {nextChapterId ? (
+                <>
+                  {t("Selesaikan dan lanjutkan")}
+                  <GrLinkNext className="mt-1.5" />
+                </>
+              ) : (
+                t("Selesaikan")
+              )}
             </button>
           </div>
         </div>

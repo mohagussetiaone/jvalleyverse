@@ -8,13 +8,11 @@ const LabelInput = ({
   placeholder = "Add placeholder",
   classLabel = "form-label",
   className = "",
-  classGroup = "",
   register,
   name,
   readonly,
   value,
   error,
-  icon,
   disabled,
   id,
   horizontal,
@@ -24,8 +22,6 @@ const LabelInput = ({
   description,
   hasicon,
   onChange,
-  options,
-  onFocus,
   defaultValue,
   required,
   optional,
@@ -83,7 +79,7 @@ const LabelInput = ({
         {suffix && <span className="absolute inset-y-0 right-0 flex items-center text-sm pr-3 text-gray-500">{suffix}</span>}
         <div className="flex text-xl absolute right-2 top-2">
           {hasicon && type === "password" && (
-            <span className="cursor-pointer text-gray-700" onClick={handleOpen}>
+            <span className="cursor-pointer text-gray-700 dark:text-neutral-200" onClick={handleOpen}>
               {open ? <IoMdEye /> : <IoMdEyeOff />}
             </span>
           )}

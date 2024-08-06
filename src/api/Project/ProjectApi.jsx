@@ -39,7 +39,8 @@ export const handleGetProject = async () => {
 // GET PROJECT BY ID
 export const handleGetProjectDetail = async (id) => {
   try {
-    const { data, error } = await supabase
+    // Fetch project details
+    const { data: projectDetail, error: errorProjectDetail } = await supabase
       .schema("belajar")
       .from("project")
       .select(
@@ -58,11 +59,56 @@ export const handleGetProjectDetail = async (id) => {
         created_at
         `
       )
-      .eq("id", id);
-    if (error) throw new Error(error);
-    return data[0];
+      .eq("id", id)
+      .single();
+
+    if (errorProjectDetail) throw new Error(errorProjectDetail);
+
+    // Fetch chapters for the project
+    const { data: chapterProjects, error: errorChapterProjects } = await supabase
+      .schema("belajar")
+      .from("chapter_project")
+      .select(
+        `
+        id,
+        project_id,
+        chapter_name,
+        created_at,
+        updated_at
+      `
+      )
+      .eq("project_id", projectDetail.id);
+
+    if (errorChapterProjects) throw new Error(errorChapterProjects);
+
+    // Fetch chapter details for each chapter
+    for (const chapter of chapterProjects) {
+      const { data: chapterDetails, error: errorChapterDetails } = await supabase
+        .schema("belajar")
+        .from("chapter_detail")
+        .select(
+          `
+          id,
+          chapter_detail_name,
+          youtube_url,
+          progress,
+          created_at,
+          updated_at
+        `
+        )
+        .eq("chapter_id", chapter.id);
+
+      if (errorChapterDetails) throw new Error(errorChapterDetails);
+
+      chapter.chapter_details = chapterDetails;
+    }
+
+    // Combine project detail with chapters and their respective details
+    projectDetail.chapter_projects = chapterProjects;
+
+    return projectDetail;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 };
 

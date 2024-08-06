@@ -7,7 +7,7 @@ import { useForm, Controller } from "react-hook-form";
 import { handleGetProject } from "@/api/Project/ProjectApi";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import makeAnimated from "react-select/animated";
 import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
@@ -155,14 +155,14 @@ const Question = () => {
               name="tags"
               control={control}
               render={({ field }) => (
-                <Select
+                <CreatableSelect
+                  isMulti
                   {...field}
                   closeMenuOnSelect={false}
                   components={animatedComponents}
                   className="text-sm my-react-select-container"
                   classNamePrefix="my-react-select"
                   placeholder="Pilih Tag"
-                  isMulti
                   options={optionTags}
                   onChange={(selectedOptions) => {
                     setValue("tags", selectedOptions);

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import ErrorServer from "@/components/ErrorServer";
 import YoutubeImage from "@/assets/tech/youtube.png";
 import GithubImage from "@/assets/tech/githubDark.png";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { handleGetProjectDetail } from "@/api/Project/ProjectApi";
-import ErrorServer from "@/components/ErrorServer";
-import { useTranslation } from "react-i18next";
 import { useCheckSession } from "@/api/Auth/CheckSession";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { handleGetProjectDetail } from "@/api/Project/ProjectApi";
 import { handleAddEnrollments } from "@/api/Enrollments/EnrollmentProject";
 import DetailCardProductSkeleton from "@/components/loading/DetailCardProductSkeleton";
 
@@ -37,7 +37,7 @@ const ProjectDetail = () => {
     enabled: !!projectId,
   });
 
-  console.log("dataProjectDetails", dataProjectDetails);
+  console.log("data Project Detail", dataProjectDetails);
 
   useEffect(() => {
     if (projectId) {
@@ -49,18 +49,20 @@ const ProjectDetail = () => {
     <ErrorServer />;
   }
 
-  if (isPendingProjectDetail) {
+  if (isPendingProjectDetail || isLoadingSession) {
     return <DetailCardProductSkeleton />;
   }
 
-  const handleStarter = async (id) => {
+  const handleStarter = async () => {
     try {
-      navigate(`/belajar/project/${projectId}/chapter/16`);
+      const firstChapterDetail = dataProjectDetails.chapter_projects[0].chapter_details[0];
+      const chapterId = firstChapterDetail.id;
+      navigate(`/belajar/project/${projectId}/chapter/${chapterId}`);
       if (dataSession?.session === null) {
         return;
       }
       const response = await handleAddEnrollments({
-        project_id: id,
+        project_id: projectId,
         user_id: dataSession?.session?.user?.id,
       });
       return response;
@@ -86,7 +88,7 @@ const ProjectDetail = () => {
                 <div className="flex flex-col text-center gap-2 dark:text-neutral-200">
                   <h4 className="text-3xl font-bold">{t("Siap untuk memulai professional?")}</h4>
                   <p className="">{t("Lacak progres Anda, tonton dengan cermat, memulai belajar dengan mudah")}</p>
-                  <button className="text-white mt-4" onClick={() => handleStarter(dataProjectDetails?.id)}>
+                  <button className="text-white mt-4" onClick={handleStarter}>
                     {t("Mulai Sekarang")}
                   </button>
                 </div>

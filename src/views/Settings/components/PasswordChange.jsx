@@ -28,7 +28,7 @@ const PasswordChange = ({ userProfile }) => {
       toast.error("Password does not match");
       return;
     }
-    const requestPromise = new Promise(async (resolve, reject) => {
+    const requestPromise = new Promise((resolve, reject) => {
       try {
         let payload = {
           password: values.password,
@@ -77,10 +77,10 @@ const PasswordChange = ({ userProfile }) => {
           </div>
           <div className="w-full flex gap-4 mt-2">
             <div className="w-1/2">
-              <LabelInput label="Password" type="password" id="password" name="password" placeholder="••••••••" error={errors.password} register={register} required />
+              <LabelInput label="Password" type="password" id="password" name="password" placeholder="••••••••" error={errors.password} register={register} required hasicon />
             </div>
             <div className="w-1/2">
-              <LabelInput label="Konfirmasi Password" type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" error={errors.confirm_password} register={register} required />
+              <LabelInput label="Konfirmasi Password" type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" error={errors.confirm_password} register={register} required hasicon />
             </div>
           </div>
         </div>
