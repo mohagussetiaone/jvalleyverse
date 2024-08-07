@@ -1,135 +1,91 @@
 import { useTranslation } from "react-i18next";
+import Testimonial1 from "@/assets/testimonial/mohagus.jpeg";
+import Testimonial2 from "@/assets/testimonial/nursholeh.jpeg";
+import Testimonial3 from "@/assets/testimonial/husnul.jpeg";
+
+const testimonials = [
+  {
+    name: "Moh Agus Setiawan",
+    position: "Frontend Developer at PT Remala Abadi Tbk",
+    image: Testimonial1,
+    quote: "Dukungan Komunitas Platform ini menyediakan forum diskusi dan komunitas online aktif di mana peserta dapat bertukar pikiran, bertanya, dan mendapatkan dukungan dari sesama pelajar serta instruktur.",
+    link: "https://twitter.com/kanyewest",
+  },
+
+  {
+    name: "Husnul Khatimah",
+    position: "UI UX Designer PT Solusi Aplikasi Andalan Semesta",
+    image: Testimonial3,
+    quote: "Antarmuka platform Jvalleyverse sangat ramah pengguna, membuat saya mudah mengakses semua materi kursus. Kursus ini sangat membantu dalam meningkatkan keterampilan desain saya.",
+    link: "https://twitter.com/tim_cook",
+  },
+  {
+    name: "Felisha Putri",
+    position: "Software Engineer",
+    image: "https://images.unsplash.com/photo-1541823709867-1b206113eafd?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    quote: "Jvalleyverse menawarkan kursus yang sangat relevan dengan kebutuhan industri saat ini. Setiap modul disajikan dengan sangat detail dan dilengkapi dengan contoh-contoh nyata yang memudahkan pemahaman",
+    link: "https://twitter.com/paraga",
+  },
+  {
+    name: "Nur Muhammad Sholeh",
+    position: "Frontend Engineer",
+    image: Testimonial2,
+    quote: "Jvalleyverse benar-benar memberikan saya pengetahuan yang mendalam dan relevan.",
+    link: "https://twitter.com/tim_cook",
+  },
+  {
+    name: "Satya Syauqi",
+    position: "Pelajar",
+    image: "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    quote: "Dengan dukungan komunitas yang aktif, saya dapat berdiskusi dan bertukar pikiran dengan sesama pelajar dan instruktur. Ini sangat membantu dalam memperdalam pemahaman saya tentang topik yang dipelajari",
+    link: "https://twitter.com/satyanadella",
+  },
+  {
+    name: "Yoga Saputra",
+    position: "Backend Engineer",
+    image: "https://pbs.twimg.com/profile_images/516916920482672641/3jCeLgFb_400x400.jpeg",
+    quote: "Jvalleyverse menyediakan akses ke berbagai sumber daya tambahan yang sangat berguna. Ini sangat membantu dalam memperdalam pemahaman saya tentang topik yang dipelajari",
+    link: "https://twitter.com/dan_schulman",
+  },
+];
 
 const Testimonial = () => {
   const { t } = useTranslation();
-  return (
-    <>
-      <section id="testimonies" className="py-20 bg-whiteSmoke dark:bg-gradient-to-bl from-black via-background-500 to-black">
-        <div className="max-w-6xl mx-auto">
-          <div className="transition duration-500 ease-in-out transform scale-100 translate-x-0 translate-y-0 opacity-100 text-center px-2">
-            <div className="mb-12 space-y-5 md:mb-16 md:text-center text-black dark:text-neutral-200">
-              <h1 className="mb-5 text-3xl font-semibold md:text-center md:text-4xl">{t("Testimoni sahabat Jvalleyverse")}</h1>
-              <p className="text-md md:text-center md:text-2xl">{t("Bagaimana mengulas dan memberi rating kepada kami")}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 px-2 md:px-0">
-            <ul className="space-y-8">
-              <li className="text-sm leading-6">
-                <div className="relative group">
-                  <div className="absolute transition rounded-lg opacity-25 -inset-1 dark:bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
-                  <a href="https://twitter.com/kanyewest" className="cursor-pointer">
-                    <div className="relative p-6 space-y-6 leading-none rounded-lg bg-white dark:bg-slate-800 ring-1 ring-gray-900/5">
-                      <div className="flex items-center space-x-4">
-                        <img src="https://pbs.twimg.com/profile_images/1276461929934942210/cqNhNk6v_400x400.jpg" className="w-12 h-12 bg-center bg-cover border rounded-full" alt="Kanye West" />
-                        <div className="text-black dark:text-neutral-200">
-                          <h3 className="text-lg font-semibold">Kanye West</h3>
-                          <p className="text-md">Rapper &amp; Entrepreneur</p>
-                        </div>
-                      </div>
-                      <p className="leading-normal text-black dark:text-neutral-200 text-md">Find God.</p>
-                    </div>
-                  </a>
-                </div>
-              </li>
-              <li className="text-sm leading-6">
-                <div className="relative group">
-                  <div className="absolute transition rounded-lg opacity-25 -inset-1 dark:bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
-                  <a href="https://twitter.com/tim_cook" className="cursor-pointer">
-                    <div className="relative p-6 space-y-6 leading-none rounded-lg bg-white dark:bg-slate-800 ring-1 ring-gray-900/5">
-                      <div className="flex items-center space-x-4">
-                        <img src="https://pbs.twimg.com/profile_images/1535420431766671360/Pwq-1eJc_400x400.jpg" className="w-12 h-12 bg-center bg-cover border rounded-full" alt="Tim Cook" />
-                        <div className="text-black dark:text-neutral-200">
-                          <h3 className="text-lg font-semibold">Tim Cook</h3>
-                          <p className="text-md">CEO of Apple</p>
-                        </div>
-                      </div>
-                      <p className="leading-normal text-black dark:text-neutral-200  text-md">Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum.</p>
-                    </div>
-                  </a>
-                </div>
-              </li>
-            </ul>
 
-            <ul className="hidden space-y-8 sm:block">
-              <li className="text-sm leading-6">
-                <div className="relative group">
-                  <div className="absolute transition rounded-lg opacity-25 -inset-1 dark:bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
-                  <a href="https://twitter.com/paraga" className="cursor-pointer">
-                    <div className="relative p-6 space-y-6 leading-none rounded-lg bg-white dark:bg-slate-800 ring-1 ring-gray-900/5">
-                      <div className="flex items-center space-x-4">
-                        <img src="https://pbs.twimg.com/profile_images/1375285353146327052/y6jeByyD_400x400.jpg" className="w-12 h-12 bg-center bg-cover border rounded-full" alt="Parag Agrawal" />
-                        <div className="text-black dark:text-neutral-200">
-                          <h3 className="text-lg font-semibold">Parag Agrawal</h3>
-                          <p className="text-md">CEO of Twitter</p>
-                        </div>
-                      </div>
-                      <p className="leading-normal text-black dark:text-neutral-200  text-md">
-                        Enim neque volutpat ac tincidunt vitae semper. Mattis aliquam faucibus purus in massa tempor. Neque vitae tempus quam pellentesque nec. Turpis cursus in hac habitasse platea dictumst.
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </li>
-              <li className="text-sm leading-6">
-                <div className="relative group">
-                  <div className="absolute transition rounded-lg opacity-25 -inset-1 dark:bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
-                  <a href="https://twitter.com/tim_cook" className="cursor-pointer">
-                    <div className="relative p-6 space-y-6 leading-none rounded-lg bg-white dark:bg-slate-800 ring-1 ring-gray-900/5">
-                      <div className="flex items-center space-x-4">
-                        <img src="https://pbs.twimg.com/profile_images/1535420431766671360/Pwq-1eJc_400x400.jpg" className="w-12 h-12 bg-center bg-cover border rounded-full" alt="Tim Cook" />
-                        <div className="text-black dark:text-neutral-200">
-                          <h3 className="text-lg font-semibold">Tim Cook</h3>
-                          <p className="text-md">CEO of Apple</p>
-                        </div>
-                      </div>
-                      <p className="leading-normal text-black dark:text-neutral-200  text-md">Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum.</p>
-                    </div>
-                  </a>
-                </div>
-              </li>
-            </ul>
-            <ul className="hidden space-y-8 lg:block">
-              <li className="text-sm leading-6">
-                <div className="relative group">
-                  <div className="absolute transition rounded-lg opacity-25 -inset-1 dark:bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
-                  <a href="https://twitter.com/satyanadella" className="cursor-pointer">
-                    <div className="relative p-6 space-y-6 leading-none rounded-lg bg-white dark:bg-slate-800 ring-1 ring-gray-900/5">
-                      <div className="flex items-center space-x-4">
-                        <img src="https://pbs.twimg.com/profile_images/1221837516816306177/_Ld4un5A_400x400.jpg" className="w-12 h-12 bg-center bg-cover border rounded-full" alt="Satya Nadella" />
-                        <div className="text-black dark:text-neutral-200">
-                          <h3 className="text-lg font-semibold">Satya Nadella</h3>
-                          <p className="text-md">CEO of Microsoft</p>
-                        </div>
-                      </div>
-                      <p className="leading-normal text-black dark:text-neutral-200  text-md">
-                        Tortor dignissim convallis aenean et tortor at. At ultrices mi tempus imperdiet nulla malesuada. Id cursus metus aliquam eleifend mi. Quis ipsum suspendisse ultrices gravida dictum fusce ut.
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </li>
-              <li className="text-sm leading-6">
-                <div className="relative group">
-                  <div className="absolute transition rounded-lg opacity-25 -inset-1 dark:bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
-                  <a href="https://twitter.com/dan_schulman" className="cursor-pointer">
-                    <div className="relative p-6 space-y-6 leading-none rounded-lg bg-white dark:bg-slate-800 ring-1 ring-gray-900/5">
-                      <div className="flex items-center space-x-4">
-                        <img src="https://pbs.twimg.com/profile_images/516916920482672641/3jCeLgFb_400x400.jpeg" className="w-12 h-12 bg-center bg-cover border rounded-full" alt="Dan Schulman" />
-                        <div className="text-black dark:text-neutral-200">
-                          <h3 className="text-lg font-semibold">Dan Schulman</h3>
-                          <p className="text-md">CEO of PayPal</p>
-                        </div>
-                      </div>
-                      <p className="leading-normal text-black dark:text-neutral-200 text-md">Quam pellentesque nec nam aliquam sem et tortor consequat id. Enim sit amet venenatis urna cursus.</p>
-                    </div>
-                  </a>
-                </div>
-              </li>
-            </ul>
+  return (
+    <section id="testimonies" className="py-20 bg-whiteSmoke dark:bg-gradient-to-bl from-black via-background-500 to-black">
+      <div className="max-w-6xl mx-auto">
+        <div className="transition duration-500 ease-in-out transform scale-100 translate-x-0 translate-y-0 opacity-100 text-center px-2">
+          <div className="mb-12 space-y-5 md:mb-16 md:text-center text-black dark:text-neutral-200">
+            <h1 className="mb-5 text-3xl font-semibold md:text-center md:text-4xl">{t("Testimoni sahabat Jvalleyverse")}</h1>
+            <p className="text-md md:text-center md:text-2xl">{t("Bagaimana mengulas dan memberi rating kepada kami")}</p>
           </div>
         </div>
-      </section>
-    </>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 px-2 md:px-0">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className={`space-y-8 ${index >= 2 ? "hidden sm:block" : ""} ${index >= 4 ? "hidden lg:block" : ""}`}>
+              <div className="text-sm leading-6">
+                <div className="relative group">
+                  <div className="absolute transition rounded-lg opacity-25 -inset-1 dark:bg-gradient-to-r from-purple-600 to-pink-600 blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
+                  <a href={testimonial.link} className="cursor-pointer">
+                    <div className="relative p-6 space-y-6 leading-none rounded-lg bg-white dark:bg-slate-800 ring-1 ring-gray-900/5">
+                      <div className="flex items-center space-x-4">
+                        <img src={testimonial.image} className="w-12 h-12 bg-center bg-cover border rounded-full" alt={testimonial.name} />
+                        <div className="text-black dark:text-neutral-200">
+                          <h3 className="text-lg font-semibold">{testimonial.name}</h3>
+                          <p className="text-sm">{testimonial.position}</p>
+                        </div>
+                      </div>
+                      <p className="leading-normal text-black dark:text-neutral-200 text-md">{testimonial.quote}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

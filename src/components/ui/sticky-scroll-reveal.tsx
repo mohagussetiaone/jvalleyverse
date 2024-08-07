@@ -38,10 +38,10 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  const backgroundColorsDark = ["var(--slate-900)", "var(--black)", "var(--neutral-900)"];
+  const backgroundColorsDark = ["var(--background-900)", "var(--background-900)", "var(--background-900)"];
   const backgroundColorsLight = ["var(--white)", "var(--gray-100)", "var(--gray-200)"];
   const linearGradients = [
-    "linear-gradient(to bottom right, var(--cyan-500), var(--emerald-500))",
+    "linear-gradient(to bottom right, var(--brand-500), var(--brand3-500))",
     "linear-gradient(to bottom right, var(--pink-500), var(--indigo-500))",
     "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
   ];
@@ -53,7 +53,7 @@ export const StickyScroll = ({
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="w-screen md:px-52 h-[30rem] overflow-y-auto flex flex-col md:flex-row relative space-x-10"
+      className="w-screen md:px-44 h-[30rem] overflow-y-auto flex flex-col md:flex-row relative space-x-10"
       ref={ref}
     >
       <div className="div relative flex items-start px-4">
@@ -91,7 +91,7 @@ export const StickyScroll = ({
         animate={{
           background: linearGradients[activeCard % linearGradients.length],
         }}
-        className={cn("hidden lg:block h-72 w-96 rounded-md bg-white sticky top-16 overflow-hidden", contentClassName)}
+        className={cn("hidden lg:block h-72 max-w-full rounded-md bg-white sticky top-16 overflow-hidden", contentClassName)}
       >
         {content[activeCard].content ?? null}
       </motion.div>

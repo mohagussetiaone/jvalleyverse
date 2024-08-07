@@ -18,9 +18,9 @@ export function MetodePembelajaran() {
         <WobbleCard containerClassName="col-span-1 lg:col-span-2 h-full bg-gray-400 dark:bg-brand-500 min-h-[150px] lg:min-h-[250px]" className="cursor-pointer">
           <div className="flex gap-4 flex-col md:flex-row">
             <div className="max-w-xs text-black dark:text-white">
-              <h2 className="text-left text-balance text-xl lg:text-3xl font-semibold tracking-[-0.015em]">{t("9 Batch sudah terselenggara")}</h2>
-              <p className="mt-4 text-left  text-base/6">{t("Lebih dari 100 orang telah mengikuti kelas Batch 9")}</p>
-              <p className="mt-4 text-left underline text-base/6">{t("Anda juga dapat mengikuti kelas!")}</p>
+              <h2 className="text-left text-balance text-xl lg:text-3xl font-semibold tracking-[-0.015em]">{t("12 Batch sudah terselenggara")}</h2>
+              <p className="mt-4 text-left  text-base/6">{t("Lebih dari 1000+ orang telah mengikuti hingga Batch 12")}</p>
+              <p className="mt-4 text-left underline text-base/6">{t("Sekarang waktunya anda !")}</p>
             </div>
             <div>
               <img src={OnlineClass} alt="jvalleyclass.jpg" className="md:max-w-sm" />
