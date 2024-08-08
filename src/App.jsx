@@ -2,8 +2,8 @@ import "./App.css";
 import { authLoader } from "./lib/authValidation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Home from "@/views/Home";
-import About from "./views/About/components/AboutCard";
+import Home from "./views/Home";
+import About from "./views/About";
 import ShowCase from "./views/ShowCase";
 import AddShowCase from "./views/ShowCase/components/AddShowCase";
 import ShowCaseDetail from "./views/ShowCase/components/ShowCaseDetail";
@@ -125,13 +125,13 @@ const router = createBrowserRouter([
     loader: authLoader,
     element: <LayoutCourse />,
     children: [
-      {
-        path: "/testimoni",
-        // loader: authLoader,
-        Component() {
-          return <About />;
-        },
-      },
+      // {
+      //   path: "/testimoni",
+      //   // loader: authLoader,
+      //   Component() {
+      //     return <About />;
+      //   },
+      // },
       {
         path: "/belajar/project",
         loader: authLoader,

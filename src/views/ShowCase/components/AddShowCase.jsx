@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import LabelInput from "@/components/input/LabelInput";
 import SelectHook from "@/components/input/Select";
@@ -202,97 +203,122 @@ const AddShowCase = () => {
   };
 
   return (
-    <div className="w-full p-6 min-h-screen dark:bg-gradient-to-r from-black via-background-900 to-background-600">
-      <div className="max-w-4xl bg-white dark:bg-background-900 p-8 mx-auto rounded-xl">
-        <div className="flex justify-center my-2">
-          <h3 className="text-2xl dark:text-neutral-200 font-bold">Buat Show Case anda</h3>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-2 mb-2">
-            <label htmlFor="show_case_img_url" className="text-black dark:text-neutral-200 font-medium text-sm">
-              Show case image <span className="text-red-700">*</span>
-            </label>
-            <input id="show_case_img_url" name="show_case_img_url" type="file" accept="image/*" onChange={handleImageChange} className="file-input file-input-sm file-input-ghost w-full max-w-xs" />
-            {imagePreview && (
-              <div className="relative bg-black-200 rounded-e-lg">
-                <img src={imagePreview} alt="Image Preview" className="rounded w-[200px] h-auto" />
-                <button type="button" onClick={handleImageReset} className="absolute top-0 right-0 m-2 p-1 bg-red-500 text-white rounded-full">
-                  <IoMdClose />
-                </button>
-              </div>
-            )}
+    <>
+      <Helmet>
+        <title>Jvalleyverse - Tambah show case</title>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/logosmalldark.png" />
+        <meta data-rh="true" name="robots" content="index,follow" />
+        <meta data-rh="true" name="googlebot" content="index,follow" />
+        <meta name="google-site-verification" content="rfHxt49m6Pm8OYRF_sbphjX7fCLLlfY_RibGFeNQuzs" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="title" content="Jvalleyverse - Belajar dan Berkembang Bersama" />
+        <meta name="description" content="Bergabunglah dengan Jvalleyverse komunitas IT gratis untuk belajar, berbagi pengetahuan, dan berkembang bersama para profesional dan penggemar IT dari berbagai latar belakang." />
+        <meta name="keywords" content="jvalleyverse, jvalley, komunitas IT, IT gratis, belajar IT, forum IT, dukungan IT, diskusi IT, pengembangan IT, jaringan IT, teknologi informasi, pemrograman" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Jvalleyverse" />
+        <meta property="og:title" content="Jvalleyverse - Belajar dan Berkembang Bersama" />
+        <meta property="og:description" content="Bergabunglah dengan jvalleyverse komunitas IT gratis untuk belajar, berbagi pengetahuan, dan berkembang bersama para profesional dan penggemar IT dari berbagai latar belakang." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jvalleyverse.vercel.app/" />
+        <meta property="og:image" content="/logosmalldark.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Jvalleyverse - Belajar dan Berkembang Bersama" />
+        <meta name="twitter:description" content="Bergabunglah dengan komunitas IT gratis untuk belajar, berbagi pengetahuan, dan berkembang bersama para profesional dan penggemar IT dari berbagai latar belakang." />
+        <meta name="twitter:image" content="/logosmalldark.png" />
+      </Helmet>
+      <div className="w-full p-6 min-h-screen dark:bg-gradient-to-r from-black via-background-900 to-background-600">
+        <div className="max-w-4xl bg-white dark:bg-background-900 p-8 mx-auto rounded-xl">
+          <div className="flex justify-center my-2">
+            <h3 className="text-2xl dark:text-neutral-200 font-bold">Buat Show Case anda</h3>
           </div>
-          <div className="flex flex-col dark:text-neutral-200 mb-3">
-            <LabelInput label="Nama" type="text" id="name" name="name" placeholder="Laundry App" error={errors.name} register={register} required />
-          </div>
-          <div className="mb-3">
-            <SelectHook
-              label="Kategory Show Case"
-              name="category_show_case_id"
-              options={showCaseCategoryOption}
-              value={register("category_show_case_id").value}
-              placeholder="Pilih Kategory Show case"
-              onChange={handleChangeSelect}
-              register={register}
-              error={errors.category_show_case_id}
-              required
-            />
-          </div>
-          <div className="flex flex-col dark:text-neutral-200 mb-3">
-            <TextInput
-              label="Deskripsi"
-              type="text"
-              id="description"
-              name="description"
-              placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-              error={errors.description}
-              register={register}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <SelectHook label="Project" name="project_id" options={projectOption} value={register("project_id").value} placeholder="Pilih Project" onChange={handleChangeSelect} register={register} error={errors.project_id} />
-          </div>
-          <div className="mb-4">
-            <div className="dark:text-neutral-200 font-medium text-sm my-1">
-              Teknology yang dipakai <span className="text-red-700">*</span>
-            </div>
-            <Controller
-              name="tech"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  className="text-sm my-react-select-container"
-                  classNamePrefix="my-react-select"
-                  placeholder="Pilih teknologi yang dipakai"
-                  isMulti
-                  options={optionTags}
-                  onChange={(selectedOptions) => {
-                    setValue("tech", selectedOptions);
-                    return selectedOptions;
-                  }}
-                />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-2 mb-2">
+              <label htmlFor="show_case_img_url" className="text-black dark:text-neutral-200 font-medium text-sm">
+                Show case image <span className="text-red-700">*</span>
+              </label>
+              <input id="show_case_img_url" name="show_case_img_url" type="file" accept="image/*" onChange={handleImageChange} className="file-input file-input-sm file-input-ghost w-full max-w-xs" />
+              {imagePreview && (
+                <div className="relative bg-black-200 rounded-e-lg">
+                  <img src={imagePreview} alt="Image Preview" className="rounded w-[200px] h-auto" />
+                  <button type="button" onClick={handleImageReset} className="absolute top-0 right-0 m-2 p-1 bg-red-500 text-white rounded-full">
+                    <IoMdClose />
+                  </button>
+                </div>
               )}
-            />
-            {errors.tech && <p>{errors.tech.message}</p>}
-          </div>
-          <div className="flex flex-col dark:text-neutral-200 mb-3">
-            <LabelInput label="Url Preview" type="text" id="url_preview" name="url_preview" placeholder="https://example.com" error={errors.url_preview} register={register} required />
-          </div>
-          <div className="flex flex-col dark:text-neutral-200 mb-3">
-            <LabelInput label="Url Github" type="text" id="url_github" name="url_github" placeholder="https://github.com/example" error={errors.url_github} register={register} required />
-          </div>
-          <div className="my-8 flex justify-end">
-            <button type="submit" className=" bg-brand-500 text-white font-semibold py-2 rounded-md">
-              Buat Show Case
-            </button>
-          </div>
-        </form>
+            </div>
+            <div className="flex flex-col dark:text-neutral-200 mb-3">
+              <LabelInput label="Nama" type="text" id="name" name="name" placeholder="Laundry App" error={errors.name} register={register} required />
+            </div>
+            <div className="mb-3">
+              <SelectHook
+                label="Kategory Show Case"
+                name="category_show_case_id"
+                options={showCaseCategoryOption}
+                value={register("category_show_case_id").value}
+                placeholder="Pilih Kategory Show case"
+                onChange={handleChangeSelect}
+                register={register}
+                error={errors.category_show_case_id}
+                required
+              />
+            </div>
+            <div className="flex flex-col dark:text-neutral-200 mb-3">
+              <TextInput
+                label="Deskripsi"
+                type="text"
+                id="description"
+                name="description"
+                placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+                error={errors.description}
+                register={register}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <SelectHook label="Project" name="project_id" options={projectOption} value={register("project_id").value} placeholder="Pilih Project" onChange={handleChangeSelect} register={register} error={errors.project_id} />
+            </div>
+            <div className="mb-4">
+              <div className="dark:text-neutral-200 font-medium text-sm my-1">
+                Teknology yang dipakai <span className="text-red-700">*</span>
+              </div>
+              <Controller
+                name="tech"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    className="text-sm my-react-select-container"
+                    classNamePrefix="my-react-select"
+                    placeholder="Pilih teknologi yang dipakai"
+                    isMulti
+                    options={optionTags}
+                    onChange={(selectedOptions) => {
+                      setValue("tech", selectedOptions);
+                      return selectedOptions;
+                    }}
+                  />
+                )}
+              />
+              {errors.tech && <p>{errors.tech.message}</p>}
+            </div>
+            <div className="flex flex-col dark:text-neutral-200 mb-3">
+              <LabelInput label="Url Preview" type="text" id="url_preview" name="url_preview" placeholder="https://example.com" error={errors.url_preview} register={register} required />
+            </div>
+            <div className="flex flex-col dark:text-neutral-200 mb-3">
+              <LabelInput label="Url Github" type="text" id="url_github" name="url_github" placeholder="https://github.com/example" error={errors.url_github} register={register} required />
+            </div>
+            <div className="my-8 flex justify-end">
+              <button type="submit" className=" bg-brand-500 text-white font-semibold py-2 rounded-md">
+                Buat Show Case
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

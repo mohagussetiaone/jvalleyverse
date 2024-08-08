@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App.jsx";
+import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
 import "@/config/i18n.js";
 
@@ -10,6 +11,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <QueryClientProvider client={queryClient}>
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </QueryClientProvider>
 );
