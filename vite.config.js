@@ -19,6 +19,12 @@ export default defineConfig({
       "@public": path.resolve(__dirname, "./public"),
     },
   },
+  server: {
+    mimeTypes: {
+      "text/xml": ["xml"],
+      "application/xml": ["xml"],
+    },
+  },
   plugins: [react()],
   // server: {
   //   host: "0.0.0.0",
