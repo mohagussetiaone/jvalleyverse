@@ -17,7 +17,7 @@ const links = [
 const sitemap = new SitemapStream({ hostname: "https://jvalleyverse.vercel.app/" });
 
 streamToPromise(sitemap)
-  .then((data) => createWriteStream("./public/sitemap.xml").write(data))
+  .then((data) => createWriteStream("./public/sitemaps.xml").write(data))
   .catch((err) => console.error(err));
 
 links.forEach((link) => sitemap.write(link));
