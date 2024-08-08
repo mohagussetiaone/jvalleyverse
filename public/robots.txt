@@ -5,4 +5,4 @@ Disallow: /search/
 
 Allow: /
 
-Sitemap: https://jvalleyverse.vercel.app/sitemaps.xml
+Sitemap: https://jvalleyverse.vercel.app/sitemap.xml
