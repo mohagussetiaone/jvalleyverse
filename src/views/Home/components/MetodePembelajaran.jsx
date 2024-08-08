@@ -10,7 +10,7 @@ export function MetodePembelajaran() {
       <div className="w-full text-black dark:text-neutral-200 flex flex-col items-center justify-center overflow-hidden rounded-md">
         <h1 className="md:text-3xl text-xl lg:text-4xl font-bold text-center relative z-20">{t("Mengapa bergabung bersama kami")}</h1>
         <div className="flex flex-col items-center justify-center text-base md:text-lg md:py-6 p-4">
-          <h4>{t("Saatnya belajar dengan praktisi yang berpengalaman,")}</h4>
+          <h3>{t("Saatnya belajar dengan praktisi yang berpengalaman,")}</h3>
           <h4 className="hidden md:block">{t("Tak hanya mendapatkan pembelajaran, juga dapat bertukar kreativitas untuk membangun kredibilitas komunitas Jvalleyverse")}</h4>
         </div>
       </div>

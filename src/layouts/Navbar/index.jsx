@@ -164,7 +164,7 @@ function Navbar(className) {
                 </button>
               </div>
               {sessionData && sessionData.session === null && (
-                <div className="gap-2 hidden md:flex">
+                <div className="gap-4 hidden md:flex">
                   <Link to="/signin" className=" md:mt-1">
                     <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">{t("Masuk")}</button>
                   </Link>
