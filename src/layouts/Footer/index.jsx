@@ -7,12 +7,12 @@ const Navbar = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-white dark:bg-gradient-to-r from-black via-background-900 to-background-500 pt-4">
+    <div className="bg-white dark:bg-gradient-to-br from-black via-brand2 to-gray-900 pt-4">
       <footer className="relative w-full">
         <div className="w-full px-4 md:px-8 xl:px-10 mx-auto max-w-7xl">
           <div className="grid justify-between grid-cols-1 gap-1 md:gap-2 xl:gap-4 md:grid-cols-2">
             <div className="flex gap-4 my-2 text-start text-black dark:text-white">
-              <img src={JvalleyLogo} alt="Jvalley Logo" className="w-20 md:w-24 h-20 md:h-24 text-start font-sans text-xl antialiased font-semibold tracking-normal text-inherit md:-mt-2" />
+              <img src={JvalleyLogo} className="w-20 md:w-24 h-20 md:h-24 text-start font-sans text-xl antialiased font-semibold tracking-normal text-inherit md:-mt-2" />
               <div className="flex flex-col">
                 <p>Jl Menteng Dalam RT015/011</p>
                 <p>Kel Menteng Dalam Kec Tebet</p>
@@ -20,8 +20,8 @@ const Navbar = () => {
               </div>
             </div>
             <div className="grid justify-between grid-cols-2 gap-0">
-              <p className="block mb-3 font-sans text-lg text-black dark:text-neutral-200 font-medium leading-normal">{t("Komunitas")}</p>
               <ul className="text-start">
+                <p className="block mb-3 font-sans text-lg text-black dark:text-neutral-200 font-medium leading-normal">{t("Komunitas")}</p>
                 <li>
                   <Link to="/tentang" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
                     {t("Tentang kami")}
@@ -44,8 +44,8 @@ const Navbar = () => {
                   </Link>
                 </li>
               </ul>
-              <p className="block mb-3 font-sans text-lg antialiased font-medium leading-normal text-black dark:text-neutral-200">{t("Kelas Online")}</p>
               <ul className="text-start">
+                <p className="block mb-3 font-sans text-lg antialiased font-medium leading-normal text-black dark:text-neutral-200">{t("Kelas Online")}</p>
                 <li>
                   <Link to="/signin" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
                     {t("Pendaftaran")}

@@ -113,12 +113,10 @@ const Chapter = () => {
           user_id: dataSession?.session?.user?.id,
           certificate_valid: expirationDate,
         };
+        await updateChapterProgress(projectId, chapterId);
         await handleCreateCertificate(payload);
         navigate("/profile");
-        toast.success("Certificate created successfully");
-        // Generate certificate function here
-        console.log("Generate certificate");
-        // Add your certificate generation logic here
+        toast.success("Yeay!, Anda telah menyelesaikan semua materi");
       }
     } catch (error) {
       console.error("Error updating progress:", error);
@@ -130,9 +128,9 @@ const Chapter = () => {
       <div className="flex justify-center md:min-w-[300px] md:h-[100vh] xl:min-w-[400px] md:w-full mb-4 md:mb-4">
         <iframe src={dataChapterDetailById.youtube_url} frameBorder="0" allowFullScreen className="w-full h-full"></iframe>
       </div>
-      <div className="w-full rounded-lg bg-white dark:bg-black my-6 p-2 md:p-3 xl:p-4">
-        <div className="flex gap-2 justify-between items-center">
-          <div className="flex w-[50%] flex-col gap-2 text-start">
+      <div className="w-full rounded-lg bg-white dark:bg-black my-6 p-4 md:p-3 xl:p-4">
+        <div className="flex flex-col md:flex-row gap-2 justify-between md:items-center">
+          <div className="flex w-full md:w-[50%] flex-col gap-2 text-start">
             <div className="mb-3">
               <h3 className="text-black dark:text-neutral-200 text-2xl">{dataChapterDetailById.chapter_detail_name}</h3>
             </div>
@@ -143,7 +141,7 @@ const Chapter = () => {
               {progress}% {progress === 100 ? "Completed" : "In Progress"}
             </p>
           </div>
-          <div className="flex items-center">
+          <div className="flex justify-end md:items-center">
             <button className="flex gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={handleNextChapter}>
               {nextChapterId ? (
                 <>
@@ -158,15 +156,15 @@ const Chapter = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        <Link to="/belajar/diskusi" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+        <Link to="/belajar/diskusi" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg p-2 md:p-3 cursor-pointer bg-white dark:bg-black">
           <img src={darkMode ? DiscussionDarkImage : DiscussionImage} className="w-14" />
           <p className="text-black dark:text-neutral-200">Diskusi</p>
         </Link>
-        <Link to="https://discord.gg/TxmFR8cK" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+        <Link to="https://discord.gg/TxmFR8cK" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg p-2 md:p-3 cursor-pointer bg-white dark:bg-black">
           <img src={DiscordImage} className="w-14" />
           <p className="text-black dark:text-neutral-200">Discord</p>
         </Link>
-        <Link to="https://t.me/jvalleyverse" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black">
+        <Link to="https://t.me/jvalleyverse" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg p-2 md:p-3 cursor-pointer bg-white dark:bg-black">
           <img src={TelegramImage} className="w-14" />
           <p className="text-black dark:text-neutral-200">Telegram</p>
         </Link>

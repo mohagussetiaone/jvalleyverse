@@ -29,7 +29,6 @@ const Banner = () => {
   ];
 
   const checkSession = useCheckSession();
-
   async function handleBergabung() {
     try {
       const sessionData = await checkSession;
@@ -435,7 +434,7 @@ const Banner = () => {
     <>
       <div className="flex w-screen bg-whiteSmoke dark:bg-gradient-to-br dark:from-black dark:via-background-700 dark:to-black -mt-16">
         <div className="flex w-full md:w-12/12 xl:w-7/12 flex-col items-center justify-center h-[40rem]">
-          <h2 className="text-4xl md:mt-0 text-black dark:text-gray-200">{t("Belajar programming gratis")}</h2>
+          <h3 className="text-3xl md:mt-0 text-black dark:text-gray-200">{t("Belajar programming gratis")}</h3>
           <TypewriterEffectSmooth words={words} />
           <div className="flex flex-col justify-start md:justify-center md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10 md:mt-0">
             <Link to="/tentang" className="w-40 pt-2 text-center h-10 rounded-xl bg-brand-500 hover:bg-brand-600 text-neutral-200 hover:text-white text-sm shadow-xl">

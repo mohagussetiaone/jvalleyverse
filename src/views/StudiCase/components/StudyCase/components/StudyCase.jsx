@@ -70,16 +70,18 @@ const StudyCase = () => {
       <div className="bg-gray-200 dark:bg-background-900 p-3 md:p-6">
         <div className="mb-4">
           <div className="flex justify-between pt-4">
-            <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
-              <MdGridView className="text-gray-800 dark:text-neutral-200 hover:text-black w-8 h-8" />
+            <div className="flex gap-4">
+              <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
+                <MdGridView className="text-gray-800 dark:text-neutral-200 hover:text-black w-8 h-8" />
+              </div>
+              <input
+                type="text"
+                placeholder="Cari studi kasus..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-transparent dark:text-neutral-200"
+              />
             </div>
-            <input
-              type="text"
-              placeholder="Cari studi kasus..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-transparent dark:text-neutral-200"
-            />
             <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer p-2 rounded dark:bg-transparent dark:text-white">
               <option value="Semua">Semua</option>
               <option value="database">Database</option>
@@ -113,7 +115,7 @@ const StudyCase = () => {
                       }`}
                     ></div>
                     <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300">
-                      <div className="h-28 md:h-32 xl:h-44 overflow-hidden">
+                      <div className="h-32 sm:h-40 md:h-44 overflow-hidden">
                         <img className="w-full h-full object-cover" src={item.img_url ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.img_url}` : profileDefault} alt={item.title} />
                       </div>
                       <div className="flex flex-col px-2 pt-2">

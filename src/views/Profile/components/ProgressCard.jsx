@@ -87,17 +87,19 @@ const ProgressCard = () => {
               <h3 className="text-2xl text-left text-black dark:text-neutral-200 font-bold">{t("Progress belajar saya")}</h3>
             </div>
             <div className="flex justify-between mb-4 md:mb-0">
-              <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
-                <MdGridView className="text-gray-800 hover:text-black w-8 h-8" />
+              <div className="flex gap-4">
+                <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
+                  <MdGridView className="text-gray-800 hover:text-black w-8 h-8" />
+                </div>
+                <input
+                  type="text"
+                  placeholder={t("Cari progress berjalan...")}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="px-4 py-2 hidden md:block rounded bg-white text-black border border-gray-400 dark:bg-transparent dark:text-neutral-200 mb-6"
+                />
               </div>
-              <input
-                type="text"
-                placeholder={t("Cari progress berjalan...")}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-4 py-2 hidden md:block rounded bg-white text-black border border-gray-400 dark:bg-transparent dark:text-neutral-200 mb-6"
-              />
-              <div>
+              <div className="ml-4 md:ml-0">
                 <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer p-2 rounded dark:bg-transparent dark:text-white">
                   <option value="Semua">{t("Semua")}</option>
                   <option value="figma">Figma</option>
@@ -131,7 +133,7 @@ const ProgressCard = () => {
                       }`}
                     ></div>
                     <div className="relative max-w-[350px] h-auto rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.project_id)}>
-                      <div className="h-28 md:h-32 xl:h-44 overflow-hidden">
+                      <div className="h-32 sm:h-40 md:h-44 overflow-hidden">
                         <img className="w-full h-full object-cover" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.project.project_img_url}`} alt={item.project.project_name} />
                       </div>
                       <div className="flex flex-col px-2 pt-2">

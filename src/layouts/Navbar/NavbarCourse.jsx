@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import logoJv from "@/assets/logo/logojv.png";
 import logoJvDark from "@/assets/logo/logo-dark.png";
-import logoSmallDark from "@/assets/logo/logosmalldark.png";
+// import logoSmallDark from "@/assets/logo/logosmalldark.png";
 import { MdGridView } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { LuMoon, LuSun, LuLogOut } from "react-icons/lu";
@@ -52,10 +52,10 @@ const NavbarCourse = (className) => {
             <Link to="/" className="hidden xl:flex">
               <img src={darkMode ? logoJvDark : logoJv} alt="logoJv.png" className="h-10" />
             </Link>
-            <Link to="/" className="hidden md:flex xl:hidden">
+            {/* <Link to="/" className="hidden md:flex xl:hidden">
               <img src={logoSmallDark} alt="logoJv.png" className="h-10" />
-            </Link>
-            <div className="flex md:hidden">
+            </Link> */}
+            <div className="flex xl:hidden">
               <button className="px-3 bg-white dark:bg-black/70" onClick={() => setShowModalMenu(true)}>
                 <MdGridView className="w-7 h-7 text-black dark:text-neutral-200" />
                 <p className="sr-only">Menu</p>
@@ -148,7 +148,7 @@ const NavbarCourse = (className) => {
               </Link>
             </div>
             <div className="flex gap-3">
-              <Link to="/belajar/project" className="flex md:hidden gap-1.5 mr-1 items-center bg-white dark:bg-black/30 rounded-lg px-2 py-1 text-black dark:text-neutral-200 border border-gray-900">
+              <Link to="/belajar/project" className="flex xl:hidden gap-1.5 mr-1 items-center bg-white dark:bg-black/30 rounded-lg px-2 py-1 text-black dark:text-neutral-200 border border-gray-900">
                 <LuLogOut className="text-black dark:text-neutral-200" />
                 {t("Keluar")}
               </Link>

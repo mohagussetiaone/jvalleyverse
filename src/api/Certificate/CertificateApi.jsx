@@ -105,6 +105,18 @@ export const handleGetCertificateById = async (certificateId) => {
 
 export const handleCreateCertificate = async (payload) => {
   try {
+    // Fetch certificates from 'user' schema based on the 'name' in payload
+    const { data: existingCertificates, error: fetchError } = await supabase.schema("user").from("certificate").select("*").eq("certificate_name", payload.certificate_name);
+    console.log("existingCertificates", existingCertificates);
+
+    if (fetchError) throw new Error(fetchError);
+
+    if (existingCertificates.length > 0) {
+      throw new Error(fetchError);
+    }
+
+    console.log("lanjut");
+
     // Fetch certificates from 'user' schema based on user_id
     const { data: certificates, error: certificateError } = await supabase.schema("user").from("certificate").insert(payload);
 
@@ -112,6 +124,6 @@ export const handleCreateCertificate = async (payload) => {
 
     return certificates;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(error);
   }
 };

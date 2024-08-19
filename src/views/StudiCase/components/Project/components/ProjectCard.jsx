@@ -129,7 +129,7 @@ const ProjectCard = () => {
                       }`}
                     ></div>
                     <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
-                      <div className="h-28 md:h-32 xl:h-44 overflow-hidden">
+                      <div className="h-32 sm:h-40 md:h-44 overflow-hidden">
                         <img className="w-full h-full object-cover" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.project_img_url}`} alt={item.project_name} />
                       </div>
                       <div className="flex flex-col px-2 pt-2">

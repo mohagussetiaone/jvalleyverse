@@ -3,6 +3,7 @@ import { authLoader } from "./lib/authValidation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "./views/Home";
+import Blog from "./views/Blog";
 import About from "./views/About";
 import ShowCase from "./views/ShowCase";
 import AddShowCase from "./views/ShowCase/components/AddShowCase";
@@ -60,6 +61,13 @@ const router = createBrowserRouter([
         loader: authLoader,
         Component() {
           return <Timeline />;
+        },
+      },
+      {
+        path: "/blog",
+        loader: authLoader,
+        Component() {
+          return <Blog />;
         },
       },
       {

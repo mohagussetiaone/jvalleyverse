@@ -11,7 +11,7 @@ import { handleGetShowCaseCategory } from "@/api/ShowCase/ShowCaseCategoryApi";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IoMdClose } from "react-icons/io";
-import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import makeAnimated from "react-select/animated";
 import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
@@ -286,14 +286,14 @@ const AddShowCase = () => {
                 name="tech"
                 control={control}
                 render={({ field }) => (
-                  <Select
+                  <CreatableSelect
                     {...field}
+                    isMulti
                     closeMenuOnSelect={false}
                     components={animatedComponents}
                     className="text-sm my-react-select-container"
                     classNamePrefix="my-react-select"
                     placeholder="Pilih teknologi yang dipakai"
-                    isMulti
                     options={optionTags}
                     onChange={(selectedOptions) => {
                       setValue("tech", selectedOptions);

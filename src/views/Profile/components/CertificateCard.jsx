@@ -70,12 +70,12 @@ const CertificateCard = () => {
             <div className="col-span-12 md:col-span-2 mx-auto">
               <PiCertificateLight className="w-44 h-44 text-black dark:text-neutral-400" />
             </div>
-            <div className="col-span-12 md:col-span-10 gap-1 md:gap-2 xl:gap-4 rounded-b lg:rounded-b-none lg:rounded-r xl:p-4 flex flex-col justify-between leading-normal text-justify">
+            <div className="col-span-12 md:col-span-10 gap-1 md:gap-2 xl:gap-4 rounded-b lg:rounded-b-none lg:rounded-r xl:p-4 flex flex-col justify-between leading-normal text-justify items-center">
               <div className="text-left py-1 text-wrap">
                 <div className="text-left text-gray-900 dark:text-neutral-200 font-bold text-xl mb-2">{certificate.certificate_name}</div>
                 <p className="text-gray-700 dark:text-neutral-200 text-base">{certificate.certificate_description}</p>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-4">
                 <button className="flex bg-white dark:bg-black/20 text-brand-500 border border-brand-500  gap-2" onClick={() => handleClickViewSertificate(certificate.id)}>
                   <LuView size={25} />
                   {t("Lihat Certificate")}

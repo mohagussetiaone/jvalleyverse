@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import { handleGetProjectDetail, handleGetChapterByProjectId } from "@/api/Project/ProjectApi";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import ErrorServer from "@/components/ErrorServer";
-import Loading from "@/components/Loading";
 import useChapterProject from "@/hooks/useChapterProject";
 import { useTranslation } from "react-i18next";
 import SidebarSkeleton from "@/components/loading/SidebarSkeleton";

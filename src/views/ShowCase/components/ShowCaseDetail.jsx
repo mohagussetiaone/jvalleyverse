@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { FaEye, FaGithub } from "react-icons/fa";
 import { handleGetShowCaseById } from "@/api/ShowCase/ShowCaseApi";
-import ErrorServer from "@/components/ErrorServer";
+import NotFound from "@/views/NotFound";
 import Loading from "@/components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import DefaultProfile from "@/assets/profile/profileDefault.jpg";
 import { useParams } from "react-router-dom";
-
-const defaultProfile = "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1716887986~exp=1716891586~hmac=729888601cee5f142cdae9e83d1f720240b371d5c32f368bba67fc6278e7197b&w=740";
 
 const ShowCaseDetail = () => {
   const { showCaseId } = useParams();
+
   // GET ALL SHOWCASE
   const {
     error: errorShowCaseById,
@@ -23,7 +23,7 @@ const ShowCaseDetail = () => {
   });
 
   if (errorShowCaseById) {
-    return <ErrorServer />;
+    return <NotFound />;
   }
 
   if (isPendingShowCaseById) {
@@ -46,7 +46,7 @@ const ShowCaseDetail = () => {
             <div className="py-2">
               <div className="flex text-sm gap-2">
                 <img
-                  src={dataShowCaseById?.users?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${dataShowCaseById?.users?.profile_image_url}` : defaultProfile}
+                  src={dataShowCaseById?.users?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${dataShowCaseById?.users?.profile_image_url}` : DefaultProfile}
                   alt="profile.jpg"
                   className="w-6 h-6 rounded-full"
                 />

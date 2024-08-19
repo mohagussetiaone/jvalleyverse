@@ -25,6 +25,15 @@ export default defineConfig({
       "application/xml": ["xml"],
     },
   },
+  extend: {
+    ping: {
+      "75%, 100%": { transform: "scale(2)", opacity: 0 },
+    },
+  },
+  animation: {
+    "animate-ping": "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
+    typing: "typing 2s steps(20) infinite alternate, blink .7s infinite",
+  },
   plugins: [react()],
   // server: {
   //   host: "0.0.0.0",

@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import supabase from "@/config/supabaseConfig";
 import { RiHome6Line, RiUser3Line, RiBook2Line, RiSettings4Line } from "react-icons/ri";
+import { LuBell } from "react-icons/lu";
 import ModalConfirmation from "@/components/ModalConfirmation";
 import { remove } from "@/store/local/Forage";
 import { useQuery } from "@tanstack/react-query";
 import { handleGetProfile } from "@/api/Profile/ProfileApi";
-import ImageDefault from "@/assets/profile/profileDefault.jpg";
 
-const DropdownUser = () => {
+const Notification = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -73,74 +73,90 @@ const DropdownUser = () => {
 
   return (
     <div className="relative my-1">
-      <Link ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-4" to="#">
-        <span>
-          <img src={userProfile?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}` : ImageDefault} alt="profile_picture.jpg" className="rounded-full w-10 h-10 -mt-1" />
-        </span>
-      </Link>
+      <div ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-4">
+        <div className="flex">
+          <LuBell className="w-7 h-7 mt-1 text-gray-800 dark:text-neutral-200" />
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-600 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-700"></span>
+          </span>
+        </div>
+      </div>
 
       {/* <!-- Dropdown Start --> */}
       <div
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute rounded-md right-0 mt-5 pt-4 flex w-52 flex-col bg-white dark:bg-background-900 ${dropdownOpen === true ? "block" : "hidden"}`}
+        className={`absolute rounded-md -right-24 mt-5 pt-4 flex w-96 flex-col bg-white dark:bg-background-900 ${dropdownOpen === true ? "block" : "hidden"}`}
       >
-        <div className="flex flex-col justify-start px-6 pb-2">
-          <h3>{userProfile?.name}</h3>
-          <p>Theme </p>
-        </div>
-        <hr className="border-stroke py-2" />
         <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-6 dark:border-black">
           <li>
-            <Link
-              to="/"
+            <div
               className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700"
               onClick={() => setDropdownOpen(false)}
             >
-              <RiHome6Line className="w-5 h-5" />
-              Dashboard
-            </Link>
+              <span>
+                <RiHome6Line className="w-7 h-7" />
+              </span>
+              <span className="line-clamp-2 overflow-hidden text-ellipsis">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book.
+              </span>
+            </div>
           </li>
           <li>
-            <Link
-              to="/profile"
+            <div
               className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700"
               onClick={() => setDropdownOpen(false)}
             >
-              <RiUser3Line className="w-5 h-5" />
-              {t("Profil Saya")}
-            </Link>
+              <span>
+                <RiUser3Line className="w-7 h-7" />
+              </span>
+              <span className="line-clamp-2 overflow-hidden text-ellipsis">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                type specimen book.
+              </span>
+            </div>
           </li>
           <li>
-            <Link
-              to="/profile"
+            <div
               className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700"
               onClick={() => setDropdownOpen(false)}
             >
-              <RiBook2Line className="w-5 h-5" />
-              {t("Kelas Saya")}
-            </Link>
+              <span>
+                <RiBook2Line className="w-7 h-7" />
+              </span>
+              <span className="line-clamp-2 overflow-hidden text-ellipsis">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                type specimen book.
+              </span>
+            </div>
           </li>
           <li>
-            <Link
-              to="/settings"
+            <div
               className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out cursor-pointer hover:text-black lg:text-base text-gray-900 dark:text-neutral-200 dark:hover:text-white border-gray-700"
               onClick={() => setDropdownOpen(false)}
             >
-              <RiSettings4Line className="w-5 h-5" />
-              {t("Pengaturan")}
-            </Link>
+              <span>
+                <RiSettings4Line className="w-7 h-7" />
+              </span>
+              <span className="line-clamp-2 overflow-hidden text-ellipsis">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                type specimen book.
+              </span>
+            </div>
           </li>
         </ul>
         <button
-          className="flex bg-transparent justify-center mt-4 items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out text-red-500 hover:text-red-600 border-none lg:text-base"
+          className="flex bg-transparent justify-center items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out text-blue-500 hover:text-blue-600 border-none lg:text-base"
           onClick={() => {
             setModalLogout(true);
             setDropdownOpen(false);
           }}
         >
-          {t("Keluar")}
+          {t("Lihat Selengkapnya")}
         </button>
         {modalLogout && <ModalConfirmation showModalConfirm={modalLogout} setShowModalConfirm={modalLogoutClose} funcConfirm={handleLogout} />}
       </div>
@@ -148,4 +164,4 @@ const DropdownUser = () => {
   );
 };
 
-export default DropdownUser;
+export default Notification;
