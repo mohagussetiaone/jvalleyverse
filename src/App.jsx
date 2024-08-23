@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Home from "./views/Home";
 import Blog from "./views/Blog";
+import BlogDetail from "./views/Blog/components/BlogDetails";
 import About from "./views/About";
 import ShowCase from "./views/ShowCase";
 import AddShowCase from "./views/ShowCase/components/AddShowCase";
@@ -68,6 +69,13 @@ const router = createBrowserRouter([
         loader: authLoader,
         Component() {
           return <Blog />;
+        },
+      },
+      {
+        path: "/blog/:blogId",
+        loader: authLoader,
+        Component() {
+          return <BlogDetail />;
         },
       },
       {

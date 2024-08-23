@@ -143,6 +143,9 @@ const NavbarCourse = (className) => {
                   <span className="text-background-500 dark:text-gray-100 font-bold cursor-pointer">{t("Lihat selengkapnya")}</span>
                 </Link>
               </MenuItem>
+              <Link to={"/blog"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
+                {t("Blog")}
+              </Link>
               <Link to={"/tentang"} className="text-black font-normal dark:text-neutral-200 hover:text-black">
                 Tentang
               </Link>

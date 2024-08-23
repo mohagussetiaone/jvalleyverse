@@ -79,7 +79,7 @@ const ListModuleCourse = () => {
               <li key={item.id}>
                 <div>
                   <a
-                    className={`flex items-center justify-between p-2 rounded-lg ${
+                    className={`flex items-center cursor-pointer justify-between p-2 rounded-lg ${
                       activeMenu === item.id
                         ? "bg-gray-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
                         : "text-black dark:text-neutral-200 bg-white dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white hover:bg-gray-100 hover:text-gray-900"

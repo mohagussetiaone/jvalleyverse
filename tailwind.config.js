@@ -389,7 +389,8 @@ module.exports = {
       },
     }),
   },
-  plugins: [addVariablesForColors],
+  // eslint-disable-next-line no-undef
+  plugins: [addVariablesForColors, require("daisyui")],
 };
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).

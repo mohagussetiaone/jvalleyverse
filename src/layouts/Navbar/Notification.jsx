@@ -49,6 +49,8 @@ const Notification = () => {
     queryFn: handleGetProfile,
   });
 
+  console.log("userProfile", userProfile);
+
   if (errorUserProfile) return toast.error("Error while fetching profile");
   if (isPendingUserProfile) return console.log("Loading...");
 
@@ -72,7 +74,7 @@ const Notification = () => {
   };
 
   return (
-    <div className="relative my-1">
+    <>
       <div ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-4">
         <div className="flex">
           <LuBell className="w-7 h-7 mt-1 text-gray-800 dark:text-neutral-200" />
@@ -88,7 +90,7 @@ const Notification = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute rounded-md -right-24 mt-5 pt-4 flex w-96 flex-col bg-white dark:bg-background-900 ${dropdownOpen === true ? "block" : "hidden"}`}
+        className={`absolute rounded-md right-0 top-16 pt-4 flex w-96 flex-col bg-white dark:bg-background-900 ${dropdownOpen === true ? "block" : "hidden"}`}
       >
         <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-6 dark:border-black">
           <li>
@@ -160,7 +162,7 @@ const Notification = () => {
         </button>
         {modalLogout && <ModalConfirmation showModalConfirm={modalLogout} setShowModalConfirm={modalLogoutClose} funcConfirm={handleLogout} />}
       </div>
-    </div>
+    </>
   );
 };
 

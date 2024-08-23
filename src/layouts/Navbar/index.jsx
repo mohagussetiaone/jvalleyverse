@@ -169,12 +169,9 @@ function Navbar(className) {
                 </button>
               </div>
               {sessionData && sessionData.session === null && (
-                <div className="gap-4 hidden md:flex">
-                  <Link to="/signin" className=" md:mt-1">
-                    <button className="btn border bg-white text-brand-500 hover:bg-gray-100 py-1 px-3">{t("Masuk")}</button>
-                  </Link>
-                  <Link to="/signup" className="md:mt-1">
-                    <button className="btn text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">{t("Daftar")}</button>
+                <div className="gap-4 hidden md:flex items-center">
+                  <Link to="/signup">
+                    <button className="text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">{t("Daftar")}</button>
                   </Link>
                 </div>
               )}

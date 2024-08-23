@@ -112,7 +112,7 @@ export const handleCreateCertificate = async (payload) => {
     if (fetchError) throw new Error(fetchError);
 
     if (existingCertificates.length > 0) {
-      throw new Error(fetchError);
+      return existingCertificates;
     }
 
     console.log("lanjut");

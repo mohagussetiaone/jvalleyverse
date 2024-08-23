@@ -59,6 +59,15 @@ button:focus-visible {
   }
 }
 
+@keyframes flow {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 @layer components {
   .my-react-select-container {
     /* Gaya umum untuk container react-select */

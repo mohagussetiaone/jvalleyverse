@@ -25,7 +25,7 @@ const Card = ({ item }) => {
       <div className="flex flex-col p-4">
         <div className="flex flex-col justify-between leading-normal">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-left">{item.name}</h5>
-          <p className="mb-3 w-80 md:w-96 whitespace-normal font-normal text-gray-700 dark:text-gray-400 text-left truncate">{item.description}</p>
+          <p className="mb-3 line-clamp-2 whitespace-normal font-normal text-gray-700 dark:text-gray-400 text-left truncate">{item.description}</p>
         </div>
         <div className="flex items-center">
           <img className="w-10 h-10 rounded-full mr-4" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.users.profile_image_url}`} alt="Avatar of Jonathan Reinink" />

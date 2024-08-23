@@ -86,7 +86,7 @@ const DropdownUser = () => {
         onBlur={() => setDropdownOpen(false)}
         className={`absolute rounded-md right-0 mt-5 pt-4 flex w-52 flex-col bg-white dark:bg-background-900 ${dropdownOpen === true ? "block" : "hidden"}`}
       >
-        <div className="flex flex-col justify-start px-6 pb-2">
+        <div className="flex flex-col justify-start text-black dark:text-neutral-200 px-6 pb-2">
           <h3>{userProfile?.name}</h3>
           <p>Theme </p>
         </div>
