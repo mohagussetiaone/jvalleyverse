@@ -20,6 +20,7 @@ import toast from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 import { useNavigate } from "react-router-dom";
+import { useAuthValidation } from "@/lib/authValidation";
 
 const optionTags = SuggestionTags.map((tags) => ({
   value: tags,
@@ -29,8 +30,9 @@ const optionTags = SuggestionTags.map((tags) => ({
 const animatedComponents = makeAnimated();
 
 const AddShowCase = () => {
-  const queryClient = useQueryClient();
+  useAuthValidation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const validationSchema = yup.object().shape({

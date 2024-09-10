@@ -9,6 +9,7 @@ import About from "./views/About";
 import ShowCase from "./views/ShowCase";
 import AddShowCase from "./views/ShowCase/components/AddShowCase";
 import ShowCaseDetail from "./views/ShowCase/components/ShowCaseDetail";
+import ReviewDetail from "./views/StudiCase/components/Project/components/ReviewDetail";
 // Layout
 import Layout from "./layouts/public";
 import LayoutCourse from "./layouts/public/LayoutCourse";
@@ -107,6 +108,13 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "/belajar/project/:projectId/reviews",
+        loader: authLoader,
+        Component() {
+          return <ReviewDetail />;
+        },
+      },
+      {
         path: "/profile",
         loader: authLoader,
         Component() {
@@ -197,7 +205,6 @@ const router = createBrowserRouter([
           return <Chapter />;
         },
       },
-
       {
         path: "/belajar/studi-kasus/:id/chapter/:chapterId",
         loader: authLoader,

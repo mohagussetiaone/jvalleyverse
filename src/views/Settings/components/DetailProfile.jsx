@@ -97,7 +97,6 @@ const DetailProfile = ({ userProfile }) => {
             await handleUpdateImageProfile(payload);
             setSelectedFile(null);
             setPreviewUrl(null);
-
             resolve(data);
           }
         } else {
@@ -135,11 +134,11 @@ const DetailProfile = ({ userProfile }) => {
 
   return (
     <div className="w-full gap-6">
-      <div className="pb-8">
+      <div className="mb-8">
         <h1 className="text-2xl dark:text-neutral-200 font-bold">Detail Profile</h1>
       </div>
-      <div className="flex gap-4">
-        <div className="w-[150px] relative">
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="w-[150px] flex relative justify-center items-start">
           <img src={profileImg} alt="profile" className="w-full h-auto rounded-full" />
           {previewUrl && (
             <span className="absolute top-[130px] right-7 cursor-pointer" onClick={handleRemovePreview}>

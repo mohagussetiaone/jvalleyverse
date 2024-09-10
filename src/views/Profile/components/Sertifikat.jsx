@@ -10,8 +10,11 @@ import { useQuery } from "@tanstack/react-query";
 import DiscussionSkeleton from "@/components/loading/DiscussionSkeleton";
 import ErrorServer from "@/components/ErrorServer";
 import { handleGetCertificateById } from "@/api/Certificate/CertificateApi";
+import { useAuthValidation } from "@/lib/authValidation";
 
 const Certificate = () => {
+  useAuthValidation();
+
   const certificateRef = useRef(null);
   const { sertId } = useParams();
   const handleDownload = () => {

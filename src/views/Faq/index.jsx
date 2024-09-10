@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import FaqCard from "./components/FaqCard";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const Index = () => {
+const Faq = () => {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>
@@ -32,4 +35,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Faq;

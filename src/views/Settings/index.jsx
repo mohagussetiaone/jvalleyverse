@@ -7,10 +7,11 @@ import PasswordChange from "./components/PasswordChange";
 import { handleGetProfile } from "@/api/Profile/ProfileApi";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useAuthValidation } from "@/lib/authValidation";
 
 const buttons = [
   {
-    title: "Detail profile",
+    title: "Profile",
     icon: "heroicons-outline:home",
   },
   {
@@ -24,6 +25,8 @@ const buttons = [
 ];
 
 const Settings = () => {
+  useAuthValidation();
+
   const {
     error: errorUserProfile,
     isLoading: isPendingUserProfile,
@@ -63,16 +66,16 @@ const Settings = () => {
         <meta name="twitter:description" content="Bergabunglah dengan komunitas IT gratis untuk belajar, berbagi pengetahuan, dan berkembang bersama para profesional dan penggemar IT dari berbagai latar belakang." />
         <meta name="twitter:image" content="/logosmalldark.png" />
       </Helmet>
-      <div className="w-full bg-gray-100 dark:bg-gradient-to-r from-black via-background-900 to-background-500 p-10 md:py-20 mx-auto md:px-24">
+      <div className="w-full bg-gray-100 dark:bg-gradient-to-r from-black via-background-900 to-background-500 p-4 md:p-8 xl:p-10 md:py-20 mx-auto md:px-24">
         <TabGroup className="w-full">
           <div className="grid grid-cols-12 md:gap-10">
-            <div className="lg:col-span-2 md:col-span-3 col-span-12">
-              <TabList>
+            <div className="lg:col-span-2 md:col-span-3 col-span-12 pt-6">
+              <TabList className="flex gap-4 flex-row md:flex-col flex-nowrap whitespace-nowrap">
                 {buttons.map((item, i) => (
                   <Tab key={i} as={Fragment}>
                     {({ selected }) => (
                       <div
-                        className={`text-sm font-medium md:block inline-block mb-4 last:mb-0 capitalize ring-0 foucs:ring-0 focus:outline-none px-6 rounded-md py-2 transition duration-150 cursor-pointer ${
+                        className={`text-sm font-medium md:block inline-block last:mb-0 capitalize ring-0 foucs:ring-0 focus:outline-none px-6 rounded-md py-2 transition duration-150 cursor-pointer ${
                           selected ? "text-white bg-gray-800 dark:bg-background-900" : "text-slate-500 bg-gray-200 dark:bg-black/20 dark:text-slate-300"
                         }`}
                       >
@@ -83,7 +86,8 @@ const Settings = () => {
                 ))}
               </TabList>
             </div>
-            <div className="lg:col-span-10 md:col-span-11 col-span-12">
+
+            <div className="lg:col-span-10 md:col-span-11 col-span-12 mt-8 md:mt-0">
               <TabPanels>
                 <TabPanel>
                   <DetailProfile userProfile={userProfile} />

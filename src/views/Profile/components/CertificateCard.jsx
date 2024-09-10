@@ -65,35 +65,38 @@ const CertificateCard = () => {
         <input type="text" placeholder={t("Cari Sertifikat...")} value={searchTerm} onChange={handleSearchChange} className="w-full bg-white dark:bg-black/20 dark:text-neutral-200 p-2 border border-gray-400 rounded" />
       </div>
       {currentCertificates.length > 0 ? (
-        currentCertificates.map((certificate, index) => (
-          <div key={index} className="bg-white dark:bg-black/20 grid gap-0 grid-cols-12 max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-2 md:p-4 mb-4">
-            <div className="col-span-12 md:col-span-2 mx-auto">
-              <PiCertificateLight className="w-44 h-44 text-black dark:text-neutral-400" />
-            </div>
-            <div className="col-span-12 md:col-span-10 gap-1 md:gap-2 xl:gap-4 rounded-b lg:rounded-b-none lg:rounded-r xl:p-4 flex flex-col justify-between leading-normal text-justify items-center">
-              <div className="text-left py-1 text-wrap">
-                <div className="text-left text-gray-900 dark:text-neutral-200 font-bold text-xl mb-2">{certificate.certificate_name}</div>
-                <p className="text-gray-700 dark:text-neutral-200 text-base">{certificate.certificate_description}</p>
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+          {currentCertificates.map((certificate, index) => (
+            <div key={index} className="bg-white dark:bg-black/20 grid gap-0 grid-cols-12 max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-2 md:p-4 mb-4">
+              <div className="col-span-12 md:col-span-3 mx-auto">
+                <PiCertificateLight className="w-44 h-44 md:w-24 md:h-24 text-black dark:text-neutral-400" />
               </div>
-              <div className="flex gap-4">
-                <button className="flex bg-white dark:bg-black/20 text-brand-500 border border-brand-500  gap-2" onClick={() => handleClickViewSertificate(certificate.id)}>
-                  <LuView size={25} />
-                  {t("Lihat Certificate")}
-                </button>
-                <button className="flex bg-brand-500 dark:bg-brand-600 text-white gap-2">
-                  <LuDownload size={25} />
-                  Download
-                </button>
+              <div className="col-span-12 md:col-span-9 gap-1 md:gap-2 rounded-b lg:rounded-b-none lg:rounded-r xl:p-4 pb-8 md:pb-0 flex flex-col justify-between leading-normal text-justify items-center md:items-start">
+                <div className="text-left py-1 text-wrap">
+                  <div className="text-left text-gray-900 dark:text-neutral-200 font-bold text-xl mb-2">{certificate.certificate_name}</div>
+                  <p className="text-gray-700 dark:text-neutral-200 text-base">{certificate.certificate_description}</p>
+                </div>
+                <div className="flex gap-4">
+                  <button className="flex bg-white dark:bg-black/20 text-brand-500 border border-brand-500 gap-2" onClick={() => handleClickViewSertificate(certificate.id)}>
+                    <LuView size={25} />
+                    <span className="xl:hidden">{t("Lihat")}</span>
+                    <span className="hidden xl:inline">{t("Lihat Certificate")}</span>
+                  </button>
+                  <button className="flex bg-brand-500 dark:bg-brand-600 text-white gap-2">
+                    <LuDownload size={25} />
+                    Download
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))
+          ))}
+        </div>
       ) : (
         <div className="bg-white dark:bg-background-900 max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-4 mb-4">
           <div className="flex justify-center items-center h-[70vw] md:h-[20vw] text-gray-900 dark:text-neutral-200 font-bold text-xl">Data not found</div>
         </div>
       )}
-      <div className="flex gap-4 justify-center my-8">
+      <div className="flex gap-4 justify-center py-8">
         <div>
           <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} className="p-2 border border-gray-400 rounded mx-1">
             Prev

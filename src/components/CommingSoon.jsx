@@ -9,7 +9,7 @@ const CommingSoon = () => {
 
   return (
     <>
-      <div className="w-full min-w-[100vw] md:min-w-[80vw] h-screen bg-whiteSmoke dark:bg-gradient-to-r from-black via-background-900 to-background-600">
+      <div className="w-full min-w-[100vw] md:min-w-[80vw] min-h-screen bg-whiteSmoke dark:bg-gradient-to-r from-black via-background-900 to-background-600">
         <div className="pt-14 md:pt-16 xl:pt-20">
           <div className="flex-1 flex flex-col items-center justify-center text-black dark:text-neutral-200">
             <h1 className="text-6xl lg:text-7xl xl:text-8xl tracking-wider font-bold font-serif mt-12 text-center">Coming</h1>

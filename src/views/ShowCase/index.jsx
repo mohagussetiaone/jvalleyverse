@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import ShowCase from "./components/ShowCase";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const index = () => {
+const ShowCases = () => {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>
@@ -32,4 +35,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default ShowCases;

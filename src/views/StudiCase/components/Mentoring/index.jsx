@@ -1,8 +1,11 @@
 // import MentoringCard from "./components/MentoringCard";
 import { Helmet } from "react-helmet-async";
 import CommingSoon from "@/components/CommingSoon";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const index = () => {
+const Mentoring = () => {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>
@@ -28,9 +31,9 @@ const index = () => {
         <meta name="twitter:description" content="Bergabunglah dengan komunitas IT gratis untuk belajar, berbagi pengetahuan, dan berkembang bersama para profesional dan penggemar IT dari berbagai latar belakang." />
         <meta name="twitter:image" content="/logosmalldark.png" />
       </Helmet>
-      <CommingSoon />;
+      <CommingSoon />
     </>
   );
 };
 
-export default index;
+export default Mentoring;

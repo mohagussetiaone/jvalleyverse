@@ -9,8 +9,11 @@ import { useQuery } from "@tanstack/react-query";
 import ErrorServer from "@/components/ErrorServer";
 import { useParams } from "react-router-dom";
 import DetailStudyCaseSkeleton from "@/components/loading/DetailStudyCaseSkeleton";
+import { useAuthValidation } from "@/lib/authValidation";
 
 const StudyCaseDetail = () => {
+  useAuthValidation();
+
   const { studyCaseId } = useParams();
   const { darkMode } = useDarkMode();
   const {

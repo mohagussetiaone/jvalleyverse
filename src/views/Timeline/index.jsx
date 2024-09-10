@@ -1,6 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import TimelineTab from "./components/TimelineTab";
-const index = () => {
+import { useAuthValidation } from "@/lib/authValidation";
+
+const Timeline = () => {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>
@@ -31,4 +35,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Timeline;

@@ -1,7 +1,10 @@
 import HomeCard from "./components/HomeCard";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const index = () => {
+const Discussion = () => {
+  useAuthValidation();
+
   return <HomeCard />;
 };
 
-export default index;
+export default Discussion;

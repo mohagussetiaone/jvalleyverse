@@ -15,25 +15,13 @@ const TabMenuProfile = () => {
         <TabGroup selectedIndex={activeMenu} onChange={setActiveMenu}>
           <div className="flex my-4 px-4 md:px-8 xl:px-10">
             <TabList className="flex gap-4">
-              <Tab
-                className={({ selected }) =>
-                  `rounded-none text-sm whitespace-nowrap border-none ${selected ? "bg-white dark:bg-background-900 dark:text-neutral-200 text-black border border-black" : "bg-white dark:bg-black/20 text-gray-300"}`
-                }
-              >
+              <Tab className={({ selected }) => `rounded-none text-black text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-background-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-black/20"}`}>
                 {t("Progress belajar")}
               </Tab>
-              <Tab
-                className={({ selected }) =>
-                  `rounded-none text-sm whitespace-nowrap border-none ${selected ? "bg-white dark:bg-background-900 dark:text-neutral-200 text-black border border-black" : "bg-white dark:bg-black/20 text-gray-300"}`
-                }
-              >
+              <Tab className={({ selected }) => `rounded-none text-black text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-background-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-black/20"}`}>
                 {t("Sertifikat")}
               </Tab>
-              <Tab
-                className={({ selected }) =>
-                  `rounded-none text-sm whitespace-nowrap border-none ${selected ? "bg-white dark:bg-background-900 dark:text-neutral-200 text-black border border-black" : "bg-white dark:bg-black/20 text-gray-300"}`
-                }
-              >
+              <Tab className={({ selected }) => `rounded-none text-black text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-background-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-black/20"}`}>
                 Show Case
               </Tab>
             </TabList>

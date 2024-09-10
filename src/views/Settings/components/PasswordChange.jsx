@@ -76,10 +76,10 @@ const PasswordChange = ({ userProfile }) => {
             <LabelInput label="Email" value={userProfile.email} type="email" id="email" name="email" placeholder="nFJpG@example.com" error={errors.email} register={register} disabled />
           </div>
           <div className="w-full flex gap-4 mt-2">
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <LabelInput label="Password" type="password" id="password" name="password" placeholder="••••••••" error={errors.password} register={register} required hasicon />
             </div>
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <LabelInput label="Konfirmasi Password" type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" error={errors.confirm_password} register={register} required hasicon />
             </div>
           </div>

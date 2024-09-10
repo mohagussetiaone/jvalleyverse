@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import AboutCard from "./components/AboutCard";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const index = () => {
+const About = () => {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>
@@ -32,4 +35,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default About;

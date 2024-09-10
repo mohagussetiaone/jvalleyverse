@@ -1,8 +1,11 @@
 import { Helmet } from "react-helmet-async";
+import { useAuthValidation } from "@/lib/authValidation";
 import BannerProfile from "./components/BannerProfile";
 import TabMenuProfile from "./components/TabMenuProfile";
 
-const index = () => {
+const Profile = () => {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>
@@ -34,4 +37,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Profile;

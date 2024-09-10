@@ -1,8 +1,10 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 // import toast from "react-hot-toast";
 import { redirect } from "react-router-dom";
 // import { clearAllStorage } from "@/store/local/Forage-Helper";
 import supabase from "@/config/supabaseConfig";
+import { useUser } from "@/store/user/useUser";
 
 export const authLoader = async ({ request }) => {
   const { data: authToken, error: authError } = await supabase.auth.getSession();
@@ -40,28 +42,18 @@ export const authLoader = async ({ request }) => {
 };
 
 // Masih belum benar
-// export function useAuthValidation() {
-//   const navigate = useNavigate();
+export function useAuthValidation() {
+  const navigate = useNavigate();
+  const { setUserData } = useUser();
 
-//   useEffect(() => {
-//     const handleAuthValidation = async () => {
-//       const session = supabase.auth.session();
-//       console.log("session", session);
-//       if (session !== null) {
-//         setTimeout(() => {
-//           navigate("/signin");
-//         }, 2550);
-//       } else {
-//         await clearAllStorage();
-//         toast.error("Token is expired, back to login", {
-//           duration: 2350,
-//         });
-//         setTimeout(() => {
-//           navigate("/signin");
-//         }, 2550);
-//       }
-//     };
-
-//     handleAuthValidation();
-//   }, [navigate]);
-// }
+  useEffect(() => {
+    const handleAuthValidation = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUserData(user);
+      console.log("session users", user);
+    };
+    handleAuthValidation();
+  }, [navigate]);
+}

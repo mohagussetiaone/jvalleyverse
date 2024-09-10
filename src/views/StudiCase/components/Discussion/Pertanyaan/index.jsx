@@ -1,7 +1,10 @@
 import PertanyaanSaya from "./components/PertanyaanSaya";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const index = () => {
+const Pertanyaan = () => {
+  useAuthValidation();
+
   return <PertanyaanSaya />;
 };
 
-export default index;
+export default Pertanyaan;

@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import StudiCase from "./components/StudyCase";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const index = () => {
+const StudyCase = () => {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>
@@ -27,9 +30,9 @@ const index = () => {
         <meta name="twitter:description" content="Bergabunglah dengan komunitas IT gratis untuk belajar, berbagi pengetahuan, dan berkembang bersama para profesional dan penggemar IT dari berbagai latar belakang." />
         <meta name="twitter:image" content="/logosmalldark.png" />
       </Helmet>
-      <StudiCase />;
+      <StudiCase />
     </>
   );
 };
 
-export default index;
+export default StudyCase;

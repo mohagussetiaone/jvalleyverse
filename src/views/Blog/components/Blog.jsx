@@ -77,7 +77,7 @@ const Blog = () => {
                 <h6 className="py-8">{blog.description}</h6>
               </div>
               <div className="relative overflow-hidden">
-                <img src={blog.imgSrc} alt="banner.img" className="w-full h-[350px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
+                <img src={blog.imgSrc} alt="banner.img" className="w-full h-[350px] object-cover" />
               </div>
               <div className="flex flex-col text-gray-800 dark:text-neutral-200">
                 <h2 className="text-2xl font-medium py-2" onClick={() => handleDetailBlog(blog.id)}>

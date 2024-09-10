@@ -9,9 +9,12 @@ import { handleGetProject } from "@/api/Project/ProjectApi";
 import ErrorServer from "@/components/ErrorServer";
 import { useTranslation } from "react-i18next";
 import SkeletonGrid from "@/components/loading/CardProductSkeleton";
+import { useUser } from "@/store/user/useUser";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
+  const { userData } = useUser();
+  console.log("userData idssadsa", userData.id);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { darkMode } = useDarkMode();

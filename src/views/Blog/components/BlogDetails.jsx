@@ -5,9 +5,38 @@ import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa6";
 import { HiOutlineLink } from "react-icons/hi";
 import { handleGetDiscussion } from "@/api/Project/DiscussionApi";
 import DiscussionSkeleton from "@/components/loading/DiscussionSkeleton";
+import { useAuthValidation } from "@/lib/authValidation";
 
 const BlogDetails = () => {
+  useAuthValidation();
+
   const tags = ["React", "JavaScript", "CSS", "HTML", "Node.js"];
+  const currentUrl = window.location.href;
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(currentUrl);
+    alert("Link copied to clipboard!");
+  };
+
+  const handleShare = (platform) => {
+    let url = "";
+
+    switch (platform) {
+      case "facebook":
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+        break;
+      case "twitter":
+        url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}`;
+        break;
+      case "linkedin":
+        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+        break;
+      default:
+        break;
+    }
+
+    window.open(url, "_blank");
+  };
 
   const handleTagClick = (tag) => {
     console.log(`Tag clicked: ${tag}`);
@@ -33,13 +62,13 @@ const BlogDetails = () => {
   console.log("dataDiscussion", dataDiscussion);
 
   return (
-    <div className="grid grid-cols-12 gap-2 md:gap-4 bg-gray-200 dark:bg-gradient-to-r from-background-600 via-background-700 to-background-800 p-6 mb-8 px-4 md:px-8 xl:px-10">
-      <div className="bg-white dark:bg-background-900 col-span-12 md:col-span-9 p-4 rounded-lg">
+    <div className="grid grid-cols-12 gap-2 md:gap-4 bg-gray-200 dark:bg-gradient-to-r from-background-600 via-background-700 to-background-800 p-6 px-4 md:px-8 xl:px-10">
+      <div className="bg-white dark:bg-background-900 col-span-12 xl:col-span-9 p-4 rounded-lg">
         <div>
           <img src="https://images.pexels.com/photos/27308308/pexels-photo-27308308/free-photo-of-lofoten-islands-of-norway.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="banner.img" className="w-full h-[350px]" />
         </div>
         <div className="flex flex-col text-gray-800 dark:text-neutral-200">
-          <h2 className="text-2xl font-medium py-2">Lorem ipsum dolor sit amet consectetur</h2>
+          <h2 className="text-5xl font-medium py-3">Lorem ipsum dolor sit amet consectetur</h2>
           <div className="flex items-center text-sm gap-2 text-gray-800 dark:text-neutral-200">
             <p>Moh Agus Setiawan</p>
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-gray-800 dark:bg-neutral-200 dark:text-neutral-200 mt-1"></span>
@@ -47,9 +76,8 @@ const BlogDetails = () => {
           </div>
         </div>
         <div className="mt-8 text-gray-800 dark:text-neutral-200">
-          <h4 className="text-xl font-semibold">Why This Matters</h4>
-          <p className="mt-2">
-            In todays rapidly evolving world, staying informed is more crucial than ever. The information we share here aims to empower our readers with knowledge that can drive positive change. By staying up-to-date with the latest trends
+          <p className="mt-2 first-letter:text-4xl first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:leading-tight">
+            An todays rapidly evolving world, staying informed is more crucial than ever. The information we share here aims to empower our readers with knowledge that can drive positive change. By staying up-to-date with the latest trends
             and insights, you not only gain a competitive edge but also contribute to a more informed and connected community.
           </p>
           <p className="mt-4">
@@ -67,21 +95,10 @@ const BlogDetails = () => {
               the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model
               sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
             </p>
-            <div className="flex gap-4 mt-4">
-              <a href="#" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600">
-                Facebook
-              </a>
-              <a href="#" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600">
-                Twitter
-              </a>
-              <a href="#" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600">
-                LinkedIn
-              </a>
-            </div>
           </div>
         </div>
       </div>
-      <div className="min-h-screen col-span-12 md:col-span-3 sticky top-14 hidden md:block">
+      <div className="min-h-screen col-span-12 xl:col-span-3 sticky top-14 hidden md:block">
         <div className="flex flex-col gap-4">
           <div className="bg-white dark:bg-black/10 rounded-md">
             <div className="text-start rounded-t-lg p-2 md:pl-4">
@@ -104,32 +121,32 @@ const BlogDetails = () => {
           </div>
           <div className="p-4 bg-white dark:bg-black/10 rounded-md">
             <div className="pb-4">
-              <h3 className="uppercase dark:text-neutral-200">Recomended Topic</h3>
+              <h3 className="uppercase text-black dark:text-neutral-200">Recomended Topic</h3>
             </div>
             <div className="flex flex-wrap gap-3">
               {tags.map((tag, index) => (
-                <button key={index} onClick={() => handleTagClick(tag)} className="bg-gray-200 dark:bg-brand3 dark:text-white text-sm px-6 py-2 rounded-2xl hover:cursor-pointer hover:border-none">
-                  {tag}
+                <button key={index} onClick={() => handleTagClick(tag)} className="bg-gray-200 dark:bg-brand3 text-black dark:text-white text-sm px-6 py-2 rounded-2xl hover:cursor-pointer hover:border-none">
+                  #{tag}
                 </button>
               ))}
             </div>
           </div>
           <div className="flex flex-col bg-white dark:bg-black/10 justify-start gap-4 p-4 rounded-md">
             <div>
-              <h3 className="uppercase dark:text-neutral-200">Bagikan</h3>
+              <h3 className="uppercase text-black dark:text-neutral-200">Bagikan</h3>
             </div>
-            <div className="flex gap-4">
-              <span>
-                <HiOutlineLink className="w-6 h-6 dark:text-neutral-200" />
+            <div className="flex text-black dark:text-neutral-200 gap-4">
+              <span onClick={handleCopyLink} className="cursor-pointer">
+                <HiOutlineLink className="w-6 h-6" />
               </span>
-              <span>
-                <FaFacebook className="w-6 h-6 dark:text-neutral-200" />
+              <span onClick={() => handleShare("facebook")} className="cursor-pointer">
+                <FaFacebook className="w-6 h-6" />
               </span>
-              <span>
-                <FaTwitter className="w-6 h-6 dark:text-neutral-200" />
+              <span onClick={() => handleShare("twitter")} className="cursor-pointer">
+                <FaTwitter className="w-6 h-6" />
               </span>
-              <span>
-                <FaLinkedin className="w-6 h-6 dark:text-neutral-200" />
+              <span onClick={() => handleShare("linkedin")} className="cursor-pointer">
+                <FaLinkedin className="w-6 h-6" />
               </span>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import toast from "react-hot-toast";
 import { useState, useEffect, useCallback } from "react";
 import { GrLinkNext } from "react-icons/gr";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -13,16 +14,18 @@ import { updateChapterProgress } from "@/api/Project/ChapterApi";
 import { handleCreateCertificate } from "@/api/Certificate/CertificateApi";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 import { useParams, Link } from "react-router-dom";
-import ErrorServer from "@/components/ErrorServer";
-import Loading from "@/components/Loading";
-import ReviewCourse from "./ReviewCourse";
-import { calculateChapterProgress } from "@/utils/calculateProgress";
 import useChapterProject from "@/hooks/useChapterProject";
+import { calculateChapterProgress } from "@/utils/calculateProgress";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import ReviewCourse from "./ReviewCourse";
+import ErrorServer from "@/components/ErrorServer";
+import ChapterSkeleton from "./skeleton/ChapterSkeleton";
+import { useAuthValidation } from "@/lib/authValidation";
 
 const Chapter = () => {
+  useAuthValidation();
+
   const { t } = useTranslation();
   const { darkMode } = useDarkMode();
   const { dataChapters } = useChapterProject();
@@ -153,7 +156,7 @@ const Chapter = () => {
   }
 
   if (isLoadingSession || isPendingChapterDetailById || isPendingProjectDetail || isLoadingCheckReview) {
-    return <Loading />;
+    return <ChapterSkeleton />;
   }
 
   console.log("dataChapters", dataChapters);
@@ -187,21 +190,29 @@ const Chapter = () => {
               </p>
             </div>
             <div className="flex justify-end md:items-center">
-              {nextChapterId ? (
+              {nextChapterId && (
                 <button className="flex gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={handleNextChapter}>
                   {t("Selesaikan dan lanjutkan")}
                   <GrLinkNext className="mt-1.5" />
                 </button>
-              ) : progress < 100 ? (
+              )}
+
+              {!nextChapterId && progress < 100 && (
                 <button className="flex gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={handleClassDone}>
                   {t("Selesaikan kelas")}
                 </button>
-              ) : dataCheckReview?.length === 0 ? (
+              )}
+
+              {!nextChapterId && progress === 100 && dataCheckReview?.length === 0 && (
                 <button className="btn btn-sm border-none bg-brand-500 hover:bg-brand-700 text-white dark:text-neutral-200" onClick={() => setShowReview(!showReview)}>
                   {t("Tulis ulasanmu")}
                 </button>
-              ) : (
-                <button className="btn btn-sm border-none bg-brand-500 hover:bg-brand-700 text-white dark:text-neutral-200">{t("Lihat ulasan")}</button>
+              )}
+
+              {!nextChapterId && progress === 100 && dataCheckReview?.length > 0 && (
+                <button className="btn btn-sm border-none bg-brand-500 hover:bg-brand-700 text-white dark:text-neutral-200" onClick={() => navigate(`/belajar/project/${projectId}/reviews`)}>
+                  {t("Lihat ulasan")}
+                </button>
               )}
             </div>
           </div>

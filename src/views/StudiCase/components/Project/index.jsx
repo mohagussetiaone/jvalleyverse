@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import ProjectCard from "./components/ProjectCard";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const index = () => {
+const Project = () => {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>
@@ -32,4 +35,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Project;

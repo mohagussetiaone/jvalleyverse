@@ -11,12 +11,15 @@ import HtmlParser from "@/lib/HtmlParser";
 import ReplyDiscussion from "./ReplyDiscussion";
 import profileDefault from "@/assets/profile/profileDefault.jpg";
 import DiscussionDetailSkeleton from "@/components/loading/DiscussionDetailSkeleton";
+import { useAuthValidation } from "@/lib/authValidation";
 
 dayjs.extend(RelativeTime);
 dayjs.extend(LocaleData);
 dayjs.locale(LocalId);
 
 const DiscussionDetail = () => {
+  useAuthValidation();
+
   const { discussionId } = useParams();
   const queryClient = useQueryClient();
 

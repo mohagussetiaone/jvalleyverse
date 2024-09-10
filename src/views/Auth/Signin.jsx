@@ -59,28 +59,28 @@ const SignIn = () => {
       });
       console.log("data response login", data);
       set(data && data?.session?.access_token);
-      setTimeout(async () => {
-        toast.dismiss(loadingToast);
-        if (data?.session === null) {
-          toast.error("User tidak ditemukan");
-          return;
-        } else if (data?.session !== null) {
-          toast.success("Login Berhasil", {
-            duration: 1900,
-          });
-          if (rememberMe) {
-            localStorage.setItem("email", email);
-            localStorage.setItem("password", password);
-          } else {
-            localStorage.removeItem("email");
-            localStorage.removeItem("password");
-          }
+      toast.dismiss(loadingToast);
+      if (data?.session === null) {
+        toast.error("User tidak ditemukan");
+        return;
+      } else if (data?.session !== null) {
+        toast.success("Login Berhasil", {
+          duration: 1900,
+        });
+        if (rememberMe) {
+          localStorage.setItem("email", email);
+          localStorage.setItem("password", password);
+        } else {
+          localStorage.removeItem("email");
+          localStorage.removeItem("password");
+        }
+        setTimeout(() => {
           navigate("/");
-        }
-        if (error) {
-          throw new Error(error.message);
-        }
-      }, 2000);
+        }, 2500);
+      }
+      if (error) {
+        throw new Error(error.message);
+      }
     } catch (error) {
       setTimeout(() => {
         toast.dismiss(loadingToast);

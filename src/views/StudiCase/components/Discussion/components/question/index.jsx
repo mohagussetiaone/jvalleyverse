@@ -1,7 +1,10 @@
 import Question from "./components/Question";
+import { useAuthValidation } from "@/lib/authValidation";
 
-const index = () => {
+const Questions = () => {
+  useAuthValidation();
+
   return <Question />;
 };
 
-export default index;
+export default Questions;

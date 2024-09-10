@@ -4,8 +4,11 @@ import { TechStack } from "./components/TechStack";
 import { MetodePembelajaran } from "./components/MetodePembelajaran";
 import { Gallery } from "./components/Gallery";
 import Testimonial from "./components/Testimonial";
+import { useAuthValidation } from "@/lib/authValidation";
 
 export default function Home() {
+  useAuthValidation();
+
   return (
     <>
       <Helmet>

@@ -1,6 +1,10 @@
 import Blog from "./components/Blog";
-const index = () => {
+import { useAuthValidation } from "@/lib/authValidation";
+
+const Blogs = () => {
+  useAuthValidation();
+
   return <Blog />;
 };
 
-export default index;
+export default Blogs;

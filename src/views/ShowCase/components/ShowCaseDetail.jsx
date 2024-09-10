@@ -7,8 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import DefaultProfile from "@/assets/profile/profileDefault.jpg";
 import { useParams } from "react-router-dom";
+import { useAuthValidation } from "@/lib/authValidation";
 
 const ShowCaseDetail = () => {
+  useAuthValidation();
   const { showCaseId } = useParams();
 
   // GET ALL SHOWCASE
@@ -51,7 +53,7 @@ const ShowCaseDetail = () => {
                   className="w-6 h-6 rounded-full"
                 />
                 <h3>{dataShowCaseById?.users?.name}</h3>
-                <h6 className="text-gray-900 dark:text-neutral-200">| Ditanya pada: {dayjs(dataShowCaseById?.created_at).fromNow()}</h6>
+                <h6 className="text-gray-900 dark:text-neutral-200">| Dipublikasikan pada: {dayjs(dataShowCaseById?.created_at).fromNow()}</h6>
               </div>
             </div>
             <p className="text-base font-normal text-justify">{dataShowCaseById?.description}</p>
