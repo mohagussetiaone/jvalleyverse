@@ -52,8 +52,8 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/jalur-belajar" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
-                    {t("Jalur belajar")}
+                  <Link to="/roadmap" className="block py-1.5 font-sans text-base font-normal leading-relaxed text-black dark:text-neutral-200 antialiased transition-colors hover:text-blue-gray-900">
+                    {t("Silabus")}
                   </Link>
                 </li>
                 <li>

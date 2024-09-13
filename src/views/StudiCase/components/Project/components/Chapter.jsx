@@ -222,7 +222,7 @@ const Chapter = () => {
             <img src={darkMode ? DiscussionDarkImage : DiscussionImage} className="w-14" />
             <p className="text-black dark:text-neutral-200">Diskusi</p>
           </Link>
-          <Link to="https://discord.gg/TxmFR8cK" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg p-2 md:p-3 cursor-pointer bg-white dark:bg-black">
+          <Link to="https://discord.gg/Eba8yPFCPd" target="_blank" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg p-2 md:p-3 cursor-pointer bg-white dark:bg-black">
             <img src={DiscordImage} className="w-14" />
             <p className="text-black dark:text-neutral-200">Discord</p>
           </Link>

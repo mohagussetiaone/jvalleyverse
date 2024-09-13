@@ -145,7 +145,7 @@ const Question = () => {
             <LabelInput label="Pertanyaan" type="text" id="question" name="question" placeholder="How to create a new project?" error={errors.question} register={register} required />
           </div>
           <div className="mb-3">
-            <SelectHook label="Project" name="project_id" options={projectOption} value={register("project_id").value} placeholder="Pilih Project" onChange={handleChangeSelect} register={register} error={errors.project_id} />
+            <SelectHook label="Project" name="project_id" options={projectOption} value={register("project_id").value} placeholder="Pilih Project" onChange={handleChangeSelect} register={register} error={errors.project_id} optional />
           </div>
           <div className="mb-3">
             <div className="dark:text-neutral-200 font-medium text-sm my-1">
@@ -162,7 +162,7 @@ const Question = () => {
                   components={animatedComponents}
                   className="text-sm my-react-select-container"
                   classNamePrefix="my-react-select"
-                  placeholder="Pilih Tag"
+                  placeholder="Pilih beberapa tag"
                   options={optionTags}
                   onChange={(selectedOptions) => {
                     setValue("tags", selectedOptions);
@@ -182,7 +182,7 @@ const Question = () => {
             {errors.content && <p className="text-red-700 text-sm">{errors.content.message}</p>}
           </div>
           <div className="flex justify-end">
-            <button type="submit" className="flex justify-end bg-brand-800 text-white font-semibold py-2 rounded-md">
+            <button type="submit" className="flex justify-end bg-brand-500 text-white font-semibold py-2 rounded-md">
               Buat Pertanyaan
             </button>
           </div>

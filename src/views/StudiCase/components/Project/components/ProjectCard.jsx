@@ -6,15 +6,16 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useDarkMode from "@/hooks/useDarkMode";
 import ModalMenu from "../../ModalMenu";
 import { handleGetProject } from "@/api/Project/ProjectApi";
-import ErrorServer from "@/components/ErrorServer";
-import { useTranslation } from "react-i18next";
-import SkeletonGrid from "@/components/loading/CardProductSkeleton";
 import { useUser } from "@/store/user/useUser";
+import { useTranslation } from "react-i18next";
+import ErrorServer from "@/components/ErrorServer";
+import SkeletonGrid from "@/components/loading/CardProductSkeleton";
+import StarRating from "@/components/stars/StartRating";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
   const { userData } = useUser();
-  console.log("userData idssadsa", userData.id);
+  console.log("userData idssadsa", userData?.id);
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { darkMode } = useDarkMode();
@@ -49,6 +50,13 @@ const ProjectCard = () => {
   }
 
   console.log("dataProject", dataProject);
+
+  // Calculate average rating
+  const calculateAverageRating = (reviews) => {
+    if (reviews.length === 0) return 0;
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return totalRating / reviews.length;
+  };
 
   // FILTER DATA
   const filteredData = dataProject?.filter(
@@ -127,7 +135,7 @@ const ProjectCard = () => {
                 currentData.map((item) => (
                   <div className="relative group cursor-pointer" key={item.id}>
                     <div
-                      className={`absolute min-h-[245px] h-[245px] md:min-h-[320px] sm:h-[300px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
+                      className={`max-w-[310px] absolute min-h-[245px] h-[245px] md:min-h-[320px] sm:h-[300px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
                         darkMode ? "group-hover:opacity-100" : ""
                       }`}
                     ></div>
@@ -137,10 +145,16 @@ const ProjectCard = () => {
                       </div>
                       <div className="flex flex-col px-2 pt-2">
                         <h3 className="font-bold text-start text-black dark:text-white text-sm md:text-md xl:text-lg mb-2">{item.project_name}</h3>
-                        <button className="inline-flex gap-2 bg-blue-100 text-background-500 rounded-full px-4 py-1 text-sm font-semibold mr-2 mb-2 self-start">
-                          <IoMdGitMerge className="w-5 h-5 mt-0.5" />
-                          {item?.chapter_detail?.length} Chapter
-                        </button>
+                        <div className="flex justify-between">
+                          <button className="inline-flex gap-2 bg-blue-100 text-background-500 rounded-full px-4 text-sm font-semibold mr-2 self-start">
+                            <IoMdGitMerge className="w-5 h-5 mt-0.5" />
+                            {item?.chapter_detail?.length} Chapter
+                          </button>
+                          <div className="flex items-center">
+                            <StarRating rating={Math.round(calculateAverageRating(item.review_user || []))} />
+                            <span className="ml-2 text-sm dark:text-neutral-200">{calculateAverageRating(item.review_user || []).toFixed(1)} / 5</span>
+                          </div>
+                        </div>
                       </div>
                       <div className="flex flex-wrap justify-start px-2 py-0 md:py-2">
                         {item.tags &&

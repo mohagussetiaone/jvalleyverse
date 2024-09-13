@@ -39,8 +39,8 @@ const StudyCaseDetail = () => {
     <>
       <div className="w-[100vw] bg-white pt-8 dark:bg-gradient-to-r from-black via-brand3 to-background-500 px-4 h-full">
         <div className="flex gap-4 flex-col">
-          <div className="flex justify-center md:min-w-[300px] h-full md:h-[100vh] xl:min-w-[400px] md:w-full mb-4 md:my-8">
-            <iframe width="90%" height="100%" src={dataStudyCase.youtube_url} frameBorder="0" allowfullscreen></iframe>
+          <div className="flex justify-center items-center h-auto md:h-auto md:min-w-[300px] xl:min-w-[400px] mb-4">
+            <iframe src={dataStudyCase.youtube_url} frameBorder="0" allowFullScreen className="w-full h-[40vh] md:h-[400px] xl:h-[500px]"></iframe>
           </div>
           <div className="grid bg-gray-200 dark:bg-background-900 p-4 grid-cols-3 gap-4 md:mx-10 mb-10">
             <Link to="/belajar/diskusi" className="flex w-full flex-col items-center gap-2 justify-center rounded-lg px-1 md:py-3 cursor-pointer bg-white dark:bg-black/20">

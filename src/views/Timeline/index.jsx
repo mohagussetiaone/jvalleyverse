@@ -8,7 +8,7 @@ const Timeline = () => {
   return (
     <>
       <Helmet>
-        <title>Jvalleyverse - Jalur belajar</title>
+        <title>Jvalleyverse - Silabus</title>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/logosmalldark.png" />
         <meta data-rh="true" name="robots" content="index,follow" />

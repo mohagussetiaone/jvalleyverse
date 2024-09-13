@@ -7,7 +7,7 @@ import { useCheckSession } from "@/api/Auth/CheckSession";
 
 const subMenu = [
   { name: "Dashboard", to: "/" },
-  { name: "Jalur Belajar", to: "/jalur-belajar" },
+  { name: "Silabus", to: "/roadmap" },
   { name: "Belajar", to: "/belajar/project" },
   { name: "Show Case", to: "/show-case" },
   { name: "Diskusi", to: "/belajar/diskusi" },

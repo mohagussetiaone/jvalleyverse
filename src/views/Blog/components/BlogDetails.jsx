@@ -1,21 +1,57 @@
+import dayjs from "dayjs";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import ErrorServer from "@/components/ErrorServer";
 import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa6";
 import { HiOutlineLink } from "react-icons/hi";
 import { handleGetDiscussion } from "@/api/Project/DiscussionApi";
 import DiscussionSkeleton from "@/components/loading/DiscussionSkeleton";
 import { useAuthValidation } from "@/lib/authValidation";
+import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
+import { handleGetBlogById, handleGetBlogs } from "@/api/Blog/BlogApi";
 
 const BlogDetails = () => {
   useAuthValidation();
-
+  const query = useQueryClient();
+  const { blogId } = useParams();
   const tags = ["React", "JavaScript", "CSS", "HTML", "Node.js"];
   const currentUrl = window.location.href;
 
+  // GET ALL BLOG
+  const {
+    error: errorBlog,
+    isPending: isPendingBlog,
+    data: dataBlog,
+  } = useQuery({
+    queryKey: ["getBlogById"],
+    queryFn: () => handleGetBlogById(blogId),
+    enabled: !!blogId,
+  });
+
+  // GET ALL BLOGS
+  const {
+    error: errorBlogs,
+    isPending: isPendingBlogs,
+    data: dataBlogs,
+  } = useQuery({
+    queryKey: ["getBlogs"],
+    queryFn: handleGetBlogs,
+  });
+
+  console.log("dataBlogs", dataBlogs);
+  console.log("data Blog by id", dataBlog);
+
+  useEffect(() => {
+    if (blogId) {
+      query.invalidateQueries(["getBlogById"]);
+    }
+  }, [blogId]);
+
   const handleCopyLink = () => {
     navigator.clipboard.writeText(currentUrl);
-    alert("Link copied to clipboard!");
+    toast.success("Link copied to clipboard!");
   };
 
   const handleShare = (platform) => {
@@ -51,11 +87,11 @@ const BlogDetails = () => {
     queryFn: handleGetDiscussion,
   });
 
-  if (errorDiscussion) {
+  if (errorBlog || errorBlogs || errorDiscussion) {
     return <ErrorServer />;
   }
 
-  if (isPendingDiscussion) {
+  if (isPendingBlog || isPendingBlogs || isPendingDiscussion) {
     return <DiscussionSkeleton />;
   }
 
@@ -65,37 +101,18 @@ const BlogDetails = () => {
     <div className="grid grid-cols-12 gap-2 md:gap-4 bg-gray-200 dark:bg-gradient-to-r from-background-600 via-background-700 to-background-800 p-6 px-4 md:px-8 xl:px-10">
       <div className="bg-white dark:bg-background-900 col-span-12 xl:col-span-9 p-4 rounded-lg">
         <div>
-          <img src="https://images.pexels.com/photos/27308308/pexels-photo-27308308/free-photo-of-lofoten-islands-of-norway.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="banner.img" className="w-full h-[350px]" />
+          <img src={dataBlog?.cover_img_url} alt="banner.img" className="w-full h-[350px]" />
         </div>
         <div className="flex flex-col text-gray-800 dark:text-neutral-200">
-          <h2 className="text-5xl font-medium py-3">Lorem ipsum dolor sit amet consectetur</h2>
+          <h2 className="text-5xl font-medium py-3">{dataBlog?.title}</h2>
           <div className="flex items-center text-sm gap-2 text-gray-800 dark:text-neutral-200">
-            <p>Moh Agus Setiawan</p>
+            <p>{dataBlog?.author?.name}</p>
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-gray-800 dark:bg-neutral-200 dark:text-neutral-200 mt-1"></span>
-            <p>04 April 2022</p>
+            <p>{dayjs(dataBlog?.created_at).format("DD MMM YYYY HH:MM")}</p>
           </div>
         </div>
         <div className="mt-8 text-gray-800 dark:text-neutral-200">
-          <p className="mt-2 first-letter:text-4xl first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:leading-tight">
-            An todays rapidly evolving world, staying informed is more crucial than ever. The information we share here aims to empower our readers with knowledge that can drive positive change. By staying up-to-date with the latest trends
-            and insights, you not only gain a competitive edge but also contribute to a more informed and connected community.
-          </p>
-          <p className="mt-4">
-            We believe that sharing knowledge is the key to progress. Thats why we are committed to bringing you the most relevant and impactful news. Whether its groundbreaking innovations, critical updates, or inspiring stories, our goal
-            is to keep you informed and engaged.
-          </p>
-          <div className="mt-6">
-            <h5 className="text-lg font-medium">Stay Connected</h5>
-            <p className="text-justify">
-              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
-              College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes
-              from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first
-              line of Lorem Ipsum, Lorem ipsum dolor sit amet., comes from a line in section 1.10.32. Where can I get some? There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some
-              form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text. All
-              the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model
-              sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-            </p>
-          </div>
+          <p className="mt-2 first-letter:text-4xl first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:leading-tight text-justify">{dataBlog?.content}</p>
         </div>
       </div>
       <div className="min-h-screen col-span-12 xl:col-span-3 sticky top-14 hidden md:block">
@@ -105,13 +122,13 @@ const BlogDetails = () => {
               <h3 className="uppercase text-black dark:text-neutral-200">Topik Related</h3>
             </div>
             <div className=" p-2 rounded-b-md">
-              {dataDiscussion &&
-                dataDiscussion.map((discussion, index) => (
-                  <div key={discussion.id} className={`p-2 text-black flex text-start justify-start ${(index + 1) % 5 === 0 ? "border-b border-gray-300" : ""}`}>
+              {dataBlogs &&
+                dataBlogs.map((blog, index) => (
+                  <div key={blog.id} className={`p-2 text-black flex text-start justify-start ${(index + 1) % 5 === 0 ? "border-b border-gray-300" : ""}`}>
                     <ol className="text-sm ">
                       <li className="cursor-pointer">
-                        <Link to={`${discussion.id}`} className="text-black font-normal dark:text-neutral-400">
-                          {discussion.question}
+                        <Link to={`/blog/${blog.id}`} className="line-clamp-2 text-black hover:text-black font-normal dark:text-neutral-400">
+                          {blog.title}
                         </Link>
                       </li>
                     </ol>

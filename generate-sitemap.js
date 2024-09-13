@@ -3,7 +3,7 @@ import { createWriteStream } from "fs";
 
 const links = [
   { url: "/", changefreq: "daily", priority: 1.0 },
-  { url: "/jalur-belajar", changefreq: "weekly", priority: 0.8 },
+  { url: "/roadmap", changefreq: "weekly", priority: 0.8 },
   { url: "/tentang", changefreq: "monthly", priority: 0.8 },
   { url: "/show-case", changefreq: "weekly", priority: 0.8 },
   { url: "/show-case/buat-show-case", changefreq: "monthly", priority: 0.7 },

@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/jalur-belajar",
+        path: "/roadmap",
         loader: authLoader,
         Component() {
           return <Timeline />;

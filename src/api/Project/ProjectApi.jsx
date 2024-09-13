@@ -26,6 +26,12 @@ export const handleGetProject = async () => {
         tags,
         project_published,
         is_enrollment,
+        review_user (
+          id,
+          user_id,
+          message,
+          rating
+        ),
         created_at
         `
       );

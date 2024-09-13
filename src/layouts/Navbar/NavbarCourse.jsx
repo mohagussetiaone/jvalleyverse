@@ -65,12 +65,12 @@ const NavbarCourse = (className) => {
               <Link to="/belajar/project" className="text-black font-normal dark:text-neutral-200 hover:text-black">
                 {t("Belajar")}
               </Link>
-              <MenuItem setActive={setActive} active={active} item="Jalur belajar" className="cursor-pointer">
+              <MenuItem setActive={setActive} active={active} item="Silabus" className="cursor-pointer">
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
                   <NavbarItem
                     title="UI/UX Design"
                     onClick={(data) => {
-                      navigate("/jalur-belajar", { data });
+                      navigate("/roadmap", { data });
                       setStudyActive(0);
                     }}
                     src={uiuxImg}
@@ -79,7 +79,7 @@ const NavbarCourse = (className) => {
                   <NavbarItem
                     title="Database"
                     onClick={(data) => {
-                      navigate("/jalur-belajar", { data });
+                      navigate("/roadmap", { data });
                       setStudyActive(1);
                     }}
                     src={databaseImg}
@@ -88,7 +88,7 @@ const NavbarCourse = (className) => {
                   <NavbarItem
                     title="Backend Developer"
                     onClick={(data) => {
-                      navigate("/jalur-belajar", { data });
+                      navigate("/roadmap", { data });
                       setStudyActive(2);
                     }}
                     src={backEndImg}
@@ -97,14 +97,14 @@ const NavbarCourse = (className) => {
                   <NavbarItem
                     title="Frontend Developer"
                     onClick={(data) => {
-                      navigate("/jalur-belajar", { data });
+                      navigate("/roadmap", { data });
                       setStudyActive(3);
                     }}
                     src={frontEndImg}
                     description={t("Mentransformasi desain UI/UX menjadi web yang interaktif dan responsif dengan efisien.")}
                   />
                 </div>
-                <Link to="/jalur-belajar" className="flex justify-center py-2">
+                <Link to="/roadmap" className="flex justify-center py-2">
                   <span className="text-background-500 dark:text-gray-100 font-bold cursor-pointer">{t("Lihat selengkapnya")}</span>
                 </Link>
               </MenuItem>
@@ -139,7 +139,7 @@ const NavbarCourse = (className) => {
                     description={t("Tanyakan masalahmu di sini dalam forum diskusi")}
                   />
                 </div>
-                <Link to="/jalur-belajar" className="flex justify-center py-2">
+                <Link to="/roadmap" className="flex justify-center py-2">
                   <span className="text-background-500 dark:text-gray-100 font-bold cursor-pointer">{t("Lihat selengkapnya")}</span>
                 </Link>
               </MenuItem>
