@@ -171,7 +171,7 @@ const DetailProfile = ({ userProfile }) => {
         </div>
       </div>
       <div className="flex justify-end gap-4 mt-4">
-        <button className="bg-gray-500 text-white px-4 py-2 rounded-md" onClick={onSubmit} disabled={!selectedFile || !profileImg}>
+        <button className="bg-gray-500 text-white px-4 py-2 rounded-md dark:bg-brand-700" onClick={onSubmit} disabled={!selectedFile || !profileImg}>
           Change Profile
         </button>
       </div>

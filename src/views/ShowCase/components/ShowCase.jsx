@@ -16,7 +16,7 @@ const Card = ({ item }) => {
 
   return (
     <div
-      className="flex flex-col md:items-start bg-white  border border-gray-200 rounded-lg shadow xl:flex-row md:max-w-2xl hover:bg-gray-100 cursor-pointer dark:border-gray-900 dark:bg-gray-800 dark:hover:bg-slate-600"
+      className="flex flex-col md:items-start bg-white  border border-gray-200 rounded-lg shadow xl:flex-row md:max-w-2xl hover:bg-gray-100 cursor-pointer dark:border-secondaryDark dark:bg-secondaryDark/20"
       onClick={() => handleShowCaseDetail(item.id)}
     >
       <div className="w-full min-w-[11rem] xl:w-52 xl:h-44">
@@ -25,13 +25,13 @@ const Card = ({ item }) => {
       <div className="flex flex-col p-4">
         <div className="flex flex-col justify-between leading-normal">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-left">{item.name}</h5>
-          <p className="mb-3 line-clamp-2 whitespace-normal font-normal text-gray-700 dark:text-gray-400 text-left truncate">{item.description}</p>
+          <p className="mb-3 line-clamp-2 whitespace-normal font-normal text-gray-700 dark:text-neutral-200 text-left truncate">{item.description}</p>
         </div>
         <div className="flex items-center">
           <img className="w-10 h-10 rounded-full mr-4" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.users.profile_image_url}`} alt="Avatar of Jonathan Reinink" />
           <div className="text-sm text-left">
-            <p className="text-gray-600 leading-none">{item.users.name}</p>
-            <p className="text-gray-600">{dayjs(item.created_at).format("DD MMM YY")}</p>
+            <p className="text-neutral-200 leading-none">{item.users.name}</p>
+            <p className="text-neutral-200">{dayjs(item.created_at).format("DD MMM YY")}</p>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@ const Index = () => {
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
-    <div className="bg-white dark:bg-gradient-to-r from-black via-background-900 to-background-600 mx-auto min-h-screen p-6">
+    <div className="bg-white dark:bg-primaryDark mx-auto min-h-screen p-6">
       <div className="flex justify-between">
         <div>
           <h3 className="text-xl md:text-2xl dark:text-neutral-200">Show kiriman anggota</h3>

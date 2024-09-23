@@ -98,8 +98,8 @@ const BlogDetails = () => {
   console.log("dataDiscussion", dataDiscussion);
 
   return (
-    <div className="grid grid-cols-12 gap-2 md:gap-4 bg-gray-200 dark:bg-gradient-to-r from-background-600 via-background-700 to-background-800 p-6 px-4 md:px-8 xl:px-10">
-      <div className="bg-white dark:bg-background-900 col-span-12 xl:col-span-9 p-4 rounded-lg">
+    <div className="grid grid-cols-12 gap-2 md:gap-4 bg-gray-200 dark:bg-primaryDark p-6 px-4 md:px-8 xl:px-10">
+      <div className="bg-white dark:bg-secondaryDark/20 col-span-12 xl:col-span-9 p-4 rounded-lg">
         <div>
           <img src={dataBlog?.cover_img_url} alt="banner.img" className="w-full h-[350px]" />
         </div>
@@ -117,7 +117,7 @@ const BlogDetails = () => {
       </div>
       <div className="min-h-screen col-span-12 xl:col-span-3 sticky top-14 hidden md:block">
         <div className="flex flex-col gap-4">
-          <div className="bg-white dark:bg-black/10 rounded-md">
+          <div className="bg-white dark:bg-secondaryDark/20 rounded-md">
             <div className="text-start rounded-t-lg p-2 md:pl-4">
               <h3 className="uppercase text-black dark:text-neutral-200">Topik Related</h3>
             </div>
@@ -136,19 +136,19 @@ const BlogDetails = () => {
                 ))}
             </div>
           </div>
-          <div className="p-4 bg-white dark:bg-black/10 rounded-md">
+          <div className="p-4 bg-white dark:bg-secondaryDark/20 rounded-md">
             <div className="pb-4">
               <h3 className="uppercase text-black dark:text-neutral-200">Recomended Topic</h3>
             </div>
             <div className="flex flex-wrap gap-3">
               {tags.map((tag, index) => (
-                <button key={index} onClick={() => handleTagClick(tag)} className="bg-gray-200 dark:bg-brand3 text-black dark:text-white text-sm px-6 py-2 rounded-2xl hover:cursor-pointer hover:border-none">
+                <button key={index} onClick={() => handleTagClick(tag)} className="bg-gray-200 dark:bg-secondaryDark text-black dark:text-white text-sm px-6 py-2 rounded-2xl hover:cursor-pointer hover:border-none">
                   #{tag}
                 </button>
               ))}
             </div>
           </div>
-          <div className="flex flex-col bg-white dark:bg-black/10 justify-start gap-4 p-4 rounded-md">
+          <div className="flex flex-col bg-white dark:bg-secondaryDark/20 justify-start gap-4 p-4 rounded-md">
             <div>
               <h3 className="uppercase text-black dark:text-neutral-200">Bagikan</h3>
             </div>

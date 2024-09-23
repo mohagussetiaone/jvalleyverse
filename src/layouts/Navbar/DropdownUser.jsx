@@ -84,14 +84,13 @@ const DropdownUser = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute rounded-md right-0 mt-5 pt-4 flex w-52 flex-col bg-white dark:bg-background-900 ${dropdownOpen === true ? "block" : "hidden"}`}
+        className={`absolute rounded-md right-0 mt-5 pt-4 flex w-52 flex-col bg-white dark:bg-primaryDark ${dropdownOpen === true ? "block" : "hidden"}`}
       >
-        <div className="flex flex-col justify-start text-black dark:text-neutral-200 px-6 pb-2">
-          <h3>{userProfile?.name}</h3>
-          <p>Theme </p>
+        <div className="flex flex-col justify-start text-black dark:text-neutral-200 px-4 pb-2">
+          <h3 className="font-semibold">{userProfile?.name}</h3>
         </div>
         <hr className="border-stroke py-2" />
-        <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-6 dark:border-black">
+        <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-4 dark:border-black">
           <li>
             <Link
               to="/"

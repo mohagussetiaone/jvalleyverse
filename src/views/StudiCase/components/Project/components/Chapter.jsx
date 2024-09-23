@@ -164,7 +164,7 @@ const Chapter = () => {
 
   return (
     <>
-      <div className="w-[100vw] bg-gray-200 dark:bg-background-900 px-4 h-full py-6">
+      <div className="w-[100vw] bg-gray-200 dark:bg-primaryDark px-4 h-full py-6">
         <div className="flex justify-center md:min-w-[300px] md:h-[100vh] xl:min-w-[400px] md:w-full mb-4 md:mb-4">
           <iframe src={dataChapterDetailById.youtube_url} frameBorder="0" allowFullScreen className="w-full h-full"></iframe>
         </div>
@@ -176,10 +176,10 @@ const Chapter = () => {
               </div>
               <div className="w-full h-4 bg-gray-200 rounded-full dark:bg-gray-700">
                 <div
-                  className="h-4 bg-blue-600 rounded-full dark:bg-blue-500"
+                  className="h-4 bg-brand-600 rounded-full dark:bg-blue-500"
                   style={{
                     width: `${progress}%`,
-                    background: "linear-gradient(90deg, rgba(0, 0, 255, 0.3) 25%, rgba(0, 0, 255, 0.8) 50%, rgba(0, 0, 255, 0.3) 75%)",
+                    background: "linear-gradient(90deg, rgba(196, 107, 60, 0.3) 25%, rgba(196, 107, 60, 0.8) 50%, rgba(196, 107, 60, 0.3) 75%)",
                     backgroundSize: "200% 100%",
                     animation: "flow 4s linear infinite",
                   }}
@@ -191,7 +191,7 @@ const Chapter = () => {
             </div>
             <div className="flex justify-end md:items-center">
               {nextChapterId && (
-                <button className="flex gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={handleNextChapter}>
+                <button className="flex gap-2 bg-brand-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={handleNextChapter}>
                   {t("Selesaikan dan lanjutkan")}
                   <GrLinkNext className="mt-1.5" />
                 </button>

@@ -31,7 +31,7 @@ const TimelineTab = () => {
   const { studyActive, setStudyActive } = useStudyActive();
 
   return (
-    <div className="w-full pt-6 bg-whiteSmoke dark:bg-gradient-to-r from-black via-background-900 to-background-600">
+    <div className="w-full pt-6 bg-whiteSmoke dark:bg-primaryDark">
       <div>
         <TabGroup selectedIndex={studyActive} onChange={setStudyActive}>
           <TabList className="flex mx-auto justify-center items-center lg:space-x-6 md:space-x-4 space-x-3 px-4 ">
@@ -41,7 +41,7 @@ const TimelineTab = () => {
                   {({ selected }) => (
                     <button
                       className={`text-sm font-medium mb-7 capitalize ring-0 foucs:ring-0 focus:outline-none px-6 rounded-md py-2 transition duration-150 whitespace-nowrap ${
-                        selected ? "text-white bg-brand-500 " : "text-slate-500 bg-white dark:bg-slate-700 dark:text-slate-300"
+                        selected ? "text-white bg-brand-500 " : "text-slate-500 bg-white dark:bg-secondaryDark/70 dark:text-slate-300"
                       }`}
                     >
                       {item.title}

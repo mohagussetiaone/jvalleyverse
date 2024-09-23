@@ -14,10 +14,7 @@ const Card = ({ item }) => {
   };
 
   return (
-    <div
-      className="flex flex-col md:items-start bg-white  border border-gray-200 rounded-lg shadow xl:flex-row md:max-w-2xl hover:bg-gray-100 cursor-pointer dark:border-gray-900 dark:bg-gray-800 dark:hover:bg-slate-600"
-      onClick={() => handleShowCaseDetail(item.id)}
-    >
+    <div className="flex flex-col md:items-start bg-white border border-gray-200 dark:border-none rounded-lg shadow xl:flex-row md:max-w-2xl hover:bg-gray-100 cursor-pointer dark:bg-black" onClick={() => handleShowCaseDetail(item.id)}>
       <div className="w-full min-w-[11rem] xl:w-52 xl:h-44">
         <img className="w-full h-full sm:h-48 object-contain rounded-t-lg md:rounded-none md:rounded-s-lg" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.show_case_img_url}`} alt={item.name} />
       </div>
@@ -100,7 +97,7 @@ const Index = () => {
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
-    <div className="bg-white dark:bg-gradient-to-r from-black via-background-900 to-background-600 mx-auto min-h-screen p-6">
+    <div className="bg-white dark:bg-primaryDark mx-auto min-h-screen p-6">
       <div className="flex justify-between">
         <div>
           <h3 className="text-xl md:text-2xl dark:text-neutral-200">Show case anda</h3>

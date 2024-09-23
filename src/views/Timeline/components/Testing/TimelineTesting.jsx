@@ -1,6 +1,6 @@
 const TimelineCard = () => {
   return (
-    <div className="bg-whiteSmoke dark:bg-gradient-to-tr w-screen from-black via-background-500 to-gray-900 py-4">
+    <div className="bg-whiteSmoke dark:bg-primaryDark to-gray-900 py-4">
       <div className="flex flex-col text-center gap-4 xl:px-44 mb-12 text-black dark:text-neutral-200">
         <h2 className="text-3xl font-bold">Silabus Testing</h2>
         <p className="justify-center">Mengembangkan teknik dan alat untuk mengidentifikasi dan memperbaiki bug, memastikan aplikasi berfungsi sesuai harapan</p>

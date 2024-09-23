@@ -51,8 +51,8 @@ const DiscussionDetail = () => {
 
   return (
     <>
-      <div className="px-2 dark:bg-background-900 md:px-6 xl:px-10 py-6">
-        <div className="py-6 px-4 md:px-6 xl:px-8 bg-white dark:bg-black/20 dark:text-neutral-300 rounded-lg">
+      <div className="px-2 dark:bg-primaryDark md:px-6 xl:px-10 py-6">
+        <div className="py-6 px-4 md:px-6 xl:px-8 bg-white dark:bg-black dark:text-neutral-300 rounded-lg">
           <div className="flex flex-col gap-2">
             <div>
               <h3 className="text-3xl">{dataDiscussionDetail?.question}</h3>

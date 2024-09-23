@@ -28,7 +28,7 @@ const ErrorDiscussion = () => {
 
   return (
     <>
-      <div className="w-full bg-gray-200 dark:bg-background-900">
+      <div className="w-full bg-gray-200 dark:bg-primaryDark">
         <div className="grid grid-cols-12 gap-5 py-2 md:p-4 xl:p-6">
           <div className="col-span-12 md:col-span-9">
             <DiscussionHome dataDiscussion={dataDiscussion} />

@@ -56,7 +56,7 @@ function Navbar(className) {
 
   return (
     <>
-      <nav className={cn(`fixed left-0 w-full px-4 bg-white dark:bg-gradient-to-r from-black to-background-500 md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-background-500`, className)}>
+      <nav className={cn(`fixed left-0 w-full px-4 bg-white dark:bg-primaryDark md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-secondaryDark`, className)}>
         <Menu setActive={setActive} className="w-full ">
           <div className="flex mx-auto justify-between">
             <div className="justify-end md:flex">

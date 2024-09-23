@@ -28,12 +28,12 @@ const Blog = () => {
   if (errorBlogs) <ErrorServer />;
 
   return (
-    <div className="w-full mx-auto px-14 py-4 bg-gray-200 dark:bg-background-900 dark:text-neutral-200">
+    <div className="w-full mx-auto px-14 py-4 bg-gray-200 dark:bg-primaryDark dark:text-neutral-200">
       {dataBlogs &&
         dataBlogs.map((blog, index) => (
           <div key={index}>
             {index === 0 && (
-              <div className={`shadow-lg bg-white rounded-lg dark:bg-gradient-to-r from-background-600 via-background-700 to-background-800 p-6 cursor-pointer ${index === 0 ? "mb-6" : "mb-4"}`}>
+              <div className={`shadow-lg bg-white rounded-lg dark:bg-secondaryDark/30 p-6 cursor-pointer ${index === 0 ? "mb-6" : "mb-4"}`}>
                 <div className="relative overflow-hidden">
                   <img src={blog.cover_img_url} alt="banner.img" className="w-full h-[350px] object-cover" />
                 </div>
@@ -56,7 +56,7 @@ const Blog = () => {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {dataBlogs &&
           dataBlogs.slice(1).map((blog) => (
-            <div key={blog.id} className="flex flex-col md:flex-row md:items-start rounded-lg xl:flex-row cursor-pointer bg-white dark:bg-gradient-to-r from-background-600 via-background-700 to-background-800">
+            <div key={blog.id} className="flex flex-col md:flex-row md:items-start rounded-lg xl:flex-row cursor-pointer bg-white dark:bg-secondaryDark/30">
               <div className="w-full min-w-[11rem] xl:w-52 xl:h-44 relative overflow-hidden">
                 <img className="w-full h-full object-contain rounded-t-lg md:rounded-none md:rounded-s-lg transition-transform duration-300 ease-in-out transform hover:scale-110" src={blog.cover_img_url} alt="blog.img" />
               </div>

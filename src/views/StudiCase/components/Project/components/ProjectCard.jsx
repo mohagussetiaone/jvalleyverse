@@ -94,7 +94,7 @@ const ProjectCard = () => {
 
   return (
     <>
-      <div className="bg-gray-200 dark:bg-gradient-to-r from-background-900 to-background-500 p-3 md:p-6 pt-6">
+      <div className="bg-gray-200 dark:bg-primaryDark p-3 md:p-6 pt-6">
         <div className="mb-4">
           <div className="flex justify-between">
             <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
@@ -135,11 +135,11 @@ const ProjectCard = () => {
                 currentData.map((item) => (
                   <div className="relative group cursor-pointer" key={item.id}>
                     <div
-                      className={`max-w-[310px] absolute min-h-[245px] h-[245px] md:min-h-[320px] sm:h-[300px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
+                      className={`max-w-[310px] absolute min-h-[245px] h-[245px] md:min-h-[320px] sm:h-[300px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-secondaryDark to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
                         darkMode ? "group-hover:opacity-100" : ""
                       }`}
                     ></div>
-                    <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
+                    <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-black transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
                       <div className="h-32 sm:h-40 md:h-44 overflow-hidden">
                         <img className="w-full h-full object-cover" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.project_img_url}`} alt={item.project_name} />
                       </div>

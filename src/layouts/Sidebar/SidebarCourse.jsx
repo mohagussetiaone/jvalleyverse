@@ -28,7 +28,7 @@ const SidebarCourse = () => {
 
   return (
     <>
-      <aside className="hidden xl:block left-0 z-40 w-[275px] h-full bg-gray-50 dark:bg-black/95 overflow-y-auto">
+      <aside className="hidden xl:block left-0 z-40 w-[275px] h-full bg-gray-50 dark:bg-black overflow-y-auto">
         <div className="h-full px-3 py-5">
           <ul className="space-y-2 font-medium">
             {sidebarData &&

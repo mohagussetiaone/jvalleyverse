@@ -28,6 +28,7 @@ import useActiveMenu from "@/hooks/useActiveMenu";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 // Component
 import Language from "@/components/Language";
+import Notification from "./Notification";
 import DropdownUser from "./DropdownUser";
 
 const NavbarCourse = (className) => {
@@ -46,7 +47,7 @@ const NavbarCourse = (className) => {
 
   return (
     <>
-      <nav className={cn("fixed left-0 w-full px-4 bg-white dark:bg-gradient-to-r from-black to-background-500 md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-background-500", className)}>
+      <nav className={cn("fixed left-0 w-full px-4 bg-white dark:bg-primaryDark md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-secondaryDark", className)}>
         <Menu setActive={setActive} className="w-full bg-[#11090E]">
           <div className="flex mx-auto justify-between">
             <Link to="/" className="hidden xl:flex">
@@ -155,8 +156,9 @@ const NavbarCourse = (className) => {
                 <LuLogOut className="text-black dark:text-neutral-200" />
                 {t("Keluar")}
               </Link>
-              <div className="mt-2">
+              <div className="flex">
                 <Language />
+                <Notification />
               </div>
               <span className="cursor-pointer">
                 {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}

@@ -7,7 +7,7 @@ const Navbar = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-white dark:bg-gradient-to-br from-black via-background-500 to-background-800 pt-4">
+    <div className="bg-white dark:bg-primaryDark pt-4">
       <footer className="relative w-full">
         <div className="w-full px-4 md:px-8 xl:px-10 mx-auto max-w-7xl">
           <div className="grid justify-between grid-cols-1 gap-1 md:gap-2 xl:gap-4 md:grid-cols-2">

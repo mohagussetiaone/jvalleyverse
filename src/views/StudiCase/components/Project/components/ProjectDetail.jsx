@@ -77,7 +77,7 @@ const ProjectDetail = () => {
 
   return (
     <>
-      <div className="w-full px-2 md:px-4 h-full py-6 dark:bg-background-500 flex flex-col">
+      <div className="w-full px-2 md:px-4 h-full py-6 dark:bg-primaryDark flex flex-col">
         <div className="flex justify-center items-center h-auto md:h-auto md:min-w-[300px] xl:min-w-[400px] mb-4">
           <iframe src={dataProjectDetails?.project_youtube_embed} frameBorder="0" allowFullScreen className="w-full h-[40vh] md:h-[400px] xl:h-[500px]"></iframe>
         </div>

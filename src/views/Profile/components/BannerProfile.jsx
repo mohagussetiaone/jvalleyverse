@@ -21,10 +21,10 @@ const BannerProfile = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row py-10 px-4 md:px-8 xl:px-10 justify-between h-full bg-white dark:bg-gradient-to-r from-black to-background-500">
+      <div className="flex flex-col md:flex-row py-10 px-4 md:px-8 xl:px-10 justify-between h-full bg-white dark:bg-primaryDark">
         <div className="flex relative items-center">
           <img
-            className="h-auto w-20 md:w-28 xl:w-44 rounded-full bg-white/70 border-gray-300 border-4"
+            className="h-auto w-20 md:w-28 xl:w-44 rounded-full bg-white/70 dark:bg-secondaryDark border-4 border-gray-300 dark:border-brand-500"
             src={userProfile?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}` : ProfileImage}
             alt="profile.jpg"
           />
@@ -36,7 +36,7 @@ const BannerProfile = () => {
           </div>
         </div>
         <div className="flex md:mt-4 ml-24 xl:mr-14 items-center justify-start xl:justify-end">
-          <Link to="/settings" className="text-sm text-black dark:text-gray-200 border-[1px] border-gray-600 rounded-lg py-1 md:py-2 px-2 md:px-4">
+          <Link to="/settings" className="text-sm text-black dark:text-brand-500 border-[1px] border-gray-600 dark:border-brand-500 rounded-lg py-1 md:py-2 px-2 md:px-4">
             Edit Profile
           </Link>
         </div>

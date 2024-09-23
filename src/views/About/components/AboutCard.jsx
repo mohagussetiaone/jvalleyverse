@@ -38,7 +38,7 @@ const content = [
 export default function About() {
   return (
     <div>
-      <h3 className="text-2xl flex justify-center py-4 bg-white dark:bg-background-900 dark:text-white">Tentang Kami</h3>
+      <h3 className="text-2xl flex justify-center py-4 bg-white dark:bg-primaryDark dark:text-white">Tentang Kami</h3>
       <StickyScroll content={content} />
     </div>
   );

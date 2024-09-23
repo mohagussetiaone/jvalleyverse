@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const RelatedTopik = ({ dataDiscussion }) => {
   return (
-    <div className="bg-neutral-200 dark:bg-black/30 rounded-md">
+    <div className="bg-neutral-200 dark:bg-black rounded-md">
       <div className="text-start rounded-t-lg p-2 md:pl-4">
         <p className="text-base text-black dark:text-neutral-200">Topik Related</p>
       </div>

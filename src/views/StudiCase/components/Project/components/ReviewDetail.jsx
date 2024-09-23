@@ -28,7 +28,7 @@ const ReviewDetail = () => {
   console.log("dataReview", dataReview);
 
   return (
-    <section className="py-10 relative bg-white dark:bg-background-900">
+    <section className="py-10 relative bg-white dark:bg-primaryDark">
       <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
         <div className="w-full">
           <h2 className="font-manrope font-bold text-4xl text-black dark:text-neutral-200 mb-8 text-center">Our customer reviews</h2>

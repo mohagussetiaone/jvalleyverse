@@ -67,7 +67,7 @@ const CertificateCard = () => {
       {currentCertificates.length > 0 ? (
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           {currentCertificates.map((certificate, index) => (
-            <div key={index} className="bg-white dark:bg-black/20 grid gap-0 grid-cols-12 max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-2 md:p-4 mb-4">
+            <div key={index} className="bg-white dark:bg-black grid gap-0 grid-cols-12 max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-2 md:p-4 mb-4">
               <div className="col-span-12 md:col-span-3 mx-auto">
                 <PiCertificateLight className="w-44 h-44 md:w-24 md:h-24 text-black dark:text-neutral-400" />
               </div>

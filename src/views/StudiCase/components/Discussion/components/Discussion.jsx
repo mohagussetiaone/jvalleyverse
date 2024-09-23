@@ -37,7 +37,7 @@ const Discussion = ({ dataDiscussion }) => {
 
   return (
     <>
-      <div className="w-full bg-white dark:bg-black/10 text-black dark:text-neutral-200 rounded-lg">
+      <div className="w-full bg-white dark:bg-black text-black dark:text-neutral-200 rounded-lg">
         <div className="bg-white dark:bg-black/10 rounded-lg">
           <div className="flex flex-col gap-2 xl:gap-4 px-2 md:px-4 xl:px-6 py-4">
             <div className="flex justify-between mb-2">
@@ -47,7 +47,7 @@ const Discussion = ({ dataDiscussion }) => {
               <div>
                 <Link
                   to="/belajar/diskusi/buat-pertanyaan"
-                  className="border border-brand-500 bg-white text-brand-500 dark:bg-brand-500 dark:border-none dark:text-neutral-200 px-4 py-1 rounded"
+                  className="border border-brand-500 bg-white text-brand-500 dark:bg-brand-800 dark:border-none dark:text-neutral-200 px-4 py-1 rounded"
                   onClick={() => setShowCreateDiscussion(true)}
                 >
                   Buat Pertanyaan
@@ -65,7 +65,7 @@ const Discussion = ({ dataDiscussion }) => {
             </div>
           </div>
           {filteredData?.length === 0 ? (
-            <div className="text-center py-4 bg-white dark:bg-black/40 h-[calc(100vh-39vh)]">
+            <div className="text-center py-4 bg-white dark:bg-black h-[calc(100vh-39vh)]">
               <h3 className="mt-24 text-lg md:text-xl">Data Not Found</h3>
             </div>
           ) : (

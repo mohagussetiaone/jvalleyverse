@@ -135,8 +135,8 @@ const Question = () => {
   };
 
   return (
-    <div className="w-full py-8 px-4 min-h-screen dark:bg-background-900">
-      <div className="max-w-4xl bg-gray-200 dark:bg-black/20 mx-auto p-8 rounded-xl">
+    <div className="w-full py-8 px-4 min-h-screen dark:bg-primaryDark">
+      <div className="max-w-4xl bg-gray-200 dark:bg-black mx-auto p-8 rounded-xl">
         <div className="flex justify-center my-2">
           <h3 className="text-2xl dark:text-neutral-200 font-bold">Buat pertanyaan anda</h3>
         </div>

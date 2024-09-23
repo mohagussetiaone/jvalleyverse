@@ -29,8 +29,8 @@ const SidebarDiscussion = () => {
                     to={item.url}
                     className={`flex items-center p-2 rounded-lg ${
                       activeMenu === item.id
-                        ? "bg-gray-200 dark:bg-neutral-900 text-black dark:text-neutral-200 hover:bg-gray-300 hover:text-black"
-                        : "text-gray-900 dark:text-neutral-400 bg-white dark:bg-black/50 hover:bg-gray-100 hover:text-gray-800 dark:hover:text-neutral-200"
+                        ? "bg-gray-200 dark:bg-secondaryDark text-black dark:text-neutral-200 hover:bg-gray-300 hover:text-black"
+                        : "text-gray-900 dark:text-neutral-400 bg-white dark:bg-secondaryDark/30 hover:bg-gray-100 hover:text-gray-800 dark:hover:text-neutral-200"
                     }`}
                     onClick={() => handleClick(item.id)}
                   >

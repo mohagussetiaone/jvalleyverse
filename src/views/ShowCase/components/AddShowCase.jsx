@@ -229,8 +229,8 @@ const AddShowCase = () => {
         <meta name="twitter:description" content="Bergabunglah dengan komunitas IT gratis untuk belajar, berbagi pengetahuan, dan berkembang bersama para profesional dan penggemar IT dari berbagai latar belakang." />
         <meta name="twitter:image" content="/logosmalldark.png" />
       </Helmet>
-      <div className="w-full p-6 min-h-screen dark:bg-gradient-to-r from-black via-background-900 to-background-600">
-        <div className="max-w-4xl bg-white dark:bg-background-900 p-8 mx-auto rounded-xl">
+      <div className="w-full p-6 min-h-screen dark:bg-primaryDark">
+        <div className="max-w-4xl bg-white dark:bg-secondaryDark/20 p-8 mx-auto rounded-xl">
           <div className="flex justify-center my-2">
             <h3 className="text-2xl dark:text-neutral-200 font-bold">Buat Show Case anda</h3>
           </div>

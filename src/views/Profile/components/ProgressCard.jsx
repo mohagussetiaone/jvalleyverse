@@ -80,7 +80,7 @@ const ProgressCard = () => {
 
   return (
     <>
-      <div className="w-[100vw] px-4 md:pl-10 xl:pr-14 bg-white dark:bg-gradient-to-r from-black via-background-900 to-background-700">
+      <div className="w-[100vw] px-4 md:pl-10 xl:pr-14 bg-white dark:bg-primaryDark">
         <div className="py-4">
           <div className="mb-4">
             <div className="flex justify-start py-4">
@@ -128,11 +128,11 @@ const ProgressCard = () => {
                 {currentData.map((item) => (
                   <div className="relative group cursor-pointer" key={item.id}>
                     <div
-                      className={`absolute transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
+                      className={`absolute transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-brand-900 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
                         darkMode ? "group-hover:opacity-100" : ""
                       }`}
                     ></div>
-                    <div className="relative max-w-[350px] h-auto rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300" onClick={() => handleCardClick(item.project_id)}>
+                    <div className="relative max-w-[350px] h-auto rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-black transition-colors duration-300" onClick={() => handleCardClick(item.project_id)}>
                       <div className="h-32 sm:h-40 md:h-44 overflow-hidden">
                         <img className="w-full h-full object-cover" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.project.project_img_url}`} alt={item.project.project_name} />
                       </div>

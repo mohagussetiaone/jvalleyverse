@@ -81,8 +81,8 @@ const ListModuleCourse = () => {
                   <a
                     className={`flex items-center cursor-pointer justify-between p-2 rounded-lg ${
                       activeMenu === item.id
-                        ? "bg-gray-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
-                        : "text-black dark:text-neutral-200 bg-white dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white hover:bg-gray-100 hover:text-gray-900"
+                        ? "bg-gray-200 dark:bg-secondaryDark/40 dark:hover:bg-secondaryDark text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
+                        : "text-black dark:text-neutral-200 bg-white dark:bg-secondaryDark/40 dark:hover:bg-secondaryDark dark:hover:text-white hover:bg-gray-100 hover:text-gray-900"
                     }`}
                     onClick={() => handleClick(item.id)}
                   >
@@ -104,7 +104,7 @@ const ListModuleCourse = () => {
                             to={`belajar/project/${item.project_id}/chapter/${chapter_detail.id}`}
                             className={`flex items-center p-2 rounded-lg ${
                               activeSubMenu === chapter_detail.id
-                                ? "bg-gray-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
+                                ? "bg-gray-200 dark:bg-secondaryDark dark:hover:bg-secondaryDark text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
                                 : "hover:text-black text-black dark:text-white dark:hover:text-white"
                             }`}
                             onClick={() => handleSubMenuClick(chapter_detail.id)}

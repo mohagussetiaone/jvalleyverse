@@ -10,28 +10,28 @@ const TabMenuProfile = () => {
   const { activeMenu, setActiveMenu } = useActiveMenu();
 
   return (
-    <div className="bg-gray-200 dark:bg-gradient-to-r from-black via-background-900 to-background-700">
+    <div className="bg-gray-200 dark:bg-primaryDark/90">
       <div className="flex flex-col justify-start">
         <TabGroup selectedIndex={activeMenu} onChange={setActiveMenu}>
           <div className="flex my-4 px-4 md:px-8 xl:px-10">
             <TabList className="flex gap-4">
               <Tab
                 className={({ selected }) =>
-                  `rounded-none text-black dark:text-neutral-200 text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-background-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-black/20"}`
+                  `rounded-none text-black dark:text-neutral-200 text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-brand-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-secondaryDark/90"}`
                 }
               >
                 {t("Progress belajar")}
               </Tab>
               <Tab
                 className={({ selected }) =>
-                  `rounded-none text-black dark:text-neutral-200 text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-background-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-black/20"}`
+                  `rounded-none text-black dark:text-neutral-200 text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-brand-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-secondaryDark/90"}`
                 }
               >
                 {t("Sertifikat")}
               </Tab>
               <Tab
                 className={({ selected }) =>
-                  `rounded-none text-black dark:text-neutral-200 text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-background-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-black/20"}`
+                  `rounded-none text-black dark:text-neutral-200 text-sm whitespace-nowrap border-none ${selected ? "bg-gray-300 dark:bg-brand-900 dark:text-neutral-200 border border-black" : "bg-white dark:bg-secondaryDark/90"}`
                 }
               >
                 Show Case

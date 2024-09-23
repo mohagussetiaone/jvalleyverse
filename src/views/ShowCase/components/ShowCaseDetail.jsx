@@ -35,7 +35,7 @@ const ShowCaseDetail = () => {
   console.log("dataShowCaseById", dataShowCaseById);
 
   return (
-    <section className="body-font overflow-hidden bg-white dark:bg-gradient-to-tr from-black via-background-500 to-gray-900">
+    <section className="body-font overflow-hidden bg-white dark:bg-primaryDark">
       <div className="container py-10 mx-auto">
         <div className="mx-auto flex flex-wrap">
           <div className="lg:w-1/2 w-full md:pr-4">
@@ -62,7 +62,7 @@ const ShowCaseDetail = () => {
                 <h2 className="text-gray-900 dark:text-neutral-200 title-font font-medium">Teknologi yang dipakai :</h2>
               </div>
               {dataShowCaseById.tech.map((tech, index) => (
-                <span key={index} className="bg-gray-300 dark:bg-black text-blue-800 dark:text-neutral-200 text-xs font-semibold mr-2 px-3 py-2 rounded">
+                <span key={index} className="bg-gray-300 dark:bg-secondaryDark text-black dark:text-neutral-200 text-xs font-semibold mr-2 px-3 py-2 rounded">
                   {tech}
                 </span>
               ))}
@@ -71,12 +71,12 @@ const ShowCaseDetail = () => {
               <Link
                 to={dataShowCaseById.url_preview}
                 target="_blank"
-                className="flex gap-2 mt-6 text-gray-900 dark:text-neutral-200 bg-white dark:bg-transparent hover:bg-gray-100 hover:text-black border border-black dark:border-neutral-200 py-2 px-8 focus:outline-none  rounded text-lg"
+                className="flex gap-2 mt-6 text-gray-900 dark:text-brand-500 bg-white dark:bg-transparent hover:bg-gray-100 hover:text-black border border-black dark:border-brand-500 py-2 px-8 focus:outline-none  rounded text-lg"
               >
                 <FaEye className="w-5 h-5 mt-1" />
                 Preview
               </Link>
-              <Link to={dataShowCaseById.url_github} target="_blank" className="flex gap-2 mt-6 text-white bg-black border-0 py-2 px-8 focus:outline-none hover:bg-black/90 hover:text-white rounded text-lg">
+              <Link to={dataShowCaseById.url_github} target="_blank" className="flex gap-2 mt-6 text-white bg-black dark:bg-brand-700 border-0 py-2 px-8 focus:outline-none hover:bg-black/90 hover:text-white rounded text-lg">
                 <FaGithub className="w-5 h-5 mt-1" />
                 Github
               </Link>

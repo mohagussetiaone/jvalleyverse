@@ -67,7 +67,7 @@ const StudyCase = () => {
 
   return (
     <>
-      <div className="bg-gray-200 dark:bg-background-900 p-3 md:p-6">
+      <div className="bg-gray-200 dark:bg-primaryDark p-3 md:p-6">
         <div className="mb-4">
           <div className="flex justify-between pt-4">
             <div className="flex gap-4">
@@ -110,11 +110,11 @@ const StudyCase = () => {
                 currentData.map((item) => (
                   <div className="relative group cursor-pointer" key={item.id} onClick={() => handleCardClick(item.id)}>
                     <div
-                      className={`max-w-[310px] absolute min-h-[240px] h-[240px] md:min-h-[305px] sm:h-[300px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-purple-700 to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
+                      className={`max-w-[310px] absolute min-h-[240px] h-[240px] md:min-h-[305px] sm:h-[300px] md:h-[300px] transition rounded-lg opacity-0 -inset-1 bg-white dark:bg-gradient-to-r from-secondaryDark to-brand-500 blur duration-400 group-hover:opacity-100 group-hover:duration-200 z-0 ${
                         darkMode ? "group-hover:opacity-100" : ""
                       }`}
                     ></div>
-                    <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-slate-800 transition-colors duration-300">
+                    <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-black transition-colors duration-300">
                       <div className="h-32 sm:h-40 md:h-44 overflow-hidden">
                         <img className="w-full h-full object-cover" src={item.img_url ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.img_url}` : profileDefault} alt={item.title} />
                       </div>

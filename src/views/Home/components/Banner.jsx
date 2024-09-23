@@ -432,7 +432,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className="flex w-screen bg-whiteSmoke dark:bg-gradient-to-br dark:from-black dark:via-background-700 dark:to-black -mt-16">
+      <div className="flex w-screen bg-whiteSmoke dark:bg-gradient-to-br dark:bg-primaryDark -mt-16">
         <div className="flex w-full md:w-12/12 xl:w-7/12 flex-col items-center justify-center h-[40rem]">
           <h3 className="text-3xl md:mt-0 text-black dark:text-gray-200">{t("Belajar programming gratis")}</h3>
           <TypewriterEffectSmooth words={words} />

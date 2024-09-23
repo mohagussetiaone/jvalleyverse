@@ -38,7 +38,7 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  const backgroundColorsDark = ["var(--background-900)", "var(--background-900)", "var(--background-900)"];
+  const backgroundColorsDark = ["var(--primaryDark)", "var(--primaryDark)", "var(--primaryDark)"];
   const backgroundColorsLight = ["var(--white)", "var(--gray-100)", "var(--gray-200)"];
   const linearGradients = [
     "linear-gradient(to bottom right, var(--brand-500), var(--brand3-500))",
