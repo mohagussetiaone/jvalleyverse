@@ -160,7 +160,7 @@ const ProgressCard = () => {
               <div className="mt-4 text-start text-black dark:text-gray-300">Total Cards: {filteredData.length}</div>
               <div className="flex justify-center gap-3 items-center mt-4 mx-4">
                 <div>
-                  <button onClick={handlePrev} disabled={currentPage === 1} className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-background-500" : "bg-brand-500 dark:bg-blue-700 text-white"}`}>
+                  <button onClick={handlePrev} disabled={currentPage === 1} className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-primaryDark" : "bg-brand-500 dark:bg-blue-700 text-white"}`}>
                     Prev
                   </button>
                 </div>
@@ -169,7 +169,7 @@ const ProgressCard = () => {
                     <button
                       key={index + 1}
                       onClick={() => handlePageClick(index + 1)}
-                      className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-background-500"}`}
+                      className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-primaryDark"}`}
                     >
                       {index + 1}
                     </button>
@@ -179,7 +179,7 @@ const ProgressCard = () => {
                   <button
                     onClick={handleNext}
                     disabled={currentPage === totalPages}
-                    className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-background-500" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
+                    className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-primaryDark" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
                   >
                     Next
                   </button>

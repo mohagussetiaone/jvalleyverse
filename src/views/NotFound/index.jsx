@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 const NotFound = () => {
   const { t } = useTranslation();
   return (
-    <div className="w-screen bg-gradient-to-tr from-black via-background-500 to-gray-900 h-screen flex flex-col lg:flex-row items-center justify-center space-y-16 lg:space-y-0 space-x-8 2xl:space-x-0">
+    <div className="w-screen bg-gradient-to-tr from-black via-primaryDark to-gray-900 h-screen flex flex-col lg:flex-row items-center justify-center space-y-16 lg:space-y-0 space-x-8 2xl:space-x-0">
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center lg:px-2 xl:px-0 text-center">
         <p className="text-7xl md:text-8xl lg:text-9xl font-bold tracking-wider text-gray-300">404</p>
         <p className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-gray-300 mt-2">{t("Halaman Tidak Ditemukan")}</p>

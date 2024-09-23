@@ -111,7 +111,7 @@ function Navbar(className) {
                   />
                 </div>
                 <Link to="/roadmap" className="flex justify-center py-2">
-                  <span className="text-background-500 dark:text-gray-100 font-bold cursor-pointer"> {t("Lihat selengkapnya")}</span>
+                  <span className="text-primaryDark dark:text-gray-100 font-bold cursor-pointer"> {t("Lihat selengkapnya")}</span>
                 </Link>
               </MenuItem>
 
@@ -160,7 +160,7 @@ function Navbar(className) {
                 {darkMode ? <LuSun className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} /> : <LuMoon className="mt-1.5 w-8 h-8 text-gray-800 dark:text-white" onClick={toggleDarkMode} />}
               </span>
               <div className="flex xl:hidden">
-                <button className="px-3 bg-white dark:bg-background-500 border border-gray-300 active:border-none dark:border-none" onClick={() => setShowModalMainMenu(true)}>
+                <button className="px-3 bg-white dark:bg-primaryDark border border-gray-300 active:border-none dark:border-none" onClick={() => setShowModalMainMenu(true)}>
                   <RxHamburgerMenu className="w-7 h-7 text-black dark:text-neutral-200" />
                   <p className="sr-only">Menu</p>
                 </button>

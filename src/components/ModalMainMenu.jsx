@@ -49,9 +49,9 @@ const ModalMainMenu = ({ showModalMainMenu, setShowModalMainMenu }) => {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <DialogPanel className="relative w-full max-w-xs flex flex-col h-full overflow-y-auto bg-white dark:bg-black/90 py-4 px-0 pb-12 shadow-xl">
+              <DialogPanel className="relative w-full max-w-xs flex flex-col h-full overflow-y-auto bg-white dark:bg-black py-4 px-0 pb-12 shadow-xl">
                 <div className="flex items-center justify-start px-4">
-                  <span type="button" className="mr-2 flex h-10 w-10 items-center justify-center bg-white dark:bg-black/90 p-2 text-gray-400" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
+                  <span type="button" className="mr-2 flex h-10 w-10 items-center justify-center bg-white dark:bg-black/90 p-2 text-gray-400 cursor-pointer" onClick={() => setShowModalMainMenu(!showModalMainMenu)}>
                     <IoMdClose className="h-6 w-6" />
                   </span>
                   <h2 className="text-xl mx-4 font-semibold text-gray-900 dark:text-neutral-200">Main menu</h2>

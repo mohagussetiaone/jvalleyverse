@@ -90,7 +90,7 @@ const Notification = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute rounded-md right-0 top-16 pt-4 flex w-96 flex-col bg-white dark:bg-background-900 ${dropdownOpen === true ? "block" : "hidden"}`}
+        className={`absolute rounded-md right-0 top-16 pt-4 flex w-96 flex-col bg-white dark:bg-black ${dropdownOpen === true ? "block" : "hidden"}`}
       >
         <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-6 dark:border-black">
           <li>

@@ -152,7 +152,7 @@ const DetailProfile = ({ userProfile }) => {
         <div className="w-full flex flex-col gap-4">
           <input type="file" className="file-input w-full dark:text-neutral-200" onChange={handleFileChange} />
           <div className={`drop-area ${dragOver ? "drag-over" : ""}`} onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}>
-            <label className="flex justify-center w-full h-32 px-4 transition bg-white dark:bg-background-500 border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+            <label className="flex justify-center w-full h-32 px-4 transition bg-white dark:bg-primaryDark border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
               <span className="flex items-center space-x-2" onChange={handleFileChange}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />

@@ -84,7 +84,7 @@ const DropdownUser = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute rounded-md right-0 mt-5 pt-4 flex w-52 flex-col bg-white dark:bg-primaryDark ${dropdownOpen === true ? "block" : "hidden"}`}
+        className={`absolute rounded-md right-0 mt-5 pt-4 flex w-52 flex-col bg-white dark:bg-black ${dropdownOpen === true ? "block" : "hidden"}`}
       >
         <div className="flex flex-col justify-start text-black dark:text-neutral-200 px-4 pb-2">
           <h3 className="font-semibold">{userProfile?.name}</h3>
