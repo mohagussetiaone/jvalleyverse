@@ -10,6 +10,7 @@ import ErrorServer from "@/components/ErrorServer";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 import { handleGetEnrollments } from "@/api/Enrollments/EnrollmentProject";
 import { calculateEnrollmentProgress } from "@/utils/calculateProgress";
+import Pagination from "@/components/pagination/ReactPaginate";
 
 const ProgressCard = () => {
   const { t } = useTranslation();
@@ -55,20 +56,9 @@ const ProgressCard = () => {
   const totalPages = Math.ceil(filteredData?.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentData = filteredData?.slice(startIndex, startIndex + itemsPerPage);
+
   const handlePageClick = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    setCurrentPage(page.selected + 1);
   };
 
   const handleCardClick = (id) => {
@@ -156,34 +146,9 @@ const ProgressCard = () => {
                   </div>
                 ))}
               </div>
-
               <div className="mt-4 text-start text-black dark:text-gray-300">Total Cards: {filteredData.length}</div>
-              <div className="flex justify-center gap-3 items-center mt-4 mx-4">
-                <div>
-                  <button onClick={handlePrev} disabled={currentPage === 1} className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-primaryDark" : "bg-brand-500 dark:bg-blue-700 text-white"}`}>
-                    Prev
-                  </button>
-                </div>
-                <div>
-                  {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                      key={index + 1}
-                      onClick={() => handlePageClick(index + 1)}
-                      className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-primaryDark"}`}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
-                <div>
-                  <button
-                    onClick={handleNext}
-                    disabled={currentPage === totalPages}
-                    className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-primaryDark" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
-                  >
-                    Next
-                  </button>
-                </div>
+              <div className="flex justify-center items-center py-4">
+                <Pagination totalPages={totalPages} handlePageClick={handlePageClick} />
               </div>
             </>
           )}

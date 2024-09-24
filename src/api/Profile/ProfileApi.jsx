@@ -5,13 +5,15 @@ export const handleGetProfile = async () => {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    console.log("user", user);
-    if (user) {
-      const { data: profile, error } = await supabase
-        .schema("user")
-        .from("users")
-        .select(
-          `
+    if (!user) {
+      console.error("No user logged in.");
+      throw new Error("No user is currently logged in.");
+    }
+    const { data: profile, error } = await supabase
+      .schema("user")
+      .from("users")
+      .select(
+        `
         id,
         roles (
           id,
@@ -27,16 +29,15 @@ export const handleGetProfile = async () => {
         verify,
         created_at
         `
-        )
-        .eq("id", user.id)
-        .single();
-      if (error) {
-        throw error;
-      } else {
-        return profile;
-      }
+      )
+      .eq("id", user.id)
+      .single();
+    if (error) {
+      throw error;
     }
-    return user;
+    console.log("profile", profile);
+
+    return profile;
   } catch (error) {
     throw new Error(error);
   }

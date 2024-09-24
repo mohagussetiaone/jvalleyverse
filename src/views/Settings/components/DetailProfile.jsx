@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImageDefault from "@/assets/profile/profileDefault.jpg";
 import toast from "react-hot-toast";
 import { FaDice } from "react-icons/fa";
@@ -6,13 +6,20 @@ import supabase from "@/config/supabaseConfig";
 import { handleUpdateImageProfile } from "@/api/Profile/ProfileApi";
 import { useNavigate } from "react-router-dom";
 
-const DetailProfile = ({ userProfile }) => {
+const DetailProfile = ({ userProfile, dataSession }) => {
   const navigate = useNavigate();
-  const urlImageProfile = `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}`;
-  const [profileImg, setProfileImg] = useState(userProfile?.profile_image_url !== null ? urlImageProfile : ImageDefault);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
   const [dragOver, setDragOver] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const urlImageProfile = `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}`;
+  const session = dataSession?.session?.user?.app_metadata?.provider === "google";
+
+  const [profileImg, setProfileImg] = useState("");
+
+  useEffect(() => {
+    const initialProfileImg = session ? dataSession?.session?.user?.user_metadata?.avatar_url : userProfile?.profile_image_url !== null ? urlImageProfile : ImageDefault;
+    setProfileImg(initialProfileImg);
+  }, [dataSession, userProfile, session]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -84,7 +91,9 @@ const DetailProfile = ({ userProfile }) => {
     const requestPromise = new Promise(async (resolve, reject) => {
       try {
         if (selectedFile) {
-          const { data, error } = await supabase.storage.from("jvalleyverseImg").upload(`profileImage/${userProfile.id}/${selectedFile.name}`, selectedFile);
+          const { data, error } = await supabase.storage
+            .from("jvalleyverseImg")
+            .upload(`profileImage/${dataSession?.session?.user?.app_metadata?.provider === "google" ? dataSession?.session?.user?.id : userProfile.id}/${selectedFile.name}`, selectedFile);
           if (error) {
             console.error("Error uploading file:", error);
             reject(error);
@@ -139,7 +148,7 @@ const DetailProfile = ({ userProfile }) => {
       </div>
       <div className="flex flex-col md:flex-row gap-8">
         <div className="w-[150px] flex relative justify-center items-start">
-          <img src={profileImg} alt="profile" className="w-full h-auto rounded-full" />
+          <img src={profileImg || ImageDefault} alt="profile" className="w-full h-auto rounded-full" />
           {previewUrl && (
             <span className="absolute top-[130px] right-7 cursor-pointer" onClick={handleRemovePreview}>
               <span className="text-red-500 bg-red-50 p-1 text-sm">Remove</span>

@@ -12,7 +12,6 @@ const StarRating = ({ rating }) => {
             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z" />
           </svg>
         </div>
-
         {/* Filled star */}
         <div
           className="absolute top-0 left-0 w-full h-full overflow-hidden"
@@ -24,7 +23,6 @@ const StarRating = ({ rating }) => {
             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z" />
           </svg>
         </div>
-
         {/* Partial fill */}
         {partialStar > 0 && (
           <div

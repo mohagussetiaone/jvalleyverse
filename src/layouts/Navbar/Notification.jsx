@@ -7,8 +7,8 @@ import { RiHome6Line, RiUser3Line, RiBook2Line, RiSettings4Line } from "react-ic
 import { LuBell } from "react-icons/lu";
 import ModalConfirmation from "@/components/ModalConfirmation";
 import { remove } from "@/store/local/Forage";
-import { useQuery } from "@tanstack/react-query";
-import { handleGetProfile } from "@/api/Profile/ProfileApi";
+// import { useQuery } from "@tanstack/react-query";
+// import { handleGetProfile } from "@/api/Profile/ProfileApi";
 
 const Notification = () => {
   const navigate = useNavigate();
@@ -40,19 +40,14 @@ const Notification = () => {
     return () => document.removeEventListener("keydown", keyHandler);
   });
 
-  const {
-    error: errorUserProfile,
-    isLoading: isPendingUserProfile,
-    data: userProfile,
-  } = useQuery({
-    queryKey: ["getProfile"],
-    queryFn: handleGetProfile,
-  });
-
-  console.log("userProfile", userProfile);
-
-  if (errorUserProfile) return toast.error("Error while fetching profile");
-  if (isPendingUserProfile) return console.log("Loading...");
+  // const {
+  //   error: errorUserProfile,
+  //   isLoading: isPendingUserProfile,
+  //   data: userProfile,
+  // } = useQuery({
+  //   queryKey: ["getProfile"],
+  //   queryFn: handleGetProfile,
+  // });
 
   const modalLogoutClose = () => {
     setDropdownOpen(false);

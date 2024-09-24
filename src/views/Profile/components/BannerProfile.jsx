@@ -1,21 +1,19 @@
 import { Link } from "react-router-dom";
-import ProfileImage from "@/assets/img/CustomerService.png";
+import ImageDefault from "@/assets/profile/profileDefault.jpg";
 import { handleGetProfile } from "@/api/Profile/ProfileApi";
 import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import { useCheckSession } from "@/api/Auth/CheckSession";
 
 const BannerProfile = () => {
-  const {
-    error: errorUserProfile,
-    isLoading: isPendingUserProfile,
-    data: userProfile,
-  } = useQuery({
+  const { data: userProfile } = useQuery({
     queryKey: ["getProfile"],
     queryFn: handleGetProfile,
   });
 
-  if (errorUserProfile) return toast.error("Error while fetching profile");
-  if (isPendingUserProfile) return console.log("Loading...");
+  const { data: dataSession } = useQuery({
+    queryKey: ["checkSession"],
+    queryFn: useCheckSession,
+  });
 
   console.log("userProfile", userProfile);
 
@@ -25,7 +23,13 @@ const BannerProfile = () => {
         <div className="flex relative items-center">
           <img
             className="h-auto w-20 md:w-28 xl:w-44 rounded-full bg-white/70 dark:bg-secondaryDark border-4 border-gray-300 dark:border-brand-500"
-            src={userProfile?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}` : ProfileImage}
+            src={
+              dataSession?.session?.user?.app_metadata?.provider === "google"
+                ? dataSession?.session?.user?.user_metadata?.avatar_url
+                : userProfile?.profile_image_url !== null
+                ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}`
+                : ImageDefault
+            }
             alt="profile.jpg"
           />
           <div className="ml-4 md:ml-8 xl:ml-14 mt-0 md:mt-4 flex flex-col justify-between text-start">

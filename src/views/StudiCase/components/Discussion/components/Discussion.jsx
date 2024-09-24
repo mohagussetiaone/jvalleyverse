@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import HtmlParser from "@/lib/HtmlParser";
 import { GoProject } from "react-icons/go";
 import profileDefault from "@/assets/profile/profileDefault.jpg";
+import Pagination from "@/components/pagination/ReactPaginate";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -27,8 +28,8 @@ const Discussion = ({ dataDiscussion }) => {
     setCurrentPage(1);
   };
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+  const handlePageClick = (page) => {
+    setCurrentPage(page.selected + 1);
   };
 
   const handleDetailQuestion = (id) => {
@@ -116,22 +117,8 @@ const Discussion = ({ dataDiscussion }) => {
             ))
           )}
           {filteredData && filteredData.length > 0 && (
-            <div className="flex justify-center py-8 border-t-2 border-gray-200 dark:border-white">
-              <button className={`px-3 py-1 mx-1 ${currentPage === 1 ? "bg-gray-300 text-black cursor-not-allowed" : "bg-blue-500 text-white"}`} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-                Previous
-              </button>
-              {Array.from({ length: totalPages }, (_, index) => (
-                <button key={index} className={`px-3 py-1 mx-1 ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-gray-300 text-black"}`} onClick={() => handlePageChange(index + 1)}>
-                  {index + 1}
-                </button>
-              ))}
-              <button
-                className={`px-3 py-1 mx-1 ${currentPage === totalPages ? "bg-gray-300 text-black cursor-not-allowed" : "bg-blue-500 text-white"}`}
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </button>
+            <div className="flex justify-center items-center py-4">
+              <Pagination totalPages={totalPages} handlePageClick={handlePageClick} />
             </div>
           )}
         </div>

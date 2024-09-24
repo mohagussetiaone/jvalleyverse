@@ -11,7 +11,7 @@ export const authLoader = async ({ request }) => {
   const url = new URL(request.url);
 
   // url protected harus login
-  const protectedPaths = ["/profile"];
+  const protectedPaths = ["/profile", "/settings"];
   const protectedPatterns = [
     /^\/show-case\/[^/]+$/, // /show-case/:showCaseId
     /^\/profile\/sertifikat\/[^/]+$/, // /profile/sertifikat/:sertId

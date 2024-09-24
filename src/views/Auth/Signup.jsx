@@ -113,10 +113,8 @@ const SignUp = () => {
               reject(errorUser);
               return;
             }
-            if (dataUser) {
-              navigate("/");
-              resolve("Sign Up Berhasil");
-            }
+            navigate("/");
+            resolve("Sign Up Berhasil");
           }
         } catch (error) {
           console.log("error", error);

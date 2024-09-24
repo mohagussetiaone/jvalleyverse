@@ -1,6 +1,6 @@
 import parse from "html-react-parser";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { a11yDark, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import hljs from "highlight.js";
 import useDarkMode from "@/hooks/useDarkMode";
 
@@ -20,7 +20,7 @@ const extractText = (children) => {
 const CodeBlock = ({ code }) => {
   const { darkMode } = useDarkMode();
   const detectedLanguage = hljs.highlightAuto(code).language || "text";
-  const themeStyle = darkMode ? dracula : prism;
+  const themeStyle = darkMode ? a11yDark : prism;
 
   return (
     <SyntaxHighlighter language={detectedLanguage} style={themeStyle} showLineNumbers>

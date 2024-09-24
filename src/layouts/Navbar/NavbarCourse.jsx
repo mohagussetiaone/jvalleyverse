@@ -45,6 +45,8 @@ const NavbarCourse = (className) => {
     queryFn: useCheckSession,
   });
 
+  console.log("sessionData", sessionData);
+
   return (
     <>
       <nav className={cn("fixed left-0 w-full px-4 bg-white dark:bg-primaryDark md:px-8 xl:px-10 z-30 border-b border-brand-500 dark:border-secondaryDark", className)}>
@@ -173,7 +175,7 @@ const NavbarCourse = (className) => {
                   </Link>
                 </div>
               )}
-              {sessionData && sessionData.session !== null && <DropdownUser />}
+              {sessionData && sessionData?.session !== null && <DropdownUser />}
             </div>
           </div>
         </Menu>

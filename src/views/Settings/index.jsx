@@ -6,7 +6,7 @@ import PersonalData from "./components/PersonalData";
 import PasswordChange from "./components/PasswordChange";
 import { handleGetProfile } from "@/api/Profile/ProfileApi";
 import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import { useCheckSession } from "@/api/Auth/CheckSession";
 import { useAuthValidation } from "@/lib/authValidation";
 
 const buttons = [
@@ -27,17 +27,17 @@ const buttons = [
 const Settings = () => {
   useAuthValidation();
 
-  const {
-    error: errorUserProfile,
-    isLoading: isPendingUserProfile,
-    data: userProfile,
-  } = useQuery({
+  const { data: userProfile } = useQuery({
     queryKey: ["getProfile"],
     queryFn: handleGetProfile,
   });
 
-  if (errorUserProfile) return toast.error("Error while fetching profile");
-  if (isPendingUserProfile) return console.log("Loading...");
+  const { data: dataSession } = useQuery({
+    queryKey: ["checkSession"],
+    queryFn: useCheckSession,
+  });
+
+  console.log("dataSession", dataSession);
 
   console.log("userProfile", userProfile);
 
@@ -90,13 +90,13 @@ const Settings = () => {
             <div className="lg:col-span-10 md:col-span-11 col-span-12 mt-8 md:mt-0">
               <TabPanels>
                 <TabPanel>
-                  <DetailProfile userProfile={userProfile} />
+                  <DetailProfile userProfile={userProfile} dataSession={dataSession} />
                 </TabPanel>
                 <TabPanel>
-                  <PersonalData userProfile={userProfile} />
+                  <PersonalData userProfile={userProfile} dataSession={dataSession} />
                 </TabPanel>
                 <TabPanel>
-                  <PasswordChange userProfile={userProfile} />
+                  <PasswordChange userProfile={userProfile} dataSession={dataSession} />
                 </TabPanel>
               </TabPanels>
             </div>

@@ -8,6 +8,7 @@ import ErrorServer from "@/components/ErrorServer";
 import { handleGetCertificate } from "@/api/Certificate/CertificateApi";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 import { PiCertificateLight } from "react-icons/pi";
+import Pagination from "@/components/pagination/ReactPaginate";
 
 const CertificateCard = () => {
   const navigate = useNavigate();
@@ -59,6 +60,10 @@ const CertificateCard = () => {
     navigate(`/profile/sertifikat/${id}`);
   };
 
+  const handlePageClick = (page) => {
+    setCurrentPage(page.selected + 1);
+  };
+
   return (
     <div className="w-screen px-4 xl:pl-10 xl:pr-16">
       <div className="flex justify-start mb-8">
@@ -92,28 +97,12 @@ const CertificateCard = () => {
           ))}
         </div>
       ) : (
-        <div className="bg-white dark:bg-background-900 max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-4 mb-4">
-          <div className="flex justify-center items-center h-[70vw] md:h-[20vw] text-gray-900 dark:text-neutral-200 font-bold text-xl">Data not found</div>
+        <div className="bg-white dark:bg-primaryDark max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-4 mb-4">
+          <div className="flex justify-center items-center h-[70vw] md:h-[20vw] text-gray-900 dark:text-neutral-200 text-xl">Data not found</div>
         </div>
       )}
-      <div className="flex gap-4 justify-center py-8">
-        <div>
-          <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} className="p-2 border border-gray-400 rounded mx-1">
-            Prev
-          </button>
-        </div>
-        <div className="flex">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button key={index} onClick={() => setCurrentPage(index + 1)} className={`px-4 py-0 border border-gray-400 rounded-full mx-1 ${index + 1 === currentPage ? "bg-gray-500" : "bg-blue-500"}`}>
-              {index + 1}
-            </button>
-          ))}
-        </div>
-        <div>
-          <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)} className="p-2 border border-gray-400 rounded mx-1">
-            Next
-          </button>
-        </div>
+      <div className="flex justify-center items-center py-4">
+        <Pagination totalPages={totalPages} handlePageClick={handlePageClick} />
       </div>
     </div>
   );

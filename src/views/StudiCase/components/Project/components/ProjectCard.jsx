@@ -10,7 +10,9 @@ import { useUser } from "@/store/user/useUser";
 import { useTranslation } from "react-i18next";
 import ErrorServer from "@/components/ErrorServer";
 import SkeletonGrid from "@/components/loading/CardProductSkeleton";
+import Pagination from "@/components/pagination/ReactPaginate";
 import StarRating from "@/components/stars/StartRating";
+import ImageNotAvailable from "@/assets/img/noimage.jpg";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
@@ -59,9 +61,8 @@ const ProjectCard = () => {
   };
 
   // FILTER DATA
-  const filteredData = dataProject?.filter(
-    (item) => (filterType === "Semua" || item.category_project?.category_name === filterType) && item.project_published === true && item?.project_name?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredData =
+    dataProject && dataProject?.filter((item) => (filterType === "Semua" || item.category_project?.category_name === filterType) && item.project_published === true && item?.project_name?.toLowerCase().includes(searchTerm.toLowerCase()));
 
   // Total pages
   const totalPages = Math.ceil(filteredData?.length / itemsPerPage);
@@ -73,19 +74,7 @@ const ProjectCard = () => {
 
   // Handle pagination
   const handlePageClick = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    setCurrentPage(page.selected + 1); // `selected` is zero-indexed
   };
 
   const handleCardClick = async (id) => {
@@ -141,7 +130,7 @@ const ProjectCard = () => {
                     ></div>
                     <div className="relative max-w-[300px] min-h-[235px] sm:min-h-[295px] rounded-lg overflow-hidden shadow-lg z-10 bg-white dark:bg-black transition-colors duration-300" onClick={() => handleCardClick(item.id)}>
                       <div className="h-32 sm:h-40 md:h-44 overflow-hidden">
-                        <img className="w-full h-full object-cover" src={`${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.project_img_url}`} alt={item.project_name} />
+                        <img className="w-full h-full object-cover" src={item.project_img_url ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${item.project_img_url}` : ImageNotAvailable} alt={item.project_name} />
                       </div>
                       <div className="flex flex-col px-2 pt-2">
                         <h3 className="font-bold text-start text-black dark:text-white text-sm md:text-md xl:text-lg mb-2">{item.project_name}</h3>
@@ -171,36 +160,8 @@ const ProjectCard = () => {
             </div>
 
             <div className="pt-2 md:pt-14 text-start text-sm text-black dark:text-gray-300">Total Cards: {filteredData?.length}</div>
-            <div className="flex justify-center gap-3 items-center my-4 mx-4">
-              <div>
-                <button
-                  onClick={handlePrev}
-                  disabled={currentPage === 1}
-                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === 1 ? "bg-gray-500 dark:bg-primaryDark dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
-                >
-                  Prev
-                </button>
-              </div>
-              <div>
-                {Array.from({ length: totalPages }, (_, index) => (
-                  <button
-                    key={index + 1}
-                    onClick={() => handlePageClick(index + 1)}
-                    className={`px-4 py-2 border rounded-full mx-1 ${currentPage === index + 1 ? "bg-brand-500 dark:bg-blue-700 text-white" : "bg-gray-500 dark:bg-primaryDark dark:text-white"}`}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
-              </div>
-              <div>
-                <button
-                  onClick={handleNext}
-                  disabled={currentPage === totalPages}
-                  className={`px-4 py-2 border rounded cursor-pointer ${currentPage === totalPages ? "bg-gray-500 dark:bg-primaryDark dark:text-white" : "bg-brand-500 dark:bg-blue-700 text-white"}`}
-                >
-                  Next
-                </button>
-              </div>
+            <div className="flex justify-center items-center my-4">
+              <Pagination totalPages={totalPages} handlePageClick={handlePageClick} />
             </div>
           </>
         )}

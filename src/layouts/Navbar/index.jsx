@@ -165,14 +165,14 @@ function Navbar(className) {
                   <p className="sr-only">Menu</p>
                 </button>
               </div>
-              {sessionData && sessionData.session === null && (
+              {sessionData && sessionData?.session === null && (
                 <div className="gap-4 hidden md:flex items-center">
                   <Link to="/signup">
                     <button className="text-white bg-brand-500 hover:bg-brand-800 hover:border-brand-800 py-1 px-3">{t("Daftar")}</button>
                   </Link>
                 </div>
               )}
-              {sessionData && sessionData.session !== null && <DropdownUser />}
+              {sessionData && sessionData?.session !== null && <DropdownUser />}
             </div>
           </div>
         </Menu>

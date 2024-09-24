@@ -1,6 +1,6 @@
 const TimelineCard = () => {
   return (
-    <div className="bg-whiteSmoke w-screen dark:bg-primaryDark to-background-600 py-4">
+    <div className="bg-whiteSmoke w-screen dark:bg-primaryDark py-4">
       <div className="flex flex-col text-center gap-4 xl:px-44 mb-12 text-black dark:text-neutral-200">
         <h2 className="text-3xl font-bold">Silabus Database</h2>
         <p className="justify-center">Membangun fondasi yang kuat dalam manajemen data. Anda akan mempelajari cara merancang, mengimplementasikan, dan mengelola basis data yang efisien dan aman.</p>

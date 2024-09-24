@@ -7,7 +7,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { handleChangePassword } from "@/api/Profile/ProfileApi";
 import LabelInput from "@/components/input/LabelInput";
 
-const PasswordChange = ({ userProfile }) => {
+const PasswordChange = ({ userProfile, dataSession }) => {
+  console.log("dataSession", dataSession);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const validationSchema = yup.object().shape({
@@ -73,7 +74,7 @@ const PasswordChange = ({ userProfile }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <div>
-            <LabelInput label="Email" value={userProfile.email} type="email" id="email" name="email" placeholder="nFJpG@example.com" error={errors.email} register={register} disabled />
+            <LabelInput label="Email" value={userProfile?.email || dataSession?.session?.user?.email || ""} type="email" id="email" name="email" placeholder="example@example.com" error={errors.email} register={register} disabled />
           </div>
           <div className="w-full flex gap-4 mt-2">
             <div className="w-full md:w-1/2">

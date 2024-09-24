@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ErrorServer from "@/components/ErrorServer";
@@ -5,7 +6,7 @@ import Loading from "@/components/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 import { handleGetShowCaseByUserId } from "@/api/ShowCase/ShowCaseApi";
-import dayjs from "dayjs";
+import Pagination from "@/components/pagination/ReactPaginate";
 
 const Card = ({ item }) => {
   const navigate = useNavigate();
@@ -96,6 +97,10 @@ const Index = () => {
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  const handlePageClick = (page) => {
+    setCurrentPage(page.selected + 1);
+  };
+
   return (
     <div className="bg-white dark:bg-primaryDark mx-auto min-h-screen p-6">
       <div className="flex justify-between">
@@ -121,22 +126,8 @@ const Index = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {currentItems.length > 0 ? currentItems.map((item) => <Card key={item.id} item={item} />) : <div className="col-span-2 h-80 flex items-center justify-center text-center text-gray-500">Data Not Found</div>}
       </div>
-      <div className="flex justify-center">
-        <div className="flex justify-between mt-4">
-          <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="mx-1 px-3 py-1 border rounded bg-white disabled:opacity-50">
-            Prev
-          </button>
-          <div>
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button key={index} onClick={() => setCurrentPage(index + 1)} className={`mx-1 px-3 py-1 border rounded ${currentPage === index + 1 ? "bg-blue-500 text-white" : "bg-white"}`}>
-                {index + 1}
-              </button>
-            ))}
-          </div>
-          <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} className="mx-1 px-3 py-1 border rounded bg-white disabled:opacity-50">
-            Next
-          </button>
-        </div>
+      <div className="flex justify-center items-center py-4">
+        <Pagination totalPages={totalPages} handlePageClick={handlePageClick} />
       </div>
     </div>
   );

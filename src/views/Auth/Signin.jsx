@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { set } from "@/store/local/Forage";
 import { useTranslation } from "react-i18next";
 import { IoMdArrowBack } from "react-icons/io";
+import { redirect } from "react-router-dom";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ const SignIn = () => {
     e.preventDefault();
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        skipBrowserRedirect: false,
+      },
     });
     if (error) {
       alert("failed to login");

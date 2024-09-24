@@ -34,7 +34,7 @@ const SkeletonGrid = () => {
   const skeletons = Array(6).fill(<CardProductSkeleton />);
 
   return (
-    <div className="dark:bg-gradient-to-r from-background-900 to-primaryDark ">
+    <div className="dark:bg-primaryDark ">
       <div className="flex justify-between mx-6 pt-6">
         <div className="block min-w-56 h-8 mb-2 font-sans text-base antialiased font-light leading-relaxed bg-slate-500 rounded-lg text-inherit">&nbsp;</div>
         <div className="block min-w-28 h-8 mb-2 font-sans text-base antialiased font-light leading-relaxed bg-slate-500 rounded-lg text-inherit">&nbsp;</div>

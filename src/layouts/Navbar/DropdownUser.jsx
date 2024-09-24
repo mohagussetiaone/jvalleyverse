@@ -9,6 +9,7 @@ import { remove } from "@/store/local/Forage";
 import { useQuery } from "@tanstack/react-query";
 import { handleGetProfile } from "@/api/Profile/ProfileApi";
 import ImageDefault from "@/assets/profile/profileDefault.jpg";
+import { useCheckSession } from "@/api/Auth/CheckSession";
 
 const DropdownUser = () => {
   const navigate = useNavigate();
@@ -40,17 +41,15 @@ const DropdownUser = () => {
     return () => document.removeEventListener("keydown", keyHandler);
   });
 
-  const {
-    error: errorUserProfile,
-    isLoading: isPendingUserProfile,
-    data: userProfile,
-  } = useQuery({
+  const { data: userProfile } = useQuery({
     queryKey: ["getProfile"],
     queryFn: handleGetProfile,
   });
 
-  if (errorUserProfile) return toast.error("Error while fetching profile");
-  if (isPendingUserProfile) return console.log("Loading...");
+  const { data: dataSession } = useQuery({
+    queryKey: ["checkSession"],
+    queryFn: useCheckSession,
+  });
 
   const modalLogoutClose = () => {
     setDropdownOpen(false);
@@ -75,7 +74,17 @@ const DropdownUser = () => {
     <div className="relative my-1">
       <Link ref={trigger} onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-4" to="#">
         <span>
-          <img src={userProfile?.profile_image_url !== null ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}` : ImageDefault} alt="profile_picture.jpg" className="rounded-full w-10 h-10 -mt-1" />
+          <img
+            src={
+              dataSession?.session?.user?.app_metadata?.provider === "google"
+                ? dataSession?.session?.user?.user_metadata?.avatar_url
+                : userProfile?.profile_image_url !== null
+                ? `${import.meta.env.VITE_CDN_GET_IMAGE}/jvalleyverseImg/${userProfile?.profile_image_url}`
+                : ImageDefault
+            }
+            alt="profile_picture.jpg"
+            className="rounded-full w-10 h-10 -mt-1"
+          />
         </span>
       </Link>
 
@@ -87,7 +96,7 @@ const DropdownUser = () => {
         className={`absolute rounded-md right-0 mt-5 pt-4 flex w-52 flex-col bg-white dark:bg-black ${dropdownOpen === true ? "block" : "hidden"}`}
       >
         <div className="flex flex-col justify-start text-black dark:text-neutral-200 px-4 pb-2">
-          <h3 className="font-semibold">{userProfile?.name}</h3>
+          <h3 className="font-semibold">{userProfile?.name || dataSession?.session?.user?.user_metadata?.full_name}</h3>
         </div>
         <hr className="border-stroke py-2" />
         <ul className="flex flex-col gap-3 md:gap-4 border-stroke px-4 dark:border-black">
@@ -136,7 +145,7 @@ const DropdownUser = () => {
           className="flex bg-transparent justify-center mt-4 items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out text-red-500 hover:text-red-600 border-none lg:text-base"
           onClick={() => {
             setModalLogout(true);
-            setDropdownOpen(false);
+            setTimeout(() => setDropdownOpen(false), 0);
           }}
         >
           {t("Keluar")}
