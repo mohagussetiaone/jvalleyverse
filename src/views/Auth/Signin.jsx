@@ -40,7 +40,8 @@ const SignIn = () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        skipBrowserRedirect: false,
+        // skipBrowserRedirect: false,
+        redirectTo: "https://jvalleyverse.vercel.app/",
       },
     });
     if (error) {
