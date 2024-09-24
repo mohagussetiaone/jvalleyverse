@@ -99,7 +99,7 @@ const ReplyDiscussion = () => {
           <Controller name="content" control={control} render={({ field }) => <ReactQuillProvider {...field} value={field.value || ""} onChange={(value) => field.onChange(value)} />} />
           {errors.content && <p>{errors.content.message}</p>}
         </div>
-        <button type="submit" className="flex mt-2 px-4 py-2 bg-blue-500 text-white rounded text-end justify-end">
+        <button type="submit" className="flex mt-2 px-4 py-2 bg-brand-500 dark:bg-brand-800 text-white rounded text-end justify-end">
           Kirim
         </button>
       </form>
