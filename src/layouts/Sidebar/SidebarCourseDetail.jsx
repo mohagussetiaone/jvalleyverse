@@ -4,8 +4,8 @@ import useSidebar from "@/hooks/useSidebar";
 import { useTranslation } from "react-i18next";
 
 const SidebarCourseDetail = () => {
-  const { collapsed, setMenuCollapsed } = useSidebar();
   const { t } = useTranslation();
+  const { collapsed, setMenuCollapsed } = useSidebar();
 
   const toggleSidebar = () => {
     setMenuCollapsed(!collapsed);

@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import ErrorServer from "@/components/ErrorServer";
 import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa6";
 import { HiOutlineLink } from "react-icons/hi";
@@ -14,7 +13,6 @@ import { handleGetBlogById, handleGetBlogs } from "@/api/Blog/BlogApi";
 
 const BlogDetails = () => {
   useAuthValidation();
-  const query = useQueryClient();
   const { blogId } = useParams();
   const tags = ["React", "JavaScript", "CSS", "HTML", "Node.js"];
   const currentUrl = window.location.href;
@@ -25,7 +23,7 @@ const BlogDetails = () => {
     isPending: isPendingBlog,
     data: dataBlog,
   } = useQuery({
-    queryKey: ["getBlogById"],
+    queryKey: ["getBlogById", blogId],
     queryFn: () => handleGetBlogById(blogId),
     enabled: !!blogId,
   });
@@ -42,12 +40,6 @@ const BlogDetails = () => {
 
   console.log("dataBlogs", dataBlogs);
   console.log("data Blog by id", dataBlog);
-
-  useEffect(() => {
-    if (blogId) {
-      query.invalidateQueries(["getBlogById"]);
-    }
-  }, [blogId]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(currentUrl);

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useDarkMode from "@/hooks/useDarkMode";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import DataNotFound from "@/components/DataNotFound";
 import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
 import { useCheckSession } from "@/api/Auth/CheckSession";
@@ -111,7 +112,7 @@ const ProgressCard = () => {
             </div>
           </div>
           {filteredData && filteredData?.length === 0 ? (
-            <div className="text-center text-neutral-200 text-xl h-[325px] mt-24">{t("Data tidak ditemukan")}</div>
+            <DataNotFound />
           ) : (
             <>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 xl:gap-4">

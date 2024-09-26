@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MdArrowForward } from "react-icons/md";
 import { useAuthValidation } from "@/lib/authValidation";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { handleGetProjectDetail } from "@/api/Project/ProjectApi";
 import { handleAddEnrollments } from "@/api/Enrollments/EnrollmentProject";
 import ProjectSource from "./ProjectSource";
@@ -18,7 +18,7 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const { projectId } = useParams();
   const { t } = useTranslation();
-  const queryClient = useQueryClient();
+  const [isIframeError, setIsIframeError] = useState(false);
 
   // GET SESSION
   const {
@@ -36,18 +36,12 @@ const ProjectDetail = () => {
     isPending: isPendingProjectDetail,
     data: dataProjectDetails,
   } = useQuery({
-    queryKey: ["getProjectDetail"],
+    queryKey: ["getProjectDetail", projectId],
     queryFn: () => handleGetProjectDetail(projectId),
     enabled: !!projectId,
   });
 
   console.log("data Project Detail", dataProjectDetails);
-
-  useEffect(() => {
-    if (projectId) {
-      queryClient.invalidateQueries(["getProjectDetail"]);
-    }
-  }, [projectId]);
 
   if (errorProjectDetail || errorSession) {
     <ErrorServer />;
@@ -74,12 +68,20 @@ const ProjectDetail = () => {
       throw new Error(error);
     }
   };
+  console.log("isIframeError", isIframeError);
 
   return (
     <>
       <div className="w-full px-2 md:px-4 h-full py-6 dark:bg-primaryDark flex flex-col">
         <div className="flex justify-center items-center h-auto md:h-auto md:min-w-[300px] xl:min-w-[400px] mb-4">
-          <iframe src={dataProjectDetails?.project_youtube_embed} frameBorder="0" allowFullScreen className="w-full h-[40vh] md:h-[400px] xl:h-[500px]"></iframe>
+          {/* <iframe src={dataProjectDetails?.project_youtube_embed} frameBorder="0" allowFullScreen className="w-full h-[40vh] md:h-[400px] xl:h-[500px]"></iframe> */}
+          {isIframeError ? (
+            // Tampilkan gambar error ketika iframe gagal dimuat
+            <h2>Error cuy</h2>
+          ) : (
+            // Tampilkan iframe jika tidak ada error
+            <iframe src={dataProjectDetails?.project_youtube_embed} frameBorder="0" allowFullScreen className="w-full h-[40vh] md:h-[400px] xl:h-[500px]" onError={() => setIsIframeError(true)}></iframe>
+          )}
         </div>
 
         <div className="w-full flex flex-col gap-4">

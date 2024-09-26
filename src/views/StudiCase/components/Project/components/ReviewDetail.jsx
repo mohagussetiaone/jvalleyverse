@@ -4,6 +4,7 @@ import Loading from "@/components/Loading";
 import ErrorServer from "@/components/ErrorServer";
 import { handleGetReviewById } from "@/api/Review/ReviewProject";
 import dayjs from "dayjs";
+import DataNotFound from "@/components/DataNotFound";
 import { useParams } from "react-router-dom";
 
 const ReviewDetail = () => {
@@ -31,9 +32,9 @@ const ReviewDetail = () => {
     <section className="py-10 relative bg-white dark:bg-primaryDark">
       <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
         <div className="w-full">
-          <h2 className="font-manrope font-bold text-4xl text-black dark:text-neutral-200 mb-8 text-center">Our customer reviews</h2>
+          <h2 className="font-manrope font-bold text-4xl text-black dark:text-neutral-200 mb-8 text-center">Mereka Mengulas</h2>
           <div>
-            {dataReview &&
+            {dataReview.length > 0 ? (
               dataReview.map((review, index) => (
                 <div key={index} className="pt-11 pb-8 border-b border-gray-100 max-xl:max-w-2xl max-xl:mx-auto">
                   <div className="flex items-center gap-3 mb-4">
@@ -62,7 +63,10 @@ const ReviewDetail = () => {
                   </div>
                   <p className="font-normal text-lg leading-8 text-gray-400 max-xl:text-justify">{review.message}</p>
                 </div>
-              ))}
+              ))
+            ) : (
+              <DataNotFound />
+            )}
           </div>
         </div>
       </div>

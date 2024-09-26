@@ -3,18 +3,17 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import useActiveMenu from "@/hooks/useActiveMenu";
 import { Link, useParams } from "react-router-dom";
 import { handleGetProjectDetail, handleGetChapterByProjectId } from "@/api/Project/ProjectApi";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import ErrorServer from "@/components/ErrorServer";
 import useChapterProject from "@/hooks/useChapterProject";
 import { useTranslation } from "react-i18next";
 import SidebarSkeleton from "@/components/loading/SidebarSkeleton";
 
 const ListModuleCourse = () => {
-  const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { activeMenu, setActiveMenu } = useActiveMenu();
   const [activeSubMenu, setActiveSubMenu] = useState(null);
-  const { projectId } = useParams();
+  const { projectId, chapterId } = useParams();
   const { setDataChapters } = useChapterProject();
 
   const {
@@ -22,7 +21,7 @@ const ListModuleCourse = () => {
     isPending: isPendingProjectDetail,
     data: dataProjectDetails,
   } = useQuery({
-    queryKey: ["getProjectDetail"],
+    queryKey: ["getProjectDetail", projectId],
     queryFn: () => handleGetProjectDetail(projectId),
     enabled: !!projectId,
   });
@@ -32,21 +31,27 @@ const ListModuleCourse = () => {
     isPending: isPendingChapterProjects,
     data: dataChapterProjects,
   } = useQuery({
-    queryKey: ["getChapterProjectById"],
+    queryKey: ["getChapterProjectById", dataProjectDetails?.id],
     queryFn: () => handleGetChapterByProjectId(dataProjectDetails?.id),
     enabled: !!dataProjectDetails?.id,
   });
 
+  console.log("chapterId", chapterId);
+  console.log("dataChapterProjects", dataChapterProjects);
+
   useEffect(() => {
-    if (projectId) {
-      queryClient.invalidateQueries(["getProjectDetail"]);
-    } else if (dataProjectDetails) {
-      queryClient.invalidateQueries(["getChapterProjectById"]);
-    }
     if (dataChapterProjects) {
-      setDataChapters(dataChapterProjects);
+      // Check if chapterId matches any chapter_detail.id to set active menu and submenu
+      const activeChapter = dataChapterProjects.find((item) => item.chapter_detail.some((detail) => detail.id.toString() === chapterId));
+
+      console.log("activeChapter", activeChapter);
+
+      if (activeChapter) {
+        setActiveMenu(activeChapter.id); // Open the parent menu
+        setActiveSubMenu(chapterId); // Set the active submenu
+      }
     }
-  }, [dataChapterProjects, setDataChapters, dataProjectDetails, projectId]);
+  }, [dataChapterProjects, setDataChapters]);
 
   if (errorProjectDetail || errorChapterProjects) {
     return <ErrorServer />;
@@ -57,16 +62,16 @@ const ListModuleCourse = () => {
   }
 
   const handleClick = (menuId) => {
+    // Mengubah logika untuk handleClick hanya mengatur activeMenu
     if (activeMenu === menuId) {
-      setActiveMenu(null);
-      setActiveSubMenu(null);
+      setActiveMenu(null); // Menutup parent menu jika diklik ulang
     } else {
-      setActiveMenu(menuId);
-      setActiveSubMenu(menuId);
+      setActiveMenu(menuId); // Membuka parent menu baru
     }
   };
 
   const handleSubMenuClick = (subMenuId) => {
+    // Mengubah hanya activeSubMenu, tanpa menutup parent menu
     setActiveSubMenu(subMenuId === activeSubMenu ? null : subMenuId);
   };
 
@@ -92,7 +97,7 @@ const ListModuleCourse = () => {
                     {item.chapter_detail && (
                       <div className="flex items-center">
                         <span className="text-xs">{item.chapter_detail.length} Step</span>
-                        <MdKeyboardArrowRight className={`transition-transform ${activeSubMenu === item.id ? "rotate-90" : ""}`} />
+                        <MdKeyboardArrowRight className={`transition-transform ${activeMenu === item.id ? "rotate-90" : ""}`} />
                       </div>
                     )}
                   </a>
@@ -103,11 +108,11 @@ const ListModuleCourse = () => {
                           <Link
                             to={`belajar/project/${item.project_id}/chapter/${chapter_detail.id}`}
                             className={`flex items-center p-2 rounded-lg ${
-                              activeSubMenu === chapter_detail.id
+                              activeSubMenu === chapter_detail.id || chapter_detail.id.toString() === chapterId
                                 ? "bg-gray-200 dark:bg-secondaryDark dark:hover:bg-secondaryDark text-black dark:text-gray-200 dark:hover:text-white hover:bg-gray-300 hover:text-black"
                                 : "hover:text-black text-black dark:text-white dark:hover:text-white"
                             }`}
-                            onClick={() => handleSubMenuClick(chapter_detail.id)}
+                            onClick={() => handleSubMenuClick(chapter_detail.id, item.id)}
                           >
                             <span className="w-2 h-2 bg-gray-600 rounded-full mr-3"></span>
                             <h4 className="text-start text-sm justify-start">{chapter_detail.chapter_detail_name}</h4>

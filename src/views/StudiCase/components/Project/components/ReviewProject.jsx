@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { handleGetReviewById } from "@/api/Review/ReviewProject";
 import ErrorServer from "@/components/ErrorServer";
 import DetailCardProductSkeleton from "@/components/loading/DetailCardProductSkeleton";
 
 const ReviewProject = () => {
   const { projectId } = useParams();
-  const query = useQueryClient();
   const [reviewStats, setReviewStats] = useState([]);
 
   // GET Review By Id
@@ -16,7 +15,7 @@ const ReviewProject = () => {
     error: errorReview,
     data: dataReview,
   } = useQuery({
-    queryKey: ["getReview"],
+    queryKey: ["getReview", projectId],
     queryFn: () => handleGetReviewById(projectId),
     enabled: !!projectId,
   });
@@ -49,12 +48,6 @@ const ReviewProject = () => {
       setReviewStats(stats);
     }
   }, [dataReview, calculateReviewStats]);
-
-  useEffect(() => {
-    if (dataReview) {
-      query.invalidateQueries(["getReview"]);
-    }
-  }, [dataReview, query]);
 
   if (errorReview) {
     <ErrorServer />;

@@ -53,9 +53,9 @@ const Chapter = () => {
     error: errorCheckReview,
     data: dataCheckReview,
   } = useQuery({
-    queryKey: ["getCheckReview"],
-    queryFn: () => handleCheckReview(dataSession.session.user.id, projectId),
-    enabled: !!projectId || !!dataSession,
+    queryKey: ["getCheckReview", dataSession?.session?.user?.id, projectId],
+    queryFn: () => handleCheckReview(dataSession?.session?.user?.id, projectId),
+    enabled: !!projectId || !!dataSession?.session?.user?.id,
   });
 
   console.log("dataCheckReview", dataCheckReview);
@@ -65,7 +65,7 @@ const Chapter = () => {
     isPending: isPendingChapterDetailById,
     data: dataChapterDetailById,
   } = useQuery({
-    queryKey: ["getProjectDetailById"],
+    queryKey: ["getProjectDetailById", chapterId],
     queryFn: () => handleGetChapterById(chapterId),
     enabled: !!chapterId,
   });
@@ -76,7 +76,7 @@ const Chapter = () => {
     isPending: isPendingProjectDetail,
     data: dataProjectDetails,
   } = useQuery({
-    queryKey: ["getProjectDetail"],
+    queryKey: ["getProjectDetail", projectId],
     queryFn: () => handleGetProjectDetail(projectId),
     enabled: !!projectId,
   });
@@ -90,11 +90,7 @@ const Chapter = () => {
     }
   }, [dataChapters]);
 
-  useEffect(() => {
-    queryClient.invalidateQueries(["getProjectDetailById"]);
-  }, [chapterId]);
-
-  const findNextChapterId = () => {
+  const findNextChapterId = useCallback(() => {
     if (!dataChapters || dataChapters.length === 0) return null;
     // Flatten all chapter details into a single array
     const allChapterDetails = dataChapters.flatMap((chapterProject) => chapterProject.chapter_detail);
@@ -106,11 +102,11 @@ const Chapter = () => {
     const nextChapter = allChapterDetails[currentIndex + 1];
     // Return the next chapter ID or null if it doesn't exist
     return nextChapter ? nextChapter.id : null;
-  };
+  }, [dataChapters, chapterId]);
 
   const nextChapterId = findNextChapterId();
 
-  const handleNextChapter = async () => {
+  const handleNextChapter = useCallback(async () => {
     try {
       console.log("next Chapter path", `/belajar/project/${projectId}/chapter/${nextChapterId}`);
       if (nextChapterId !== null) {
@@ -123,7 +119,7 @@ const Chapter = () => {
     } catch (error) {
       console.error("Error updating progress:", error);
     }
-  };
+  }, [projectId, chapterId, nextChapterId, navigate]);
 
   const handleClassDone = useCallback(async () => {
     try {
@@ -149,7 +145,7 @@ const Chapter = () => {
     } catch (error) {
       console.error("Error updating progress:", error);
     }
-  }, [projectId, chapterId, dataProjectDetails, dataSession, nextChapterId, queryClient, navigate]);
+  }, [projectId, chapterId, dataProjectDetails, dataSession, nextChapterId, queryClient]);
 
   if (errorSession || errorChapterDetailById || errorProjectDetail || errorCheckReview) {
     return <ErrorServer />;

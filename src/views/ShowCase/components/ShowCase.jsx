@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { handleGetShowCase } from "@/api/ShowCase/ShowCaseApi";
 import ErrorServer from "@/components/ErrorServer";
 import Loading from "@/components/Loading";
+import DataNotFound from "@/components/DataNotFound";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { MdAdd } from "react-icons/md";
@@ -118,9 +119,7 @@ const Index = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {currentItems.length > 0 ? currentItems.map((item) => <Card key={item.id} item={item} />) : <div className="col-span-2 h-80 flex items-center justify-center text-center text-gray-500">Data Not Found</div>}
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">{currentItems.length > 0 ? currentItems.map((item) => <Card key={item.id} item={item} />) : <DataNotFound />}</div>
       <div className="flex justify-center">
         <div className="flex justify-center items-center py-4">
           <Pagination totalPages={totalPages} handlePageClick={handlePageClick} />

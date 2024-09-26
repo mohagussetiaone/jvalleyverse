@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import DiscussionSkeleton from "@/components/loading/DiscussionSkeleton";
 import ErrorServer from "@/components/ErrorServer";
+import DataNotFound from "@/components/DataNotFound";
 import { handleGetCertificate } from "@/api/Certificate/CertificateApi";
 import { useCheckSession } from "@/api/Auth/CheckSession";
 import { PiCertificateLight } from "react-icons/pi";
@@ -31,9 +32,9 @@ const CertificateCard = () => {
     isPending: isPendingCertificate,
     data: dataCertificate,
   } = useQuery({
-    queryKey: ["getCertificate"],
+    queryKey: ["getCertificate", sessionData?.session?.user?.id],
     queryFn: () => handleGetCertificate(sessionData?.session?.user?.id),
-    enabled: !!sessionData,
+    enabled: !!sessionData?.session?.user?.id,
   });
 
   if (errorCertificate) {
@@ -65,7 +66,7 @@ const CertificateCard = () => {
   };
 
   return (
-    <div className="w-screen px-4 xl:pl-10 xl:pr-16">
+    <div className="w-full px-4 xl:pl-10 xl:pr-16">
       <div className="flex justify-start mb-8">
         <input type="text" placeholder={t("Cari Sertifikat...")} value={searchTerm} onChange={handleSearchChange} className="w-full bg-white dark:bg-black/20 dark:text-neutral-200 p-2 border border-gray-400 rounded" />
       </div>
@@ -97,9 +98,7 @@ const CertificateCard = () => {
           ))}
         </div>
       ) : (
-        <div className="bg-white dark:bg-primaryDark max-w-full w-full border border-gray-400 dark:border-none rounded-lg p-4 mb-4">
-          <div className="flex justify-center items-center h-[70vw] md:h-[20vw] text-gray-900 dark:text-neutral-200 text-xl">Data not found</div>
-        </div>
+        <DataNotFound />
       )}
       <div className="flex justify-center items-center py-4">
         <Pagination totalPages={totalPages} handlePageClick={handlePageClick} />

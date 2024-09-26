@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { IoMdGitMerge } from "react-icons/io";
 import { MdGridView } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import useDarkMode from "@/hooks/useDarkMode";
 import ModalMenu from "../../ModalMenu";
 import { handleGetProject } from "@/api/Project/ProjectApi";
-import { useUser } from "@/store/user/useUser";
 import { useTranslation } from "react-i18next";
 import ErrorServer from "@/components/ErrorServer";
 import SkeletonGrid from "@/components/loading/CardProductSkeleton";
@@ -16,9 +15,6 @@ import ImageNotAvailable from "@/assets/img/noimage.jpg";
 
 const ProjectCard = () => {
   const navigate = useNavigate();
-  const { userData } = useUser();
-  console.log("userData idssadsa", userData?.id);
-  const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { darkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +22,13 @@ const ProjectCard = () => {
   const [showModalMenu, setShowModalMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+
+  // Calculate average rating
+  const calculateAverageRating = useCallback((reviews) => {
+    if (reviews.length === 0) return 0;
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return totalRating / reviews.length;
+  }, []);
 
   // GET ALL PROJECT
   const {
@@ -37,12 +40,6 @@ const ProjectCard = () => {
     queryFn: handleGetProject,
   });
 
-  useEffect(() => {
-    if (dataProject) {
-      queryClient.invalidateQueries(["getProject"]);
-    }
-  }, [dataProject]);
-
   if (errorProject) {
     return <ErrorServer />;
   }
@@ -52,13 +49,6 @@ const ProjectCard = () => {
   }
 
   console.log("dataProject", dataProject);
-
-  // Calculate average rating
-  const calculateAverageRating = (reviews) => {
-    if (reviews.length === 0) return 0;
-    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-    return totalRating / reviews.length;
-  };
 
   // FILTER DATA
   const filteredData =

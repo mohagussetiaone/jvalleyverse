@@ -19,7 +19,7 @@ const ShowCaseDetail = () => {
     isPending: isPendingShowCaseById,
     data: dataShowCaseById,
   } = useQuery({
-    queryKey: ["getShowCaseById"],
+    queryKey: ["getShowCaseById", showCaseId],
     queryFn: () => handleGetShowCaseById(showCaseId),
     enabled: !!showCaseId,
   });
@@ -67,7 +67,7 @@ const ShowCaseDetail = () => {
                 </span>
               ))}
             </div>
-            <div className="flex gap-2 mt-4 md:mt-6">
+            <div className="flex gap-4 mt-4 md:mt-6">
               <Link
                 to={dataShowCaseById.url_preview}
                 target="_blank"
