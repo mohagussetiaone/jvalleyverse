@@ -6,19 +6,30 @@ import { useQuery } from "@tanstack/react-query";
 import useDarkMode from "@/hooks/useDarkMode";
 import ModalMenu from "../../ModalMenu";
 import { handleGetProject } from "@/api/Project/ProjectApi";
+import { handleGetCategoryProject } from "@/api/CategoryProject/CategoryProjectApi";
 import { useTranslation } from "react-i18next";
 import ErrorServer from "@/components/ErrorServer";
 import SkeletonGrid from "@/components/loading/CardProductSkeleton";
 import Pagination from "@/components/pagination/ReactPaginate";
 import StarRating from "@/components/stars/StartRating";
 import ImageNotAvailable from "@/assets/img/noimage.jpg";
+import DataNotFound from "@/components/DataNotFound";
+import Input from "@/components/input/Input";
+import SelectInput from "@/components/input/SelectInput";
+
+const toCamelCase = (str) => {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};
 
 const ProjectCard = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { darkMode } = useDarkMode();
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterType, setFilterType] = useState("Semua");
+  const [filterType, setFilterType] = useState("semua");
   const [showModalMenu, setShowModalMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -40,19 +51,35 @@ const ProjectCard = () => {
     queryFn: handleGetProject,
   });
 
-  if (errorProject) {
-    return <ErrorServer />;
-  }
+  // GET ALL CATEGORY PROJECT
+  const {
+    error: errorCategoryProject,
+    isPending: isPendingCategoryProject,
+    data: dataCategoryProject,
+  } = useQuery({
+    queryKey: ["getCategoryProject"],
+    queryFn: handleGetCategoryProject,
+  });
 
-  if (isPendingProject) {
-    return <SkeletonGrid />;
-  }
+  console.log("dataCategoryProject", dataCategoryProject);
 
   console.log("dataProject", dataProject);
 
+  const categoryOptions = dataCategoryProject
+    ? [
+        { label: "Semua", value: "semua" },
+        ...dataCategoryProject.map((item) => ({
+          label: toCamelCase(item.category_name),
+          value: item.category_name,
+        })),
+      ]
+    : [{ label: "Semua", value: "semua" }];
+
+  console.log("categoryOptions", categoryOptions);
+
   // FILTER DATA
   const filteredData =
-    dataProject && dataProject?.filter((item) => (filterType === "Semua" || item.category_project?.category_name === filterType) && item.project_published === true && item?.project_name?.toLowerCase().includes(searchTerm.toLowerCase()));
+    dataProject && dataProject?.filter((item) => (filterType === "semua" || item.category_project?.category_name === filterType) && item.project_published === true && item?.project_name?.toLowerCase().includes(searchTerm.toLowerCase()));
 
   // Total pages
   const totalPages = Math.ceil(filteredData?.length / itemsPerPage);
@@ -61,52 +88,61 @@ const ProjectCard = () => {
   // Data setelah di filter
   const currentData = filteredData?.slice(startIndex, startIndex + itemsPerPage);
   3;
+  console.log("currentData", currentData);
 
   // Handle pagination
   const handlePageClick = (page) => {
-    setCurrentPage(page.selected + 1); // `selected` is zero-indexed
+    setCurrentPage(page.selected + 1);
   };
 
   const handleCardClick = async (id) => {
     navigate(`/belajar/project/${id}`);
   };
 
+  if (errorProject || errorCategoryProject) {
+    return <ErrorServer />;
+  }
+
+  if (isPendingProject || isPendingCategoryProject) {
+    return <SkeletonGrid />;
+  }
+
   return (
     <>
       <div className="bg-gray-200 dark:bg-primaryDark p-3 md:p-6 pt-6">
         <div className="mb-4">
           <div className="flex justify-between">
-            <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
-              <MdGridView className="text-gray-800 dark:text-neutral-200 hover:text-black w-8 h-8" />
+            <div className="flex gap-2">
+              <div className="cursor-pointer xl:hidden" onClick={() => setShowModalMenu(!showModalMenu)}>
+                <MdGridView className="text-gray-800 dark:text-neutral-200 hover:text-black w-8 h-8" />
+              </div>
+              <Input
+                placeholder={t("Cari project...")}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="bg-white hidden md:block dark:bg-transparent text-black dark:text-neutral-200 focus:border-gray-500 dark:border-neutral-200"
+              />
             </div>
-            <input
-              type="text"
-              placeholder={t("Cari project...")}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-2 hidden md:flex rounded bg-white text-black border border-gray-400 dark:bg-transparent dark:text-neutral-200"
+            <SelectInput
+              placeholder={t("Semua")}
+              options={categoryOptions || []}
+              value={categoryOptions?.find((option) => option.value === filterType)}
+              onChange={(option) => setFilterType(option.value)}
+              className="w-full"
+              isClearable={false}
             />
-            <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white text-black border border-gray-400 cursor-pointer p-2 rounded dark:bg-transparent dark:text-white">
-              <option value="Semua">{t("Semua")}</option>
-              <option value="database">Database</option>
-              <option value="ui/ux">UI/UX</option>
-              <option value="frontend">Frontend</option>
-              <option value="backend">Backend</option>
-              <option value="fullstack">Fullstack</option>
-            </select>
           </div>
           <div className="flex justify-start">
-            <input
-              type="text"
-              placeholder={t("Cari project...")}
+            <Input
+              placeholder={t("Cari projects...")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 md:hidden py-2 rounded bg-white dark:bg-transparent text-black dark:text-neutral-200 border border-gray-400"
+              className="bg-white md:hidden dark:bg-transparent text-black dark:text-neutral-200 focus:border-gray-500 dark:border-neutral-200"
             />
           </div>
         </div>
         {filteredData && filteredData?.length === 0 ? (
-          <div className="text-center text-brand-500 text-xl h-[100vh] mt-24">Data Not Found</div>
+          <DataNotFound />
         ) : (
           <>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 min-h-screen h-[100vh] mx-auto">

@@ -39,6 +39,7 @@
     "localforage": "^1.10.0",
     "npm": "^10.8.1",
     "pdfjs-dist": "4.3.136",
+    "prop-types": "^15.8.1",
     "qs": "6.12.1",
     "react": "18.3.1",
     "react-collapse": "^5.1.1",

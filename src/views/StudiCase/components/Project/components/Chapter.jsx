@@ -86,6 +86,8 @@ const Chapter = () => {
   useEffect(() => {
     if (dataChapters) {
       const newProgress = calculateChapterProgress(dataChapters);
+      console.log("newProgress", newProgress);
+
       setProgress(newProgress);
     }
   }, [dataChapters]);
@@ -186,7 +188,7 @@ const Chapter = () => {
               </p>
             </div>
             <div className="flex justify-end md:items-center">
-              {nextChapterId && (
+              {nextChapterId && progress < 100 && (
                 <button className="flex gap-2 bg-brand-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={handleNextChapter}>
                   {t("Selesaikan dan lanjutkan")}
                   <GrLinkNext className="mt-1.5" />

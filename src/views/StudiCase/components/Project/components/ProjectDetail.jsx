@@ -3,10 +3,11 @@ import { useTranslation } from "react-i18next";
 import { MdArrowForward } from "react-icons/md";
 import { useAuthValidation } from "@/lib/authValidation";
 import { useCheckSession } from "@/api/Auth/CheckSession";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { handleGetProjectDetail } from "@/api/Project/ProjectApi";
 import { handleAddEnrollments } from "@/api/Enrollments/EnrollmentProject";
+import Button from "@/components/ui/Button";
 import ProjectSource from "./ProjectSource";
 import ReviewProject from "./ReviewProject";
 import ErrorServer from "@/components/ErrorServer";
@@ -41,7 +42,7 @@ const ProjectDetail = () => {
     enabled: !!projectId,
   });
 
-  console.log("data Project Detail", dataProjectDetails);
+  console.log("dataProjectDetails", dataProjectDetails);
 
   if (errorProjectDetail || errorSession) {
     <ErrorServer />;
@@ -53,21 +54,32 @@ const ProjectDetail = () => {
 
   const handleStarter = async () => {
     try {
-      const firstChapterDetail = dataProjectDetails.chapter_projects[0].chapter_details[0];
-      const chapterId = firstChapterDetail.id;
-      navigate(`/belajar/project/${projectId}/chapter/${chapterId}`);
-      if (dataSession?.session === null) {
-        return;
+      // Gabungkan semua `chapter_details` dari setiap `chapter_projects` menjadi satu array
+      const allChapterDetails = dataProjectDetails?.chapter_projects?.flatMap((chapter) => chapter.chapter_details) || [];
+      // Temukan chapter detail pertama yang `progress: false`
+      const firstIncompleteChapter = allChapterDetails.find((detail) => detail.progress === false);
+      // Jika tidak ada `progress: false`, temukan chapter detail terakhir yang `progress: true`
+      const lastCompleteChapter = allChapterDetails.filter((detail) => detail.progress === true).slice(-1)[0];
+      // Tentukan chapterId untuk redirect: `progress: false` jika ada, jika tidak ada pilih `progress: true` terakhir
+      const chapterId = firstIncompleteChapter?.id || lastCompleteChapter?.id;
+      // Redirect ke chapter yang ditentukan
+      if (chapterId) {
+        navigate(`/belajar/project/${projectId}/chapter/${chapterId}`);
       }
-      const response = await handleAddEnrollments({
-        project_id: projectId,
-        user_id: dataSession?.session?.user?.id,
-      });
-      return response;
+
+      // Tambahkan enrollments jika session valid
+      if (dataSession?.session !== null) {
+        const response = await handleAddEnrollments({
+          project_id: projectId,
+          user_id: dataSession?.session?.user?.id,
+        });
+        return response;
+      }
     } catch (error) {
       throw new Error(error);
     }
   };
+
   console.log("isIframeError", isIframeError);
 
   return (
@@ -91,9 +103,7 @@ const ProjectDetail = () => {
               <p className="text-justify">{dataProjectDetails?.project_description}</p>
             </div>
             <div>
-              <button className="text-white bg-brand-500" onClick={handleStarter}>
-                {t("Mulai Sekarang")}
-              </button>
+              <Button onClick={handleStarter}>{t("Mulai Sekarang")}</Button>
             </div>
             {/* <div className="flex flex-col">
               <div className="grid-cols-6 mx-auto bg-gray-100 dark:bg-neutral-800 text-start flex-col rounded-lg p-4 mb-2">
@@ -113,10 +123,12 @@ const ProjectDetail = () => {
               <div className="col-span-1 mt-8 md:mt-0">
                 <ReviewProject />
                 <div className="flex justify-end pt-6 px-4">
-                  <button className="flex text-white bg-brand-500 p-1 text-sm" onClick={() => navigate(`/belajar/project/${projectId}/reviews`)}>
-                    Lihat lengkap
-                    <MdArrowForward className="flex w-4 h-4 items-center justify-center mt-0.5 mx-1" />
-                  </button>
+                  <Link to={`/belajar/project/${projectId}/reviews`}>
+                    <Button size="sm" className="flex">
+                      {t("Lihat Lengkap")}
+                      <MdArrowForward className="flex w-4 h-4 items-center justify-center mt-0.5 mx-1" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

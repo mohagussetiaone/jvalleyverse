@@ -44,6 +44,7 @@ const ListModuleCourse = () => {
       // Check if chapterId matches any chapter_detail.id to set active menu and submenu
       const activeChapter = dataChapterProjects.find((item) => item.chapter_detail.some((detail) => detail.id.toString() === chapterId));
 
+      setDataChapters(dataChapterProjects);
       console.log("activeChapter", activeChapter);
 
       if (activeChapter) {
@@ -51,7 +52,7 @@ const ListModuleCourse = () => {
         setActiveSubMenu(chapterId); // Set the active submenu
       }
     }
-  }, [dataChapterProjects, setDataChapters]);
+  }, [dataChapterProjects, chapterId, setActiveMenu, setActiveSubMenu, setDataChapters]);
 
   if (errorProjectDetail || errorChapterProjects) {
     return <ErrorServer />;
