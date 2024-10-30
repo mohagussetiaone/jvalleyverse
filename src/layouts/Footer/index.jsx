@@ -1,4 +1,3 @@
-import JvalleyLogo from "@/assets/logo/logosmalldark.png";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -12,8 +11,10 @@ const Navbar = () => {
         <div className="w-full px-4 md:px-8 xl:px-10 mx-auto max-w-7xl">
           <div className="grid justify-between grid-cols-1 gap-1 md:gap-2 xl:gap-4 md:grid-cols-2">
             <div className="flex gap-4 my-2 text-start text-black dark:text-white">
-              <img src={JvalleyLogo} className="w-20 md:w-24 h-20 md:h-24 text-start font-sans text-xl antialiased font-semibold tracking-normal text-inherit md:-mt-2" />
               <div className="flex flex-col">
+                <h1 className="text-3xl font-bold uppercase mb-2">
+                  Jvalley <span className="text-brand-500">verse</span>
+                </h1>
                 <p>Jl Menteng Dalam RT015/011</p>
                 <p>Kel Menteng Dalam Kec Tebet</p>
                 <p>Kota Jakarta Selatan 12870</p>

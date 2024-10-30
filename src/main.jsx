@@ -5,7 +5,8 @@ import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
 import "@/config/i18n.js";
 
-document.body.classList.add("dark");
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+document.body.classList.add(isDarkMode ? "dark" : "light");
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

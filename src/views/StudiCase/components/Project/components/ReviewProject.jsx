@@ -30,10 +30,12 @@ const ReviewProject = () => {
         count: 0,
       }));
     }
+
     const ratingCounts = dataReview.reduce((acc, review) => {
       acc[review.rating] = (acc[review.rating] || 0) + 1;
       return acc;
     }, {});
+
     const maxCount = Math.max(...Object.values(ratingCounts));
     return [5, 4, 3, 2, 1].map((rating) => {
       const count = ratingCounts[rating] || 0;
